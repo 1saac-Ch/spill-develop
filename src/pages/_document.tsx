@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import Document, { Html, Head, Main, NextScript, DocumentInitialProps, DocumentContext } from 'next/document';
 import { CssBaseline } from '@nextui-org/react';
 import React from "react";
@@ -12,7 +13,10 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head >{CssBaseline.flush()}</Head>
+        <Head >
+          <link rel="icon" href="/logo.svg" />
+          {CssBaseline.flush()}
+        </Head>
         <body>
           <Main />
           <NextScript />

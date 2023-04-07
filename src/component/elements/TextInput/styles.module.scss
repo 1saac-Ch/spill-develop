@@ -1,0 +1,20 @@
+.root {
+  @apply w-full mb-[20px];
+  & label {
+    @apply text-small font-normal leading-low font-satoshi text-dark mb-[8px];
+  }
+}
+
+.wrapper {
+  @apply flex w-full border-[1px] border-solid border-dark py-[15px] px-[24px] border-abu rounded-[12px];
+  & input {
+    @apply w-full border-none;
+  }
+}
+
+.icon {
+  @apply cursor-pointer;
+  & svg {
+    @apply text-abu2;
+  }
+}

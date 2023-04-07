@@ -5,6 +5,12 @@ import { batchedSubscribe } from 'redux-batched-subscribe';
 import {
   persistStore,
   persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -20,7 +26,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(middleware),
+     getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(middleware),
   devTools: process.env.NODE_ENV !== 'production',
   enhancers: [batchedSubscribe((notify: () => any) => notify())],
 })

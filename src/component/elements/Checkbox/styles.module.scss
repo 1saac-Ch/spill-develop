@@ -1,0 +1,25 @@
+.checkbox {
+  & input[type="checkbox"] {
+    @apply absolute opacity-0;
+  }
+}
+
+.checkbox {
+  @apply  relative pl-[32px] mb-[17px] cursor-pointer  flex items-center;
+  & span {
+    @apply absolute left-0 top-0 w-[20px] h-[20px] bg-white border-[1px] border-solid border-abu rounded-[4px];
+  }
+  & input[type="checkbox"]:checked + span {
+    @apply bg-blue-50;
+  }
+
+}
+
+.wrapper {
+  @apply flex items-center;
+  & span {
+    @apply ml-[8px] text-abu2 text-small font-normal leading-low font-satoshi;
+  }
+ 
+}
+

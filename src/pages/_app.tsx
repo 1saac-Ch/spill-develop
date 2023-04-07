@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import type { AppProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
@@ -12,8 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <React.Fragment>
       <Head>
-        <title>Code base Front End</title>
+        <title>Spill</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+        <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet"/>
       </Head>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor} >

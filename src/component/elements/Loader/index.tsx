@@ -2,11 +2,15 @@ import { Loading } from '@nextui-org/react';
 import { classicNameResolver } from 'typescript';
 import styles from "./styles.module.css";
 
+type LoaderProps = {
+  type?: "points" | "default"| "gradient" | "spinner";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+}
 
-function Loader() {
+function Loader({type, size}: LoaderProps) {
   return (
     <div className={styles.root}>
-      <Loading type="points"/>
+      <Loading type={type} size={size} />
     </div>
   );
 }
