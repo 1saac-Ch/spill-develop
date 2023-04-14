@@ -1,5 +1,5 @@
-import styles from './index.module.css'
-
+import styles from './index.module.scss'
+import Layout from '@/component/layouts'
 export default function Counter() {
   return (
     <div>

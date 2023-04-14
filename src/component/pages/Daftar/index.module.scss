@@ -7,7 +7,7 @@
 }
 
 .wrapper {
-  @apply absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[600px]  rounded-[20px] p-[40px];
+  @apply absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[600px]  rounded-[20px] p-[40px];
   & h1 {
     @apply text-dark text-large font-tebal leading-height font-satoshi font-bold text-center mb-[8px];
   }

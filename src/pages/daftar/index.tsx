@@ -1,12 +1,3 @@
-import dynamic from "next/dynamic";
-import Loader from "@/component/elements/Loader";
+import Daftar from '@/component/pages/Daftar';
 
-const DynamicComponentWithNoSSR = dynamic(
-  () => import("../../component/pages/Daftar"),
-  { loading: () => <Loader type="points" size="xl"/> }
-);
-
-
-export default function Index() {
-  return <DynamicComponentWithNoSSR />
-}
+export default Daftar
