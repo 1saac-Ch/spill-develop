@@ -14,7 +14,6 @@ function Component() {
   const [noHp, setNoHp] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-
   const _handleChange = (e: any) => {
     let id = e.target.id
     let value = e.target.value

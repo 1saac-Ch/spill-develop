@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-page-custom-font */
 import Document, { Html, Head, Main, NextScript, DocumentInitialProps, DocumentContext } from 'next/document';
 import { CssBaseline } from '@nextui-org/react';
 import React from "react";
@@ -15,6 +14,7 @@ class MyDocument extends Document {
       <Html>
         <Head >
           <link rel="icon" href="/logo.svg" />
+          <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet"/>
           {CssBaseline.flush()}
         </Head>
         <body>

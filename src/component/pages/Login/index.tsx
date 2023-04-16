@@ -15,28 +15,28 @@ function Component() {
   const _handleChange = (e: any) => {
     let id = e.target.id
     if (id === "noHp") {
-      if(regex.number.test(e.target.value)) {
+      if (regex.number.test(e.target.value)) {
         setNoHp(e.target.value);
       }
-      if(noHp.length === 1 && e.nativeEvent.inputType === "deleteContentBackward") {
+      if (noHp.length === 1 && e.nativeEvent.inputType === "deleteContentBackward") {
         setNoHp("");
       }
-    }else if(id === "password") {
+    } else if (id === "password") {
       setPassword(e.target.value);
-    } else if(id === "remember") {
+    } else if (id === "remember") {
       setRemember(!remember);
     }
   }
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Image src={logo} alt="logo"  />
+        <Image src={logo} alt="logo" />
       </div>
       <div className={styles.wrapper}>
         <h1>Login Yuk 🚀</h1>
         <p>Nikmati kemudahan dalam mencari produk!</p>
         <TextInput label="Nomor Handphone" placeholder="Nomor handphone kamu" variant="normal" value={noHp} id="username" onChange={_handleChange} />
-        <TextInput label="Password" variant="password"  placeholder="Tulis password kamu" value={password} id="password" onChange={_handleChange} />
+        <TextInput label="Password" variant="password" placeholder="Tulis password kamu" value={password} id="password" onChange={_handleChange} />
         <div className={styles.checkbox}>
           <Checkbox checked={remember} label="Biarkan saya tetap masuk" id="remember" onChange={_handleChange} />
           <Link href="/forgot-password">Lupa Password</Link>

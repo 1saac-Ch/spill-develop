@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-page-custom-font */
 import type { AppProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
@@ -7,6 +6,7 @@ import { store, persistor } from '../redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import '../../styles/globals.css'
 import { NextUIProvider } from '@nextui-org/react';
+import Loader from '@/component/elements/Loader';
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -15,11 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Spill</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-        <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet"/>
       </Head>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor} >
+        <PersistGate loading={<Loader/>} persistor={persistor} >
           <NextUIProvider>
             <Component {...pageProps} />
           </NextUIProvider>

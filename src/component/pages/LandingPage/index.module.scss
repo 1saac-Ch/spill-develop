@@ -1,0 +1,25 @@
+.root {
+  @apply bg-radial w-full h-screen bg-[#111827];
+}
+
+.header {
+  @apply absolute top-[8%] left-[50%] transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.wrapper {
+  @apply absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[600px]  rounded-[20px] p-[40px];
+  & h1 {
+    @apply text-dark text-large leading-height font-satoshi font-bold text-center mb-[8px];
+  }
+  & p {
+    @apply text-dark text-xxmedium font-normal leading-medium font-satoshi text-center mb-[20px];
+  }
+}
+
+.image{
+  @apply flex justify-center;
+}
+
+.bottom {
+  @apply mt-[20px];
+}

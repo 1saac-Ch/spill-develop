@@ -1,12 +1,25 @@
-import dynamic from "next/dynamic";
-import Loader from "@/component/elements/Loader";
-
-const DynamicComponentWithNoSSR = dynamic(
-  () => import("../../component/pages/Login"),
-  { loading: () => <Loader type="points" size="xl"/> }
-);
+import Login from '@/component/pages/Login';
 
 
-export default function Index() {
-  return <DynamicComponentWithNoSSR />
+export async function getServerSideProps() {
+    // Fetch content data based on slug parameter
+    const isReadyAccount = false;
+
+    if (!isReadyAccount) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        redirect: {
+            destination: "/",
+            permanent: false,
+        },
+    };
 }
+
+export default Login

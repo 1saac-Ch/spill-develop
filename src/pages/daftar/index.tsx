@@ -1,12 +1,24 @@
-import dynamic from "next/dynamic";
-import Loader from "@/component/elements/Loader";
+import Daftar from '@/component/pages/Daftar';
 
-const DynamicComponentWithNoSSR = dynamic(
-  () => import("../../component/pages/Daftar"),
-  { loading: () => <Loader type="points" size="xl"/> }
-);
+export async function getServerSideProps() {
+    // Fetch content data based on slug parameter
+    const isReadyAccount = false;
 
+    if (!isReadyAccount) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false,
+            },
+        };
+    }
 
-export default function Index() {
-  return <DynamicComponentWithNoSSR />
+    return {
+        redirect: {
+            destination: "/",
+            permanent: false,
+        },
+    };
 }
+
+export default Daftar
