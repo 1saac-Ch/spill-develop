@@ -8,6 +8,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  important: true,
   theme: {
     extend: {
       colors: {
@@ -17,9 +18,13 @@ module.exports = {
         dark: "#1A1A1A",
         abu: "#A6A6A6",
         abu2: "#8C8C8C",
+        pink: "#F22178",
+
+        linear: 'linear-gradient(90deg, #F364D9 65.35%, #A702FF 79.92%);'
       },
       backgroundImage: {
-        radial: 'radial-gradient(50% 50% at 100% 0%, rgba(229, 97, 223, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 100% 100%, rgba(229, 97, 223, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 30% 20%, rgba(48, 2, 255, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 0% 100%, rgba(126, 7, 197, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 140% 50%, #00CDFA 0%, rgba(17, 24, 39, 0) 100%)'
+        radial: 'radial-gradient(50% 50% at 100% 0%, rgba(229, 97, 223, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 100% 100%, rgba(229, 97, 223, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 30% 20%, rgba(48, 2, 255, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 0% 100%, rgba(126, 7, 197, 0.37) 0%, rgba(17, 24, 39, 0) 100%),radial-gradient(50% 50% at 140% 50%, #00CDFA 0%, rgba(17, 24, 39, 0) 100%)',
+        linear: 'linear-gradient(90deg, #F364D9 65.35%, #A702FF 79.92%);'
       },
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
@@ -43,7 +48,9 @@ module.exports = {
         'medium': '24px',
         'low': '20px',
       },
+      textColor: {
+        'fill': '-webkit-text-fill-color',
+      },
     },
   },
-  plugins: [],
 }

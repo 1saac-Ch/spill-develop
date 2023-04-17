@@ -1,0 +1,5 @@
+@layer utilities {
+  .text-webkit {
+    -webkit-text-fill-color: transparent;
+  }
+}
