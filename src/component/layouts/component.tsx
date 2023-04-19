@@ -1,20 +1,19 @@
 import styles from './styles.module.scss';
-import Image from 'next/image';
-import Logo from "@/assets/images/logo.png";
 import Link from 'next/link';
 import Button from '@/component/elements/Button';
 import Search from '@/component/elements/Search';
+import SpillLogo from '../elements/SpillLogo';
 type ComponentProps = {
   children?: React.ReactNode;
 };
 function Component({ children }: ComponentProps) {
   const RightBeforeLogin = [
     {
-      title: ()=> <Link href="/login" className={styles.login}>Login</Link>,
+      title: () => <Link href="/login" className={styles.login}>Login</Link>,
       link: '/login',
     },
     {
-      title:()=> <Link href="/register" className={styles.register}>Register</Link>,
+      title: () => <Link href="/register" className={styles.register}>Register</Link>,
       link: '/register',
     },
     {
@@ -27,10 +26,10 @@ function Component({ children }: ComponentProps) {
     <div className={styles.root} >
       <div className={styles.navbar}>
         <div className={styles.left}>
-          <Image src={Logo} alt="logo" width={100} height={100} />
-          <Search placeholder="Find Your Product Here" position="right"/>
+          <SpillLogo multiplySize={0.4} />
+          <Search placeholder="Find Your Product Here" position="right" />
         </div>
-        <div className={styles.right}> 
+        <div className={styles.right}>
           {RightBeforeLogin.map((item, index) => (
             <div key={index} className={styles.item}>
               {typeof item.title === 'function' ? item.title() : item.title}
@@ -40,7 +39,7 @@ function Component({ children }: ComponentProps) {
       </div>
       {children}
     </div>
-    )
+  )
 }
 
 export default Component;
