@@ -1,12 +1,13 @@
+import { useState } from "react";
+import Link from "next/link";
+
 import styles from "./index.module.scss";
 import TextInput from "@/component/elements/TextInput";
 import Checkbox from "@/component/elements/Checkbox";
-import Link from "next/link";
 import Button from "@/component/elements/Button";
-import { useState } from "react";
-import Image from "next/image";
-import logo from "@/assets/icons/Logo.svg";
 import { regex } from "@/utils/regex";
+import SpillLogo from "@/component/elements/SpillLogo";
+
 function Component() {
   const [noHp, setNoHp] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -27,10 +28,11 @@ function Component() {
       setRemember(!remember);
     }
   }
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Image src={logo} alt="logo" />
+        <SpillLogo multiplySize={0.5} isDark={true} />
       </div>
       <div className={styles.wrapper}>
         <h1>Login Yuk 🚀</h1>
