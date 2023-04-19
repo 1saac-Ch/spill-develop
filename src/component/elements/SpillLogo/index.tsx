@@ -18,7 +18,7 @@ const SpillLogo = ({
     return (
         <NextImage
             src={SpillLogoLight}
-            alt="Vocasia"
+            alt="Spill Logo"
             width={baseWidth}
             height={baseHeight}
             layout={responsive ? 'responsive' : undefined}
