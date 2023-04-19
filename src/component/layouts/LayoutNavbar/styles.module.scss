@@ -1,0 +1,30 @@
+.navbar {
+  @apply flex justify-center  bg-white 
+}
+
+.maxContainer {
+  @apply w-full py-3 max-w-screen-xl flex justify-between items-center 
+}
+
+.left {
+  @apply flex items-center ;
+  & img {
+    @apply mr-[30px]
+  }
+}
+
+.right {
+  @apply flex items-center gap-[50px];
+}
+
+.login {
+  @apply font-tebal text-small text-dark leading-low 
+}
+
+.register {
+  @apply font-tebal text-small text-pink leading-low
+}
+
+.review {
+  @apply font-tebal text-small text-dark leading-low py-[11px] px-[15px] bg-white border-[1px] border-dark rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important}
+}
