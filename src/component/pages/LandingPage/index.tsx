@@ -8,7 +8,7 @@ function LandingPage() {
         <div className={styles.wording}>
           <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
           <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
-          <Search variant="wording"/>
+          <Search variant="wording" placeholder="Cari produk apapun"/>
         </div>
       </div>
     </Layouts>
