@@ -2,6 +2,10 @@
   @apply bg-radial w-full h-screen bg-[#111827];
 }
 
+.container {
+  @apply border-2 border-blue-600 max-w-screen-xl
+}
+
 .wording {
   @apply absolute w-full top-[200px] left-[50%] flex flex-col items-center transform -translate-x-1/2;
   & h1 {
