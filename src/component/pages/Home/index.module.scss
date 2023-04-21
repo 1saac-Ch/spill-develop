@@ -1,5 +1,13 @@
+.root {
+  @apply bg-radial w-full h-screen bg-[#111827];
+}
+
+.container {
+  @apply mx-auto max-w-screen-xl h-full flex items-center
+}
+
 .wording {
-  @apply absolute w-full top-[200px] left-[50%] flex flex-col items-center transform -translate-x-1/2;
+  @apply w-full flex flex-col items-center;
   & h1 {
     @apply text-white text-[57px] tracking-[-0.25px] w-[713px] font-[900] leading-[64px] font-satoshi text-center mb-[24px];
     & label {
@@ -9,4 +17,13 @@
   & p {
     @apply  text-medium leading-[32px] font-tebal text-center mb-[24px] font-satoshi text-[#CCCCCC]
   }
+}
+
+
+.horizontalStack {
+  @apply flex flex-wrap w-full justify-center py-10 
+}
+
+.keywordHeader {
+  @apply border-2 border-gray-500 rounded-xl px-5 py-2 text-white m-3
 }

@@ -9,11 +9,9 @@ type MainLayoutProps = {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className={styles.root}>
+    <div>
       <LayoutNavbar />
-      <div className={styles.minContainer}>
-        {children}
-      </div>
+      {children}
     </div>
   )
 }

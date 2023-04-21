@@ -1,13 +1,14 @@
 .navbar {
-  @apply flex justify-center  bg-white 
+  @apply flex justify-center bg-white sticky top-0
 }
 
 .maxContainer {
-  @apply w-full py-3 max-w-screen-xl flex justify-between items-center 
+  @apply w-full py-3 max-w-screen-xl flex justify-between items-center
 }
 
 .left {
-  @apply flex items-center ;
+  @apply flex items-center;
+
   & img {
     @apply mr-[30px]
   }
@@ -18,7 +19,7 @@
 }
 
 .login {
-  @apply font-tebal text-small text-dark leading-low 
+  @apply font-tebal text-small text-dark leading-low
 }
 
 .register {
