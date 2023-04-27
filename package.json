@@ -2,11 +2,11 @@
   "name": "codebase",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://spiill.com",
   "scripts": {
-    "dev": "next dev ",
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "build": "next build",
-    "custom-start": "NODE_ENV=production node server.js",
-    "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },
