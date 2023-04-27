@@ -18,17 +18,19 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <React.Fragment>
       <Head>
-        <title>Spill</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
+        />
       </Head>
       <Provider store={store}>
-        <PersistGate loading={<Loader/>} persistor={persistor} >
+        <PersistGate loading={<Loader />} persistor={persistor} >
           <NextUIProvider>
-          {getLayout(<Component {...pageProps} />)}
+            {getLayout(<Component {...pageProps} />)}
           </NextUIProvider>
         </PersistGate>
       </Provider>
-    </React.Fragment> 
+    </React.Fragment>
   );
 }
 
