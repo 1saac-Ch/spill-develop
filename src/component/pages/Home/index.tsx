@@ -5,6 +5,7 @@ import Search from "@/component/elements/Search";
 
 const Home = () => {
   return (
+    <>
     <div className={styles.root}>
       <div className={styles.container}>
         <div className={styles.wording}>
@@ -28,6 +29,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <div>...</div>
+    </>
   )
 }
 
