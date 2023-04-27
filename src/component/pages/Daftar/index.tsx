@@ -1,12 +1,13 @@
-import styles from "./index.module.scss";
-import TextInput from "@/component/elements/TextInput";
-import Checkbox from "@/component/elements/Checkbox";
-import Link from "next/link";
-import Button from "@/component/elements/Button";
 import { useState } from "react";
-import Image from "next/image";
-import logo from "@/assets/icons/Logo.svg";
+import Link from "next/link";
+
+import styles from "./index.module.scss";
+
+import SpillLogo from "@/component/elements/SpillLogo";
+import TextInput from "@/component/elements/TextInput";
+import Button from "@/component/elements/Button";
 import { regex } from "@/utils/regex";
+
 function Component() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -15,31 +16,33 @@ function Component() {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const _handleChange = (e: any) => {
+
     let id = e.target.id
     let value = e.target.value
     if (id === "username") {
       setUsername(value);
     } else if (id === "password") {
-      if (regex.password.test(value)){
+      if (regex.password.test(value)) {
         setPassword(value);
       }
     } else if (id === "name") {
       setName(value);
     } else if (id === "noHp") {
-      if(regex.number.test(value)) {
+      if (regex.number.test(value)) {
         setNoHp(value);
       }
-      if(noHp.length === 1 && e.nativeEvent.inputType === "deleteContentBackward") {
+      if (noHp.length === 1 && e.nativeEvent.inputType === "deleteContentBackward") {
         setNoHp("");
       }
     } else if (id === "confirmPassword") {
       setConfirmPassword(value);
     }
   }
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Image src={logo} alt="logo"/>
+        <SpillLogo multiplySize={0.5} isDark={true} />
       </div>
       <div className={styles.wrapper}>
         <h1>Daftar di Spill 🚀</h1>

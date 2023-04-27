@@ -2,15 +2,24 @@
   @apply bg-radial w-full h-screen bg-[#111827];
 }
 
-.wording {
-  @apply absolute w-full top-[200px] left-[50%] flex flex-col items-center transform -translate-x-1/2;
+.header {
+  @apply absolute top-[8%] left-[50%] transform -translate-x-1/2 -translate-y-1/2;
+}
+
+.wrapper {
+  @apply absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[600px]  rounded-[20px] p-[40px];
   & h1 {
-    @apply text-white text-[57px] tracking-[-0.25px] w-[713px] font-[900] leading-[64px] font-satoshi text-center mb-[24px];
-    & label {
-      @apply bg-linear bg-clip-text text-transparent
-    }
+    @apply text-dark text-large leading-height font-satoshi font-bold text-center mb-[8px];
   }
   & p {
-    @apply  text-medium leading-[32px] font-tebal text-center mb-[24px] font-satoshi text-[#CCCCCC]
+    @apply text-dark text-xxmedium font-normal leading-medium font-satoshi text-center mb-[20px];
   }
+}
+
+.image{
+  @apply flex justify-center;
+}
+
+.bottom {
+  @apply mt-[20px];
 }

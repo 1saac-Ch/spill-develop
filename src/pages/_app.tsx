@@ -7,9 +7,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import '../../styles/globals.css'
 import { NextUIProvider } from '@nextui-org/react';
 import Loader from '@/component/elements/Loader';
+import { NextPageWithLayout } from '@/utils/NextPageWithLayout';
 
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <React.Fragment>
       <Head>
@@ -19,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <PersistGate loading={<Loader/>} persistor={persistor} >
           <NextUIProvider>
-            <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
           </NextUIProvider>
         </PersistGate>
       </Provider>
