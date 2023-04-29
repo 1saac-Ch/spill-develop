@@ -2,12 +2,150 @@ import { ReactElement, JSXElementConstructor } from 'react';
 import MainLayout from '@/component/layouts/MainLayout';
 import styles from "./index.module.scss";
 import Search from "@/component/elements/Search";
+import Card from "@/component/elements/Card";
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import React, { useState, useRef, useEffect } from 'react';
+import Image from "@/component/elements/NextImage";
+import Box1 from "@/assets/images/1.png";
+import Box2 from "@/assets/images/2.png";
+import Box3 from "@/assets/images/3.png";
+import Box4 from "@/assets/images/4.png";
+import Box5 from "@/assets/images/5.png";
+import Box6 from "@/assets/images/6.png";
+import Promo from "@/assets/images/promo.png";
+import Artikel from "@/assets/images/artikel.png";
+import Youtube from "@/assets/images/youtube.png";
+import Footer from "@/component/layouts/Footer";
+import clsx from 'clsx';
 
 const Home = () => {
+  const [state, setState] = useState({
+    activeSlide: 0,
+  });
+  const { activeSlide } = state;
+  const nodeRef = useRef(activeSlide);
+  const [slide, setSlide] = useState<string>()
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setState((prev) => ({
+        ...prev,
+        activeSlide: (prev.activeSlide + 1) % hotriview.length,
+        nodeRef: activeSlide,
+      }));
+    }, 300000);
+    return () => clearInterval(interval);
+  })
+  const handleChangeSlide = (index: number) => {
+    if (index > activeSlide) {
+      setSlide('')
+    } else {
+      setSlide('-')
+    }
+    setState((prev) => ({
+      ...prev,
+      activeSlide: index,
+      nodeRef: activeSlide,
+    }));
+  };
+  const hotriview = [
+    {
+      slide: 0,
+      card: [
+        {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+        {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+         {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+      ]
+    },
+    {
+      slide: 1,
+      card: [
+        {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+        {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+         {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+      ]
+    },
+     {
+      slide: 2,
+      card: [
+        {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+        {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+         {
+          title: "Review Produk",
+          description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+        },
+      ]
+    },
+  ];
+  const feature1 = [
+    { image: Box1 },
+    { image: Box2 },
+    { image: Box3},
+  ]
+  const feature2 = [
+    { image: Box4 },
+    { image: Box5 },
+    { image: Box6 },
+  ]
+  const artikel = [
+    {
+      col:1,
+      image: Artikel,
+      title: "Review Produk",
+      description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+    }, {
+      col: 2,
+      card: [
+        { title: 'Review Produk', description: 'Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat',image: Artikel },
+        { title: 'Review Produk', description: 'Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat',image: Artikel },
+        { title: 'Review Produk', description: 'Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat',image: Artikel },
+      ]
+    }
+  ]
+  const youtube = [
+    {
+      image: Youtube,
+      title: "Review Produk",
+      description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+    },
+    {
+      image: Youtube,
+      title: "Review Produk",
+      description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+    },
+    {
+      image: Youtube,
+      title: "Review Produk",
+      description: "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat"
+    }
+  ]
   return (
     <>
-    <div className={styles.root}>
-      <div className={styles.container}>
+    <div className="bg-radial w-full h-screen bg-[#111827]">
+      <div className="mx-auto max-w-screen-xl h-full flex items-center">
         <div className={styles.wording}>
           <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
           <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
@@ -29,7 +167,141 @@ const Home = () => {
         </div>
       </div>
     </div>
-    <div>...</div>
+      <div className="w-full flex flex-col items-center rounded-t-[64px] absolute top-[90%] bg-white py-[75px] 
+    px-[72px]">
+      <div className="flex gap-[44px] justify-between">
+          <h1 className={styles.title}>Hot Review.</h1>
+          <Image src={"/assets/images/Logo.png"} width={24} height={24} alt="test"/>
+        <div className={styles.line}>
+          <div/>
+        </div>
+        <div className="flex gap-[23px]">
+          <div className={styles.dots} />
+          <div className={styles.dots}/>
+        </div>
+        </div>
+        <div className="overflow-hidden">
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={activeSlide}
+            classNames={{
+              enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-in-out`,
+              enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-in-out`,
+              exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
+              exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
+            }}
+            timeout={500}
+          >
+            
+            <div className="flex gap-[44px] justify-between mt-[65px] mb-[60px]">
+              {hotriview[activeSlide].card.map((item, index) => (
+                  <Card key={index} >
+                    {item.title}
+                    {item.description}
+                  </Card>
+                ))
+              }
+            </div>
+          </CSSTransition>
+          </SwitchTransition>
+        </div>
+        <div className={styles.indicator}>
+          {hotriview.map((item, index) => (
+              <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
+            ))
+          }
+        </div>
+        <div className="flex flex-col mt-[95px]">
+          <h1 className={styles.title}>Feature.</h1>
+          <div className="flex gap-[80px] mt-[40px]">
+            {feature1.map((item, index) => (
+                <Image key={index} src={item.image} width={378} height={344} alt="test" />
+              ))}
+          </div>
+          <div className="flex gap-[80px] mt-[40px]">
+            {feature2.map((item, index) => (
+                <Image key={index} src={item.image} width={378} height={344} alt="test" />
+              ))}
+          </div>
+        </div>
+        <div className="mt-[90px]">
+          <h1 className={styles.title}>Promo.</h1>
+          <div className="overflow-hidden mt-[40px] mb-[60px] flex items-center">
+          <button className={styles.prev}>prev</button>
+          <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={activeSlide}
+            classNames={{
+              enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-out-in`,
+              enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-out-in`,
+              exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-out-in',
+              exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-out-in',
+            }}
+            timeout={500}>
+              <Image src={Promo} width={1296} height={320} alt="test" />
+            </CSSTransition>
+            </SwitchTransition>
+            <button className={styles.next}>next</button>
+          </div>
+          <div className={styles.indicator}>
+          {hotriview.map((item, index) => (
+              <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
+            ))
+          }
+        </div>
+        </div>
+        <div className="mt-[108px]">
+          <h1 className={styles.title}>Artikel.</h1>
+          <div className="flex justify-between gap-[20px] mt-[40px]">
+            {artikel.map((item: any, index: number) => {
+              if (index === 0) {
+                return (
+                  <div key={index} className="flex flex-col gap-[40px] py-[40px] px-[40px] rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
+                    <Image src={item.image} width={620} height={496} alt="test" />
+                    <div className="flex flex-col gap-[20px]">
+                      <h1 className={styles.artikelTitle}>{item.title}</h1>
+                      <p className={styles.artikelDescription}>{item.description}</p>
+                    </div>
+                  </div>
+                )
+              } else {
+                return(
+                  <div key={index} className="flex flex-col gap-[20px]">
+                    {item.card.map((item: any, index: number) => (
+                      <div key={index} className="flex gap-[40px] py-[40px] px-[40px] rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
+                        <Image src={item.image} width={200} height={200} alt="test" />
+                        <div className="flex flex-col ">
+                          <h1 className={styles.artikelTitle}>{item.title}</h1>
+                          <p className={styles.artikelDescription}>{item.description}</p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                  </div>
+                )
+              }
+            })}
+           
+          </div>
+        </div>
+        <div className="mt-[190px]">
+          <h1 className={styles.title}>Konten Youtube.</h1>
+          <div className="flex gap-[20px] mt-[40px]">
+            {youtube.map((item, index) => (
+              <div key={index} className="flex flex-col gap-[20px]">
+                <div className="flex flex-col gap-[40px]">
+                  <Image src={item.image} width={404} height={228} alt="test" />
+                  <div className="flex flex-col ">
+                    <h1 className={styles.artikelTitle}>{item.title}</h1>
+                    <p className={styles.artikelDescription}>{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))} 
+            </div>
+        </div>
+        <Footer/>
+    </div>
     </>
   )
 }
