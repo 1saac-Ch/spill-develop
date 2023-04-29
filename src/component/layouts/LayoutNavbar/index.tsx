@@ -5,7 +5,6 @@ import Search from '@/component/elements/Search';
 import Link from 'next/link';
 import styles from "./styles.module.scss";
 
-
 const LayoutNavbar = () => {
     const RightBeforeLogin = [
         {
