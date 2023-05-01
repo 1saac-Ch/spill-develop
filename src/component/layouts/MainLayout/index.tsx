@@ -1,21 +1,20 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import styles from "./styles.module.scss";
 import LayoutNavbar from '../LayoutNavbar';
-import Footer from '../Footer';
 
 type MainLayoutProps = {
   children: ReactNode;
-  footer?: boolean;
 };
 
 
-const MainLayout = ({ children, footer }: MainLayoutProps) => {
+const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div>
-      <LayoutNavbar />
-      {children}
-      {footer && <Footer />}
-    </div>
+    <React.Fragment>
+      <div className={styles.mainLayout}>
+        <LayoutNavbar />
+        {children}
+      </div>
+    </React.Fragment>
   )
 }
 

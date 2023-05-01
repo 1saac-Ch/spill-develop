@@ -1,3 +1,25 @@
 .footer {
-  @apply bg-[#111827] py-[40px] px-[72px] text-white font-satoshi w-full absolute bottom-0;
+  @apply bg-[#111827] text-white font-satoshi w-screen flex justify-center items-center py-8;
+}
+
+.maxContainer {
+  @apply w-full max-w-screen-xl 
+}
+
+.stack {
+  @apply flex px-5 flex-col gap-5 md:px-0 md:flex-row
+}
+
+.leftStack {
+  @apply flex-[0.5];
+  & h1 {
+    @apply font-bold
+  }
+  & div {
+    @apply flex flex-col gap-2 mt-5
+  }
+}
+
+.button {
+  @apply py-[10px] px-[24px] w-[76px] h-[40px] 
 }
