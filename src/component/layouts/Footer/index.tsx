@@ -55,14 +55,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between mt-5 py-5">
+        <div className={styles.spillRight}>
           <div>
             <SpillLogo multiplySize={0.3} isDark={true} />
           </div>
-          <div className="text-gray-500">
-            <p>© 2023 Spill. All Rights Reserved.</p>
-          </div>
-          <div className="flex gap-6">
+          <p>© 2023 Spill. All Rights Reserved.</p>
+          <div className={styles.stackSosmed}>
             <div><InstagramIcon /></div>
             <div><LinkedInIcon /></div>
             <div><WhatsAppIcon /></div>
