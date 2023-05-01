@@ -18,7 +18,7 @@ const Home = () => {
   });
   const { activeSlide } = state;
   const nodeRef = useRef(activeSlide);
-  const [slide, setSlide] = useState<string>("")
+  const [slide, setSlide] = useState<string>(true)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,9 +33,9 @@ const Home = () => {
 
   const handleChangeSlide = (index: number) => {
     if (index > activeSlide) {
-      setSlide("")
+      setSlide(true)
     } else {
-      setSlide('-')
+      setSlide(false)
     }
     setState((prev) => ({
       ...prev,
@@ -88,8 +88,8 @@ const Home = () => {
             <CSSTransition
               key={activeSlide}
               classNames={{
-                enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-in-out`,
-                enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-in-out`,
+                enter: `opacity-0 translate-x-[${slide?"50%":"-50%"}] transition-all duration-500 ease-in-out`,
+                enterActive: `opacity-100 translate-x-[-0px] transition-all duration-500 ease-in-out`,
                 exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
                 exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
               }}
@@ -137,10 +137,10 @@ const Home = () => {
               <CSSTransition
                 key={activeSlide}
                 classNames={{
-                  enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-out-in`,
-                  enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-out-in`,
-                  exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-out-in',
-                  exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-out-in',
+                  enter: `opacity-0 translate-x-[${slide?"50%":"-50%"}] transition-all duration-500 ease-in-out`,
+                  enterActive: `opacity-100 translate-x-[-0px] transition-all duration-500 ease-in-out`,
+                  exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
+                  exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
                 }}
                 timeout={500}>
                 <Image src={Promo} width={1296} height={320} alt="test" />
