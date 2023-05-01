@@ -6,7 +6,7 @@ import Link from 'next/link';
 import styles from "./styles.module.scss";
 
 const LayoutNavbar = () => {
-    const [isSticky, setIsSticky] = useState(false);
+    const [isSticky, setIsSticky] = useState<Boolean>(false);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
@@ -16,7 +16,7 @@ const LayoutNavbar = () => {
     }, []);
 
     const handleScroll = () => {
-        if (window.pageYOffset > 600) {
+        if (window.pageYOffset > 10) {
             setIsSticky(true);
         } else {
             setIsSticky(false);
