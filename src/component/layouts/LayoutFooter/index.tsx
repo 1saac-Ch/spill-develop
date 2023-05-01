@@ -9,7 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Button from "@/component/elements/Button/component";
-const Footer = () => {
+const LayoutFooter = () => {
   const list = [
     {
       title: "Spill",
@@ -31,7 +31,7 @@ const Footer = () => {
 
   ]
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <div className={styles.maxContainer}>
         <div className={styles.stack}>
           {list.map((item, index) => (
@@ -70,8 +70,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 
-export default Footer
+export default LayoutFooter
