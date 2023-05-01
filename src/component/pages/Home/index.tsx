@@ -18,7 +18,7 @@ const Home = () => {
   });
   const { activeSlide } = state;
   const nodeRef = useRef(activeSlide);
-  const [slide, setSlide] = useState<string>()
+  const [slide, setSlide] = useState<string>("")
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,13 +27,13 @@ const Home = () => {
         activeSlide: (prev.activeSlide + 1) % hotriview.length,
         nodeRef: activeSlide,
       }));
-    }, 300000);
+    }, 3000);
     return () => clearInterval(interval);
   })
 
   const handleChangeSlide = (index: number) => {
     if (index > activeSlide) {
-      setSlide('')
+      setSlide("")
     } else {
       setSlide('-')
     }
