@@ -26,7 +26,7 @@
   }
 }
 .dots {
-  @apply w-[52px] h-[52px] rounded-full bg-dark
+  @apply w-[52px] h-[52px] rounded-full bg-dark cursor-pointer flex justify-center items-center
 }
 
 .indicator {

@@ -1,9 +1,9 @@
 .navbar {
-  @apply flex justify-center bg-transparent absolute w-full text-white ease-in-out delay-75
+  @apply flex justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300 
 }
 
 .navbarSticky {
-  @apply flex justify-center fixed w-full bg-white z-50 transition  shadow-md
+  @apply flex justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
 }
 
 .maxContainer {

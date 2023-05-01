@@ -8,6 +8,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from "@/component/elements/NextImage";
 import Promo from "@/assets/images/promo.png";
 import clsx from 'clsx';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 
 import Footer from '@/component/layouts/Footer';
 import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
@@ -18,7 +21,7 @@ const Home = () => {
   });
   const { activeSlide } = state;
   const nodeRef = useRef(activeSlide);
-  const [slide, setSlide] = useState<string>()
+  const [slide, setSlide] = useState<string>();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +30,7 @@ const Home = () => {
         activeSlide: (prev.activeSlide + 1) % hotriview.length,
         nodeRef: activeSlide,
       }));
-    }, 300000);
+    }, 5000);
     return () => clearInterval(interval);
   })
 
@@ -44,7 +47,21 @@ const Home = () => {
     }));
   };
 
-
+  const handlePrevOrNext = (isNext: boolean) => {
+    if (isNext) {
+      setState((prev) => ({
+        ...prev,
+        activeSlide: (prev.activeSlide + 1) % hotriview.length,
+        nodeRef: activeSlide,
+      }));
+    } else {
+      setState((prev) => ({
+        ...prev,
+        activeSlide: (prev.activeSlide - 1 + hotriview.length) % hotriview.length,
+        nodeRef: activeSlide,
+      }));
+    }
+  };
 
   return (
     <>
@@ -56,16 +73,16 @@ const Home = () => {
             <Search variant="wording" placeholder="Cari produk apapun" />
             <div className={styles.horizontalStack}>
               <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
+                Handphone Murah
               </div>
               <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
+                Skincare
               </div>
               <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
+                Iphone 13 Pro
               </div>
               <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
+                Kamera Terbaik
               </div>
             </div>
           </div>
@@ -79,8 +96,12 @@ const Home = () => {
             <div />
           </div>
           <div className="flex gap-[23px]">
-            <div className={styles.dots} />
-            <div className={styles.dots} />
+            <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
+              <ArrowBackIcon sx={{ color: 'white' }} />
+            </div>
+            <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
+              <ArrowForwardIcon sx={{ color: 'white' }} />
+            </div>
           </div>
         </div>
         <div className="overflow-hidden">
@@ -130,7 +151,6 @@ const Home = () => {
           </div>
         </div>
         <div className="mt-[90px]">
-          <h1 className={styles.title}>Promo.</h1>
           <div className="overflow-hidden mt-[40px] mb-[60px] flex items-center">
             <button className={styles.prev}>prev</button>
             <SwitchTransition mode="out-in">
