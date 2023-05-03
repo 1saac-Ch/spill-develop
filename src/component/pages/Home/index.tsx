@@ -12,6 +12,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
+import RatingStar from '@/component/elements/RatingStar';
 
 const Home = () => {
   const [state, setState] = useState({
@@ -120,8 +121,17 @@ const Home = () => {
                 <div className="flex gap-[44px] justify-between mt-[65px] mb-[60px]">
                   {hotriview[activeSlide].card.map((item, index) => (
                     <Card key={index} >
-                      {item.title}
-                      {item.description}
+                      <div className='flex flex-col gap-2 p-5'>
+                        <div>
+                          <RatingStar rating={item.rating} />
+                        </div>
+                        <div className="font-bold text-xl">
+                          {item.title}
+                        </div>
+                        <p>
+                          {item.description}
+                        </p>
+                      </div>
                     </Card>
                   ))
                   }

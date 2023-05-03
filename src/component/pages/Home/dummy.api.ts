@@ -16,16 +16,19 @@ export const hotriview = [
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 4,
+      },
+      {
+        title: "Sony WM-1000X",
+        description:
+          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 5,
       },
       {
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
-      },
-      {
-        title: "Review Produk",
-        description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 3,
       },
     ],
   },
@@ -36,16 +39,19 @@ export const hotriview = [
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 4,
       },
       {
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 5,
       },
       {
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 4,
       },
     ],
   },
@@ -56,31 +62,26 @@ export const hotriview = [
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 4,
       },
       {
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 5,
       },
       {
         title: "Review Produk",
         description:
           "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+        rating: 4,
       },
     ],
   },
 ];
 
-export const feature1 = [
-    { image: Box1 },
-    { image: Box2 },
-    { image: Box3 },
-  ]
-export const feature2 = [
-    { image: Box4 },
-    { image: Box5 },
-    { image: Box6 },
-  ]
+export const feature1 = [{ image: Box1 }, { image: Box2 }, { image: Box3 }];
+export const feature2 = [{ image: Box4 }, { image: Box5 }, { image: Box6 }];
 
 export const artikel = [
   {
@@ -134,4 +135,3 @@ export const youtube = [
       "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
   },
 ];
-
