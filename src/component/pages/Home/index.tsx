@@ -14,6 +14,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
 import RatingStar from '@/component/elements/RatingStar';
 
+
 const Home = () => {
   const [state, setState] = useState({
     activeSlide: 0,
@@ -89,23 +90,24 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="w-full overflow-hidden flex flex-col items-center rounded-t-[64px] py-10 bg-white  
-    px-16">
-          <div className="flex gap-[44px] justify-between">
-            <h1 className={styles.title}>Hot Review.</h1>
-            <div className={styles.line}>
-              <div />
-            </div>
-            <div className="flex gap-[23px]">
-              <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
-                <ArrowBackIcon sx={{ color: 'white' }} />
+
+        <div className="flex justify-center mt-[95px] w-screen py-10">
+          <div className="w-full py-3 max-w-screen-xl">
+            <div className="flex gap-[44px] justify-between">
+              <h1 className={styles.title}>Hot Review.</h1>
+              <div className={styles.line}>
+                <div />
               </div>
-              <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
-                <ArrowForwardIcon sx={{ color: 'white' }} />
+              <div className="flex gap-[23px]">
+                <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
+                  <ArrowBackIcon sx={{ color: 'white' }} />
+                </div>
+                <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
+                  <ArrowForwardIcon sx={{ color: 'white' }} />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="overflow-hidden">
+            {/* GridCard */}
             <SwitchTransition mode="out-in">
               <CSSTransition
                 key={activeSlide}
@@ -117,33 +119,47 @@ const Home = () => {
                 }}
                 timeout={500}
               >
-
-                <div className="flex gap-[44px] justify-between mt-[65px] mb-[60px]">
-                  {hotriview[activeSlide].card.map((item, index) => (
-                    <Card key={index} >
-                      <div className='flex flex-col gap-2 p-5'>
-                        <div>
+                <div className='grid grid-cols-1 mt-8 md:grid-cols-3 grid-flow-row gap-1 md:gap-3'>
+                  {/* Main Card */}
+                  {hotriview[activeSlide].card.map((item, i) => (
+                    <Card key={i}>
+                      <div className="py-2 h-full flex flex-col p-4 gap-2">
+                        <div className='my-4'>
                           <RatingStar rating={item.rating} />
                         </div>
-                        <div className="font-bold text-xl">
+                        <div
+                          className="flex-grow font-tebal text-lg items-stretch  "
+                        >
                           {item.title}
                         </div>
-                        <p>
-                          {item.description}
-                        </p>
+                        <div
+                          className="flex-grow font-tebal text-lg items-stretch  "
+                        >
+                          <p className="text-gray-500 line-clamp-3 text-justify">
+                            {item.description}
+                          </p>
+                        </div>
+                        <div className='flex gap-2 py-2'>
+                          <div className=''>
+                            <img className='h-12 w-12 rounded-full object-cover' src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='Avatar' />
+                          </div>
+                          <div className=' flex flex-col'>
+                            <div>Nama Review</div>
+                            <p className='font-normal'>3 Minggu Lalu</p>
+                          </div>
+                        </div>
                       </div>
                     </Card>
-                  ))
-                  }
+                  ))}
                 </div>
               </CSSTransition>
             </SwitchTransition>
-          </div>
-          <div className={styles.indicator}>
-            {hotriview.map((item, index) => (
-              <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
-            ))
-            }
+            <div className={styles.indicator}>
+              {hotriview.map((_, index) => (
+                <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
+              ))
+              }
+            </div>
           </div>
         </div>
         <div className="flex justify-center mt-[95px] w-screen py-10 bg-[#EEF8FC]">

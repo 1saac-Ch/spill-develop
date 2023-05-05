@@ -30,8 +30,8 @@ const LayoutNavbar = () => {
             link: '/login',
         },
         {
-            title: () => <Link href="/register" className={styles.register}>Daftar</Link>,
-            link: '/register',
+            title: () => <Link href="/daftar" className={styles.register}>Daftar</Link>,
+            link: '/daftar',
         },
         {
             title: () => <Button className={isSticky ? styles.review : styles.reviewSticky}>Tulis Review</Button>,

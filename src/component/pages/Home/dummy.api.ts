@@ -15,19 +15,19 @@ export const hotriview = [
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 4,
       },
       {
         title: "Sony WM-1000X",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Varius at ut . Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 5,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 3,
       },
     ],
@@ -38,19 +38,19 @@ export const hotriview = [
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 4,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 5,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 4,
       },
     ],
@@ -61,19 +61,19 @@ export const hotriview = [
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 4,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 5,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 4,
       },
     ],
@@ -89,7 +89,7 @@ export const artikel = [
     image: Artikel,
     title: "Review Produk",
     description:
-      "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+      "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
   },
   {
     col: 2,
@@ -97,19 +97,19 @@ export const artikel = [
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         image: Artikel,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         image: Artikel,
       },
       {
         title: "Review Produk",
         description:
-          "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         image: Artikel,
       },
     ],
@@ -120,18 +120,18 @@ export const youtube = [
     image: Youtube,
     title: "Review Produk",
     description:
-      "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+      "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
   },
   {
     image: Youtube,
     title: "Review Produk",
     description:
-      "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+      "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
   },
   {
     image: Youtube,
     title: "Review Produk",
     description:
-      "Review produk yang kamu beli, dan bantu orang lain untuk memilih produk yang tepat",
+      "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
   },
 ];

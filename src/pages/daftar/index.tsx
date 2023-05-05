@@ -4,7 +4,7 @@ export async function getServerSideProps() {
     // Fetch content data based on slug parameter
     const isReadyAccount = false;
 
-    if (!isReadyAccount) {
+    if (isReadyAccount) {
         return {
             redirect: {
                 destination: "/",

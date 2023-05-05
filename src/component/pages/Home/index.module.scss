@@ -39,7 +39,7 @@
 }
 
 .indicator {
-  @apply flex items-center justify-center gap-[8px];
+  @apply flex items-center justify-center gap-[8px] mt-8;
 
   & .dot {
     @apply w-[12px] h-[12px] rounded-full bg-abu transform transition-all duration-300;
