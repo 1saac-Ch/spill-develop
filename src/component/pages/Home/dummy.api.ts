@@ -87,9 +87,10 @@ export const artikel = [
   {
     col: 1,
     image: Artikel,
-    title: "Review Produk",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
+    title: "10 Rekomendasi Headphone",
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus nisl, vestibulum nec finibus ac, condimentum a erat. Donec non tellus elementum, tincidunt libero ut, pulvinar dolor. Proin ultricies sem quis vehicula lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam purus nisl, vestibulum nec finibus ac, condimentum a erat. Donec non tellus elementum, tincidunt libero ut, pulvinar dolor. Proin ultricies sem quis vehicula lacinia.`,
   },
   {
     col: 2,
@@ -97,7 +98,7 @@ export const artikel = [
       {
         title: "Review Produk",
         description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
+          "Lorem ipsum dolit  Semper sit scelerisque ornare nibh nisi ",
         image: Artikel,
       },
       {
@@ -109,7 +110,13 @@ export const artikel = [
       {
         title: "Review Produk",
         description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi dolor sit amet consectetur. Varius at ut vitae tellus dolor sit amet consectetur. Varius at ut vitae tellus dolor sit amet consectetur. Varius at ut vitae tellus",
+        image: Artikel,
+      },
+      {
+        title: "Review Produk",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi dolor sit amet consectetur. Varius at ut vitae tellus dolor sit amet consectetur. Varius at ut vitae tellus dolor sit amet consectetur. Varius at ut vitae tellus",
         image: Artikel,
       },
     ],

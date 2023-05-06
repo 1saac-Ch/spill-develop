@@ -3,6 +3,7 @@ import MainLayout from '@/component/layouts/MainLayout';
 import styles from "./index.module.scss";
 import Search from "@/component/elements/Search";
 import Card from "@/component/elements/Card";
+import Button from "@/component/elements/Button";
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from "@/component/elements/NextImage";
@@ -65,207 +66,225 @@ const Home = () => {
   };
 
   return (
-    <>
-      <main className=''>
-        <div className="bg-radial bg-[#111827] w-full h-[90vh] ">
-          <div className="mx-auto h-full flex items-center">
-            <div className={styles.wording}>
-              <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
-              <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
-              <Search variant="wording" placeholder="Cari produk apapun" />
-              <div className={styles.horizontalStack}>
-                <div className={styles.keywordHeader}>
-                  Handphone Murah
-                </div>
-                <div className={styles.keywordHeader}>
-                  Skincare
-                </div>
-                <div className={styles.keywordHeader}>
-                  Iphone 13 Pro
-                </div>
-                <div className={styles.keywordHeader}>
-                  Kamera Terbaik
-                </div>
+    <main>
+      <div className="bg-radial bg-[#111827] w-full h-[90vh] ">
+        <div className="mx-auto h-full flex items-center">
+          <div className={styles.wording}>
+            <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
+            <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
+            <Search variant="wording" placeholder="Cari produk apapun" />
+            <div className={styles.horizontalStack}>
+              <div className={styles.keywordHeader}>
+                Handphone Murah
+              </div>
+              <div className={styles.keywordHeader}>
+                Skincare
+              </div>
+              <div className={styles.keywordHeader}>
+                Iphone 13 Pro
+              </div>
+              <div className={styles.keywordHeader}>
+                Kamera Terbaik
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="flex justify-center mt-[95px] w-screen py-10">
-          <div className="w-full py-3 max-w-screen-xl">
-            <div className="flex gap-[44px] justify-between">
-              <h1 className={styles.title}>Hot Review.</h1>
-              <div className={styles.line}>
-                <div />
+      <div className="flex justify-center mt-[95px] w-screen py-10">
+        <div className="w-full py-3 max-w-screen-xl">
+          <div className="flex gap-[44px] justify-between">
+            <h1 className={styles.title}>Hot Review.</h1>
+            <div className={styles.line}>
+              <div />
+            </div>
+            <div className="flex gap-[23px]">
+              <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
+                <ArrowBackIcon sx={{ color: 'white' }} />
               </div>
-              <div className="flex gap-[23px]">
-                <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
-                  <ArrowBackIcon sx={{ color: 'white' }} />
-                </div>
-                <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
-                  <ArrowForwardIcon sx={{ color: 'white' }} />
-                </div>
+              <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
+                <ArrowForwardIcon sx={{ color: 'white' }} />
               </div>
             </div>
-            {/* GridCard */}
-            <SwitchTransition mode="out-in">
-              <CSSTransition
-                key={activeSlide}
-                classNames={{
-                  enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-in-out`,
-                  enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-in-out`,
-                  exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
-                  exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
-                }}
-                timeout={500}
-              >
-                <div className='grid grid-cols-1 mt-8 md:grid-cols-3 grid-flow-row gap-1 md:gap-3'>
-                  {/* Main Card */}
-                  {hotriview[activeSlide].card.map((item, i) => (
-                    <Card key={i}>
-                      <div className="py-2 h-full flex flex-col p-4 gap-2">
-                        <div className='my-4'>
-                          <RatingStar rating={item.rating} />
+          </div>
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              key={activeSlide}
+              classNames={{
+                enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-in-out`,
+                enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-in-out`,
+                exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
+                exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
+              }}
+              timeout={500}
+            >
+              <div className='grid grid-cols-1 mt-8 md:grid-cols-3 grid-flow-row gap-1 md:gap-3'>
+                {hotriview[activeSlide].card.map((item, i) => (
+                  <Card key={i}>
+                    <div className="py-2 h-full flex flex-col p-4 gap-2">
+                      <div className='my-4'>
+                        <RatingStar rating={item.rating} />
+                      </div>
+                      <div
+                        className="flex-grow font-tebal text-lg items-stretch  "
+                      >
+                        {item.title}
+                      </div>
+                      <div
+                        className="flex-grow font-tebal text-lg items-stretch  "
+                      >
+                        <p className="text-gray-500 line-clamp-3 text-justify">
+                          {item.description}
+                        </p>
+                      </div>
+                      <div className='flex gap-2 py-2'>
+                        <div className=''>
+                          <img className='h-12 w-12 rounded-full object-cover' src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='Avatar' />
                         </div>
-                        <div
-                          className="flex-grow font-tebal text-lg items-stretch  "
-                        >
-                          {item.title}
-                        </div>
-                        <div
-                          className="flex-grow font-tebal text-lg items-stretch  "
-                        >
-                          <p className="text-gray-500 line-clamp-3 text-justify">
-                            {item.description}
-                          </p>
-                        </div>
-                        <div className='flex gap-2 py-2'>
-                          <div className=''>
-                            <img className='h-12 w-12 rounded-full object-cover' src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='Avatar' />
-                          </div>
-                          <div className=' flex flex-col'>
-                            <div>Nama Review</div>
-                            <p className='font-normal'>3 Minggu Lalu</p>
-                          </div>
+                        <div className=' flex flex-col'>
+                          <div>Nama Review</div>
+                          <p className='font-normal'>3 Minggu Lalu</p>
                         </div>
                       </div>
-                    </Card>
-                  ))}
-                </div>
-              </CSSTransition>
-            </SwitchTransition>
-            <div className={styles.indicator}>
-              {hotriview.map((_, index) => (
-                <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
-              ))
-              }
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center mt-[95px] w-screen py-10 bg-[#EEF8FC]">
-          <div className="w-full py-3 max-w-screen-xl ">
-            <h1 className={styles.title}>Feature.</h1>
-            <div className="flex flex-wrap  justify-between p-5 mt-[40px]">
-              {feature1.map((item, index) => (
-                <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-between p-5">
-              {feature2.map((item, index) => (
-                <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className=" my-20 flex flex-col justify-center items-center">
-          <div className={styles.sliderAds} onMouseEnter={() => setIsHoverBannerAds(true)} onMouseLeave={() => setIsHoverBannerAds(false)}>
-            {isHoverBannerAds &&
-              <button className={styles.prev}>
-                <ArrowBackIcon sx={{ color: 'white' }} />
-              </button>
-            }
-            <SwitchTransition mode="out-in">
-              <CSSTransition
-                key={activeSlide}
-                classNames={{
-                  enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-out-in`,
-                  enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-out-in`,
-                  exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-out-in',
-                  exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-out-in',
-                }}
-                timeout={500}>
-                <Image src={Promo} width={1250} height={320} alt="test" />
-              </CSSTransition>
-            </SwitchTransition>
-            {isHoverBannerAds &&
-              <button className={styles.next}>
-                <ArrowForwardIcon sx={{ color: 'white' }} />
-              </button>
-            }
-          </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </CSSTransition>
+          </SwitchTransition>
           <div className={styles.indicator}>
-            {hotriview.map((item, index) => (
+            {hotriview.map((_, index) => (
               <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
             ))
             }
           </div>
         </div>
-        <div className="flex justify-center">
-          <div className='w-full py-3 max-w-screen-xl'>
-            <h1 className={styles.title}>Artikel.</h1>
-            <div className="flex justify-between gap-[20px] mt-[40px]">
-              {artikel.map((item: any, index: number) => {
-                if (index === 0) {
-                  return (
-                    <div key={index} className="flex flex-col gap-[40px] py-[40px] px-[40px] rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-                      <Image src={item.image} width={620} height={496} alt="test" />
-                      <div className="flex flex-col gap-[20px]">
-                        <h1 className={styles.artikelTitle}>{item.title}</h1>
-                        <p className={styles.artikelDescription}>{item.description}</p>
+      </div>
+      <div className="flex justify-center mt-[95px] w-screen py-10 bg-[#EEF8FC]">
+        <div className="w-full py-3 max-w-screen-xl ">
+          <h1 className={styles.title}>Feature.</h1>
+          <div className="flex flex-wrap  justify-between p-5 mt-[40px]">
+            {feature1.map((item, index) => (
+              <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-between p-5">
+            {feature2.map((item, index) => (
+              <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className=" my-20 flex flex-col justify-center items-center">
+        <div className={styles.sliderAds} onMouseEnter={() => setIsHoverBannerAds(true)} onMouseLeave={() => setIsHoverBannerAds(false)}>
+          {isHoverBannerAds &&
+            <button className={styles.prev}>
+              <ArrowBackIcon sx={{ color: 'white' }} />
+            </button>
+          }
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              key={activeSlide}
+              classNames={{
+                enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-out-in`,
+                enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-out-in`,
+                exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-out-in',
+                exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-out-in',
+              }}
+              timeout={500}>
+              <Image src={Promo} width={1250} height={320} alt="test" />
+            </CSSTransition>
+          </SwitchTransition>
+          {isHoverBannerAds &&
+            <button className={styles.next}>
+              <ArrowForwardIcon sx={{ color: 'white' }} />
+            </button>
+          }
+        </div>
+        <div className={styles.indicator}>
+          {hotriview.map((item, index: number) => (
+            <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
+          ))
+          }
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <div className='w-full py-3 max-w-screen-xl'>
+          <h1 className={styles.title}>Artikel.</h1>
+          <div className="flex gap-[20px] mt-[40px]">
+            {artikel.map((item: any, index: number) => {
+              if (index === 0) {
+                return (
+                  <div key={index} className="flex flex-1  flex-col rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
+                    <div className='flex-1'>
+                      <Image src={item.image} alt="test" layout="responsive"
+                        className="object-cover" />
+                    </div>
+                    <div className="flex flex-1 flex-col gap-5 p-8">
+                      <h1 className={styles.artikelTitle}>{item.title}</h1>
+                      <p className={styles.artikelDescriptionFirst}>{item.description}</p>
+                      <div className='flex-grow flex items-end'>
+                        <p className='text-[#F22178] font-semibold w-max '>Lihat Selengkapnya...</p>
                       </div>
                     </div>
-                  )
-                } else {
-                  return (
-                    <div key={index} className="flex flex-col gap-[20px]">
-                      {item.card.map((item: any, index: number) => (
-                        <div key={index} className="flex gap-[40px] py-[40px] px-[40px] rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-                          <Image src={item.image} width={200} height={200} alt="test" />
-                          <div className="flex flex-col ">
-                            <h1 className={styles.artikelTitle}>{item.title}</h1>
-                            <p className={styles.artikelDescription}>{item.description}</p>
+                  </div>
+                )
+              } else {
+                return (
+                  <div key={index} className="flex flex-col flex-1 justify-between gap-5">
+                    {item.card.map((item: any, index: number) => (
+                      <div key={index} className="flex  overflow-hidden items-stretch rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
+                        <Image src={item.image} width={200} height={200} alt="test" />
+                        <div className="flex flex-col p-6">
+                          <h1 className={styles.artikelTitle}>{item.title}</h1>
+                          <p className={styles.artikelDescription}>{item.description}</p>
+                          <div className='flex-grow flex items-end'>
+                            <p className='text-[#F22178] font-semibold w-max '>Lihat Selengkapnya...</p>
                           </div>
                         </div>
-                      ))
-                      }
-                    </div>
-                  )
-                }
-              })}
+                      </div>
+                    ))
+                    }
+                  </div>
+                )
+              }
+            })}
 
-            </div>
           </div>
         </div>
-        <div className="flex justify-center">
-          <div className='w-full py-3 max-w-screen-xl'>
-            <h1 className={styles.title}>Konten Youtube.</h1>
-            <div className="flex gap-[20px] mt-[40px] mb-20">
-              {youtube.map((item, index) => (
-                <div key={index} className="flex flex-col gap-[20px]">
-                  <div className="flex flex-col gap-[40px]">
-                    <Image src={item.image} width={404} height={228} alt="test" />
-                    <div className="flex flex-col ">
-                      <h1 className={styles.artikelTitle}>{item.title}</h1>
-                      <p className={styles.artikelDescription}>{item.description}</p>
-                    </div>
+      </div>
+      <div className="flex justify-center">
+        <div className='w-full py-3 max-w-screen-xl'>
+          <h1 className={styles.title}>Konten Youtube.</h1>
+          <div className="flex gap-[20px] mt-[40px] mb-20">
+            {youtube.map((item, index: number) => (
+              <div key={index} className="flex flex-col gap-[20px]">
+                <div className="flex flex-col gap-[40px]">
+                  <Image src={item.image} width={404} height={228} alt="test" />
+                  <div className="flex flex-col ">
+                    <h1 className={styles.artikelTitle}>{item.title}</h1>
+                    <p className={styles.artikelDescription}>{item.description}</p>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center bg-[#E8FBF5]">
+        <div className='w-full py-3 max-w-screen-xl'>
+          <div className='flex justify-between items-center my-8'>
+            <div className='flex-[1.8]'>
+              <h1 className='text-xl font-tebal'> 🔍 Produk yang kamu cari tidak ada di spill?</h1>
+              <p> ayo bantu sarankan kami untuk menuliskan produk yang kamu cari</p>
+            </div>
+            <div className='flex-[0.2]'>
+              <Button>Sarankan Produk</Button>
             </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   )
 }
 

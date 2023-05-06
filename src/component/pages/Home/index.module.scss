@@ -66,6 +66,9 @@
   @apply text-dark text-[22px] font-[700] leading-[28px] font-satoshi;
 }
 
+.artikelDescriptionFirst {
+  @apply text-xxmedium leading-[24px] font-[400] font-satoshi text-dark whitespace-pre-line line-clamp-6;
+}
 .artikelDescription {
-  @apply text-xxmedium leading-[24px] font-[400] font-satoshi text-dark;
+  @apply text-xxmedium leading-[24px] font-[400] font-satoshi text-dark line-clamp-4;
 }
