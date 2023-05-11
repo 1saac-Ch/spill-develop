@@ -2,8 +2,8 @@ import { ReactElement, JSXElementConstructor } from 'react';
 import MainLayout from '@/component/layouts/MainLayout';
 import styles from "./index.module.scss";
 import Search from "@/component/elements/Search";
+import Button from '@/component/elements/Button';
 import Card from "@/component/elements/Card";
-import Button from "@/component/elements/Button";
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from "@/component/elements/NextImage";
@@ -91,7 +91,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mt-[95px] w-screen py-10">
+      <div className="relative flex justify-center w-screen pb-10 ">
+        <div className='absolute w-full bg-white  h-16 -left-1 -top-16 rounded-t-full'></div>
         <div className="w-full py-3 max-w-screen-xl">
           <div className="flex gap-[44px] justify-between">
             <h1 className={styles.title}>Hot Review.</h1>
@@ -160,7 +161,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-[95px] w-screen py-10 bg-[#EEF8FC]">
+      <div className="flex justify-center w-screen py-10 bg-[#EEF8FC]">
         <div className="w-full py-3 max-w-screen-xl ">
           <h1 className={styles.title}>Feature.</h1>
           <div className="flex flex-wrap  justify-between p-5 mt-[40px]">
@@ -233,7 +234,7 @@ const Home = () => {
                 return (
                   <div key={index} className="flex flex-col flex-1 justify-between gap-5">
                     {item.card.map((item: any, index: number) => (
-                      <div key={index} className="flex  overflow-hidden items-stretch rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
+                      <div key={index} className="flex overflow-hidden items-stretch rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
                         <Image src={item.image} width={200} height={200} alt="test" />
                         <div className="flex flex-col p-6">
                           <h1 className={styles.artikelTitle}>{item.title}</h1>
@@ -249,7 +250,9 @@ const Home = () => {
                 )
               }
             })}
-
+          </div>
+          <div className='flex justify-center my-7'>
+            <Button variant="outline">Artikel Lainnya</Button>
           </div>
         </div>
       </div>
@@ -268,19 +271,6 @@ const Home = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center bg-[#E8FBF5]">
-        <div className='w-full py-3 max-w-screen-xl'>
-          <div className='flex justify-between items-center my-8'>
-            <div className='flex-[1.8]'>
-              <h1 className='text-xl font-tebal'> 🔍 Produk yang kamu cari tidak ada di spill?</h1>
-              <p> ayo bantu sarankan kami untuk menuliskan produk yang kamu cari</p>
-            </div>
-            <div className='flex-[0.2]'>
-              <Button>Sarankan Produk</Button>
-            </div>
           </div>
         </div>
       </div>

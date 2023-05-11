@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import styles from "./styles.module.scss";
 import LayoutNavbar from '../LayoutNavbar';
 import LayoutFooter from '../LayoutFooter';
+import LayoutRekomendationFooter from '../LayoutRekomendationFooter';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -13,9 +14,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <React.Fragment>
       <div className={styles.mainLayout}>
         <LayoutNavbar />
-        <div className='min-w-screen-xl h-full'>
         {children}
-        </div>
+        <LayoutRekomendationFooter/>
         <LayoutFooter />
       </div>
     </React.Fragment>

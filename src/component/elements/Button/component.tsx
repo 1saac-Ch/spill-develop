@@ -4,7 +4,7 @@ import clsx from "clsx";
 type ButtonProps = {
   children: React.ReactNode;
   onClick?: (e: any) => void;
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "tertiary" | "outline";
   size?: "small" | "medium" | "large";
   disabled?: boolean;
   className?: string;
