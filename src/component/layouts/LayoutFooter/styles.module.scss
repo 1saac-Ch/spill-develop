@@ -1,9 +1,9 @@
 .footer {
-  @apply bg-[#111827] text-white font-satoshi w-screen flex justify-center items-center py-8;
+  @apply bg-[#111827] text-white font-satoshi py-8;
 }
 
 .maxContainer {
-  @apply w-full max-w-screen-xl 
+  @apply container mx-auto
 }
 
 .stack {

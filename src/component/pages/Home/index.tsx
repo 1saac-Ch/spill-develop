@@ -92,8 +92,8 @@ const Home = () => {
       </div>
 
       <div className="relative flex justify-center w-screen pb-10 ">
-        <div className='absolute w-full bg-white  h-16 -left-1 -top-16 rounded-t-full'></div>
-        <div className="w-full py-3 max-w-screen-xl">
+        <div className={styles.roundedTopHotReview} />
+        <div className={styles.maxContainer}>
           <div className="flex gap-[44px] justify-between">
             <h1 className={styles.title}>Hot Review.</h1>
             <div className={styles.line}>
@@ -119,7 +119,7 @@ const Home = () => {
               }}
               timeout={500}
             >
-              <div className='grid grid-cols-1 mt-8 md:grid-cols-3 grid-flow-row gap-1 md:gap-3'>
+              <div className={styles.gridCardItems}>
                 {hotriview[activeSlide].card.map((item, i) => (
                   <Card key={i}>
                     <div className="py-2 h-full flex flex-col p-4 gap-2">
@@ -161,9 +161,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center w-screen py-10 bg-[#EEF8FC]">
-        <div className="w-full py-3 max-w-screen-xl ">
-          <h1 className={styles.title}>Feature.</h1>
+      <div className={styles.feature}>
+        <div className={styles.maxContainer}>
+          <h1 className={styles.titleContent}>Feature.</h1>
           <div className="flex flex-wrap  justify-between p-5 mt-[40px]">
             {feature1.map((item, index) => (
               <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
@@ -176,43 +176,45 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className=" my-20 flex flex-col justify-center items-center">
-        <div className={styles.sliderAds} onMouseEnter={() => setIsHoverBannerAds(true)} onMouseLeave={() => setIsHoverBannerAds(false)}>
-          {isHoverBannerAds &&
-            <button className={styles.prev}>
-              <ArrowBackIcon sx={{ color: 'white' }} />
-            </button>
-          }
-          <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={activeSlide}
-              classNames={{
-                enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-out-in`,
-                enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-out-in`,
-                exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-out-in',
-                exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-out-in',
-              }}
-              timeout={500}>
-              <Image src={Promo} width={1250} height={320} alt="test" />
-            </CSSTransition>
-          </SwitchTransition>
-          {isHoverBannerAds &&
-            <button className={styles.next}>
-              <ArrowForwardIcon sx={{ color: 'white' }} />
-            </button>
-          }
-        </div>
-        <div className={styles.indicator}>
-          {hotriview.map((item, index: number) => (
-            <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
-          ))
-          }
+      <div className={styles.bannerAds}>
+        <div className={styles.maxContainer}>
+          <div className={styles.sliderAds} onMouseEnter={() => setIsHoverBannerAds(true)} onMouseLeave={() => setIsHoverBannerAds(false)}>
+            {isHoverBannerAds &&
+              <button className={styles.prev}>
+                <ArrowBackIcon sx={{ color: 'white' }} />
+              </button>
+            }
+            <SwitchTransition mode="out-in">
+              <CSSTransition
+                key={activeSlide}
+                classNames={{
+                  enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-out-in`,
+                  enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-out-in`,
+                  exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-out-in',
+                  exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-out-in',
+                }}
+                timeout={500}>
+                <Image src={Promo} layout="responsive" alt="test" />
+              </CSSTransition>
+            </SwitchTransition>
+            {isHoverBannerAds &&
+              <button className={styles.next}>
+                <ArrowForwardIcon sx={{ color: 'white' }} />
+              </button>
+            }
+          </div>
+          <div className={styles.indicator}>
+            {hotriview.map((item, index: number) => (
+              <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
+            ))
+            }
+          </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <div className='w-full py-3 max-w-screen-xl'>
-          <h1 className={styles.title}>Artikel.</h1>
-          <div className="flex gap-[20px] mt-[40px]">
+      <div className={styles.article}>
+        <div className={styles.maxContainer}>
+          <h1 className={styles.titleContent}>Artikel.</h1>
+          <div className="flex flex-col px-5 gap-[20px] mt-[40px] md:flex-row md:px-0">
             {artikel.map((item: any, index: number) => {
               if (index === 0) {
                 return (
@@ -256,20 +258,41 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <div className='w-full py-3 max-w-screen-xl'>
-          <h1 className={styles.title}>Konten Youtube.</h1>
-          <div className="flex gap-[20px] mt-[40px] mb-20">
-            {youtube.map((item, index: number) => (
-              <div key={index} className="flex flex-col gap-[20px]">
-                <div className="flex flex-col gap-[40px]">
-                  <Image src={item.image} width={404} height={228} alt="test" />
-                  <div className="flex flex-col ">
-                    <h1 className={styles.artikelTitle}>{item.title}</h1>
-                    <p className={styles.artikelDescription}>{item.description}</p>
+      <div className={styles.maxContainer}>
+        <div className="flex gap-[44px]">
+          <h1 className={styles.title}>Konten Review Pilihan.</h1>
+          <div className={styles.line}>
+            <div />
+          </div>
+          <div className="flex gap-6">
+            <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
+              <ArrowBackIcon sx={{ color: 'white' }} />
+            </div>
+            <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
+              <ArrowForwardIcon sx={{ color: 'white' }} />
+            </div>
+          </div>
+        </div>
+        <div className={styles.contentReview}>
+          <div className={styles.gridCardItems}>
+            {youtube.map((item, i) => (
+              <Card key={i}>
+                <div className="py-2 h-full flex flex-col p-6 gap-2 ">
+                  <div
+                    className="flex-grow font-tebal text-lg items-stretch  "
+                  >
+                    {item.title}
                   </div>
+                  <div
+                    className="flex-grow font-tebal text-lg items-stretch  "
+                  >
+                    <p className="line-clamp-3 text-justify text-xxmedium leading-[24px] font-[400] font-satoshi text-dark">
+                      {item.description}
+                    </p>
+                  </div>
+
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
