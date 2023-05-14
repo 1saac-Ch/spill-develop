@@ -10,6 +10,7 @@ type MainLayoutProps = {
 
 
 const MainLayout = ({ children }: MainLayoutProps) => {
+  
   return (
     <React.Fragment>
       <div className={styles.mainLayout}>

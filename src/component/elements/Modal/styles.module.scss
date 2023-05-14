@@ -1,0 +1,7 @@
+.contentModal {
+  @apply w-max flex justify-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2
+}
+
+.contentOverlay {
+  @apply fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50
+}

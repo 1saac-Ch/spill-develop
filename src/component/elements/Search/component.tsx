@@ -4,6 +4,7 @@ import Button from "@/component/elements/Button";
 type SearchProps = {
   placeholder?: string;
   onChange?: (e: any) => void;
+  onClick?: (e: any) => void;
   value?: string;
   className?: string;
   position?: "left" | "right";
@@ -18,7 +19,7 @@ function Component({ ...props }: SearchProps) {
           <div className={styles.wrapperWording} >
             <SearchIcon className={styles.icon} />
             <input {...props} />
-            <Button className={styles.button}>Cari</Button>
+            <Button className={styles.button} onClick={props.onClick}>Cari</Button>
           </div>
         )
       default:
@@ -30,10 +31,10 @@ function Component({ ...props }: SearchProps) {
         )
     }
   }
-    return (
-      <>
+  return (
+    <>
       {Variant()}
-      </>
+    </>
   )
 }
 

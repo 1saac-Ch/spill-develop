@@ -1,7 +1,7 @@
 import React from 'react'
 
 export interface UseDisclosureProps {
-  isOpen?: boolean
+  isOpen: boolean
   defaultIsOpen?: boolean
   onClose?(): void
   onOpen?(): void
@@ -10,7 +10,7 @@ export interface UseDisclosureProps {
 
 const UseDisclosure = (): UseDisclosureProps => {
 
-  const [isOpenState, setInOpenState] = React.useState(false);
+  const [isOpenState, setInOpenState] = React.useState<boolean>(false);
 
   const onClose = React.useCallback(() => {
     if (isOpenState) {

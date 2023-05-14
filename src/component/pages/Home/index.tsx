@@ -15,9 +15,14 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
 import RatingStar from '@/component/elements/RatingStar';
 import UseDisclosure from '@/component/elements/UseDisclosure';
+import MainHotReview from '@/component/main/MainHotReview';
+import SearchIcon from '@mui/icons-material/Search';
+import { useRouter } from 'next/router';
+import Modal from '@/component/elements/Modal';
 
 
 const Home = () => {
+  const router = useRouter()
   const [state, setState] = useState({
     activeSlide: 0,
   });
@@ -26,7 +31,7 @@ const Home = () => {
   const [slide, setSlide] = useState<string>();
   const [isHoverBannerAds, setIsHoverBannerAds] = useState<boolean>(false);
 
-  const { onOpen, onClose, isOpen, onToggle } = UseDisclosure();
+  const { onOpen: onOpenSearch, onClose: onCloseSearch, isOpen: isOpenSearch } = UseDisclosure();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,7 +80,37 @@ const Home = () => {
           <div className={styles.wording}>
             <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
             <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
-            <Search variant="wording" placeholder="Cari produk apapun" />
+            <Search variant="wording" placeholder="Cari produk apapun" onClick={onOpenSearch} />
+            <Modal isOpen={isOpenSearch} onClose={onCloseSearch}>
+              <div className="text-center w-max border-2 boder-black bg-white p-7 rounded-xl">
+                <h2 className="text-2xl font-bold">Cari Produk Untuk Di Review</h2>
+                <p className="mb-4">
+                  Cari produk yang akan kamu review
+                </p>
+                <Search placeholder="Cari produk apapun" />
+                <div className=' mt-5 shadow-md flex flex-col justify-start p-4 gap-4'>
+                  <h3 className='w-max font-semibold'>🔥 Produk Paling Banyak Dicari:</h3>
+                  <div className='flex justify-between items-center'>
+                    <div className='flex gap-2'>
+                      <div>
+                        <SearchIcon />
+                      </div>
+                      <h4>headphone Steelseries Mxasa</h4>
+                    </div>
+                    <Button variant="outline" onClick={() => router.push('/review-product')}>Tulis Review</Button>
+                  </div>
+                  <div className='flex justify-between items-center'>
+                    <div className='flex gap-2'>
+                      <div>
+                        <SearchIcon />
+                      </div>
+                      <h4>headphone Steelseries Mxasa</h4>
+                    </div>
+                    <Button variant="outline">Tulis Review</Button>
+                  </div>
+                </div>
+              </div>
+            </Modal>
             <div className={styles.horizontalStack}>
               <div className={styles.keywordHeader}>
                 Handphone Murah
@@ -93,77 +128,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      <div className="relative flex justify-center w-screen pb-10 ">
-        <div className={styles.roundedTopHotReview} />
-        <div className={styles.maxContainer}>
-          <div className="flex gap-[44px] justify-between">
-            <h1 className={styles.title}>Hot Review.</h1>
-            <div className={styles.line}>
-              <div />
-            </div>
-            <div className="flex gap-[23px]">
-              <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
-                <ArrowBackIcon sx={{ color: 'white' }} />
-              </div>
-              <div className={styles.dots} onClick={() => handlePrevOrNext(true)}>
-                <ArrowForwardIcon sx={{ color: 'white' }} />
-              </div>
-            </div>
-          </div>
-          <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={activeSlide}
-              classNames={{
-                enter: `opacity-0 translate-x-[${slide}50%] transition-all duration-500 ease-in-out`,
-                enterActive: `opacity-100 translate-x-[${slide}0] transition-all duration-500 ease-in-out`,
-                exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
-                exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
-              }}
-              timeout={500}
-            >
-              <div className={styles.gridCardItems}>
-                {hotriview[activeSlide].card.map((item, i) => (
-                  <Card key={i}>
-                    <div className="py-2 h-full flex flex-col p-4 gap-2">
-                      <div className='my-4'>
-                        <RatingStar rating={item.rating} />
-                      </div>
-                      <div
-                        className="flex-grow font-tebal text-lg items-stretch  "
-                      >
-                        {item.title}
-                      </div>
-                      <div
-                        className="flex-grow font-tebal text-lg items-stretch  "
-                      >
-                        <p className="text-gray-500 line-clamp-3 text-justify">
-                          {item.description}
-                        </p>
-                      </div>
-                      <div className='flex gap-2 py-2'>
-                        <div className=''>
-                          <img className='h-12 w-12 rounded-full object-cover' src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='Avatar' />
-                        </div>
-                        <div className=' flex flex-col'>
-                          <div>Nama Review</div>
-                          <p className='font-normal'>3 Minggu Lalu</p>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </CSSTransition>
-          </SwitchTransition>
-          <div className={styles.indicator}>
-            {hotriview.map((_, index) => (
-              <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
-            ))
-            }
-          </div>
-        </div>
-      </div>
+      <MainHotReview />
       <div className={styles.feature}>
         <div className={styles.maxContainer}>
           <h1 className={styles.titleContent}>Feature.</h1>
@@ -243,7 +208,7 @@ const Home = () => {
                         <Image src={item.image} width={200} height={200} alt="test" />
                         <div className="flex flex-col p-6">
                           <h1 className={styles.artikelTitle}>{item.title}</h1>
-                          <p className={styles.artikelDescription}>{item.description}</p>
+                          <p className='text-xxmedium leading-[24px] font-[400] font-satoshi text-dark line-clamp-4'>{item.description}</p>
                           <div className='flex-grow flex items-end'>
                             <p className='text-[#F22178] font-semibold w-max '>Lihat Selengkapnya...</p>
                           </div>
