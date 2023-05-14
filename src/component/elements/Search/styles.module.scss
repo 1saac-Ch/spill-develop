@@ -9,7 +9,7 @@
 }
 
 .wrapperWording {
-  @apply flex justify-between bg-white py-[8px] px-[8px] items-center rounded-[10px] gap-[8px];
+  @apply flex justify-between bg-white py-[8px] px-[11px] items-center rounded-[10px] gap-[8px];
   & input{
     @apply w-[472px] border-none  outline-none bg-white text-[14px] leading-low
   }

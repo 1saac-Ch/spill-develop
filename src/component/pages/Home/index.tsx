@@ -14,6 +14,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
 import RatingStar from '@/component/elements/RatingStar';
+import UseDisclosure from '@/component/elements/UseDisclosure';
 
 
 const Home = () => {
@@ -23,7 +24,9 @@ const Home = () => {
   const { activeSlide } = state;
   const nodeRef = useRef(activeSlide);
   const [slide, setSlide] = useState<string>();
-  const [isHoverBannerAds, setIsHoverBannerAds] = useState<boolean>(false)
+  const [isHoverBannerAds, setIsHoverBannerAds] = useState<boolean>(false);
+
+  const { onOpen, onClose, isOpen, onToggle } = UseDisclosure();
 
   useEffect(() => {
     const interval = setInterval(() => {
