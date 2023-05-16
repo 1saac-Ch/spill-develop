@@ -13,7 +13,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
-import RatingStar from '@/component/elements/RatingStar';
 import UseDisclosure from '@/component/elements/UseDisclosure';
 import MainHotReview from '@/component/main/MainHotReview';
 import SearchIcon from '@mui/icons-material/Search';

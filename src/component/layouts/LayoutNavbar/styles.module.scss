@@ -6,6 +6,10 @@
   @apply flex justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
 }
 
+.navbarNormal {
+  @apply flex justify-center w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
+}
+
 .maxContainer {
   @apply w-full py-3  container mx-auto flex justify-between items-center
 }

@@ -9,12 +9,12 @@ type TextInputProps = {
   label: string,
   value: string,
   onChange: (e: any) => void,
-  variant: "normal" | "password",
+  variant: "normal" | "password" | 'textarea',
   id: string,
   placeholder?: string
 }
 
-function Component({ label, value, onChange, variant, id, placeholder }:TextInputProps) {
+function Component({ label, value, onChange, variant, id, placeholder }: TextInputProps) {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   const _handleShowPassword = () => {
@@ -26,13 +26,19 @@ function Component({ label, value, onChange, variant, id, placeholder }:TextInpu
       case "normal":
         return (
           <div className={styles.wrapper}>
-            <input  placeholder={placeholder} id={id} onChange={onChange} value={value} />
+            <input placeholder={placeholder} id={id} onChange={onChange} value={value} />
+          </div>
+        )
+      case "textarea":
+        return (
+          <div className={styles.wrapper}>
+            <textarea rows={3} placeholder={placeholder} onChange={onChange} value={value}/>
           </div>
         )
       case "password":
         return (
           <div className={styles.wrapper}>
-            <input  type={showPassword ? "text" : "password"} id={id} placeholder={placeholder} onChange={onChange} value={value}  />
+            <input type={showPassword ? "text" : "password"} id={id} placeholder={placeholder} onChange={onChange} value={value} />
             <div className={styles.icon} onClick={_handleShowPassword}>
               {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </div>

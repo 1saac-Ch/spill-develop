@@ -6,15 +6,16 @@ import LayoutRekomendationFooter from '../LayoutRekomendationFooter';
 
 type MainLayoutProps = {
   children: ReactNode;
+  isNormal: boolean;
 };
 
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
   
   return (
     <React.Fragment>
       <div className={styles.mainLayout}>
-        <LayoutNavbar />
+        <LayoutNavbar normal={isNormal}/>
         {children}
         <LayoutRekomendationFooter/>
         <LayoutFooter />

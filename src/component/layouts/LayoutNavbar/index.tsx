@@ -5,7 +5,11 @@ import Search from '@/component/elements/Search';
 import Link from 'next/link';
 import styles from "./styles.module.scss";
 
-const LayoutNavbar = () => {
+type LayoutNavbarProps = {
+    normal: boolean;
+}
+
+const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     const [isSticky, setIsSticky] = useState<Boolean>(false);
 
     useEffect(() => {
@@ -39,6 +43,40 @@ const LayoutNavbar = () => {
         }
     ]
 
+    const RightBeforeLoginNormal = [
+        {
+            title: () => <Link href="/login" className={styles.login}>Log in</Link>,
+            link: '/login',
+        },
+        {
+            title: () => <Link href="/daftar" className={styles.register}>Daftar</Link>,
+            link: '/daftar',
+        },
+        {
+            title: () => <Button className={styles.review}>Tulis Review</Button>,
+            link: '/',
+        }
+    ]
+
+    if (normal)
+        return (
+            <div className={styles.navbarNormal}>
+                <div className={styles.maxContainer}>
+                    <div className={styles.left}>
+                        <SpillLogo multiplySize={0.4} isDark={false} />
+                        <Search placeholder="Find Your Product Here" position="right" />
+
+                    </div>
+                    <div className={styles.right}>
+                        {RightBeforeLoginNormal.map((item, index) => (
+                            <div key={index} className={styles.item}>
+                                {typeof item.title === 'function' ? item.title() : item.title}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        )
     return (
         <div className={isSticky ? styles.navbarSticky : styles.navbar}>
             <div className={styles.maxContainer}>
