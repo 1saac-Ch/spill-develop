@@ -44,29 +44,33 @@ const LayoutFooter = () => {
               </div>
             </div>
           ))}
-          <div className="flex w-full flex-1 items-center">
-            <div className="w-full">
-              <div className="font-semibold text-lg">Tulis Emailmu untuk dapatkan Informasi Terbaru</div>
+          <div className={styles.sendEmailStack}>
+            <div>
+              <div className={styles.textWriteEmail}>Tulis Emailmu untuk dapatkan Informasi Terbaru</div>
               <p>We’ll share brewery news and events</p>
-              <div className="mt-4 flex gap-3">
-                <input className="border-none flex-[1.5] rounded-md p-2 w-full text-black" type="text" placeholder="Your Email here" />
-                <Button className="flex-[0.5]">Submit</Button>
+              <div className={styles.stackInputEmail}>
+                <input className={styles.inputSendEmail} type="text" placeholder="Your Email here" />
+                <Button className={styles.sizeButton}>Submit</Button>
               </div>
             </div>
           </div>
         </div>
         <div className={styles.spillRight}>
-          <div>
+          <div className={styles.logo}>
             <SpillLogo multiplySize={0.3} isDark={true} />
           </div>
-          <p>© 2023 Spill. All Rights Reserved.</p>
-          <div className={styles.stackSosmed}>
-            <div><InstagramIcon /></div>
-            <div><LinkedInIcon /></div>
-            <div><WhatsAppIcon /></div>
-            <div><TwitterIcon /></div>
-            <div><FacebookIcon /></div>
-            <div><YouTubeIcon /></div>
+          <div className={styles.itemsReserved}>
+            <div className={styles.copyrights}>
+              <p>© 2023 Spill. All Rights Reserved.</p>
+            </div>
+            <div className={styles.stackSosmed}>
+              <div><InstagramIcon /></div>
+              <div><LinkedInIcon /></div>
+              <div><WhatsAppIcon /></div>
+              <div><TwitterIcon /></div>
+              <div><FacebookIcon /></div>
+              <div><YouTubeIcon /></div>
+            </div>
           </div>
         </div>
       </div>
