@@ -1,0 +1,26 @@
+.layoutRecomend {
+    @apply flex justify-center bg-[#E8FBF5]
+}
+.layoutContainer {
+    @apply container mx-auto
+}
+
+.mainRecomend {
+    @apply px-5 md:px-0 flex gap-5 flex-col md:flex-row justify-between items-center my-8
+}
+
+.stackResponsive {
+    @apply md:flex-[1.8] gap-5
+}
+
+.textFindProduct {
+    @apply text-xl font-tebal
+}
+
+.buttonResponsive {
+    @apply md:flex-[0.2] w-full
+}
+
+.buttonRecomended {
+    @apply w-max px-5
+}
