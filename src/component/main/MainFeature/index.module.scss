@@ -1,0 +1,11 @@
+.feature {
+    @apply bg-[#EEF8FC] py-16;
+}
+
+.maxContainer {
+    @apply container mx-auto
+}
+
+.titleContent {
+    @apply text-dark text-[36px] font-[900] leading-[44px] font-satoshi text-center;
+}

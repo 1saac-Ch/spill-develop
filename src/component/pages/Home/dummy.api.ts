@@ -80,8 +80,7 @@ export const hotriview = [
   },
 ];
 
-export const feature1 = [{ image: Box1 }, { image: Box2 }, { image: Box3 }];
-export const feature2 = [{ image: Box4 }, { image: Box5 }, { image: Box6 }];
+export const feature = [{ image: Box1 }, { image: Box2 }, { image: Box3 }, { image: Box4 }, { image: Box5 }, { image: Box6 }];
 
 export const artikel = [
   {
