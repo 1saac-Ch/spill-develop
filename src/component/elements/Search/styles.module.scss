@@ -9,9 +9,9 @@
 }
 
 .wrapperWording {
-  @apply flex justify-between bg-white p-4 items-center rounded-[10px] gap-[8px];
+  @apply flex justify-between bg-white p-2 items-center rounded-xl gap-[8px];
   & input{
-    @apply w-[472px] border-none  outline-none bg-white text-[14px] leading-low
+    @apply md:w-[420px] border-none outline-none bg-white text-[14px] leading-low
   }
 }
 

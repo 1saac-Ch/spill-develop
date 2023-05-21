@@ -25,15 +25,17 @@ const Home = () => {
 
   return (
     <main>
-      <div className="bg-radial bg-[#111827] w-full h-[90vh] ">
+      <div className="bg-radial bg-[#111827] w-full h-[100vh]">
         <div className="mx-auto h-full flex items-center">
           <div className={styles.wording}>
-            <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
+            <div className={styles.maxWording}>
+              <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
+            </div>
             <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
             <Search variant="wording" placeholder="Cari produk apapun" onClick={onOpenSearch} />
             <Modal isOpen={isOpenSearch} onClose={onCloseSearch}>
               <div className="text-center w-max border-2 boder-black bg-white p-7 rounded-xl">
-                <h2 className="text-2xl font-bold">Cari Produk Untuk Di Review</h2>
+                <h2 className="md:text-2xl font-bold">Cari Produk Untuk Di Review</h2>
                 <p className="mb-4">
                   Cari produk yang akan kamu review
                 </p>

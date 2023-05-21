@@ -1,13 +1,13 @@
 .navbar {
-  @apply flex justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300 
+  @apply flex flex-col justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300 
 }
 
 .navbarSticky {
-  @apply flex justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
+  @apply flex flex-col justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
 }
 
 .navbarNormal {
-  @apply flex justify-center w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
+  @apply flex px-5 justify-center w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000 
 }
 
 .maxContainer {
@@ -15,7 +15,7 @@
 }
 
 .left {
-  @apply flex items-center;
+  @apply flex items-center ;
 
   & img {
     @apply mr-[30px]
@@ -23,7 +23,7 @@
 }
 
 .right {
-  @apply flex items-center gap-[50px];
+  @apply hidden md:flex items-center gap-[50px];
 }
 
 .login {
