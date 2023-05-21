@@ -55,7 +55,7 @@
 }
 
 .roundedTopHotReview {
-  @apply absolute w-full bg-white h-16 -left-1 -top-16 rounded-t-full;
+  @apply absolute w-full bg-white h-16 md:-left-1 -top-16 rounded-t-3xl md:rounded-t-full;
 }
 
 .gridCardItems {
