@@ -1,12 +1,9 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import LayoutNavbar from '../LayoutNavbar'
-import LayoutFooter from '../LayoutFooter'
-import LayoutRekomendationFooter from '../LayoutRekomendationFooter'
 
 import SpillLogo from '@/component/elements/SpillLogo'
-import Search from '@/component/elements/Search'
 import Button from '@/component/elements/Button/component'
+import LayoutFooterWhitelist from '../LayoutFooterWaitlist'
 
 type WaitlistLayout = {
   children: ReactNode
@@ -38,7 +35,7 @@ const WaitlistNavbar = () => {
             <div className="flex items-center gap-5 ">
               <SpillLogo multiplySize={0.4} isDark={isSticky ? false : true} />
             </div>
-            <div className="hidden md:flex items-center gap-12">
+            <div className="flex items-center gap-12">
               <div className={styles.item}>
                 <Button
                   className={isSticky ? styles.contact : styles.contactSticky}
@@ -60,8 +57,7 @@ const WaitlistLayout = ({ children }: WaitlistLayout) => {
       <div className={styles.mainLayout}>
         <WaitlistNavbar />
         {children}
-        <LayoutRekomendationFooter />
-        <LayoutFooter />
+        <LayoutFooterWhitelist />
       </div>
     </React.Fragment>
   )
