@@ -6,6 +6,7 @@ import Button from '@/component/elements/Button/component'
 import MainFeature from '@/component/main/MainFeature'
 import WaitlistLayout from '@/component/layouts/LayoutWaitlist'
 import WaitlistJourney from '@/component/waitlist/WaitlistJourney'
+import WaitlistContact from '@/component/waitlist/WaitlistContact'
 
 const WaitlistPage = () => {
   return (
@@ -29,6 +30,7 @@ const WaitlistPage = () => {
       </div>
       <WaitlistJourney />
       <MainFeature />
+      <WaitlistContact />
     </main>
   )
 }

@@ -8,8 +8,8 @@ const WaitlistJourney = () => {
     <div className="relative flex justify-center w-screen pb-10 ">
       <div className={styles.roundedTopHotReview} />
       <div className={styles.maxContainer}>
-        <div className="my-20 mx-10 gap-10 md:gap-28 flex flex-col md:flex-row items-center justify-center">
-          <div className="relative w-[160px] h-[72px] md:w-[320px] md:h-[144px] flex-none">
+        <div className={styles.innerContainer}>
+          <div className={styles.imageContainer}>
             <Image
               src={LogoLarge}
               fill
@@ -18,12 +18,10 @@ const WaitlistJourney = () => {
             />
           </div>
 
-          <div className="space-y-5 max-w-[627px]">
-            <h1 className="text-base font-bold md:text-4xl md:font-tebal">
-              How this journey began
-            </h1>
+          <div className={styles.textContainer}>
+            <h1 className={styles.heading}>How this journey began</h1>
 
-            <p className="text-xxmedium leading-[24px] font-[400] font-satoshi text-dark line-clamp-4">
+            <p className={styles.paragraph}>
               Spiill is a peer-to-peer e-commerce platform that aims to solve
               the problem of product purchase decision-making by providing a
               community-based approach to product reviews. Our research has
@@ -36,7 +34,7 @@ const WaitlistJourney = () => {
               and iPrice, but we focus on review products.
             </p>
 
-            <p className="text-xxmedium leading-[24px] font-[400] font-satoshi text-dark line-clamp-4">
+            <p className={styles.paragraph}>
               We have joined the Tanoto Foundation and Angin Investment program
               to accelerate our growth, and we have a strong team of 9 members
               with expertise in their respective fields. Spiill is a promising
