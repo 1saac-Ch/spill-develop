@@ -37,11 +37,13 @@ const WaitlistNavbar = () => {
             </div>
             <div className="flex items-center gap-12">
               <div className={styles.item}>
-                <Button
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=founders@spill.com"
                   className={isSticky ? styles.contact : styles.contactSticky}
+                  target="_blank"
                 >
                   Contact us
-                </Button>
+                </a>
               </div>
             </div>
           </div>

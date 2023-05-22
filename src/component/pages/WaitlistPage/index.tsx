@@ -1,12 +1,13 @@
 import React, { JSXElementConstructor, ReactElement, useState } from 'react'
 
 import styles from './index.module.scss'
+import addItem from '@/assets/icons/Additem.svg'
 
-import Button from '@/component/elements/Button/component'
 import MainFeature from '@/component/main/MainFeature'
 import WaitlistLayout from '@/component/layouts/LayoutWaitlist'
 import WaitlistJourney from '@/component/waitlist/WaitlistJourney'
 import WaitlistContact from '@/component/waitlist/WaitlistContact'
+import Image from 'next/image'
 
 const WaitlistPage = () => {
   return (
@@ -24,7 +25,22 @@ const WaitlistPage = () => {
               Yakali masih bingung mau checkout apa hari ini, sini Spiill dulu
             </p>
 
-            <Button className="w-[141px] mt-5">Join waitlist</Button>
+            <a
+              target="_blank"
+              href="https://forms.gle/SDMKNWpEwE1UNXpi8"
+              className={styles.buttonWaitlist}
+            >
+              <span>
+                <Image
+                  src={addItem}
+                  width={20}
+                  height={20}
+                  className="object-contain mr-3"
+                  alt="add-item-icon"
+                />
+              </span>
+              Join waitlist
+            </a>
           </div>
         </div>
       </div>
