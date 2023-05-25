@@ -11,7 +11,7 @@ const WaitlistContact = () => {
       <div className="space-y-3">
         <p className={styles.contactUs}>contact us</p>
 
-        <h1 className={styles.founder}>founders@spill.com</h1>
+        <h1 className={styles.founder}>founders@spiill.com</h1>
       </div>
 
       <Image src={pattern} className={styles.pattern} alt="pattern" />
