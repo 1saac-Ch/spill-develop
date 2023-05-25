@@ -1,0 +1,66 @@
+.footer {
+  @apply bg-[#111827] text-white font-satoshi py-8;
+}
+
+.maxContainer {
+  @apply container mx-auto;
+}
+
+.stack {
+  @apply flex px-5 flex-col gap-5 md:px-0 md:flex-row;
+}
+
+.leftStack {
+  @apply flex-[0.5];
+  & h1 {
+    @apply font-bold;
+  }
+  & div {
+    @apply flex flex-col gap-2 mt-5;
+  }
+}
+
+.sendEmailStack {
+  @apply flex w-full flex-1 items-center;
+  & div {
+    @apply w-full;
+  }
+}
+
+.textWriteEmail {
+  @apply font-semibold text-lg;
+}
+
+.stackInputEmail {
+  @apply mt-4 flex gap-3;
+}
+
+.inputSendEmail {
+  @apply border-none flex-[1.5] rounded-md p-2 w-full text-black;
+}
+
+.sizeButton {
+  @apply flex-[0.5];
+}
+
+.button {
+  @apply py-[10px] px-[24px] w-[76px] h-[40px];
+}
+
+.logo {
+  @apply flex-[0.5];
+}
+.itemsReserved {
+  @apply flex flex-col-reverse gap-5 md:flex-row md:flex-1;
+}
+
+.copyrights {
+  @apply flex flex-col-reverse md:flex-row gap-2 flex-1;
+}
+
+.spillRight {
+  @apply px-5 md:px-0 flex flex-col md:flex-row md:flex-1 gap-5 pt-7 mt-5;
+}
+.stackSosmed {
+  @apply flex gap-6;
+}

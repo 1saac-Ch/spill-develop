@@ -1,0 +1,22 @@
+.wording {
+  @apply px-2 w-full flex flex-col items-center;
+
+  & .maxWording {
+    @apply max-w-2xl;
+  }
+  & h1 {
+    @apply text-white text-3xl md:text-[57px] font-[900] md:leading-[64px] font-satoshi text-center;
+
+    & label {
+      @apply bg-linear bg-clip-text text-transparent;
+    }
+  }
+
+  & p {
+    @apply p-5 text-base md:text-xl font-tebal text-center font-satoshi text-[#CCCCCC];
+  }
+}
+
+.buttonWaitlist {
+  @apply flex items-center justify-center  h-[50px]  rounded-[10px] text-white text-small font-semibold leading-low font-satoshi bg-blue-50 w-[141px] mt-5;
+}
