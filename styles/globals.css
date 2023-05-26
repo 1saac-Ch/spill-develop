@@ -8,7 +8,7 @@ Too see more : https://ui.shadcn.com/docs/installation#configure-tailwindconfigj
 
 @layer base {
   :root {
-    --background: #fafafa;
+    --background: #f8f8f8;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;

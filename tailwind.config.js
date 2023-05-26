@@ -23,6 +23,7 @@ module.exports = {
         linear: 'linear-gradient(90deg, #F364D9 65.35%, #A702FF 79.92%);',
 
         border: 'var(--border)',
+        background: 'var(--background)',
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
