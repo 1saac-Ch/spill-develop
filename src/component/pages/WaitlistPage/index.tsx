@@ -17,8 +17,8 @@ const WaitlistPage = () => {
           <div className={styles.wording}>
             <div className={styles.maxWording}>
               <h1>
-                Cari produk, Baca review, Checkout, lalu <label>Spill</label>{' '}
-                disini.
+                Cari produk, <br /> Baca review, Checkout, <br />
+                lalu <label>Spill</label> disini.
               </h1>
             </div>
             <p>

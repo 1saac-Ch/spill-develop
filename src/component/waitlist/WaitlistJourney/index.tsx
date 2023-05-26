@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const WaitlistJourney = () => {
   return (
-    <div className="relative flex justify-center w-screen pb-10 ">
+    <div className="relative flex justify-center w-screen pb-10 mt-12 md:mt-8">
       <div className={styles.roundedTopHotReview} />
       <div className={styles.maxContainer}>
         <div className={styles.innerContainer}>
