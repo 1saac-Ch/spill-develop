@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styles from './styles.module.scss'
-import LayoutNavbar from '../LayoutNavbar'
+import LayoutNavbar from './Navbar'
 import LayoutFooter from '../LayoutFooter'
 
 type CatalogueProps = {
@@ -12,7 +12,7 @@ const CatalogueLayout = ({ children, isNormal }: CatalogueProps) => {
   return (
     <React.Fragment>
       <div className={styles.mainLayout}>
-        <LayoutNavbar normal={isNormal} />
+        <LayoutNavbar />
         {children}
         <LayoutFooter />
       </div>

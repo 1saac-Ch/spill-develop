@@ -4,16 +4,18 @@ import styles from './index.module.scss'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 
-const Home = () => {
+const CatalogueProduct = () => {
   return (
-    <main>
-      <h1>Tes</h1>
+    <main className="min-h-screen px-5 md:px-10">
+      <div className="my-16">
+        <h1>Tes</h1>
+      </div>
     </main>
   )
 }
 
-Home.getLayout = (
+CatalogueProduct.getLayout = (
   page: ReactElement<any, string | JSXElementConstructor<any>>
-) => <CatalogueLayout isNormal={false}>{page}</CatalogueLayout>
+) => <CatalogueLayout isNormal={true}>{page}</CatalogueLayout>
 
-export default Home
+export default CatalogueProduct
