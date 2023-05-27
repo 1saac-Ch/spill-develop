@@ -29,21 +29,17 @@ const WaitlistJourney = () => {
               purchase due to the overwhelming number of options available,
               taking an average of 7 days to finalize their choice. The unique
               finding is that reviews are the main trigger for people to make
-              online purchases after free shipping. Spiill`s business model is
-              based on affiliate marketing and advertising, similar to Shopback
-              and iPrice, but we focus on review products.
+              online purchases.
             </p>
 
             <p className={styles.paragraph}>
-              We have joined the Tanoto Foundation and Angin Investment program
-              to accelerate our growth, and we have a strong team of 9 members
-              with expertise in their respective fields. Spiill is a promising
-              startup that addresses a common pain point for online shoppers. By
-              leveraging the power of community-based reviews, the platform aims
-              to help users make informed decisions and simplify the product
-              selection process. With a sound business model and the support of
-              notable investors, Spiill has the potential to become a
-              game-changer in the e-commerce industry.
+              We have a strong team of 9 members with expertise in their
+              respective fields. Spiill is a promising startup that addresses a
+              common pain point for online shoppers. By leveraging the power of
+              community-based reviews, the platform aims to help users make
+              informed decisions and simplify the product selection process.
+              With a sound business model and idea, Spiill has the potential to
+              become a game-changer in the e-commerce industry.
             </p>
           </div>
         </div>

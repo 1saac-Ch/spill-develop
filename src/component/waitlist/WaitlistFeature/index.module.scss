@@ -1,0 +1,30 @@
+.featureWrapper {
+  @apply font-satoshi bg-[#EEF8FC] mt-20 mb-24 p-20 px-16;
+  & br {
+    @apply hidden md:block;
+  }
+
+  & h1 {
+    @apply text-center font-[900] text-2xl md:text-xxlarge md:leading-[44px];
+  }
+
+  & .featureContainer {
+    @apply grid md:grid-cols-3 gap-20 mt-10;
+  }
+
+  & .featureInfo {
+    @apply flex items-center gap-3 mx-auto w-fit mt-4 mb-2;
+  }
+
+  & .number {
+    @apply text-xs md:text-sm bg-blue-50 w-6 h-6 md:w-7 md:h-7 flex items-center justify-center font-[900] rounded-full text-white;
+  }
+
+  & .featureTitle {
+    @apply text-base md:text-[22px] md:leading-[28px] tracking-[0.1px] font-bold;
+  }
+
+  & .featureDescription {
+    @apply md:leading-medium text-sm md:text-base font-satoshi text-center tracking-[0.25px] md:tracking-[0.5px];
+  }
+}

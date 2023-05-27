@@ -3,11 +3,11 @@ import React, { JSXElementConstructor, ReactElement, useState } from 'react'
 import styles from './index.module.scss'
 import addItem from '@/assets/icons/Additem.svg'
 
-import MainFeature from '@/component/main/MainFeature'
 import WaitlistLayout from '@/component/layouts/LayoutWaitlist'
 import WaitlistJourney from '@/component/waitlist/WaitlistJourney'
 import WaitlistContact from '@/component/waitlist/WaitlistContact'
 import Image from 'next/image'
+import WaitlistFeature from '@/component/waitlist/WaitlistFeature'
 
 const WaitlistPage = () => {
   return (
@@ -45,7 +45,7 @@ const WaitlistPage = () => {
         </div>
       </div>
       <WaitlistJourney />
-      <MainFeature />
+      <WaitlistFeature />
       <WaitlistContact />
     </main>
   )
