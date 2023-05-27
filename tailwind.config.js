@@ -58,6 +58,31 @@ module.exports = {
         medium: '24px',
         xmedium: '20px',
         xxmedium: '16px',
+
+        'display-sm': ['36px', { lineHeight: '44px' }],
+        'display-md': ['45px', { lineHeight: '52px' }],
+        'display-lg': ['57px', { lineHeight: '64px' }],
+
+        'headline-sm': ['24px', { lineHeight: '32px' }],
+        'headline-md': ['28px', { lineHeight: '36px' }],
+        'headline-lg': ['32px', { lineHeight: '40px' }],
+
+        'title-sm': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0.15px' }],
+        'title-lg': ['22px', { lineHeight: '28px' }],
+
+        'title-sm': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
+        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0.15px' }],
+        'title-lg': ['22px', { lineHeight: '28px' }],
+
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.5px' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.5px' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
+
+        'body-xs': ['10px', { lineHeight: '16px', letterSpacing: '0.4px' }],
+        'body-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.4px' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0.25px' }],
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0.15px' }],
       },
       fontWeight: {
         tebal: '700',
