@@ -1,0 +1,19 @@
+.contactContainer {
+  @apply w-[90%] mx-auto md:py-20 rounded-3xl md:rounded-[80px] bg-radial bg-[#111827] text-center flex items-center justify-center flex-col gap-5 my-10 text-white min-h-[323px] font-satoshi;
+
+  .smallHeading {
+    @apply font-tebal text-base md:text-3xl md:tracking-wide;
+  }
+
+  .contactUs {
+    @apply font-normal text-sm md:text-lg;
+  }
+
+  .founder {
+    @apply font-extrabold text-3xl md:text-5xl;
+  }
+
+  .pattern {
+    @apply w-full h-12 md:h-20 object-cover mt-5;
+  }
+}

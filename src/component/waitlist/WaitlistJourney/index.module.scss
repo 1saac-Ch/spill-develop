@@ -1,0 +1,27 @@
+.maxContainer {
+  @apply container mx-auto;
+}
+
+.roundedTopHotReview {
+  @apply absolute w-full bg-white h-16 md:-left-1 -top-16 rounded-t-3xl md:rounded-t-full;
+}
+
+.innerContainer {
+  @apply my-10 md:my-20 mx-10 gap-10 md:gap-28 flex flex-col md:flex-row items-center justify-center;
+
+  .imageContainer {
+    @apply relative w-[160px] h-[72px] md:w-[320px] md:h-[144px] flex-none;
+  }
+
+  .textContainer {
+    @apply space-y-5 max-w-[627px];
+  }
+
+  .heading {
+    @apply text-base font-bold md:text-4xl md:font-tebal;
+  }
+
+  .paragraph {
+    @apply text-xxmedium leading-[24px] font-[400] font-satoshi text-dark;
+  }
+}

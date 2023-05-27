@@ -21,6 +21,7 @@ module.exports = {
         pink: '#F22178',
 
         linear: 'linear-gradient(90deg, #F364D9 65.35%, #A702FF 79.92%);',
+<<<<<<< HEAD
 
         border: 'var(--border)',
         background: 'var(--background)',
@@ -40,6 +41,8 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+=======
+>>>>>>> 5ca8ee0f729a770d6695cb4be71a4c23b73f1581
       },
       backgroundImage: {
         radial:
