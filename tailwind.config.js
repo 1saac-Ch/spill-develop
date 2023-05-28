@@ -21,28 +21,17 @@ module.exports = {
         pink: '#F22178',
 
         linear: 'linear-gradient(90deg, #F364D9 65.35%, #A702FF 79.92%);',
-<<<<<<< HEAD
 
-        border: 'var(--border)',
         background: 'var(--background)',
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
         },
         accent: {
           DEFAULT: 'var(--accent)',
           foreground: 'var(--accent-foreground)',
         },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-=======
->>>>>>> 5ca8ee0f729a770d6695cb4be71a4c23b73f1581
+        border: 'var(--border)',
       },
       backgroundImage: {
         radial:
@@ -98,6 +87,11 @@ module.exports = {
       },
       textColor: {
         fill: '-webkit-text-fill-color',
+      },
+      boxShadow: {
+        low: ' 0px 4px 4px rgba(77, 77, 77, 0.12)',
+        medium: '0px 4px 16px rgba(77, 77, 77, 0.12)',
+        hight: '0px 4px 36px rgba(77, 77, 77, 0.12)',
       },
     },
   },
