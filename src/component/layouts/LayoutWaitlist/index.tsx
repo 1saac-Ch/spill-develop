@@ -38,7 +38,7 @@ const WaitlistNavbar = () => {
             <div className="flex items-center gap-12">
               <div className={styles.item}>
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=founders@spill.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=founders@spiill.com"
                   className={isSticky ? styles.contact : styles.contactSticky}
                   target="_blank"
                 >
