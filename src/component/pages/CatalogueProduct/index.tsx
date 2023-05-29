@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 import { Checkbox } from '@/component/ui/Checkbox'
+import ComputerImage from '@/assets/images/computer.jpg'
 
 import StarFilled from '@/assets/icons/StarFilled.svg'
 import StarMuted from '@/assets/icons/StarMuted.svg'
@@ -45,7 +46,7 @@ const RatingOption = ({ rate }: { rate: number }) => {
 
 const FilterProduct = () => {
   return (
-    <aside className="space-y-3">
+    <aside className="space-y-3 mt-3">
       <h5 className="font-semibold ml-6">Filter</h5>
 
       <div className="rounded-lg shadow-md p-6 bg-white flex flex-col gap-3">
@@ -99,7 +100,7 @@ const CatalogueProduct = () => {
     <main className="min-h-screen grid grid-cols-[253px_1fr] gap-10 px-5 md:px-10 py-16 bg-background font-satoshi">
       <FilterProduct />
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between ">
           <h4 className="text-title-md font-bold">
             Menampilkan <span>count</span> untuk kata kunci <span>keyword</span>
@@ -124,6 +125,51 @@ const CatalogueProduct = () => {
               </SelectContent>
             </Select>
           </div>
+        </div>
+
+        {/* CARDS */}
+        <div className="grid grid-cols-4 gap-4">
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <div
+                key={i}
+                className="max-w-[240px] bg-white rounded-xl shadow-medium cursor-pointer"
+              >
+                <Image
+                  src={ComputerImage}
+                  alt="product-computer"
+                  className="w-full aspect-square object-cover"
+                />
+
+                <div className="p-4 flex flex-col gap-2 w-full">
+                  <h3 className="text-label-md font-bold max-w-44">
+                    Sony VM-1000x Wireless Headphone Bluetooth
+                  </h3>
+
+                  <p className="text-label-md font-satoshi">Sony</p>
+
+                  <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center">
+                      <Image
+                        src={StarFilled}
+                        className="w-2 h-2 object-contain"
+                        alt="star"
+                      />
+                      <p className="text-body-sm font-satoshi">4.8</p>
+                    </div>
+
+                    <span>|</span>
+
+                    <p className="text-body-sm font-satoshi">32 Reviews</p>
+                  </div>
+
+                  <h4 className="text-label-md text-pink font-bold">
+                    Rp.1000.000 - Rp.1.430.000
+                  </h4>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </main>
