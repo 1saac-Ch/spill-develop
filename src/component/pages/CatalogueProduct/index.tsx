@@ -139,79 +139,95 @@ const CatalogueProduct = () => {
   const [activeOption, setActiveOption] = React.useState(SortOptions[0])
 
   return (
-    <main className="min-h-screen grid grid-cols-[253px_1fr] gap-10 px-5 md:px-10 py-16 bg-background font-satoshi">
-      <FilterProduct />
+    <main>
+      <div className="min-h-screen grid grid-cols-[253px_1fr] gap-10 px-5 md:px-10 py-16 bg-background font-satoshi">
+        <FilterProduct />
 
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center justify-between ">
-          <h4 className="text-title-md font-bold">
-            Menampilkan <span>count</span> untuk kata kunci <span>keyword</span>
-          </h4>
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center justify-between ">
+            <h4 className="text-title-md font-bold">
+              Menampilkan <span>count</span> untuk kata kunci{' '}
+              <span>keyword</span>
+            </h4>
 
-          <div className="flex items-center gap-6">
-            <label className="text-title-md font-[900]">Urutkan</label>
-            <Select
-              onValueChange={(val) => setActiveOption(val)}
-              value={activeOption}
-            >
-              <SelectTrigger className="w-[200px]">
-                <SelectValue placeholder="Paling sesuai" />
-              </SelectTrigger>
-              <SelectContent>
-                {SortOptions.map((opt, i) => (
-                  <SelectItem
-                    key={i}
-                    value={opt}
-                    className={opt === activeOption ? 'font-bold' : ''}
-                    defaultChecked={i === 0}
-                  >
-                    {opt}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="flex items-center gap-6">
+              <label className="text-title-md font-[900]">Urutkan</label>
+              <Select
+                onValueChange={(val) => setActiveOption(val)}
+                value={activeOption}
+              >
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue placeholder="Paling sesuai" />
+                </SelectTrigger>
+                <SelectContent>
+                  {SortOptions.map((opt, i) => (
+                    <SelectItem
+                      key={i}
+                      value={opt}
+                      className={opt === activeOption ? 'font-bold' : ''}
+                      defaultChecked={i === 0}
+                    >
+                      {opt}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* CARDS */}
+          <div className="grid grid-cols-4 gap-4 mb-4">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <ProductCard key={i} />
+              ))}
+          </div>
+
+          {/* PAGINATION */}
+          <div className="flex items-center gap-4 ml-auto">
+            <Image
+              src={LeftArrow}
+              className="w-4 h-4 object-contain"
+              alt="left-arrow"
+            />
+
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <Link
+                  key={i}
+                  href={'/'}
+                  className={`${
+                    i === 0
+                      ? 'bg-blue-50 text-white'
+                      : 'bg-transparent text-dark border border-abu'
+                  } w-11 h-11  flex items-center justify-center rounded-xl text-label-lg font-bold`}
+                >
+                  {i + 1}
+                </Link>
+              ))}
+
+            <Image
+              src={RightArrow}
+              className="w-4 h-4 object-contain"
+              alt="right-arrow"
+            />
           </div>
         </div>
+      </div>
 
-        {/* CARDS */}
-        <div className="grid grid-cols-4 gap-4 mb-4">
-          {Array(5)
-            .fill(0)
-            .map((_, i) => (
-              <ProductCard key={i} />
-            ))}
+      <div className="mt-14 bg-[#E8FBF5] py-10 px-18 flex items-center justify-between gap-6">
+        <div className="space-y-4">
+          <h3 className="text-title-lg font-[900]">
+            🔍 Produk yang kamu cari tidak ada di spill?
+          </h3>
+          <p className="text-body-lg">
+            ayo bantu sarankan kami untuk menuliskan produk yang kamu cari
+          </p>
         </div>
 
-        {/* PAGINATION */}
-        <div className="flex items-center gap-4 ml-auto">
-          <Image
-            src={LeftArrow}
-            className="w-4 h-4 object-contain"
-            alt="left-arrow"
-          />
-
-          {Array(5)
-            .fill(0)
-            .map((_, i) => (
-              <Link
-                key={i}
-                href={'/'}
-                className={`${
-                  i === 0
-                    ? 'bg-blue-50 text-white'
-                    : 'bg-transparent text-dark border border-abu'
-                } w-11 h-11  flex items-center justify-center rounded-xl text-label-lg font-bold`}
-              >
-                {i + 1}
-              </Link>
-            ))}
-
-          <Image
-            src={RightArrow}
-            className="w-4 h-4 object-contain"
-            alt="right-arrow"
-          />
-        </div>
+        <Button>Sarankan Produk</Button>
       </div>
     </main>
   )
