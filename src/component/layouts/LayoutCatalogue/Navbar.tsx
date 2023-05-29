@@ -67,7 +67,7 @@ const LayoutNavbar = () => {
           </div>
           <div className={styles.right}>
             {RightBeforeLoginNormal.map((item, index) => (
-              <div key={index} className={styles.item}>
+              <div key={index}>
                 {typeof item.title === 'function' ? item.title() : item.title}
               </div>
             ))}

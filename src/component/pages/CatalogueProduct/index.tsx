@@ -3,15 +3,10 @@ import { ReactElement, JSXElementConstructor, useId } from 'react'
 import styles from './index.module.scss'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
-import { Checkbox } from '@/component/ui/Checkbox'
-import ComputerImage from '@/assets/images/computer.jpg'
 
-import StarFilled from '@/assets/icons/StarFilled.svg'
-import StarMuted from '@/assets/icons/StarMuted.svg'
 import LeftArrow from '@/assets/icons/LeftArrow.svg'
 import RightArrow from '@/assets/icons/RightArrow.svg'
 import Image from 'next/image'
-import Button from '@/component/elements/Button/component'
 import {
   Select,
   SelectContent,
@@ -20,73 +15,9 @@ import {
   SelectValue,
 } from '@/component/elements/Dropdown'
 import Link from 'next/link'
-
-const RatingOption = ({ rate }: { rate: number }) => {
-  const id = useId()
-  const RateStars = Array(5)
-    .fill(0)
-    .map((item, i) => (
-      <span key={i}>
-        <Image
-          src={i < rate ? StarFilled : StarMuted}
-          width={16}
-          height={16}
-          className="object-contain"
-          alt="rate"
-        />
-      </span>
-    ))
-
-  return (
-    <div className="flex items-center space-x-2">
-      <Checkbox id={id} />
-      <label htmlFor={id} className="flex gap-2">
-        {RateStars}
-      </label>
-    </div>
-  )
-}
-
-const FilterProduct = () => {
-  return (
-    <aside className="space-y-3 mt-3">
-      <h5 className="font-semibold ml-6">Filter</h5>
-
-      <div className="rounded-lg shadow-md p-6 bg-white flex flex-col gap-3">
-        <h6 className="font-semibold text-sm">Harga</h6>
-
-        <div className="flex border border-[#b1b1b1] rounded text-sm">
-          <span className="text-center bg-accent py-3 px-4 font-semibold">
-            Rp
-          </span>
-          <input className="p-2 w-full" placeholder="Harga Minimum" />
-        </div>
-
-        <div className="flex border border-[#b1b1b1] rounded text-sm">
-          <span className="text-center bg-accent py-3 px-4 font-semibold">
-            Rp
-          </span>
-          <input className="p-2 w-full" placeholder="Harga Maksimum" />
-        </div>
-
-        <h6 className="font-semibold text-sm">Rating</h6>
-        <RatingOption rate={5} />
-        <RatingOption rate={4} />
-        <RatingOption rate={3} />
-        <RatingOption rate={2} />
-        <RatingOption rate={1} />
-
-        <Button
-          variant="outline"
-          disabled
-          className="w-full mt-10  text-muted-foreground border-[#b1b1b1]"
-        >
-          Reset Filter
-        </Button>
-      </div>
-    </aside>
-  )
-}
+import FilterProduct from '@/component/catalogue/FilterProduct'
+import ProductCard from '@/component/catalogue/ProductCard'
+import RecommendProduct from '@/component/catalogue/RecommendProduct'
 
 const SortOptions = [
   'Paling Sesuai',
@@ -96,51 +27,12 @@ const SortOptions = [
   'Harga Terendah',
 ]
 
-const ProductCard = () => {
-  return (
-    <div className="max-w-[240px] bg-white rounded-xl shadow-medium cursor-pointer">
-      <Image
-        src={ComputerImage}
-        alt="product-computer"
-        className="w-full aspect-square object-cover"
-      />
-
-      <div className="p-4 flex flex-col gap-2 w-full">
-        <h3 className="text-label-md font-bold max-w-44">
-          Sony VM-1000x Wireless Headphone Bluetooth
-        </h3>
-
-        <p className="text-label-md font-satoshi">Sony</p>
-
-        <div className="flex gap-2 items-center">
-          <div className="flex gap-2 items-center">
-            <Image
-              src={StarFilled}
-              className="w-3 h-3 object-contain"
-              alt="star"
-            />
-            <p className="text-body-sm font-satoshi">4.8</p>
-          </div>
-
-          <span>|</span>
-
-          <p className="text-body-sm font-satoshi">32 Reviews</p>
-        </div>
-
-        <h4 className="text-label-md text-pink font-bold">
-          Rp.1000.000 - Rp.1.430.000
-        </h4>
-      </div>
-    </div>
-  )
-}
-
 const CatalogueProduct = () => {
   const [activeOption, setActiveOption] = React.useState(SortOptions[0])
 
   return (
-    <main>
-      <div className="min-h-screen grid grid-cols-[253px_1fr] gap-10 px-5 md:px-10 py-16 bg-background font-satoshi">
+    <main className="bg-background">
+      <div className="min-h-screen grid grid-cols-[253px_1fr] gap-10 px-5 md:pl-12 md:pr-[72px] py-16 font-satoshi">
         <FilterProduct />
 
         <div className="flex flex-col gap-6">
@@ -185,12 +77,14 @@ const CatalogueProduct = () => {
           </div>
 
           {/* PAGINATION */}
-          <div className="flex items-center gap-4 ml-auto">
-            <Image
-              src={LeftArrow}
-              className="w-4 h-4 object-contain"
-              alt="left-arrow"
-            />
+          <div className="flex items-center gap-4 ml-auto mb-14">
+            <Link href={'/'}>
+              <Image
+                src={LeftArrow}
+                className="w-4 h-4 object-contain"
+                alt="left-arrow"
+              />
+            </Link>
 
             {Array(5)
               .fill(0)
@@ -207,28 +101,18 @@ const CatalogueProduct = () => {
                   {i + 1}
                 </Link>
               ))}
-
-            <Image
-              src={RightArrow}
-              className="w-4 h-4 object-contain"
-              alt="right-arrow"
-            />
+            <Link href={'/'}>
+              <Image
+                src={RightArrow}
+                className="w-4 h-4 object-contain"
+                alt="right-arrow"
+              />
+            </Link>
           </div>
         </div>
       </div>
 
-      <div className="mt-14 bg-[#E8FBF5] py-10 px-18 flex items-center justify-between gap-6">
-        <div className="space-y-4">
-          <h3 className="text-title-lg font-[900]">
-            🔍 Produk yang kamu cari tidak ada di spill?
-          </h3>
-          <p className="text-body-lg">
-            ayo bantu sarankan kami untuk menuliskan produk yang kamu cari
-          </p>
-        </div>
-
-        <Button>Sarankan Produk</Button>
-      </div>
+      <RecommendProduct />
     </main>
   )
 }
