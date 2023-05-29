@@ -9,7 +9,7 @@ import Backdrop from './Backdrop'
 
 const SearchRecomendationItem = () => {
   return (
-    <p className="p-4 font-satoshi cursor-pointer hover:bg-accent">
+    <p className="p-4 font-satoshi cursor-pointer hover:bg-accent text-label-lg">
       <SearchIcon className="w-4 h-4 mr-2" />
       Scarlet beauty pelembab
     </p>
@@ -55,9 +55,9 @@ const LayoutNavbar = () => {
                 placeholder="Find Your Product Here"
               />
               {isOpenRecommend ? (
-                <div className="w-full absolute top-[64px] rounded-xl shadow-md bg-white overflow-hidden">
-                  <h3 className="p-4 font-semibold">
-                    🔥 Produk Paling Banyak Dicari:
+                <div className="w-full absolute top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
+                  <h3 className="p-4 font-bold text-label-lg">
+                    <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
                   </h3>
                   <SearchRecomendationItem />
                   <SearchRecomendationItem />

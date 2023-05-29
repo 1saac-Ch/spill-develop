@@ -8,6 +8,8 @@ import ComputerImage from '@/assets/images/computer.jpg'
 
 import StarFilled from '@/assets/icons/StarFilled.svg'
 import StarMuted from '@/assets/icons/StarMuted.svg'
+import LeftArrow from '@/assets/icons/LeftArrow.svg'
+import RightArrow from '@/assets/icons/RightArrow.svg'
 import Image from 'next/image'
 import Button from '@/component/elements/Button/component'
 import {
@@ -17,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/component/elements/Dropdown'
+import Link from 'next/link'
 
 const RatingOption = ({ rate }: { rate: number }) => {
   const id = useId()
@@ -93,6 +96,45 @@ const SortOptions = [
   'Harga Terendah',
 ]
 
+const ProductCard = () => {
+  return (
+    <div className="max-w-[240px] bg-white rounded-xl shadow-medium cursor-pointer">
+      <Image
+        src={ComputerImage}
+        alt="product-computer"
+        className="w-full aspect-square object-cover"
+      />
+
+      <div className="p-4 flex flex-col gap-2 w-full">
+        <h3 className="text-label-md font-bold max-w-44">
+          Sony VM-1000x Wireless Headphone Bluetooth
+        </h3>
+
+        <p className="text-label-md font-satoshi">Sony</p>
+
+        <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center">
+            <Image
+              src={StarFilled}
+              className="w-3 h-3 object-contain"
+              alt="star"
+            />
+            <p className="text-body-sm font-satoshi">4.8</p>
+          </div>
+
+          <span>|</span>
+
+          <p className="text-body-sm font-satoshi">32 Reviews</p>
+        </div>
+
+        <h4 className="text-label-md text-pink font-bold">
+          Rp.1000.000 - Rp.1.430.000
+        </h4>
+      </div>
+    </div>
+  )
+}
+
 const CatalogueProduct = () => {
   const [activeOption, setActiveOption] = React.useState(SortOptions[0])
 
@@ -108,7 +150,10 @@ const CatalogueProduct = () => {
 
           <div className="flex items-center gap-6">
             <label className="text-title-md font-[900]">Urutkan</label>
-            <Select onValueChange={(val) => setActiveOption(val)}>
+            <Select
+              onValueChange={(val) => setActiveOption(val)}
+              value={activeOption}
+            >
               <SelectTrigger className="w-[200px]">
                 <SelectValue placeholder="Paling sesuai" />
               </SelectTrigger>
@@ -118,6 +163,7 @@ const CatalogueProduct = () => {
                     key={i}
                     value={opt}
                     className={opt === activeOption ? 'font-bold' : ''}
+                    defaultChecked={i === 0}
                   >
                     {opt}
                   </SelectItem>
@@ -128,48 +174,43 @@ const CatalogueProduct = () => {
         </div>
 
         {/* CARDS */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-4 mb-4">
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <div
-                key={i}
-                className="max-w-[240px] bg-white rounded-xl shadow-medium cursor-pointer"
-              >
-                <Image
-                  src={ComputerImage}
-                  alt="product-computer"
-                  className="w-full aspect-square object-cover"
-                />
-
-                <div className="p-4 flex flex-col gap-2 w-full">
-                  <h3 className="text-label-md font-bold max-w-44">
-                    Sony VM-1000x Wireless Headphone Bluetooth
-                  </h3>
-
-                  <p className="text-label-md font-satoshi">Sony</p>
-
-                  <div className="flex gap-2 items-center">
-                    <div className="flex gap-2 items-center">
-                      <Image
-                        src={StarFilled}
-                        className="w-2 h-2 object-contain"
-                        alt="star"
-                      />
-                      <p className="text-body-sm font-satoshi">4.8</p>
-                    </div>
-
-                    <span>|</span>
-
-                    <p className="text-body-sm font-satoshi">32 Reviews</p>
-                  </div>
-
-                  <h4 className="text-label-md text-pink font-bold">
-                    Rp.1000.000 - Rp.1.430.000
-                  </h4>
-                </div>
-              </div>
+              <ProductCard key={i} />
             ))}
+        </div>
+
+        {/* PAGINATION */}
+        <div className="flex items-center gap-4 ml-auto">
+          <Image
+            src={LeftArrow}
+            className="w-4 h-4 object-contain"
+            alt="left-arrow"
+          />
+
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <Link
+                key={i}
+                href={'/'}
+                className={`${
+                  i === 0
+                    ? 'bg-blue-50 text-white'
+                    : 'bg-transparent text-dark border border-abu'
+                } w-11 h-11  flex items-center justify-center rounded-xl text-label-lg font-bold`}
+              >
+                {i + 1}
+              </Link>
+            ))}
+
+          <Image
+            src={RightArrow}
+            className="w-4 h-4 object-contain"
+            alt="right-arrow"
+          />
         </div>
       </div>
     </main>
