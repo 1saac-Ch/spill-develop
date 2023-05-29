@@ -1,3 +1,3 @@
-import Home from '@/component/pages/Home';
+import Home from '@/component/pages/WaitlistPage';
 
 export default Home
