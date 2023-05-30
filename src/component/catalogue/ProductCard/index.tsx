@@ -1,5 +1,4 @@
 import Image, { StaticImageData } from 'next/image'
-import ComputerImage from '@/assets/images/computer.jpg'
 import StarFilled from '@/assets/icons/StarFilled.svg'
 
 type Props = {
