@@ -15,7 +15,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/component/elements/Dropdown'
+} from '@/component/elements/Select'
 import Link from 'next/link'
 import FilterProduct from '@/component/catalogue/FilterProduct'
 import ProductCard from '@/component/catalogue/ProductCard'
