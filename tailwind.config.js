@@ -21,6 +21,17 @@ module.exports = {
         pink: '#F22178',
 
         linear: 'linear-gradient(90deg, #F364D9 65.35%, #A702FF 79.92%);',
+
+        background: 'var(--background)',
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
+        },
+        border: 'var(--border)',
       },
       backgroundImage: {
         radial:
@@ -76,6 +87,11 @@ module.exports = {
       },
       textColor: {
         fill: '-webkit-text-fill-color',
+      },
+      boxShadow: {
+        low: ' 0px 4px 4px rgba(77, 77, 77, 0.12)',
+        medium: '0px 4px 16px rgba(77, 77, 77, 0.12)',
+        hight: '0px 4px 36px rgba(77, 77, 77, 0.12)',
       },
     },
   },
