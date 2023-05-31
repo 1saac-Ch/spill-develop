@@ -1,5 +1,4 @@
-import Login from '@/component/pages/Login';
-
+import Daftar from '@/component/pages/DetailProduct';
 
 export async function getServerSideProps() {
     // Fetch content data based on slug parameter
@@ -19,4 +18,4 @@ export async function getServerSideProps() {
     };
 }
 
-export default Login
+export default Daftar
