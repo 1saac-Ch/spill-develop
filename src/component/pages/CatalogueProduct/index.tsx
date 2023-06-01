@@ -21,6 +21,7 @@ import FilterProduct from '@/component/catalogue/FilterProduct'
 import ProductCard from '@/component/catalogue/ProductCard'
 import RecommendProduct from '@/component/catalogue/RecommendProduct'
 import NotFoundProduct from './not-found'
+import LayoutRekomendationFooter from '@/component/layouts/LayoutRekomendationFooter'
 
 const SortOptions = [
   'Paling Sesuai',
@@ -130,7 +131,7 @@ const CatalogueProduct = () => {
         )}
       </div>
 
-      <RecommendProduct />
+      <LayoutRekomendationFooter/>
     </main>
   )
 }

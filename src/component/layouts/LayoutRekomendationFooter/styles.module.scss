@@ -1,26 +1,30 @@
 .layoutRecomend {
-    @apply flex justify-center bg-[#E8FBF5]
+  @apply flex justify-center bg-[#E8FBF5];
 }
 .layoutContainer {
-    @apply container mx-auto
+  @apply container mx-auto;
 }
 
 .mainRecomend {
-    @apply px-5 md:px-0 flex gap-5 flex-col md:flex-row justify-between items-center my-8
+  @apply px-5 md:px-0 flex gap-5 flex-col md:flex-row justify-between items-center my-8;
 }
 
 .stackResponsive {
-    @apply md:flex-[1.8] gap-5
+  @apply md:flex-[1.8] gap-5;
+}
+
+.paragraphText {
+  @apply text-body-lg font-satoshi;
 }
 
 .textFindProduct {
-    @apply text-xl font-tebal
+  @apply text-title-lg font-[900] font-satoshi tracking-[0.01px];
 }
 
 .buttonResponsive {
-    @apply md:flex-[0.2] w-full
+  @apply md:flex-[0.2] w-full;
 }
 
 .buttonRecomended {
-    @apply w-max px-5
+  @apply w-max px-5;
 }
