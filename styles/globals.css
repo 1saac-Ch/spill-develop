@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Currently just need necessary color, you can change it later !
+Configure the color in tailwnd.config.js
+Too see more : https://ui.shadcn.com/docs/installation#configure-tailwindconfigjs */
+
+@layer base {
+  :root {
+    --background: #f8f8f8;
+
+    --muted: #ffffff;
+    --muted-foreground: #a6a6a6;
+
+    --border: #a6a6a6;
+
+    --accent: #e6e6e6;
+    --accent-foreground: #1a1a1a;
+  }
+}
