@@ -7,14 +7,14 @@
 }
 
 .innerContainer {
-  @apply my-10 md:my-20 mx-10 gap-10 md:gap-28 flex flex-col md:flex-row items-center justify-center;
+  @apply my-10 md:my-20 gap-10 md:gap-28 flex flex-col md:flex-row items-center justify-center;
 
   .imageContainer {
     @apply relative w-[160px] h-[72px] md:w-[320px] md:h-[144px] flex-none;
   }
 
   .textContainer {
-    @apply space-y-5 max-w-[627px];
+    @apply space-y-5 max-w-[627px] px-5 md:px-0;
   }
 
   .heading {
