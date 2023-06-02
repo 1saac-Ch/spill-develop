@@ -14,7 +14,7 @@
   }
 
   .textContainer {
-    @apply space-y-5 max-w-[627px];
+    @apply space-y-5 max-w-[627px] px-5 md:px-0;
   }
 
   .heading {
