@@ -4,7 +4,7 @@ export interface UseDisclosureProps {
   isOpen: boolean
   defaultIsOpen?: boolean
   onClose?(): void
-  onOpen?(): void
+  onOpen?(): void | undefined
   onToggle?(): void
 }
 
