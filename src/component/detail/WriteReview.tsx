@@ -12,7 +12,7 @@ const WriteReview = () => {
         className="w-[200px] h-[200px] object-contain flex-none"
       />
 
-      <div className="space-y-4 ">
+      <div className="space-y-4">
         <h3 className="font-satoshi text-title-lg font-[900] tracking-[0.01px]">
           Ingin Tulis Review?
         </h3>
