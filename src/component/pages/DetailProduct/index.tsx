@@ -5,6 +5,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import RatingStar from '@/component/elements/RatingStar';
 import { product } from './dummy.api';
 import formatCurrency from '@/utils/formatCurrency';
+import { BukalapakLogo, LazadaLogo, ShoopeLogo, TokopediaLogo } from '@/component/elements/EcommerceLogo';
+import ArrowRightIcon from '@/component/elements/Icons/ArrowRight';
 
 const DetailProduct = () => {
 
@@ -86,6 +88,69 @@ const DetailProduct = () => {
                             {product.description}
                         </p>
                         <div className='font-tebal text-blue-50'>Lihat detail</div>
+                    </div>
+                </div>
+            </div>
+            <div className=' bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi'>
+                <div className='container mx-auto'>
+                    <div className='flex justify-between'>
+                        <div className='flex shadow-[0px_4px_16px_rgba(77,77,77,0.12)] rounded-xl'>
+                            {product.images.map((image, index) => {
+                                if (index === 0) {
+                                    return (
+                                        <div key={index} className=' cursor-pointer m-5 md:m-0 h-max rounded-xl overflow-hidden '>
+                                            <Image src={image.image_product} width={300}
+                                                height={3.1}
+                                                alt="Picture of the author depdep"
+                                                placeholder="blur"
+                                                className="hover:scale-105 ease-in duration-300 object-cover w-28 h-28 opacity-90" />
+                                        </div>
+                                    )
+                                }
+                            })}
+                            <div className='p-4 flex flex-col justify-around'>
+                                <div className='text-sm font-tebal font-satoshi'>{product.title_name}</div>
+                                <div className='text-sm font-satoshi'>{product.brand}</div>
+                                <div className=' w-max flex gap-3 text-sm items-center font-satoshi font-tebal text-pink'>
+                                    <div>Rp. {formatCurrency(product.min_price)}</div>
+                                    <span>-</span>
+                                    <div>Rp. {formatCurrency(product.max_price)}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <div>Checkout sekarang di E-Commerce kesayanganmu :</div>
+                            <div className='flex gap-3'>
+                                <div className='border-2 border-[#EE4D2D] bg-[#FEEEEA] p-2 rounded-xl'>
+                                    <div className='flex items-center gap-3 '>
+                                        <ShoopeLogo />
+                                        <span className='font-tebal'>Shopee</span>
+                                        <ArrowRightIcon color='#EE4D2D'/>
+                                    </div>
+                                </div>
+                                <div className='border-2 border-[#5FB74E] bg-[#EFF8EE] p-2 rounded-xl'>
+                                    <div className='flex items-center gap-3 '>
+                                        <TokopediaLogo />
+                                        <span className='font-tebal'>Tokopedia</span>
+                                        <ArrowRightIcon color='#5FB74E'/>
+                                    </div>
+                                </div>
+                                <div className='border-2 border-[#E31E52] bg-[#FDE9EE]  p-2 rounded-xl'>
+                                    <div className='flex items-center gap-3 '>
+                                        <BukalapakLogo />
+                                        <span className='font-tebal'>Bukalapak</span>
+                                        <ArrowRightIcon color='#E31E52'/>
+                                    </div>
+                                </div>
+                                <div className='border-2 border-[#F99B00] bg-[#FFF5E6] p-2 rounded-xl'>
+                                    <div className='flex items-center gap-3'>
+                                        <LazadaLogo />
+                                        <span className='font-tebal'>Lazada</span>
+                                        <ArrowRightIcon color='#F99B00'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
