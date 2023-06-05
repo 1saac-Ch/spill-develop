@@ -1,4 +1,5 @@
 import React from 'react'
+import NextLink from 'next/link'
 import MainLayout from '@/component/layouts/MainLayout'
 import Image from '@/component/elements/NextImage'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
@@ -19,10 +20,12 @@ const DetailProduct = () => {
     <>
       <div className="bg-[#F8F8F8]">
         <div className="container mx-auto py-5 flex flex-col gap-10">
-          <div className=" cursor-pointer flex gap-2 items-center w-max pr-2">
-            <KeyboardBackspaceIcon fontSize="large" />
-            <h1 className="font-tebal text-2xl">Detail Produk</h1>
-          </div>
+          <NextLink href="/" passHref>
+            <div className=" cursor-pointer flex gap-2 items-center w-max pr-2">
+              <KeyboardBackspaceIcon fontSize="large" />
+              <h1 className="font-tebal text-2xl">Detail Produk</h1>
+            </div>
+          </NextLink>
           <div className="flex flex-col md:flex-row gap-8  p-9 bg-white rounded-b-xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
             <div className=" flex flex-col">
               {product.images.map((image, index) => {

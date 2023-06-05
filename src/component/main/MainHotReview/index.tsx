@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import NextLink from 'next/link'
 import styles from "./index.module.scss";
 import { hotriview } from '@/component/pages/Home/dummy.api';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -91,34 +92,38 @@ const MainHotReview = () => {
                     >
                         <div className={styles.gridCardItems}>
                             {hotriview[activeSlide].card.map((item, i) => (
-                                <Card key={i}>
-                                    <div className="py-2 h-full flex flex-col p-4 gap-2">
-                                        <div className='my-4'>
-                                            <RatingStar rating={item.rating} />
-                                        </div>
-                                        <div
-                                            className="flex-grow font-tebal text-lg items-stretch  "
-                                        >
-                                            {item.title}
-                                        </div>
-                                        <div
-                                            className="flex-grow font-tebal text-lg items-stretch  "
-                                        >
-                                            <p className="text-gray-500 line-clamp-3 text-justify">
-                                                {item.description}
-                                            </p>
-                                        </div>
-                                        <div className='flex gap-2 py-2'>
-                                            <div className=''>
-                                                <img className='h-12 w-12 rounded-full object-cover' src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='Avatar' />
+                                <React.Fragment key={i}>
+                                    <NextLink href="/detail-product" passHref>
+                                        <Card>
+                                            <div className="py-2 h-full flex flex-col p-4 gap-2">
+                                                <div className='my-4'>
+                                                    <RatingStar rating={item.rating} />
+                                                </div>
+                                                <div
+                                                    className="flex-grow font-tebal text-lg items-stretch  "
+                                                >
+                                                    {item.title}
+                                                </div>
+                                                <div
+                                                    className="flex-grow font-tebal text-lg items-stretch  "
+                                                >
+                                                    <p className="text-gray-500 line-clamp-3 text-justify">
+                                                        {item.description}
+                                                    </p>
+                                                </div>
+                                                <div className='flex gap-2 py-2'>
+                                                    <div className=''>
+                                                        <img className='h-12 w-12 rounded-full object-cover' src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='Avatar' />
+                                                    </div>
+                                                    <div className=' flex flex-col'>
+                                                        <div>Nama Review</div>
+                                                        <p className='font-normal'>3 Minggu Lalu</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className=' flex flex-col'>
-                                                <div>Nama Review</div>
-                                                <p className='font-normal'>3 Minggu Lalu</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Card>
+                                        </Card>
+                                    </NextLink>
+                                </React.Fragment>
                             ))}
                         </div>
                     </CSSTransition>
