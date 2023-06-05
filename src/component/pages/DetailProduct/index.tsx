@@ -14,6 +14,7 @@ import {
 } from '@/component/elements/EcommerceLogo'
 import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
 import DiscussionSection from './DiscussionSection'
+import MainRecomendationProduct from '@/component/main/MainRecomendation'
 
 const DetailProduct = () => {
   return (
@@ -117,6 +118,7 @@ const DetailProduct = () => {
           </div>
         </div>
         <DiscussionSection />
+        <MainRecomendationProduct />
         <div className=" bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi">
           <div className="container mx-auto">
             <div className="flex justify-between">

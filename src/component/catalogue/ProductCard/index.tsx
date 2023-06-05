@@ -21,7 +21,7 @@ const ProductCard = ({
   minPrize,
 }: Props) => {
   return (
-    <div className="max-w-[240px] bg-white rounded-xl shadow-medium cursor-pointer">
+    <div className=" bg-white rounded-xl shadow-medium cursor-pointer">
       <Image
         src={image}
         alt="product-computer"
