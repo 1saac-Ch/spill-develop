@@ -152,28 +152,28 @@ const DetailProduct = () => {
               <div className="flex flex-col gap-2">
                 <div>Checkout sekarang di E-Commerce kesayanganmu :</div>
                 <div className="flex gap-3">
-                  <div className="border-2 border-[#EE4D2D] bg-[#FEEEEA] p-2 rounded-xl">
+                  <div className="flex border-2 border-[#EE4D2D] bg-[#FEEEEA] p-2 rounded-xl">
                     <div className="flex items-center gap-3 ">
                       <ShoopeLogo />
                       <span className="font-tebal">Shopee</span>
                       <ArrowRightIcon color="#EE4D2D" />
                     </div>
                   </div>
-                  <div className="border-2 border-[#5FB74E] bg-[#EFF8EE] p-2 rounded-xl">
+                  <div className="flex border-2 border-[#5FB74E] bg-[#EFF8EE] p-2 rounded-xl">
                     <div className="flex items-center gap-3 ">
                       <TokopediaLogo />
                       <span className="font-tebal">Tokopedia</span>
                       <ArrowRightIcon color="#5FB74E" />
                     </div>
                   </div>
-                  <div className="border-2 border-[#E31E52] bg-[#FDE9EE]  p-2 rounded-xl">
+                  <div className="flex border-2 border-[#E31E52] bg-[#FDE9EE]  p-2 rounded-xl">
                     <div className="flex items-center gap-3 ">
                       <BukalapakLogo />
                       <span className="font-tebal">Bukalapak</span>
                       <ArrowRightIcon color="#E31E52" />
                     </div>
                   </div>
-                  <div className="border-2 border-[#F99B00] bg-[#FFF5E6] p-2 rounded-xl">
+                  <div className="flex border-2 border-[#F99B00] bg-[#FFF5E6] p-2 rounded-xl">
                     <div className="flex items-center gap-3">
                       <LazadaLogo />
                       <span className="font-tebal">Lazada</span>
