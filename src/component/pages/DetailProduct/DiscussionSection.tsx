@@ -11,7 +11,7 @@ import React from 'react'
 
 const DiscussionSection = () => {
   return (
-    <Tabs defaultValue="review" className="w-full bg-white">
+    <Tabs defaultValue="review" className="container mx-auto bg-white mb-14">
       <TabsList className="grid w-full grid-cols-3 mb-10">
         <TabsTrigger value="review">Review</TabsTrigger>
         <TabsTrigger value="diskusi">Diskusi</TabsTrigger>

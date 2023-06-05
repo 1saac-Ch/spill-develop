@@ -98,8 +98,8 @@ const DetailProduct = () => {
                 <div className="text-medium font-tebal font-satoshi">
                   {product.title_name}
                 </div>
-                <div className="flex gap-2">
-                  <div>Avatar</div>
+                <div className="flex items-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-[#705CF6]" />
                   <div>{product.brand}</div>
                 </div>
               </div>
