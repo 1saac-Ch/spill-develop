@@ -27,7 +27,7 @@ export const product = {
       image_product: ImageProduct,
     },
   ],
-  title_name: "Sony WM-1000X",
+  title_name: "Sony VM-1000x Wireless Headphone Bluetooth",
   brand: "Sony Store",
   rating: 4.8,
   review: 32,
