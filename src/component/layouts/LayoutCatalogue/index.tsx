@@ -12,7 +12,7 @@ const CatalogueLayout = ({ children, isNormal }: CatalogueProps) => {
   return (
     <React.Fragment>
       <div className={styles.mainLayout}>
-        <LayoutNavbar />
+        <LayoutNavbar isNormal={isNormal} />
         {children}
         <LayoutFooter />
       </div>

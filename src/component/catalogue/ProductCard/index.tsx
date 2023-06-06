@@ -28,7 +28,7 @@ const ProductCard = ({
         className="w-full aspect-square object-cover"
       />
 
-      <div className="p-4 flex flex-col gap-2 w-full">
+      <div className="p-4 flex flex-col gap-2 w-full font-satoshi">
         <h3 className="text-label-md font-bold max-w-44">{title}</h3>
 
         <p className="text-label-md font-satoshi">{production}</p>

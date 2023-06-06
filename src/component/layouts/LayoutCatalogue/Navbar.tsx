@@ -16,7 +16,7 @@ const SearchRecomendationItem = () => {
   )
 }
 
-const LayoutNavbar = () => {
+const LayoutNavbar = ({ isNormal }: { isNormal: boolean }) => {
   const [isOpenRecommend, setIsOpenRecommend] = React.useState(false)
   const RightBeforeLoginNormal = [
     {
@@ -46,7 +46,9 @@ const LayoutNavbar = () => {
       <div className={styles.navbarNormal}>
         <div className={styles.maxContainer}>
           <div className={styles.left}>
-            <SpillLogo multiplySize={0.4} isDark={false} />
+            <Link href="/" passHref>
+              <SpillLogo multiplySize={0.4} isDark={false} />
+            </Link>
 
             <div className="flex flex-col relative font-satoshi">
               <SearchInput

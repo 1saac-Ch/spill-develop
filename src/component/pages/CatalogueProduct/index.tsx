@@ -1,6 +1,5 @@
 import React from 'react'
-import { ReactElement, JSXElementConstructor, useId } from 'react'
-import styles from './index.module.scss'
+import { ReactElement, JSXElementConstructor } from 'react'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 

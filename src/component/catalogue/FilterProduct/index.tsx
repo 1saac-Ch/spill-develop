@@ -1,9 +1,7 @@
-import StarFilled from '@/assets/icons/StarFilled.svg'
-import StarMuted from '@/assets/icons/StarMuted.svg'
 import Button from '@/component/elements/Button/component'
 import { Checkbox } from '@/component/ui/Checkbox'
-import Image from 'next/image'
 import React from 'react'
+import StarIcon from '@/component/elements/StarIcon'
 
 const RatingOption = ({
   rate,
@@ -19,13 +17,7 @@ const RatingOption = ({
     .fill(0)
     .map((_, i) => (
       <span key={i}>
-        <Image
-          src={i < rate ? StarFilled : StarMuted}
-          width={16}
-          height={16}
-          className="object-contain"
-          alt="rate"
-        />
+        <StarIcon size={16} color={i < rate ? '#F26E21' : '#A6A6A6'} />
       </span>
     ))
 
@@ -76,32 +68,16 @@ const FilterProduct = () => {
         </div>
 
         <h6 className="font-semibold text-sm">Rating</h6>
-        <RatingOption
-          rate={5}
-          activeRate={activeRate}
-          setActiveRate={setActiveRate}
-        />
-        <RatingOption
-          rate={4}
-          activeRate={activeRate}
-          setActiveRate={setActiveRate}
-        />
-        <RatingOption
-          rate={3}
-          activeRate={activeRate}
-          setActiveRate={setActiveRate}
-        />
-        <RatingOption
-          rate={2}
-          activeRate={activeRate}
-          setActiveRate={setActiveRate}
-        />
-        <RatingOption
-          rate={1}
-          activeRate={activeRate}
-          setActiveRate={setActiveRate}
-        />
-
+        {Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <RatingOption
+              key={i}
+              rate={i + 1}
+              activeRate={activeRate}
+              setActiveRate={setActiveRate}
+            />
+          ))}
         <Button
           variant="outline"
           disabled
