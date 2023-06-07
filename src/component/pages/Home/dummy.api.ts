@@ -30,35 +30,11 @@ export const hotriview = [
           "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 3,
       },
-      {
-        title: "Review Produk",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
-        rating: 3,
-      },
-      {
-        title: "Review Produk",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
-        rating: 3,
-      },
     ],
   },
   {
     slide: 1,
     card: [
-      {
-        title: "Review Produk",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
-        rating: 4,
-      },
-      {
-        title: "Review Produk",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
-        rating: 5,
-      },
       {
         title: "Review Produk",
         description:
@@ -100,23 +76,18 @@ export const hotriview = [
           "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
         rating: 4,
       },
-      {
-        title: "Review Produk",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
-        rating: 5,
-      },
-      {
-        title: "Review Produk",
-        description:
-          "Lorem ipsum dolor sit amet consectetur. Varius at ut vitae tellus fermentum. Semper sit scelerisque ornare nibh nisi. Semper sit scelerisque ornare nibh nisi ",
-        rating: 4,
-      },
     ],
   },
 ];
 
-export const feature = [{ image: Box1 }, { image: Box2 }, { image: Box3 }, { image: Box4 }, { image: Box5 }, { image: Box6 }];
+export const feature = [
+  { image: Box1 },
+  { image: Box2 },
+  { image: Box3 },
+  { image: Box4 },
+  { image: Box5 },
+  { image: Box6 },
+];
 
 export const artikel = [
   {

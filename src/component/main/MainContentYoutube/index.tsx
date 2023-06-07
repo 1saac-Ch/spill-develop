@@ -1,18 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import NextLink from 'next/link'
 import styles from "./index.module.scss";
+import { hotriview } from '@/component/pages/Home/dummy.api';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
-import clsx from 'clsx';
-import Card from "@/component/elements/Card";
-import RatingStar from '@/component/elements/RatingStar';
 import ProductCard from '@/component/catalogue/ProductCard';
 import ComputerImage from '@/assets/images/computer.jpg'
-import { dataRecomendationProduct } from './recomendation.api';
+import { dataContentYotube } from './api.youtube';
+import YoutubeCard from '@/component/elements/YoutubeCard';
 
-const MainRecomendationProduct = () => {
+const MainContentYoutube = () => {
     const [state, setState] = useState({
         activeSlide: 0,
     });
@@ -21,41 +20,17 @@ const MainRecomendationProduct = () => {
     const nodeRef = useRef(activeSlide);
     const [slide, setSlide] = useState<string>();
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setState((prev) => ({
-                ...prev,
-                activeSlide: (prev.activeSlide + 1) % dataRecomendationProduct.length,
-                nodeRef: activeSlide,
-            }));
-        }, 5000);
-        return () => clearInterval(interval);
-    })
-
-    const handleChangeSlide = (index: number) => {
-        if (index > activeSlide) {
-            setSlide('')
-        } else {
-            setSlide('-')
-        }
-        setState((prev) => ({
-            ...prev,
-            activeSlide: index,
-            nodeRef: activeSlide,
-        }));
-    };
-
     const handlePrevOrNext = (isNext: boolean) => {
         if (isNext) {
             setState((prev) => ({
                 ...prev,
-                activeSlide: (prev.activeSlide + 1) % dataRecomendationProduct.length,
+                activeSlide: (prev.activeSlide + 1) % hotriview.length,
                 nodeRef: activeSlide,
             }));
         } else {
             setState((prev) => ({
                 ...prev,
-                activeSlide: (prev.activeSlide - 1 + dataRecomendationProduct.length) % dataRecomendationProduct.length,
+                activeSlide: (prev.activeSlide - 1 + hotriview.length) % hotriview.length,
                 nodeRef: activeSlide,
             }));
         }
@@ -64,10 +39,10 @@ const MainRecomendationProduct = () => {
 
 
     return (
-        <div className="relative flex justify-center w-screen pb-10 ">
+        <div className="relative flex justify-center pb-10 ">
             <div className={styles.maxContainer}>
                 <div className="flex gap-[44px] justify-between">
-                    <h1 className={styles.title}>Rekomendasi Produk</h1>
+                    <h1 className={styles.title}>Konten Youtube</h1>
                     <div className={styles.line}>
                         <div />
                     </div>
@@ -92,19 +67,9 @@ const MainRecomendationProduct = () => {
                         timeout={500}
                     >
                         <div className={styles.gridCardItems}>
-                            {dataRecomendationProduct[activeSlide].card.map((item, i) => (
+                            {dataContentYotube.map((item, i) => (
                                 <React.Fragment key={i}>
-                                    <NextLink href="/detail-product" passHref>
-                                        <ProductCard
-                                            image={ComputerImage}
-                                            title="Sony VM-1000x Wireless Headphone Bluetooth"
-                                            review="32"
-                                            rate={4.8}
-                                            production="Sony"
-                                            minPrize="Rp.1.000.000"
-                                            maxPrize="Rp.1.430.000"
-                                        />
-                                    </NextLink>
+                                    <YoutubeCard youtubeUrl={item.url} title={item.title_content} />
                                 </React.Fragment>
                             ))}
                         </div>
@@ -115,4 +80,4 @@ const MainRecomendationProduct = () => {
     )
 }
 
-export default MainRecomendationProduct
+export default MainContentYoutube

@@ -7,6 +7,8 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/component/elements/Tabs'
+import MainContentTiktok from '@/component/main/MainContentTiktok'
+import MainContentYoutube from '@/component/main/MainContentYoutube'
 import React from 'react'
 
 const DiscussionSection = () => {
@@ -30,7 +32,10 @@ const DiscussionSection = () => {
         </div>
       </TabsContent>
       <TabsContent value="influencer">
-        <h1>Hello</h1>
+        <div className="px-10">
+          <MainContentYoutube />
+          <MainContentTiktok />
+        </div>
       </TabsContent>
     </Tabs>
   )
