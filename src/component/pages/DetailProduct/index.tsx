@@ -135,7 +135,7 @@ const DetailProduct = () => {
         </div>
         <DiscussionSection />
         <MainRecomendationProduct />
-        <div className={isSticky ? "sticky bottom-0 transition-all ease-in duration-300 w-full bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi" : "bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi transition-all ease-in duration-300"}>
+        <div className={isSticky ? "sticky bottom-0 z-50 transition-all ease-in duration-300 w-full bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi" : "bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi transition-all ease-in duration-300"}>
           <div className="container mx-auto">
             <div className="flex justify-between">
               <div className="flex shadow-[0px_4px_16px_rgba(77,77,77,0.12)] rounded-xl">
