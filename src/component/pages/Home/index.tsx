@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { KeyboardEvent } from 'react';
+import { useRouter } from 'next/router';
 import { ReactElement, JSXElementConstructor } from 'react';
 import styles from "./index.module.scss";
 
@@ -13,7 +14,13 @@ import MainContentReview from '@/component/main/MainContentReview';
 
 
 const Home = () => {
+  const router = useRouter()
 
+  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      router.push('/catalogue-product')
+    }
+  };
 
   return (
     <main>
@@ -24,7 +31,7 @@ const Home = () => {
               <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
             </div>
             <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
-            <Search variant="wording" placeholder="Cari produk apapun" />
+            <Search variant="wording" placeholder="Cari produk apapun"   onKeyPress={handleSearch} />
 
             <div className={styles.horizontalStack}>
               <div className={styles.keywordHeader}>

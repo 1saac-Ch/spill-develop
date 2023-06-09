@@ -18,7 +18,6 @@ const YoutubeCard = ({
             }} controls={true} />
             <div className='p-6'>
                 <h1 className='font-tebal text-xl'>{title}</h1>
-                <div>Depdep</div>
             </div>
         </div>
     )

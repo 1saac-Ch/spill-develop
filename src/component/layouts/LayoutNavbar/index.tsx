@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { KeyboardEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import Backdrop from '@/component/layouts/LayoutCatalogue/Backdrop'
@@ -109,6 +109,12 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     },
   ]
 
+  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      router.push('/catalogue-product')
+    }
+  };
+
   if (normal)
     return (
       <>
@@ -120,8 +126,9 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               </NextLink>
               <div className="flex flex-col relative font-satoshi">
                 <Search
-                  placeholder="Find Your Product Hereeeeeeeee"
+                  placeholder="Find Your Product Here"
                   position="right"
+                  onKeyPress={handleSearch}
                   onBlur={() => setIsOpenRecommend(false)}
                   onFocus={() => setIsOpenRecommend(true)}
                 />
@@ -200,13 +207,26 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   isDark={isSticky ? false : true}
                 />
               </NextLink>
-              <div className="hidden md:block">
+              <div className="hidden md:block relative">
                 {isSticky && (
                   <Search
                     placeholder="Find Your Product Here"
                     position="right"
+                    onKeyPress={handleSearch}
+                    onBlur={() => setIsOpenRecommend(false)}
+                    onFocus={() => setIsOpenRecommend(true)}
                   />
                 )}
+                {isSticky && isOpenRecommend ? (
+                  <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
+                    <h3 className="p-4 font-bold text-label-lg">
+                      <span className="mr-2">🔥</span>Produk Paling Banyak
+                      Dicari:
+                    </h3>
+                    <SearchRecomendationItem />
+                    <SearchRecomendationItem />
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="hidden md:flex items-center gap-12">

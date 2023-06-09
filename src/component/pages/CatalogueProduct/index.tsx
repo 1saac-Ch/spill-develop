@@ -1,4 +1,5 @@
 import React from 'react'
+import NextLink from 'next/link'
 import { ReactElement, JSXElementConstructor } from 'react'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
@@ -77,16 +78,19 @@ const CatalogueProduct = () => {
               {Array(5)
                 .fill(0)
                 .map((_, i) => (
-                  <ProductCard
-                    key={i}
-                    image={ComputerImage}
-                    title="Sony VM-1000x Wireless Headphone Bluetooth"
-                    review="32"
-                    rate={4.8}
-                    production="Sony"
-                    minPrize="Rp.1.000.000"
-                    maxPrize="Rp.1.430.000"
-                  />
+                  <React.Fragment key={i}>
+                    <NextLink href="/detail-product" passHref>
+                      <ProductCard
+                        image={ComputerImage}
+                        title="Sony VM-1000x Wireless Headphone Bluetooth"
+                        review="32"
+                        rate={4.8}
+                        production="Sony"
+                        minPrize="Rp.1.000.000"
+                        maxPrize="Rp.1.430.000"
+                      />
+                    </NextLink>
+                  </React.Fragment>
                 ))}
             </div>
 
@@ -106,11 +110,10 @@ const CatalogueProduct = () => {
                   <Link
                     key={i}
                     href={'/'}
-                    className={`${
-                      i === 0
-                        ? 'bg-blue-50 text-white'
-                        : 'bg-transparent text-dark border border-abu'
-                    } w-11 h-11  flex items-center justify-center rounded-xl text-label-lg font-bold`}
+                    className={`${i === 0
+                      ? 'bg-blue-50 text-white'
+                      : 'bg-transparent text-dark border border-abu'
+                      } w-11 h-11  flex items-center justify-center rounded-xl text-label-lg font-bold`}
                   >
                     {i + 1}
                   </Link>
@@ -130,7 +133,7 @@ const CatalogueProduct = () => {
       </div>
 
       <LayoutRekomendationFooter />
-    </main>
+    </main >
   )
 }
 
