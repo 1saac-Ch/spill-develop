@@ -19,7 +19,7 @@ const Card = (props: CardProps) => {
               width={400}
               height={400}
               // layout="responsive"
-              className="object-cover w-[400px] h-[400px]"
+              className="object-cover w-full h-[400px]"
             />
           </div>
           {props.children}
