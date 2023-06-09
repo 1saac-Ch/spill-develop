@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import NextLink from 'next/link'
 import Link from "next/link";
 
 import styles from "./index.module.scss";
@@ -42,7 +43,9 @@ function Component() {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <SpillLogo multiplySize={0.5} isDark={true} />
+        <NextLink href="/" passHref>
+          <SpillLogo multiplySize={0.5} isDark={true} />
+        </NextLink>
       </div>
       <div className={styles.wrapper}>
         <h1>Daftar di Spill 🚀</h1>
@@ -50,8 +53,8 @@ function Component() {
         <TextInput label="Nama" placeholder="Tuliskan nama kamu" variant="normal" value={name} id="name" onChange={_handleChange} />
         <TextInput label="Username" placeholder="Tuliskan username" variant="normal" value={username} id="username" onChange={_handleChange} />
         <TextInput label="Nomor Handphone (WhatsApp)" placeholder="08129389128" variant="normal" value={noHp} id="noHp" onChange={_handleChange} />
-        <TextInput label="Password" variant="password" placeholder="Tuliskan password kamu" value={password} id="password" onChange={_handleChange} />
-        <TextInput label="Konfirmasi Password" placeholder="Your Confirmation Password Here" variant="password" value={confirmPassword} id="confirmPassword" onChange={_handleChange} />
+        <TextInput label="Password" variant="password" placeholder="Tuliskan password kamu" value={password} id="password" onChange={(e: any) => setPassword(e.target.value)} />
+        <TextInput label="Konfirmasi Password" placeholder="Your Confirmation Password Here" variant="password" value={confirmPassword} id="confirmPassword" onChange={(e: any) => setConfirmPassword(e.target.value)} />
         <div className={styles.checkbox}>
           <p>Dengan mendaftar, saya menyetujui<Link href="/syarat-kententuan">Syarat dan Ketentuan</Link>&<Link href="/kebijakan-privasi">Kebijakan Privasi</Link></p>
         </div>

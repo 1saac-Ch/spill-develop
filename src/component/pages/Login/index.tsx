@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import NextLink from 'next/link'
 import Link from "next/link";
 
 import styles from "./index.module.scss";
@@ -32,12 +33,14 @@ function Component() {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <SpillLogo multiplySize={0.5} isDark={true} />
+        <NextLink href="/" passHref>
+          <SpillLogo multiplySize={0.5} isDark={true} />
+        </NextLink>
       </div>
       <div className={styles.wrapper}>
         <h1>Login Yuk 🚀</h1>
         <p>Nikmati kemudahan dalam mencari produk!</p>
-        <TextInput label="Nomor Handphone" placeholder="Nomor handphone kamu" variant="normal" value={noHp} id="username" onChange={_handleChange} />
+        <TextInput label="Nomor Handphone" placeholder="Nomor handphone kamu" variant="normal" value={noHp} id="username" onChange={(e: any) => setNoHp(e.target.value)} />
         <TextInput label="Password" variant="password" placeholder="Tulis password kamu" value={password} id="password" onChange={_handleChange} />
         <div className={styles.checkbox}>
           <Checkbox checked={remember} label="Biarkan saya tetap masuk" id="remember" onChange={_handleChange} />

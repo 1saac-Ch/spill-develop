@@ -8,7 +8,7 @@
 .wrapper {
   @apply flex w-full border-[1px] border-solid border-dark py-[15px] px-[24px] border-abu rounded-[12px];
   & input {
-    @apply w-full bg-transparent border-none bg-none;
+    @apply w-full bg-transparent;
   }& textarea {
     @apply  border w-full bg-transparent border-none rounded-md  focus:outline-none focus:border-transparent
   }
