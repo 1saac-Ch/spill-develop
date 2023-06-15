@@ -13,11 +13,20 @@ import React from 'react'
 
 const DiscussionSection = () => {
   return (
-    <Tabs defaultValue="review" className="container mx-auto bg-white mb-14">
-      <TabsList className="grid w-full grid-cols-3 mb-10">
-        <TabsTrigger value="review">Review</TabsTrigger>
-        <TabsTrigger value="diskusi">Diskusi</TabsTrigger>
-        <TabsTrigger value="influencer">Konten Influencer</TabsTrigger>
+    <Tabs
+      defaultValue="review"
+      className="container mx-auto mb-14 px-5 bg-white"
+    >
+      <TabsList className="flex flex-row justify-start mb-10 bg-transparent">
+        <TabsTrigger className="flex-1" value="review">
+          Review
+        </TabsTrigger>
+        <TabsTrigger className="flex-1" value="diskusi">
+          Diskusi
+        </TabsTrigger>
+        <TabsTrigger className="flex-1" value="influencer">
+          Konten Influencer
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="review" className="space-y-10">
         <WriteReview />

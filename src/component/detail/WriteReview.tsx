@@ -5,7 +5,7 @@ import Button from '../elements/Button/component'
 
 const WriteReview = () => {
   return (
-    <div className="bg-[#E8FBF5] flex items-center gap-6 p-6 rounded-lg">
+    <div className="bg-[#E8FBF5] flex flex-col md:flex-row items-center gap-6 p-6 rounded-lg w-[85%] md:w-auto mx-auto">
       <Image
         src={OnlineReview}
         alt="online-review"
@@ -13,7 +13,7 @@ const WriteReview = () => {
       />
 
       <div className="space-y-4">
-        <h3 className="font-satoshi text-title-lg font-[900] tracking-[0.01px]">
+        <h3 className="font-satoshi text-title-lg font-[700] md:font-[900] tracking-[0.01px]">
           Ingin Tulis Review?
         </h3>
 
@@ -24,7 +24,7 @@ const WriteReview = () => {
 
         <Button
           variant="outline"
-          className="border-dark text-dark hover:border w-[200px]"
+          className="border-dark text-dark hover:border w-full md:w-[200px]"
         >
           Tulis Review
         </Button>
