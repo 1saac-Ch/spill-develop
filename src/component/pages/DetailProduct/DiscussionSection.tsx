@@ -15,7 +15,7 @@ const DiscussionSection = () => {
   return (
     <Tabs
       defaultValue="review"
-      className="container mx-auto mb-14 px-5 bg-white"
+      className="container mx-auto mb-20 px-5 bg-white pb-10"
     >
       <TabsList className="flex flex-row justify-start mb-10 bg-transparent">
         <TabsTrigger className="flex-1" value="review">
@@ -36,7 +36,7 @@ const DiscussionSection = () => {
         </div>
       </TabsContent>
       <TabsContent value="diskusi">
-        <div className="px-10">
+        <div className="px-5 md:px-10">
           <WriteDiscussion />
         </div>
       </TabsContent>
