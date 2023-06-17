@@ -113,7 +113,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     if (e.key === 'Enter') {
       router.push('/catalogue-product')
     }
-  };
+  }
 
   if (normal)
     return (
@@ -124,7 +124,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               <NextLink href="/" passHref>
                 <SpillLogo multiplySize={0.4} isDark={false} />
               </NextLink>
-              <div className="flex flex-col relative font-satoshi">
+              <div className="hidden md:flex flex-col relative font-satoshi">
                 <Search
                   placeholder="Find Your Product Here"
                   position="right"
@@ -152,6 +152,29 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="-mr-2 flex md:hidden gap-[30px] items-center">
+            <SearchIcon />
+            <button
+              type="button"
+              className="text-gray-500 focus:outline-none"
+              onClick={toggleMenu}
+            >
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
           </div>
 
           <Modal isOpen={isOpenWriteReview} onClose={onCloseWriteReview}>

@@ -29,7 +29,7 @@ const ButtonArrow = () => (
 
 const ReviewCard = ({ isReply, showLike }: Props) => {
   return (
-    <div className={`${isReply ? 'ml-11' : ''} space-y-2 w-full pr-3 pb-3`}>
+    <div className={`${isReply ? 'ml-11' : ''} space-y-2 pr-3 pb-3`}>
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-full bg-[#705CF6]" />
         <p className="font-satoshi text-label-lg font-bold">Nama Reviewer</p>
