@@ -1,0 +1,33 @@
+.gradientBanner {
+  background: linear-gradient(
+    267deg,
+    #111827 0%,
+    rgba(17, 24, 39, 0.77) 74.13%,
+    rgba(17, 24, 39, 0) 100%
+  );
+}
+
+.bannerImage {
+  background-image: url('/BannerImage.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bannerContent {
+  &:before {
+    content: '';
+    position: absolute;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    bottom: 0;
+    top: 0;
+    background: linear-gradient(
+      to left,
+      #111827,
+      rgba(17, 24, 39, 0.77),
+      transparent
+    );
+  }
+}
