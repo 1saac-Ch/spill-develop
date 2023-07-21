@@ -18,4 +18,9 @@ Too see more : https://ui.shadcn.com/docs/installation#configure-tailwindconfigj
     --accent: #e6e6e6;
     --accent-foreground: #1a1a1a;
   }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    opacity: 1;
+  }
 }

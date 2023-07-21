@@ -31,7 +31,7 @@
   & p {
     @apply flex items-center justify-center text-abu2 text-small font-normal leading-low font-satoshi mt-[20px];
     & a {
-      @apply text-blue-50 text-small font-tebal leading-low font-satoshi hover:text-blue-50 ml-[4px]
+      @apply text-blue-50 text-small font-tebal leading-low font-satoshi hover:text-blue-50 ml-[4px];
     }
   }
 }
