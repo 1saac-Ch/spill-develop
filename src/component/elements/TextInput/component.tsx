@@ -1,5 +1,4 @@
 import styles from './styles.module.scss'
-import clsx from 'clsx'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import React from 'react'
