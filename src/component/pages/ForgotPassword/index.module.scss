@@ -1,0 +1,27 @@
+.root {
+  @apply bg-radial w-full h-screen bg-[#111827];
+}
+
+.header {
+  @apply flex justify-center p-7;
+}
+
+.wrapper {
+  @apply absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[600px]  rounded-[20px] p-[40px] font-satoshi;
+  & h1 {
+    @apply text-headline-md text-center font-bold;
+  }
+  & p {
+    @apply text-title-md font-satoshi text-center mb-5 mt-2;
+  }
+}
+
+.bottom {
+  @apply mt-[20px];
+  & p {
+    @apply flex items-center justify-center text-abu2 text-small font-normal leading-low font-satoshi mt-[20px];
+    & a {
+      @apply text-blue-50 text-small font-tebal leading-low font-satoshi hover:text-blue-50 ml-[4px];
+    }
+  }
+}
