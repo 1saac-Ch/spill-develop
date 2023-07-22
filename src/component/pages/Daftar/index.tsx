@@ -1,4 +1,11 @@
-import React, { useState } from 'react'
+import React, {
+  ChangeEvent,
+  Dispatch,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import NextLink from 'next/link'
 import Link from 'next/link'
 
@@ -8,9 +15,12 @@ import SpillLogo from '@/component/elements/SpillLogo'
 import TextInput from '@/component/elements/TextInput'
 import Button from '@/component/elements/Button'
 import { regex } from '@/utils/regex'
-import { cn } from '@/utils/classname'
 
-function Daftar() {
+function Daftar({
+  setRegisterActive,
+}: {
+  setRegisterActive: Dispatch<React.SetStateAction<boolean>>
+}) {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [name, setName] = useState<string>('')
@@ -93,7 +103,7 @@ function Daftar() {
         </p>
       </div>
       <div className={styles.bottom}>
-        <Button>Login</Button>
+        <Button onClick={() => setRegisterActive(false)}>Login</Button>
         <p>
           Sudah punya akun Spill?<Link href="/login">Login</Link>
         </p>
@@ -104,6 +114,39 @@ function Daftar() {
 
 function Verification() {
   const [otp, setOtp] = useState(new Array(4).fill(''))
+  const [activeInputIndex, setActiveInputIndex] = useState(0)
+  const activeInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    activeInputRef.current?.focus()
+  }, [activeInputIndex])
+
+  function handleOtpChange(e: ChangeEvent<HTMLInputElement>, index: number) {
+    const { value } = e.target
+
+    setOtp((prev) => {
+      const newOTP = [...prev]
+      newOTP[index] = value
+      return newOTP
+    })
+
+    if (value && activeInputIndex !== 3) {
+      setActiveInputIndex((curr) => curr + 1)
+    }
+  }
+
+  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>, idx: number) {
+    if (e.key !== 'Backspace') return
+    if (activeInputIndex !== 0) {
+      setActiveInputIndex((curr) => curr - 1)
+    }
+
+    setOtp((prev) => {
+      const newOTP = [...prev]
+      newOTP[idx] = ''
+      return newOTP
+    })
+  }
 
   return (
     <>
@@ -117,17 +160,21 @@ function Verification() {
       <div className="flex gap-5 justify-center">
         {otp.map((val, idx) => (
           <input
+            ref={activeInputIndex === idx ? activeInputRef : null}
             key={idx}
             type="text"
             className={
-              'appearance-none w-[60px] h-11 rounded-xl border border-neutral-600 text-center'
+              'appearance-none w-[60px] h-11 rounded-xl border border-neutral-400 text-center font-bold'
             }
+            value={val}
+            onChange={(e) => handleOtpChange(e, idx)}
+            onKeyDown={(e) => handleKeyDown(e, idx)}
           />
         ))}
       </div>
 
       <Button>Verfikasi</Button>
-      <p className="text-label-lg text-muted-foreground">
+      <p className="text-label-lg text-muted-foreground font-satoshi">
         Mohon tunggu 29 detik untuk kirim ulang
       </p>
     </>
@@ -135,7 +182,7 @@ function Verification() {
 }
 
 function Component() {
-  const [registerActive, setRegisterActive] = useState(false)
+  const [registerActive, setRegisterActive] = useState(true)
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -145,7 +192,7 @@ function Component() {
       </div>
       {registerActive ? (
         <div className={styles.wrapper}>
-          <Daftar />
+          <Daftar setRegisterActive={setRegisterActive} />
         </div>
       ) : (
         <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[600px] rounded-[20px] p-[40px] text-center space-y-5 font-satoshi">
