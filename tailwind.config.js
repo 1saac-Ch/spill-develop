@@ -56,16 +56,12 @@ module.exports = {
         'display-lg': ['57px', { lineHeight: '64px' }],
 
         'headline-sm': ['24px', { lineHeight: '32px' }],
-        'headline-md': ['28px', { lineHeight: '36px' }],
+        'headline-md': ['28px', { lineHeight: '36px', letterSpacing: '0.1px' }],
         'headline-lg': ['32px', { lineHeight: '40px' }],
 
         'title-sm': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
         'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0.15px' }],
-        'title-lg': ['22px', { lineHeight: '28px' }],
-
-        'title-sm': ['14px', { lineHeight: '20px', letterSpacing: '0.1px' }],
-        'title-md': ['16px', { lineHeight: '24px', letterSpacing: '0.15px' }],
-        'title-lg': ['22px', { lineHeight: '28px' }],
+        'title-lg': ['22px', { lineHeight: '28px', letterSpacing: '0.5px' }],
 
         'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.5px' }],
         'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.5px' }],
