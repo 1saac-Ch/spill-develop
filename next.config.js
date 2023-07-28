@@ -27,6 +27,14 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.figma.com',
+      },
+    ],
+  },
 }
 
 module.exports = withMDX(nextConfig)
