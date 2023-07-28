@@ -3,8 +3,10 @@ import styles from './index.module.scss'
 import Image from '@/component/elements/NextImage'
 import Button from '@/component/elements/Button'
 import { artikel } from '@/component/pages/Home/dummy.api'
+import { useRouter } from 'next/router'
 
 const MainArticles = () => {
+  const router = useRouter()
   return (
     <section className={styles.article}>
       <div className={styles.maxContainer}>
@@ -77,7 +79,9 @@ const MainArticles = () => {
           })}
         </div>
         <div className="flex justify-center my-7">
-          <Button variant="outline">Artikel Lainnya</Button>
+          <Button onClick={() => router.push('/article')} variant="outline">
+            Artikel Lainnya
+          </Button>
         </div>
       </div>
     </section>

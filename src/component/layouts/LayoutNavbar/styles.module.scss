@@ -7,7 +7,7 @@
 }
 
 .navbarNormal {
-  @apply flex bg-white px-5 justify-center w-full z-[50] transition-all shadow-sm ease-out duration-1000;
+  @apply flex sticky top-0 bg-white px-5 justify-center w-full z-[50] transition-all shadow-sm ease-out duration-1000;
 }
 
 .maxContainer {
