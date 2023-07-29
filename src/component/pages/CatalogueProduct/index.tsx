@@ -4,11 +4,8 @@ import { ReactElement, JSXElementConstructor } from 'react'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 
-import LeftArrow from '@/assets/icons/LeftArrow.svg'
-import RightArrow from '@/assets/icons/RightArrow.svg'
 import ComputerImage from '@/assets/images/computer.jpg'
 
-import Image from 'next/image'
 import {
   Select,
   SelectContent,
@@ -21,6 +18,7 @@ import FilterProduct from '@/component/catalogue/FilterProduct'
 import ProductCard from '@/component/catalogue/ProductCard'
 import NotFoundProduct from './not-found'
 import LayoutRekomendationFooter from '@/component/layouts/LayoutRekomendationFooter'
+import Pagination from '@/component/ui/Pagination'
 
 const SortOptions = [
   'Paling Sesuai',
@@ -95,37 +93,7 @@ const CatalogueProduct = () => {
             </div>
 
             {/* PAGINATION */}
-            <div className="flex items-center gap-4 ml-auto mb-14">
-              <Link href={'/'}>
-                <Image
-                  src={LeftArrow}
-                  className="w-4 h-4 object-contain"
-                  alt="left-arrow"
-                />
-              </Link>
-
-              {Array(5)
-                .fill(0)
-                .map((_, i) => (
-                  <Link
-                    key={i}
-                    href={'/'}
-                    className={`${i === 0
-                      ? 'bg-blue-50 text-white'
-                      : 'bg-transparent text-dark border border-abu'
-                      } w-11 h-11  flex items-center justify-center rounded-xl text-label-lg font-bold`}
-                  >
-                    {i + 1}
-                  </Link>
-                ))}
-              <Link href={'/'}>
-                <Image
-                  src={RightArrow}
-                  className="w-4 h-4 object-contain"
-                  alt="right-arrow"
-                />
-              </Link>
-            </div>
+            <Pagination />
           </div>
         ) : (
           <NotFoundProduct />
@@ -133,7 +101,7 @@ const CatalogueProduct = () => {
       </div>
 
       <LayoutRekomendationFooter />
-    </main >
+    </main>
   )
 }
 
