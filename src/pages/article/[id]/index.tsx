@@ -95,7 +95,7 @@ export default function ArticleDetail() {
       </article>
 
       <div className="flex flex-col gap-5 mt-10">
-        <h3 className="text-left text-headline-sm font-bold">Artikel</h3>
+        <h3 className="text-left text-headline-sm font-bold">Terkait</h3>
         <RelatedArticle />
         <RelatedArticle />
         <RelatedArticle />

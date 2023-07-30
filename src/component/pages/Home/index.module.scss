@@ -1,5 +1,5 @@
 .maxContainer {
-  @apply container mx-auto
+  @apply container mx-auto;
 }
 
 .wording {
@@ -8,17 +8,17 @@
   & .maxWording {
     @apply max-w-2xl;
   }
-    & h1 {
-      @apply text-white text-3xl md:text-[57px] font-[900] md:leading-[64px] font-satoshi text-center;
-      
-      & label {
-        @apply bg-linear bg-clip-text text-transparent
-      }
+  & h1 {
+    @apply text-white text-3xl md:text-[57px] font-[900] md:leading-[64px] font-satoshi text-center;
+
+    & label {
+      @apply bg-linear bg-clip-text text-transparent;
     }
-    
-    & p {
-      @apply p-5 text-base md:text-xl font-tebal text-center font-satoshi text-[#CCCCCC]
-    }
+  }
+
+  & p {
+    @apply p-5 text-base md:text-xl font-tebal text-center font-satoshi text-[#CCCCCC];
+  }
 }
 // .wording {
 //   @apply w-full flex flex-col items-center border-2 border-white;
@@ -36,14 +36,12 @@
 //   }
 // }
 
-
-
 .horizontalStack {
-  @apply flex flex-wrap w-full justify-center py-10
+  @apply flex flex-wrap w-full justify-center py-10;
 }
 
 .keywordHeader {
-  @apply border-2 border-gray-500 rounded-xl px-5 py-2 text-white m-3
+  @apply border-2 border-gray-500 rounded-xl px-5 py-2 text-white m-3;
 }
 
 .title {
@@ -51,15 +49,15 @@
 }
 
 .line {
-  @apply  flex-1  flex items-center justify-center;
+  @apply flex-1  flex items-center justify-center;
 
   & div {
-    @apply border-b-[1px] w-full border-dark
+    @apply border-b-[1px] w-full border-dark;
   }
 }
 
 .dots {
-  @apply w-[52px] h-[52px] rounded-full bg-dark cursor-pointer flex justify-center items-center
+  @apply w-[52px] h-[52px] rounded-full bg-dark cursor-pointer flex justify-center items-center;
 }
 
 .indicator {
@@ -79,7 +77,7 @@
 }
 
 .gridCardItems {
-  @apply grid grid-cols-1 mt-8 md:grid-cols-3 grid-flow-row gap-1 md:gap-10
+  @apply grid grid-cols-1 mt-8 md:grid-cols-3 grid-flow-row gap-1 md:gap-10;
 }
 
 .article {
@@ -95,12 +93,11 @@
 }
 
 .titleContent {
-  @apply  text-dark text-[36px] font-[900] leading-[44px] font-satoshi text-center;
+  @apply text-dark text-[36px] font-[900] leading-[44px] font-satoshi text-center;
 }
 
-
 .bannerAds {
-  @apply my-12 px-6 md:px-0
+  @apply my-12 px-6 md:px-0;
 }
 
 .sliderAds {
@@ -108,11 +105,11 @@
 }
 
 .prev {
-  @apply w-[52px] h-[52px] rounded-full bg-black text-white z-10 absolute -left-6
+  @apply w-[52px] h-[52px] rounded-full bg-black text-white z-10 absolute -left-6;
 }
 
 .next {
-  @apply w-[52px] h-[52px] rounded-full bg-dark text-white z-10 absolute -right-6
+  @apply w-[52px] h-[52px] rounded-full bg-dark text-white z-10 absolute -right-6;
 }
 
 .artikelTitle {
@@ -120,5 +117,5 @@
 }
 
 .artikelDescriptionFirst {
-  @apply text-xxmedium leading-[24px] font-[400] font-satoshi text-dark whitespace-pre-line
+  @apply text-xxmedium leading-[24px] font-[400] font-satoshi text-dark whitespace-pre-line;
 }

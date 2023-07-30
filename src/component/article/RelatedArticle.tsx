@@ -5,9 +5,9 @@ export default function RelatedArticle() {
   return (
     <Link
       href={`/article/1`}
-      className="p-5 flex items-center gap-5 rounded-[20px] shadow-lg bg-white"
+      className="p-5 flex items-center gap-5 rounded-[20px] shadow bg-white"
     >
-      <div className="relative w-[60px] h-[60px] flex-none">
+      <div className="relative w-[60px] h-[60px] lg:w-[120px] lg:h-[120px] flex-none lg:rounded-[20px]">
         <Image
           fill
           className="object-cover inset-0 rounded-[8px]"
