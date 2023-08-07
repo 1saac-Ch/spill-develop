@@ -33,6 +33,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.figma.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
     ],
   },
 }

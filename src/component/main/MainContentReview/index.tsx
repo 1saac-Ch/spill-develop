@@ -41,12 +41,14 @@ const MainContentReview = () => {
   }
   return (
     <section className={styles.maxContainer}>
-      <div className="flex gap-[44px]">
-        <h1 className={styles.title}>Konten Review Pilihan.</h1>
+      <div className="flex gap-[44px] justify-between">
+        <h1 className={styles.title}>
+          Konten Review <br className="md:hidden" /> Pilihan.
+        </h1>
         <div className={styles.line}>
           <div />
         </div>
-        <div className="flex gap-6">
+        <div className="flex gap-6 items-center">
           <div className={styles.dots} onClick={() => handlePrevOrNext(false)}>
             <ArrowBackIcon sx={{ color: 'white' }} />
           </div>

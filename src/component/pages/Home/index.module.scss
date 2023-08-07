@@ -7,9 +7,13 @@
 
   & .maxWording {
     @apply max-w-2xl;
+
+    & br {
+      @apply md:hidden;
+    }
   }
   & h1 {
-    @apply text-white text-3xl md:text-[57px] font-[900] md:leading-[64px] font-satoshi text-center;
+    @apply text-white text-display-sm font-satoshi text-center md:text-[57px] font-[900] md:leading-[64px];
 
     & label {
       @apply bg-linear bg-clip-text text-transparent;
@@ -17,24 +21,9 @@
   }
 
   & p {
-    @apply p-5 text-base md:text-xl font-tebal text-center font-satoshi text-[#CCCCCC];
+    @apply p-5 text-title-md md:text-headline-sm font-bold font-satoshi text-center text-[#CCCCCC];
   }
 }
-// .wording {
-//   @apply w-full flex flex-col items-center border-2 border-white;
-
-//   & h1 {
-//     @apply text-white text-lg md:text-[57px] tracking-[-0.25px] w-[713px] font-[900] leading-[64px] font-satoshi text-center mb-[24px];
-
-//     & label {
-//       @apply bg-linear bg-clip-text text-transparent
-//     }
-//   }
-
-//   & p {
-//     @apply text-medium leading-[32px] font-tebal text-center mb-[24px] font-satoshi text-[#CCCCCC]
-//   }
-// }
 
 .horizontalStack {
   @apply flex flex-wrap w-full justify-center py-10;

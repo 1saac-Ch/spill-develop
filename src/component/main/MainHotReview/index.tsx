@@ -9,6 +9,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import clsx from 'clsx'
 import Card from '@/component/elements/Card'
 import RatingStar from '@/component/elements/RatingStar'
+import Image from 'next/image'
 
 const MainHotReview = () => {
   const [state, setState] = useState({
@@ -69,7 +70,7 @@ const MainHotReview = () => {
           <div className={styles.line}>
             <div />
           </div>
-          <div className="flex gap-[23px]">
+          <div className="flex gap-[23px] items-center">
             <div
               className={styles.dots}
               onClick={() => handlePrevOrNext(false)}
@@ -112,7 +113,9 @@ const MainHotReview = () => {
                         </div>
                         <div className="flex gap-2 py-2">
                           <div className="">
-                            <img
+                            <Image
+                              width={12}
+                              height={12}
                               className="h-12 w-12 rounded-full object-cover"
                               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
                               alt="Avatar"
