@@ -3,7 +3,7 @@
 }
 
 .wording {
-  @apply px-2 w-full flex flex-col items-center;
+  @apply px-2 w-full flex flex-col items-center mt-10;
 
   & .maxWording {
     @apply max-w-2xl;

@@ -3,11 +3,11 @@
 }
 
 .navbarSticky {
-  @apply flex flex-col justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000;
+  @apply flex flex-col justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-300;
 }
 
 .navbarNormal {
-  @apply flex sticky top-0 bg-white px-5 justify-center w-full z-[50] transition-all shadow-sm ease-out duration-1000;
+  @apply flex sticky top-0 bg-white px-5 justify-center w-full z-[50] transition-all shadow-sm ease-out duration-300;
 }
 
 .maxContainer {

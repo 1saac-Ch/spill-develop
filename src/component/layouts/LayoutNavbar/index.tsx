@@ -12,6 +12,12 @@ import SearchIcon from '@mui/icons-material/Search'
 import UseDisclosure from '@/component/elements/UseDisclosure'
 import Modal from '@/component/elements/Modal'
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/component/ui/Dropdown'
 
 type LayoutNavbarProps = {
   normal: boolean
@@ -21,6 +27,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
   const router = useRouter()
   const [isSticky, setIsSticky] = useState<Boolean>(false)
   const [isOpenRecommend, setIsOpenRecommend] = useState(false)
+  const [isOpenMobileNav, setIsOpenMobileNav] = useState(false)
 
   const {
     onOpen: onOpenWriteReview,
@@ -219,7 +226,11 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
       </>
     )
   return (
-    <nav className={isSticky ? styles.navbarSticky : styles.navbar}>
+    <nav
+      className={
+        isSticky || isOpenMobileNav ? styles.navbarSticky : styles.navbar
+      }
+    >
       <div className="container mx-auto px-5 py-2">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center w-full justify-between ">
@@ -227,7 +238,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               <NextLink href="/" passHref>
                 <SpillLogo
                   multiplySize={0.4}
-                  isDark={isSticky ? false : true}
+                  isDark={isSticky || isOpenMobileNav ? false : true}
                 />
               </NextLink>
               <div className="hidden md:block relative">
@@ -260,82 +271,106 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               ))}
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
-            <button
-              type="button"
-              className="text-gray-500 hover:text-white focus:outline-none focus:text-white"
-              onClick={toggleMenu}
+          <div className="block md:hidden">
+            <DropdownMenu
+              open={isOpenMobileNav}
+              onOpenChange={setIsOpenMobileNav}
             >
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+              <DropdownMenuTrigger>
+                <svg
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="md:hidden w-screen bg-white mt-6 rounded-none border-none shadow-none space-y-8">
+                <DropdownMenuItem className="text-label-lg font-bold py-4 px-5 font-satoshi">
+                  <Link className="w-full flex justify-center" href={'/login'}>
+                    Log in
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-label-lg font-bold font-satoshi text-pink py-4 px-5">
+                  <Link className="w-full flex justify-center" href={'/daftar'}>
+                    Daftar
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Button className={styles.review} onClick={onOpenWriteReview}>
+                    Tulis Review
+                  </Button>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
       <Modal isOpen={isOpenWriteReview} onClose={onCloseWriteReview}>
-        <div className="text-center w-max border-2 boder-black bg-white p-7 rounded-xl">
-          <h2 className="md:text-2xl font-bold">Cari Produk Untuk Di Review</h2>
-          <p className="mb-4">Cari produk yang akan kamu review</p>
+        <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
+          <header className="space-y-2">
+            <h2 className="text-title-lg md:text-headline-md font-bold">
+              Cari Produk Untuk Di Review
+            </h2>
+            <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
+              Cari produk yang akan kamu review
+            </p>
+          </header>
           <Search placeholder="Cari produk apapun" />
-          <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4">
-            <h3 className="w-max font-semibold">
-              🔥 Produk Paling Banyak Dicari:
-            </h3>
-            <div className="flex justify-between items-center">
-              <div className="flex gap-2">
-                <div>
-                  <SearchIcon />
+
+          <p className="font-satoshi text-title-md">atau</p>
+
+          <div className="relative">
+            <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
+              <h2 className="text-title-md font-bold">
+                Produk yang kamu cari tidak ada di spill ?
+              </h2>
+              <p className="text-label-md md:text-title-md font-satoshi">
+                ayo bantu sarankan kami untuk <br className="md:hidden" />{' '}
+                menuliskan produk yang kamu cari
+              </p>
+              <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
+                Sarankan Produk
+              </button>
+            </section>
+
+            <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
+              <h3 className="w-max font-semibold">
+                🔥 Produk Paling Banyak Dicari:
+              </h3>
+              <div className="flex justify-between items-center">
+                <div className="flex gap-2">
+                  <div>
+                    <SearchIcon />
+                  </div>
+                  <h4>Item</h4>
                 </div>
-                <h4>headphone Steelseries Mxasa</h4>
+                <Button
+                  variant="outline"
+                  onClick={() => router.push('/review-product')}
+                >
+                  Tulis Review
+                </Button>
               </div>
-              <Button
-                variant="outline"
-                onClick={() => router.push('/review-product')}
-              >
-                Tulis Review
-              </Button>
-            </div>
-            <div className="flex justify-between items-center">
-              <div className="flex gap-2">
-                <div>
-                  <SearchIcon />
+              <div className="flex justify-between items-center">
+                <div className="flex gap-2">
+                  <div>
+                    <SearchIcon />
+                  </div>
+                  <h4>Item</h4>
                 </div>
-                <h4>headphone Steelseries Mxasa</h4>
+                <Button variant="outline">Tulis Review</Button>
               </div>
-              <Button variant="outline">Tulis Review</Button>
             </div>
           </div>
         </div>
       </Modal>
-      {isMenuOpen && (
-        <div className="md:hidden border-2 border-white px-5 bg-white">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="text-black block">
-              Home
-            </a>
-            <a href="#" className="text-black block">
-              Home
-            </a>
-            <a href="#" className="text-black block">
-              Home
-            </a>
-            <a href="#" className="text-black block">
-              Home
-            </a>
-          </div>
-        </div>
-      )}
     </nav>
   )
 }

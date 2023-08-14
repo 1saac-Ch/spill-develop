@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import Image from '@/component/elements/NextImage'
@@ -88,8 +88,15 @@ const MainBannerAds = () => {
               }}
               timeout={500}
             >
-              {/* <Image src={Promo} layout="responsive" alt="test" /> */}
-              <Banner />
+              <>
+                <Image
+                  src={Promo}
+                  layout="responsive"
+                  alt="test"
+                  className="block lg:hidden"
+                />
+                <Banner />
+              </>
             </CSSTransition>
           </SwitchTransition>
           {isHoverBannerAds && (
