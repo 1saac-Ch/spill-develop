@@ -1,4 +1,3 @@
-import React from 'react'
 import OnlineReview from '@/assets/images/OnlineReview.png'
 import Image from 'next/image'
 import Button from '../elements/Button/component'
