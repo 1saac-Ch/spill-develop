@@ -1,11 +1,10 @@
-import React from 'react'
 import Feature1 from '@/assets/images/feature1.png'
 import Feature2 from '@/assets/images/feature2.png'
 import Feature3 from '@/assets/images/feature3.png'
 import Feature4 from '@/assets/images/feature4.png'
 import Feature5 from '@/assets/images/feature5.png'
 import Feature6 from '@/assets/images/feature6.png'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 
 type FeatureData = {
   title: string

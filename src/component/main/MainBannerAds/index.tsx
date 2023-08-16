@@ -93,7 +93,7 @@ const MainBannerAds = () => {
                   src={Promo}
                   layout="responsive"
                   alt="test"
-                  className="block lg:hidden"
+                  className="block xl:hidden"
                 />
                 <Banner />
               </>

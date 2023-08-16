@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full md:w-[600px] rounded-[12px];
+  @apply flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px];
   & input {
     @apply w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low;
   }

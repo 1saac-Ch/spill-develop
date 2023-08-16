@@ -1,4 +1,3 @@
-import React from 'react'
 import { featureData } from '@/constant/feature'
 
 import styles from './index.module.scss'

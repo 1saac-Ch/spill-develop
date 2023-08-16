@@ -6,11 +6,11 @@ export interface UseDisclosureProps {
   onClose?(): void
   onOpen?(): void | undefined
   onToggle?(): void
+  setInOpenState: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const UseDisclosure = (): UseDisclosureProps => {
-
-  const [isOpenState, setInOpenState] = React.useState<boolean>(false);
+  const [isOpenState, setInOpenState] = React.useState<boolean>(false)
 
   const onClose = React.useCallback(() => {
     if (isOpenState) {
@@ -28,7 +28,7 @@ const UseDisclosure = (): UseDisclosureProps => {
     setInOpenState(!isOpenState)
   }, [isOpenState])
 
-  return { isOpen: isOpenState, onClose, onOpen, onToggle }
+  return { isOpen: isOpenState, onClose, onOpen, onToggle, setInOpenState }
 }
 
 export default UseDisclosure

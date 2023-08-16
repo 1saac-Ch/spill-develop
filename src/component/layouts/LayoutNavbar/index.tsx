@@ -33,6 +33,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     onOpen: onOpenWriteReview,
     onClose: onCloseWriteReview,
     isOpen: isOpenWriteReview,
+    setInOpenState,
   } = UseDisclosure()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -183,44 +184,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               </svg>
             </button>
           </div>
-
-          <Modal isOpen={isOpenWriteReview} onClose={onCloseWriteReview}>
-            <div className="text-center w-max border-2 boder-black bg-white p-7 rounded-xl">
-              <h2 className="md:text-2xl font-bold">
-                Cari Produk Untuk Di Review
-              </h2>
-              <p className="mb-4">Cari produk yang akan kamu review</p>
-              <Search placeholder="Cari produk apapun" />
-              <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4">
-                <h3 className="w-max font-semibold">
-                  🔥 Produk Paling Banyak Dicari:
-                </h3>
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-2">
-                    <div>
-                      <SearchIcon />
-                    </div>
-                    <h4>headphone Steelseries Mxasa</h4>
-                  </div>
-                  <Button
-                    variant="outline"
-                    onClick={() => router.push('/review-product')}
-                  >
-                    Tulis Review
-                  </Button>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-2">
-                    <div>
-                      <SearchIcon />
-                    </div>
-                    <h4>headphone Steelseries Mxasa</h4>
-                  </div>
-                  <Button variant="outline">Tulis Review</Button>
-                </div>
-              </div>
-            </div>
-          </Modal>
         </div>
         {isOpenRecommend ? <Backdrop /> : null}
       </>
@@ -231,37 +194,36 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
         isSticky || isOpenMobileNav ? styles.navbarSticky : styles.navbar
       }
     >
-      <div className="container mx-auto px-5 py-2">
+      <div className="container mx-auto px-5 py-2 navv">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center w-full justify-between ">
+          <div className="flex items-center w-full justify-between gap-6">
             <div className="flex items-center gap-5 ">
-              <NextLink href="/" passHref>
+              <NextLink href="/" passHref className="flex-none">
                 <SpillLogo
                   multiplySize={0.4}
                   isDark={isSticky || isOpenMobileNav ? false : true}
                 />
               </NextLink>
-              <div className="hidden md:block relative">
-                {isSticky && (
-                  <Search
-                    placeholder="Find Your Product Here"
-                    position="right"
-                    onKeyPress={handleSearch}
-                    onBlur={() => setIsOpenRecommend(false)}
-                    onFocus={() => setIsOpenRecommend(true)}
-                  />
-                )}
-                {isSticky && isOpenRecommend ? (
-                  <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
-                    <h3 className="p-4 font-bold text-label-lg">
-                      <span className="mr-2">🔥</span>Produk Paling Banyak
-                      Dicari:
-                    </h3>
-                    <SearchRecomendationItem />
-                    <SearchRecomendationItem />
-                  </div>
-                ) : null}
-              </div>
+            </div>
+            <div className="hidden md:block relative flex-1">
+              {isSticky && (
+                <Search
+                  placeholder="Find Your Product Here"
+                  position="right"
+                  onKeyPress={handleSearch}
+                  onBlur={() => setIsOpenRecommend(false)}
+                  onFocus={() => setIsOpenRecommend(true)}
+                />
+              )}
+              {isSticky && isOpenRecommend ? (
+                <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
+                  <h3 className="p-4 font-bold text-label-lg">
+                    <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
+                  </h3>
+                  <SearchRecomendationItem />
+                  <SearchRecomendationItem />
+                </div>
+              ) : null}
             </div>
             <div className="hidden md:flex items-center gap-12">
               {RightBeforeLogin.map((item, index) => (
@@ -269,6 +231,71 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   {typeof item.title === 'function' ? item.title() : item.title}
                 </div>
               ))}
+              <Modal
+                isOpen={isOpenWriteReview}
+                onClose={() => {
+                  setInOpenState(false)
+                }}
+              >
+                <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
+                  <header className="space-y-2">
+                    <h2 className="text-title-lg md:text-headline-md font-bold">
+                      Cari Produk Untuk Di Review
+                    </h2>
+                    <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
+                      Cari produk yang akan kamu review
+                    </p>
+                  </header>
+                  <Search placeholder="Cari produk apapun" />
+
+                  <p className="font-satoshi text-title-md">atau</p>
+
+                  <div className="relative">
+                    <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
+                      <h2 className="text-title-md font-bold">
+                        Produk yang kamu cari tidak ada di spill ?
+                      </h2>
+                      <p className="text-label-md md:text-title-md font-satoshi">
+                        ayo bantu sarankan kami untuk{' '}
+                        <br className="md:hidden" /> menuliskan produk yang kamu
+                        cari
+                      </p>
+                      <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
+                        Sarankan Produk
+                      </button>
+                    </section>
+
+                    <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
+                      <h3 className="w-max font-semibold">
+                        🔥 Produk Paling Banyak Dicari:
+                      </h3>
+                      <div className="flex justify-between items-center">
+                        <div className="flex gap-2">
+                          <div>
+                            <SearchIcon />
+                          </div>
+                          <h4>Item</h4>
+                        </div>
+                        <Button
+                          variant="outline"
+                          onClick={() => router.push('/review-product')}
+                        >
+                          Tulis Review
+                        </Button>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex gap-2">
+                          <div>
+                            <SearchIcon />
+                          </div>
+                          <h4>Item</h4>
+                        </div>
+                        <Button variant="outline">Tulis Review</Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Modal>
             </div>
           </div>
           <div className="block md:hidden">
@@ -312,65 +339,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
           </div>
         </div>
       </div>
-      <Modal isOpen={isOpenWriteReview} onClose={onCloseWriteReview}>
-        <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
-          <header className="space-y-2">
-            <h2 className="text-title-lg md:text-headline-md font-bold">
-              Cari Produk Untuk Di Review
-            </h2>
-            <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
-              Cari produk yang akan kamu review
-            </p>
-          </header>
-          <Search placeholder="Cari produk apapun" />
-
-          <p className="font-satoshi text-title-md">atau</p>
-
-          <div className="relative">
-            <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
-              <h2 className="text-title-md font-bold">
-                Produk yang kamu cari tidak ada di spill ?
-              </h2>
-              <p className="text-label-md md:text-title-md font-satoshi">
-                ayo bantu sarankan kami untuk <br className="md:hidden" />{' '}
-                menuliskan produk yang kamu cari
-              </p>
-              <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
-                Sarankan Produk
-              </button>
-            </section>
-
-            <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
-              <h3 className="w-max font-semibold">
-                🔥 Produk Paling Banyak Dicari:
-              </h3>
-              <div className="flex justify-between items-center">
-                <div className="flex gap-2">
-                  <div>
-                    <SearchIcon />
-                  </div>
-                  <h4>Item</h4>
-                </div>
-                <Button
-                  variant="outline"
-                  onClick={() => router.push('/review-product')}
-                >
-                  Tulis Review
-                </Button>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="flex gap-2">
-                  <div>
-                    <SearchIcon />
-                  </div>
-                  <h4>Item</h4>
-                </div>
-                <Button variant="outline">Tulis Review</Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
     </nav>
   )
 }

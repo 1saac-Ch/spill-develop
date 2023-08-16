@@ -1,4 +1,4 @@
-import React, { JSXElementConstructor, ReactElement, useState } from 'react'
+import { JSXElementConstructor, ReactElement } from 'react'
 
 import styles from './index.module.scss'
 import addItem from '@/assets/icons/Additem.svg'

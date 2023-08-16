@@ -3,7 +3,7 @@ import { cn } from '@/utils/classname'
 
 export default function Banner() {
   return (
-    <div className="w-full aspect-[16/4] rounded-lg lg:rounded-3xl lg:flex items-center overflow-hidden relative hidden">
+    <div className="w-full min-h-[320px] rounded-lg lg:rounded-3xl xl:flex items-center overflow-hidden relative hidden">
       <div
         className={cn(
           BannerStyle.bannerImage,

@@ -20,16 +20,16 @@ const MainHotReview = () => {
   const nodeRef = useRef(activeSlide)
   const [slide, setSlide] = useState<string>()
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setState((prev) => ({
-        ...prev,
-        activeSlide: (prev.activeSlide + 1) % hotriview.length,
-        nodeRef: activeSlide,
-      }))
-    }, 5000)
-    return () => clearInterval(interval)
-  })
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setState((prev) => ({
+  //       ...prev,
+  //       activeSlide: (prev.activeSlide + 1) % hotriview.length,
+  //       nodeRef: activeSlide,
+  //     }))
+  //   }, 5000)
+  //   return () => clearInterval(interval)
+  // })
 
   const handleChangeSlide = (index: number) => {
     if (index > activeSlide) {
