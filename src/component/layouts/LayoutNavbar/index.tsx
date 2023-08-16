@@ -10,7 +10,6 @@ import Link from 'next/link'
 import styles from './styles.module.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import UseDisclosure from '@/component/elements/UseDisclosure'
-import Modal from '@/component/elements/Modal'
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import {
   DropdownMenu,
@@ -18,6 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/component/ui/Dropdown'
+import { Dialog, DialogContent } from '@/component/ui/Dialog'
 
 type LayoutNavbarProps = {
   normal: boolean
@@ -31,7 +31,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
 
   const {
     onOpen: onOpenWriteReview,
-    onClose: onCloseWriteReview,
     isOpen: isOpenWriteReview,
     setInOpenState,
   } = UseDisclosure()
@@ -231,71 +230,68 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   {typeof item.title === 'function' ? item.title() : item.title}
                 </div>
               ))}
-              <Modal
-                isOpen={isOpenWriteReview}
-                onClose={() => {
-                  setInOpenState(false)
-                }}
-              >
-                <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
-                  <header className="space-y-2">
-                    <h2 className="text-title-lg md:text-headline-md font-bold">
-                      Cari Produk Untuk Di Review
-                    </h2>
-                    <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
-                      Cari produk yang akan kamu review
-                    </p>
-                  </header>
-                  <Search placeholder="Cari produk apapun" />
-
-                  <p className="font-satoshi text-title-md">atau</p>
-
-                  <div className="relative">
-                    <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
-                      <h2 className="text-title-md font-bold">
-                        Produk yang kamu cari tidak ada di spill ?
+              <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
+                <DialogContent>
+                  <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
+                    <header className="space-y-2">
+                      <h2 className="text-title-lg md:text-headline-md font-bold">
+                        Cari Produk Untuk Di Review
                       </h2>
-                      <p className="text-label-md md:text-title-md font-satoshi">
-                        ayo bantu sarankan kami untuk{' '}
-                        <br className="md:hidden" /> menuliskan produk yang kamu
-                        cari
+                      <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
+                        Cari produk yang akan kamu review
                       </p>
-                      <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
-                        Sarankan Produk
-                      </button>
-                    </section>
+                    </header>
+                    <Search placeholder="Cari produk apapun" />
 
-                    <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
-                      <h3 className="w-max font-semibold">
-                        🔥 Produk Paling Banyak Dicari:
-                      </h3>
-                      <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                          <div>
-                            <SearchIcon />
+                    <p className="font-satoshi text-title-md">atau</p>
+
+                    <div className="relative">
+                      <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
+                        <h2 className="text-title-md font-bold">
+                          Produk yang kamu cari tidak ada di spill ?
+                        </h2>
+                        <p className="text-label-md md:text-title-md font-satoshi">
+                          ayo bantu sarankan kami untuk{' '}
+                          <br className="md:hidden" /> menuliskan produk yang
+                          kamu cari
+                        </p>
+                        <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
+                          Sarankan Produk
+                        </button>
+                      </section>
+
+                      <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
+                        <h3 className="w-max font-semibold">
+                          🔥 Produk Paling Banyak Dicari:
+                        </h3>
+                        <div className="flex justify-between items-center">
+                          <div className="flex gap-2">
+                            <div>
+                              <SearchIcon />
+                            </div>
+                            <h4>Item</h4>
                           </div>
-                          <h4>Item</h4>
+                          <Button
+                            variant="outline"
+                            onClick={() => router.push('/review-product')}
+                          >
+                            Tulis Review
+                          </Button>
                         </div>
-                        <Button
-                          variant="outline"
-                          onClick={() => router.push('/review-product')}
-                        >
-                          Tulis Review
-                        </Button>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div className="flex gap-2">
-                          <div>
-                            <SearchIcon />
+                        <div className="flex justify-between items-center">
+                          <div className="flex gap-2">
+                            <div>
+                              <SearchIcon />
+                            </div>
+                            <h4>Item</h4>
                           </div>
-                          <h4>Item</h4>
+                          <Button variant="outline">Tulis Review</Button>
                         </div>
-                        <Button variant="outline">Tulis Review</Button>
                       </div>
                     </div>
                   </div>
-                </div>
-              </Modal>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
           <div className="block md:hidden">
