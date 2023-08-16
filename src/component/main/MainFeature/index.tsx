@@ -8,7 +8,7 @@ const MainFeature = () => {
       <h1>Feature.</h1>
 
       <div className={styles.featureContainer}>
-        {featureData.map((data, i) => (
+        {featureData.map((data, i: number) => (
           <>
             <div className="text-center">
               <div className="min-h-[235px]">{data.image}</div>
