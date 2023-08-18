@@ -7,6 +7,7 @@ import { Dialog, DialogContent } from '@/component/ui/Dialog'
 import { useState } from 'react'
 import { cn } from '@/utils/classname'
 import { FieldErrors, UseFormRegister, useForm } from 'react-hook-form'
+import Link from 'next/link'
 
 const InputClassname =
   'py-3 px-4 rounded-xl border border-[#A6A6A6] placeholder:text-label-lg placeholder:text-muted-foreground'
@@ -45,7 +46,7 @@ function Input({
       />
       {errors[name] ? (
         <p className={'text-pink text-label-md font-satoshi'}>
-          {errors[name]?.message}
+          *{errors[name]?.message}
         </p>
       ) : null}
     </>
@@ -66,7 +67,7 @@ export default function Suggest() {
   }
 
   return (
-    <main className="container px-5">
+    <main className="px-5 w-full lg:px-[72px]">
       <NextLink href="/" passHref>
         <div className=" cursor-pointer flex gap-4 items-center w-max pr-2 mt-10 mb-6">
           <KeyboardBackspaceIcon fontSize="large" />
@@ -78,7 +79,7 @@ export default function Suggest() {
 
       <section className="flex flex-col p-6 gap-10 self-stretch rounded-[20px] shadow-lg mb-20">
         <div className="space-y-2">
-          <h1 className="text-title-lg font-bold">
+          <h1 className="text-title-lg md:text-headline-sm font-bold">
             Sarankan Produk kepada Kami
           </h1>
           <p className="text-title-md font-satoshi">
@@ -87,64 +88,63 @@ export default function Suggest() {
           </p>
         </div>
 
-        <Image
-          width={272}
-          height={240}
-          src={'/presentation.png'}
-          alt="presentation"
-          className="object-cover mx-auto"
-        />
-
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-6 self-stretch"
-        >
-          <div className="flex flex-col gap-2">
-            <Input
-              errors={errors}
-              placeholder="Tulis nama brandnya"
-              label="Nama Brand"
-              name="namaBrand"
-              register={register}
-            />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <Input
-              errors={errors}
-              placeholder="Tulis nama produknya"
-              label="Nama Produk"
-              name="namaProduk"
-              register={register}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Input
-              errors={errors}
-              placeholder="Tulis tipe dari produk"
-              label="Tipe produk"
-              name="tipeProduk"
-              register={register}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Input
-              errors={errors}
-              placeholder="Tulis seri dari produk"
-              label="Seri Produk"
-              name="seriProduk"
-              register={register}
-            />
-          </div>
-
-          <Button type="submit" className="rounded-xl">
-            Sarankan Produk
-          </Button>
-        </form>
+        <div className="flex flex-col gap-6 md:flex-row">
+          <Image
+            width={272}
+            height={240}
+            src={'/presentation.png'}
+            alt="presentation"
+            className="object-cover mx-auto md:w-[400px] md:h-[400px]"
+          />
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-6 self-stretch flex-1"
+          >
+            <div className="flex flex-col gap-2">
+              <Input
+                errors={errors}
+                placeholder="Tulis nama brandnya"
+                label="Nama Brand"
+                name="namaBrand"
+                register={register}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Input
+                errors={errors}
+                placeholder="Tulis nama produknya"
+                label="Nama Produk"
+                name="namaProduk"
+                register={register}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Input
+                errors={errors}
+                placeholder="Tulis tipe dari produk"
+                label="Tipe produk"
+                name="tipeProduk"
+                register={register}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Input
+                errors={errors}
+                placeholder="Tulis seri dari produk"
+                label="Seri Produk"
+                name="seriProduk"
+                register={register}
+              />
+            </div>
+            <Button type="submit" className="rounded-xl">
+              Sarankan Produk
+            </Button>
+          </form>
+        </div>
       </section>
 
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="bg-white flex flex-col max-w-[600px] w-[80vw] p-6 rounded-[20px] items-center">
+        <DialogContent className="bg-white flex flex-col max-w-[600px] w-[80vw] p-6 md:p-8 rounded-[20px] items-center md:gap-6">
           <Image
             src={'/check.png'}
             alt="check"
@@ -153,10 +153,10 @@ export default function Suggest() {
             className="object-contain"
           />
           <div className="flex flex-col gap-2 self-stretch text-center font-satoshi">
-            <h3 className="text-title-lg font-bold">
+            <h3 className="text-title-lg md:text-headline-md font-bold">
               Terimakasih sudah menyarankan kepada Kami
             </h3>
-            <p className="text-title-sm font-satoshi">
+            <p className="text-title-sm md:text-title-md font-satoshi">
               Silahkan cek email anda yang terdaftar, kami akan memberi tahu
               anda jika kami sudah menambahkan produk sesuai apa yang Anda
               sarankan
@@ -164,9 +164,12 @@ export default function Suggest() {
           </div>
 
           <Button>Sarankan Produk Lainnya</Button>
-          <Button variant="outline" className="w-full border-black text-black">
+          <Link
+            href={'/'}
+            className="flex border hover:border-2 disabled:hover:border disabled:cursor-not-allowed  font-semibold items-center justify-center px-5 h-[50px] rounded-[10px] text-small leading-low font-satoshi bg-none w-full border-black text-black"
+          >
             Kembali ke Home
-          </Button>
+          </Link>
         </DialogContent>
       </Dialog>
     </main>
