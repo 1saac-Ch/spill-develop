@@ -1,5 +1,4 @@
 import Artikel from '@/assets/images/artikel.png'
-import Youtube from '@/assets/images/youtube.png'
 
 import Box1 from '@/assets/images/1.png'
 import Box2 from '@/assets/images/2.png'

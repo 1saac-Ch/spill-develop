@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import NextLink from 'next/link'
 import MainLayout from '@/component/layouts/MainLayout'
 import Image from '@/component/elements/NextImage'
@@ -6,12 +7,10 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import RatingStar from '@/component/elements/RatingStar'
 import { product } from './dummy.api'
 import formatCurrency from '@/utils/formatCurrency'
-import {
-  BukalapakLogo,
-  LazadaLogo,
-  ShoopeLogo,
-  TokopediaLogo,
-} from '@/component/elements/EcommerceLogo'
+
+import Tokopedia from '@/assets/images/tokopedia.png'
+import Bukalapak from '@/assets/images/bukalapak.png'
+import Lazada from '@/assets/images/lazada.png'
 import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
 import DiscussionSection from './DiscussionSection'
 import MainRecomendationProduct from '@/component/main/MainRecomendation'
@@ -36,40 +35,42 @@ const DetailProduct = () => {
   return (
     <>
       <div className="bg-[#F8F8F8]">
-        <div className="container mx-auto py-5 flex flex-col gap-10">
+        <div className="w-full main-container flex flex-col gap-6 mb-4">
           <NextLink href="/" passHref>
-            <div className=" cursor-pointer flex gap-2 items-center w-max pr-2">
+            <div className="mt-8 cursor-pointer flex gap-2 items-center w-max pr-2">
               <KeyboardBackspaceIcon fontSize="large" />
-              <h1 className="font-tebal text-2xl">Detail Produk</h1>
+              <h1 className="text-headline-sm font-bold tracking-[0.01px]">
+                Detail Produk
+              </h1>
             </div>
           </NextLink>
-          <div className="flex flex-col md:flex-row gap-8  p-9 bg-white rounded-b-xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-            <div className=" flex flex-col">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-10 p-6 md:p-9 bg-white rounded-[20px] rounded-b-xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
+            <div className="flex flex-col gap-[10px]">
               {product.images.map((image, index) => {
                 if (index === 0) {
                   return (
                     <div
                       key={index}
-                      className=" cursor-pointer m-5 md:m-0 h-max rounded-xl overflow-hidden "
+                      className="cursor-pointer h-max rounded-[8.16px] overflow-hidden "
                     >
                       <Image
                         src={image.image_product}
-                        width={300}
-                        height={3.1}
+                        width={272}
+                        height={272}
                         alt="Picture of the author depdep"
                         placeholder="blur"
-                        className="hover:scale-105 ease-in duration-300 object-cover w-96 h-96 opacity-90"
+                        className="hover:scale-105 ease-in duration-300 object-cover w-full h-full aspect-square md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] opacity-90"
                       />
                     </div>
                   )
                 }
               })}
-              <div className="mt-5 flex gap-2">
+              <div className="flex gap-[10px] justify-between">
                 {product.images.slice(1, 4).map((image, index) => {
                   return (
                     <div
                       key={index + 1}
-                      className=" cursor-pointer m-5 md:m-0 h-max overflow-hidden rounded-xl"
+                      className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
                     >
                       <Image
                         src={image.image_product}
@@ -85,50 +86,63 @@ const DetailProduct = () => {
                 {product.images.slice(4, 5).map((image, index) => {
                   return (
                     <div
-                      key={index + 4}
-                      className=" cursor-pointer relative m-5 md:m-0 h-max overflow-hidden rounded-xl bg-black "
+                      key={index + 1}
+                      className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
                     >
-                      <div className="text-white absolute z-10 border-2 border-white w-full h-full flex justify-center items-center font-">
-                        5+
-                      </div>
                       <Image
                         src={image.image_product}
                         width={88}
                         height={3.1}
                         alt="Picture of the author depdep"
                         placeholder="blur"
-                        className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-70"
+                        className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
                       />
                     </div>
                   )
                 })}
               </div>
             </div>
-            <div className="flex flex-col flex-[1.2] gap-5 ">
-              <div className="flex gap-3 items-center text-abu2 text-small font-satoshi">
+            <div className="flex flex-col flex-[1.2] gap-10 md:gap-6">
+              <div className="flex flex-col md:flex-row gap-3 md:items-center text-abu2 text-small font-satoshi">
                 <div className="border-r-[1px] border-abu2 flex gap-3 pr-3">
                   <RatingStar sizeIcon={19} rating={4} />
-                  <div>{product.rating}</div>
+                  <p className="font-bold text-sm">{product.rating}</p>
                 </div>
-                <div>{product.review} Review</div>
-                <div>{product.disscuss} Diskusi</div>
-                <div>{product.view_product} Dilihat</div>
+                <div className="flex gap-[8.8px]">
+                  <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
+                    {product.review} Review
+                  </p>
+                  <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
+                    {product.disscuss} Diskusi
+                  </p>
+                  <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
+                    {product.view_product} Dilihat
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <div className="text-medium font-tebal font-satoshi">
+              <div className="flex flex-col gap-2">
+                <div className="text-title-lg md:text-headline-sm font-bold font-satoshi">
                   {product.title_name}
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-12 h-12 rounded-full bg-[#705CF6]" />
-                  <div>{product.brand}</div>
+                  <p className="text-title-md md:text-body-lg md:font-normal tracking-[0.5px] font-bold">
+                    {product.brand}
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3 items-center text-medium font-satoshi font-tebal text-pink">
-                <div>Rp. {formatCurrency(product.min_price)}</div>
+                <p className="text-headline-sm font-bold">
+                  Rp. {formatCurrency(product.min_price)}
+                </p>
                 <span>-</span>
-                <div>Rp. {formatCurrency(product.max_price)}</div>
+                <p className="text-headline-sm font-bold">
+                  Rp. {formatCurrency(product.max_price)}
+                </p>
               </div>
-              <p className="line-clamp-2">{product.description}</p>
+              <p className="text-body-lg md:text-title-md">
+                {product.description}
+              </p>
               <div className="font-tebal text-blue-50">Lihat detail</div>
             </div>
           </div>
@@ -138,71 +152,110 @@ const DetailProduct = () => {
         <div
           className={
             isSticky
-              ? 'sticky bottom-0 z-50 transition-all ease-in duration-300 w-full bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi'
-              : 'bg-white py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi transition-all ease-in duration-300'
+              ? 'sticky bottom-0 z-50 transition-all ease-in duration-300 w-full bg-white p-5 lg:px-[72px] lg:py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi'
+              : 'bg-white p-5 lg:px-[72px] lg:py-6 shadow-[0px_4px_16px_rgba(77,77,77,0.12)] font-satoshi transition-all ease-in duration-300'
           }
         >
-          <div className="container mx-auto">
-            <div className="flex justify-between">
-              <div className="flex shadow-[0px_4px_16px_rgba(77,77,77,0.12)] rounded-xl">
-                {product.images.map((image, index) => {
-                  if (index === 0) {
-                    return (
-                      <div
-                        key={index}
-                        className=" cursor-pointer m-5 md:m-0 h-max rounded-xl overflow-hidden "
-                      >
-                        <Image
-                          src={image.image_product}
-                          width={300}
-                          height={3.1}
-                          alt="Picture of the author depdep"
-                          placeholder="blur"
-                          className="hover:scale-105 ease-in duration-300 object-cover w-28 h-28 opacity-90"
-                        />
-                      </div>
-                    )
-                  }
-                })}
-                <div className="p-4 flex flex-col justify-around">
-                  <div className="text-sm font-tebal font-satoshi">
+          <div className="flex items-center justify-between md: gap-8 w-full">
+            <div className="flex flex-none w-[180px] h-11 md:h-auto shadow-[0px_4px_16px_rgba(77,77,77,0.12)] rounded-xl md:w-[372px] md:gap-3">
+              {product.images.map((image, index) => {
+                if (index === 0) {
+                  return (
+                    <div
+                      key={index}
+                      className="w-11 md:w-[120px] md:h-[120px] cursor-pointer rounded-xl overflow-hidden flex-none"
+                    >
+                      <Image
+                        src={image.image_product}
+                        width={44}
+                        height={44}
+                        alt="Picture of the author depdep"
+                        placeholder="blur"
+                        className="object-cover full h-11 md:w-[120px] md:h-[120px] opacity-90"
+                      />
+                    </div>
+                  )
+                }
+              })}
+              <div className="flex flex-col justify-center gap-2 px-2">
+                <div>
+                  <h4 className="text-body-sm md:text-label-md font-bold line-clamp-2">
                     {product.title_name}
-                  </div>
-                  <div className="text-sm font-satoshi">{product.brand}</div>
-                  <div className=" w-max flex gap-3 text-sm items-center font-satoshi font-tebal text-pink">
-                    <div>Rp. {formatCurrency(product.min_price)}</div>
-                    <span>-</span>
-                    <div>Rp. {formatCurrency(product.max_price)}</div>
-                  </div>
+                  </h4>
+                  <p className="hidden md:block text-label-md mt-1">
+                    {product.brand}
+                  </p>
+                </div>
+                <div className="hidden w-max md:flex gap-3 text-sm items-center font-satoshi md:text-label-md text-pink">
+                  <p className=" text-label-md font-bold">
+                    Rp. {formatCurrency(product.min_price)}
+                  </p>
+                  <span>-</span>
+                  <p className=" text-label-md font-bold">
+                    Rp. {formatCurrency(product.max_price)}
+                  </p>
                 </div>
               </div>
-              <div className="flex flex-col gap-2 justify-center">
-                <div>Checkout sekarang di E-Commerce kesayanganmu :</div>
-                <div className="flex gap-3">
-                  <div className="cursor-pointer flex border-2 border-[#EE4D2D] bg-[#FEEEEA] p-2 rounded-xl">
-                    <div className="flex items-center gap-3 ">
-                      <ShoopeLogo />
+            </div>
+
+            <div className="flex flex-col gap-2 w-max">
+              <p className="text-body-xs md:text-body-lg">
+                Checkout sekarang{' '}
+                <span className="hidden md:inline">
+                  di E-Commerce kesayanganmu
+                </span>{' '}
+                :
+              </p>
+              <div className="flex gap-3 md:gap-5">
+                <div className="cursor-pointer flex border-2 border-[#EE4D2D] bg-[#FEEEEA] w-6 h-6 p-1 md:w-auto md:h-auto md:py-2 md:px-3 md:rounded-xl rounded-[6px]">
+                  <div className="flex items-center gap-3 w-full h-full">
+                    <Image
+                      src="/icons/shopee.svg"
+                      alt="shopee"
+                      width={24}
+                      height={24}
+                      className="md:w-7 md:h-7"
+                    />
+                    <div className="hidden xl:flex gap-2">
                       <span className="font-tebal">Shopee</span>
                       <ArrowRightIcon color="#EE4D2D" />
                     </div>
                   </div>
-                  <div className="cursor-pointer flex border-2 border-[#5FB74E] bg-[#EFF8EE] p-2 rounded-xl">
-                    <div className="flex items-center gap-3 ">
-                      <TokopediaLogo />
+                </div>
+                <div className="cursor-pointer flex border-2 border-[#5FB74E] bg-[#FEEEEA] w-6 h-6 md:w-auto p-1 rounded-[6px] md:h-auto md:py-2 md:px-3 md:rounded-xl">
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={Tokopedia}
+                      alt="tokopedia"
+                      width={24}
+                      height={24}
+                    />
+
+                    <div className="hidden xl:flex gap-2">
                       <span className="font-tebal">Tokopedia</span>
                       <ArrowRightIcon color="#5FB74E" />
                     </div>
                   </div>
-                  <div className="cursor-pointer flex border-2 border-[#E31E52] bg-[#FDE9EE]  p-2 rounded-xl">
-                    <div className="flex items-center gap-3 ">
-                      <BukalapakLogo />
+                </div>
+                <div className="cursor-pointer flex border-2 border-[#E31E52] bg-[#FEEEEA] w-6 h-6 md:w-auto p-1 rounded-[6px] md:h-auto md:py-2 md:px-3 md:rounded-xl">
+                  <div className="flex items-center gap-3 ">
+                    <Image
+                      src={Bukalapak}
+                      alt="BukalapakLogo"
+                      width={24}
+                      height={24}
+                    />
+                    <div className="hidden xl:flex gap-2">
                       <span className="font-tebal">Bukalapak</span>
                       <ArrowRightIcon color="#E31E52" />
                     </div>
                   </div>
-                  <div className="cursor-pointer flex border-2 border-[#F99B00] bg-[#FFF5E6] p-2 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <LazadaLogo />
+                </div>
+                <div className="cursor-pointer flex border-2 border-[#F99B00] bg-[#FEEEEA] w-6 h-6 md:w-auto p-1 rounded-[6px] md:h-auto md:py-2 md:px-3 md:rounded-xl">
+                  <div className="flex items-center gap-3">
+                    <Image src={Lazada} alt="lazada" width={24} height={24} />
+
+                    <div className="hidden xl:flex gap-2">
                       <span className="font-tebal">Lazada</span>
                       <ArrowRightIcon color="#F99B00" />
                     </div>

@@ -1,5 +1,5 @@
 .maxContainer {
-  @apply container mx-auto px-5 md:px-0;
+  @apply container;
 }
 
 .wording {
@@ -27,7 +27,7 @@
 }
 
 .title {
-  @apply w-max text-dark text-[36px] font-[900] leading-[44px] font-satoshi text-center;
+  @apply text-headline-sm font-satoshi text-center font-[900];
 }
 
 .line {

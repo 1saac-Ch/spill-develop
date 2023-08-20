@@ -1,5 +1,6 @@
 import Image, { StaticImageData } from 'next/image'
 import StarFilled from '@/assets/icons/StarFilled.svg'
+import Link from 'next/link'
 
 type Props = {
   image: string | StaticImageData
@@ -21,11 +22,11 @@ const ProductCard = ({
   minPrize,
 }: Props) => {
   return (
-    <div className=" bg-white rounded-xl shadow-medium cursor-pointer">
+    <article className=" bg-white rounded-xl shadow-medium max-w-[240px] mx-auto mb-10 relative">
       <Image
         src={image}
         alt="product-computer"
-        className="w-full aspect-square object-cover"
+        className="w-full aspect-square object-cover rounded-t-xl"
       />
 
       <div className="p-4 flex flex-col gap-2 w-full font-satoshi">
@@ -52,7 +53,9 @@ const ProductCard = ({
           {minPrize} - {maxPrize}
         </h4>
       </div>
-    </div>
+
+      <Link href={`/product/1`} className="absolute inset-0" />
+    </article>
   )
 }
 

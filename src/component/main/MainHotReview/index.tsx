@@ -17,7 +17,6 @@ const MainHotReview = () => {
   })
 
   const { activeSlide } = state
-  const nodeRef = useRef(activeSlide)
   const [slide, setSlide] = useState<string>()
 
   // useEffect(() => {
@@ -64,7 +63,7 @@ const MainHotReview = () => {
   return (
     <div className="relative flex justify-center w-screen pb-10 ">
       <div className={styles.roundedTopHotReview} />
-      <div className={styles.maxContainer}>
+      <div className={'main-container'}>
         <div className="flex gap-[44px] justify-between">
           <h1 className={styles.title}>Hot Review.</h1>
           <div className={styles.line}>
@@ -99,20 +98,20 @@ const MainHotReview = () => {
                 <React.Fragment key={i}>
                   <NextLink href="/detail-product" passHref>
                     <Card imgUrl={item.imgUrl}>
-                      <div className="py-2 h-full flex flex-col p-4 gap-2">
-                        <div className="my-4">
+                      <div className="h-full flex flex-col p-6 gap-4">
+                        <div>
                           <RatingStar rating={item.rating} />
                         </div>
-                        <div className="flex-grow font-tebal text-lg items-stretch  ">
+                        <div className="flex-grow text-title-md md:text-title-lg font-bold ">
                           {item.title}
                         </div>
-                        <div className="flex-grow font-tebal text-lg items-stretch  ">
-                          <p className="text-gray-500 line-clamp-3 text-justify">
+                        <div className="flex-grow font-tebal text-lg items-stretch">
+                          <p className="text-body-md md:text-body-lg font-satoshi">
                             {item.description}
                           </p>
                         </div>
-                        <div className="flex gap-2 py-2">
-                          <div className="">
+                        <div className="flex gap-3">
+                          <div>
                             <Image
                               width={12}
                               height={12}
@@ -122,8 +121,10 @@ const MainHotReview = () => {
                             />
                           </div>
                           <div className=" flex flex-col">
-                            <div>Reviewer</div>
-                            <p className="font-normal">3 Minggu Lalu</p>
+                            <p className="text-body-md md:text-body-lg font-bold">
+                              Reviewer
+                            </p>
+                            <p className="text-body-sm">3 Minggu Lalu</p>
                           </div>
                         </div>
                       </div>

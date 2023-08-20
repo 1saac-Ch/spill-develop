@@ -40,7 +40,7 @@ const MainContentReview = () => {
     }
   }
   return (
-    <section className={styles.maxContainer}>
+    <section className="main-container">
       <div className="flex gap-[44px] justify-between">
         <h1 className={styles.title}>
           Konten Review <br className="md:hidden" /> Pilihan.
@@ -60,13 +60,13 @@ const MainContentReview = () => {
       <div className={styles.contentReview}>
         <div className={styles.gridCardItems}>
           {youtube.map((item, i) => (
-            <Card imgUrl={item.imgUrl} key={i}>
-              <div className="py-2 h-full flex flex-col p-6 gap-2 ">
-                <div className="flex-grow font-tebal text-lg items-stretch  ">
+            <Card imgUrl={item.imgUrl} key={i} imgHeight={'h-[228px]'}>
+              <div className="h-full flex flex-col p-4 gap-2 ">
+                <h6 className="text-title-md md:text-title-lg md:font-[700px] truncate font-[600]">
                   {item.title}
-                </div>
+                </h6>
                 <div className="flex-grow font-tebal text-lg items-stretch  ">
-                  <p className="line-clamp-3 text-justify text-xxmedium leading-[24px] font-[400] font-satoshi text-dark">
+                  <p className="text-body-md md:text-body-lg">
                     {item.description}
                   </p>
                 </div>

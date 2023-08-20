@@ -10,6 +10,16 @@ module.exports = {
   ],
   important: true,
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '20px',
+        xl: '72px',
+      },
+      screens: {
+        '3xl': '1220px',
+      },
+    },
     extend: {
       colors: {
         blue: {

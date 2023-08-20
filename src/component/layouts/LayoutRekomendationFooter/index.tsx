@@ -5,7 +5,7 @@ import Button from '@/component/elements/Button'
 const LayoutRekomendationFooter = () => {
   return (
     <div className={styles.layoutRecomend}>
-      <div className={styles.layoutContainer}>
+      <div className="main-container w-full">
         <div className={styles.mainRecomend}>
           <div className={styles.stackResponsive}>
             <h1 className={styles.textFindProduct}>
@@ -17,7 +17,7 @@ const LayoutRekomendationFooter = () => {
               ayo bantu sarankan kami untuk menuliskan produk yang kamu cari
             </p>
           </div>
-          <div className={styles.buttonResponsi}>
+          <div className={styles.buttonResponsive}>
             <Button className={styles.buttonRecomended}>Sarankan Produk</Button>
           </div>
         </div>

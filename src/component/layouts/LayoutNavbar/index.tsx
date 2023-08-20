@@ -18,6 +18,8 @@ import {
   DropdownMenuTrigger,
 } from '@/component/ui/Dropdown'
 import { Dialog, DialogContent } from '@/component/ui/Dialog'
+import Image from 'next/image'
+import { cn } from '@/utils/classname'
 
 type LayoutNavbarProps = {
   normal: boolean
@@ -153,7 +155,14 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
           </div>
 
           <div className="flex md:hidden gap-[30px] items-center">
-            <SearchIcon />
+            <button>
+              <Image
+                width={22}
+                height={22}
+                alt="search"
+                src="/icons/search.svg"
+              />
+            </button>
             <DropdownMenu
               open={isOpenMobileNav}
               onOpenChange={setIsOpenMobileNav}
@@ -264,146 +273,154 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
         isSticky || isOpenMobileNav ? styles.navbarSticky : styles.navbar
       }
     >
-      <div className="container mx-auto px-5 py-2">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center w-full justify-between gap-6">
-            <div className="flex items-center gap-5 ">
-              <NextLink href="/" passHref className="flex-none">
-                <SpillLogo
-                  multiplySize={0.4}
-                  isDark={isSticky || isOpenMobileNav ? false : true}
-                />
-              </NextLink>
-            </div>
-            <div className="hidden md:block relative flex-1">
-              {isSticky && (
-                <Search
-                  placeholder="Find Your Product Here"
-                  position="right"
-                  onKeyPress={handleSearch}
-                  onBlur={() => setIsOpenRecommend(false)}
-                  onFocus={() => setIsOpenRecommend(true)}
-                />
-              )}
-              {isSticky && isOpenRecommend ? (
-                <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
-                  <h3 className="p-4 font-bold text-label-lg">
-                    <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
-                  </h3>
-                  <SearchRecomendationItem />
-                  <SearchRecomendationItem />
-                </div>
-              ) : null}
-            </div>
-            <div className="hidden md:flex items-center gap-12">
-              {RightBeforeLogin.map((item, index) => (
-                <div key={index} className={styles.item}>
-                  {typeof item.title === 'function' ? item.title() : item.title}
-                </div>
-              ))}
-              <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
-                <DialogContent>
-                  <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
-                    <header className="space-y-2">
-                      <h2 className="text-title-lg md:text-headline-md font-bold">
-                        Cari Produk Untuk Di Review
+      <div className="flex items-center justify-between">
+        <div className="flex items-center w-full justify-between gap-6">
+          <div className="flex items-center gap-5 ">
+            <NextLink href="/" passHref className="flex-none">
+              <SpillLogo
+                multiplySize={0.4}
+                isDark={isSticky || isOpenMobileNav ? false : true}
+              />
+            </NextLink>
+          </div>
+          <div className="hidden md:block relative flex-1">
+            {isSticky && (
+              <Search
+                placeholder="Find Your Product Here"
+                position="right"
+                onKeyPress={handleSearch}
+                onBlur={() => setIsOpenRecommend(false)}
+                onFocus={() => setIsOpenRecommend(true)}
+              />
+            )}
+            {isSticky && isOpenRecommend ? (
+              <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
+                <h3 className="p-4 font-bold text-label-lg">
+                  <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
+                </h3>
+                <SearchRecomendationItem />
+                <SearchRecomendationItem />
+              </div>
+            ) : null}
+          </div>
+          <div className="hidden md:flex items-center gap-12">
+            {RightBeforeLogin.map((item, index) => (
+              <div key={index} className={styles.item}>
+                {typeof item.title === 'function' ? item.title() : item.title}
+              </div>
+            ))}
+            <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
+              <DialogContent>
+                <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
+                  <header className="space-y-2">
+                    <h2 className="text-title-lg md:text-headline-md font-bold">
+                      Cari Produk Untuk Di Review
+                    </h2>
+                    <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
+                      Cari produk yang akan kamu review
+                    </p>
+                  </header>
+                  <Search placeholder="Cari produk apapun" />
+
+                  <p className="font-satoshi text-title-md">atau</p>
+
+                  <div className="relative">
+                    <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
+                      <h2 className="text-title-md font-bold">
+                        Produk yang kamu cari tidak ada di spill ?
                       </h2>
-                      <p className="mb-4 text-title-sm md:text-title-md font-satoshi">
-                        Cari produk yang akan kamu review
+                      <p className="text-label-md md:text-title-md font-satoshi">
+                        ayo bantu sarankan kami untuk{' '}
+                        <br className="md:hidden" /> menuliskan produk yang kamu
+                        cari
                       </p>
-                    </header>
-                    <Search placeholder="Cari produk apapun" />
+                      <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
+                        Sarankan Produk
+                      </button>
+                    </section>
 
-                    <p className="font-satoshi text-title-md">atau</p>
-
-                    <div className="relative">
-                      <section className="bg-[#E8FBF5] p-6 flex flex-col gap-5 rounded-[10px]">
-                        <h2 className="text-title-md font-bold">
-                          Produk yang kamu cari tidak ada di spill ?
-                        </h2>
-                        <p className="text-label-md md:text-title-md font-satoshi">
-                          ayo bantu sarankan kami untuk{' '}
-                          <br className="md:hidden" /> menuliskan produk yang
-                          kamu cari
-                        </p>
-                        <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
-                          Sarankan Produk
-                        </button>
-                      </section>
-
-                      <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
-                        <h3 className="w-max font-semibold">
-                          🔥 Produk Paling Banyak Dicari:
-                        </h3>
-                        <div className="flex justify-between items-center">
-                          <div className="flex gap-2">
-                            <div>
-                              <SearchIcon />
-                            </div>
-                            <h4>Item</h4>
+                    <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
+                      <h3 className="w-max font-semibold">
+                        🔥 Produk Paling Banyak Dicari:
+                      </h3>
+                      <div className="flex justify-between items-center">
+                        <div className="flex gap-2">
+                          <div>
+                            <SearchIcon />
                           </div>
-                          <Button
-                            variant="outline"
-                            onClick={() => router.push('/review-product')}
-                          >
-                            Tulis Review
-                          </Button>
+                          <h4>Item</h4>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <div className="flex gap-2">
-                            <div>
-                              <SearchIcon />
-                            </div>
-                            <h4>Item</h4>
+                        <Button
+                          variant="outline"
+                          onClick={() => router.push('/review-product')}
+                        >
+                          Tulis Review
+                        </Button>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex gap-2">
+                          <div>
+                            <SearchIcon />
                           </div>
-                          <Button variant="outline">Tulis Review</Button>
+                          <h4>Item</h4>
                         </div>
+                        <Button variant="outline">Tulis Review</Button>
                       </div>
                     </div>
                   </div>
-                </DialogContent>
-              </Dialog>
-            </div>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
-          <div className="block md:hidden">
-            <DropdownMenu
-              open={isOpenMobileNav}
-              onOpenChange={setIsOpenMobileNav}
-            >
-              <DropdownMenuTrigger>
-                <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="md:hidden w-screen bg-white mt-6 rounded-none border-none shadow-none space-y-8">
-                <DropdownMenuItem className="text-label-lg font-bold py-4 px-5 font-satoshi">
-                  <Link className="w-full flex justify-center" href={'/login'}>
-                    Log in
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-label-lg font-bold font-satoshi text-pink py-4 px-5">
-                  <Link className="w-full flex justify-center" href={'/daftar'}>
-                    Daftar
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Button className={styles.review} onClick={onOpenWriteReview}>
-                    Tulis Review
-                  </Button>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+        </div>
+        <div className="flex gap-6 md:hidden">
+          {isSticky ? (
+            <button className="w-6 h-6 flex-none">
+              <Image
+                width={22}
+                height={22}
+                src="/icons/search.svg"
+                alt="searchh"
+              />
+            </button>
+          ) : null}
+          <DropdownMenu
+            open={isOpenMobileNav}
+            onOpenChange={setIsOpenMobileNav}
+          >
+            <DropdownMenuTrigger>
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="md:hidden w-screen bg-white mt-6 rounded-none border-none shadow-none space-y-8">
+              <DropdownMenuItem className="text-label-lg font-bold py-4 px-5 font-satoshi">
+                <Link className="w-full flex justify-center" href={'/login'}>
+                  Log in
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-label-lg font-bold font-satoshi text-pink py-4 px-5">
+                <Link className="w-full flex justify-center" href={'/daftar'}>
+                  Daftar
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Button className={styles.review} onClick={onOpenWriteReview}>
+                  Tulis Review
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </nav>

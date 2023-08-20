@@ -1,12 +1,9 @@
 .layoutRecomend {
   @apply flex justify-center bg-[#E8FBF5];
 }
-.layoutContainer {
-  @apply container mx-auto;
-}
 
 .mainRecomend {
-  @apply px-5 md:px-0 flex gap-5 flex-col md:flex-row justify-between items-center my-8;
+  @apply flex gap-5 flex-col md:flex-row justify-between items-center;
 }
 
 .stackResponsive {
@@ -18,7 +15,7 @@
 }
 
 .textFindProduct {
-  @apply text-title-lg font-[900] font-satoshi tracking-[0.01px];
+  @apply text-title-md md:text-title-lg font-[900] font-satoshi tracking-[0.1px];
 }
 
 .buttonResponsive {

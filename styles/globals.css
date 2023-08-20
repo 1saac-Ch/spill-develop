@@ -24,3 +24,11 @@ Too see more : https://ui.shadcn.com/docs/installation#configure-tailwindconfigj
     opacity: 1;
   }
 }
+
+p {
+  font-family: 'Satoshi';
+}
+
+.main-container {
+  @apply p-5 lg:px-[72px] lg:py-6;
+}

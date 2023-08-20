@@ -13,10 +13,7 @@ import React from 'react'
 
 const DiscussionSection = () => {
   return (
-    <Tabs
-      defaultValue="review"
-      className="container mx-auto mb-20 px-5 bg-white pb-10"
-    >
+    <Tabs defaultValue="review" className="main-container pt-0 bg-white pb-10">
       <TabsList className="flex flex-row justify-start mb-10 bg-transparent">
         <TabsTrigger className="flex-1" value="review">
           Review
