@@ -1,25 +1,23 @@
 .maxContainer {
-  @apply container mx-auto
+  @apply container mx-auto;
 }
 
-
 .title {
-  @apply w-max text-dark text-[36px] font-[900] leading-[44px] font-satoshi text-center;
+  @apply text-headline-sm font-satoshi font-[900] tracking-[0.01px];
 }
 
 .line {
-  @apply  flex-1  flex items-center justify-center;
+  @apply flex-1 hidden md:flex items-center justify-center;
 
   & div {
-    @apply border-b-[1px] w-full border-dark
+    @apply border-b-[1px] w-full border-dark;
   }
 }
 
 .dots {
-  @apply w-[52px] h-[52px] rounded-full bg-dark cursor-pointer flex justify-center items-center
+  @apply w-[30px] h-[30px] md:w-[52px] md:h-[52px] rounded-full bg-black cursor-pointer flex justify-center items-center;
 }
 
-
 .gridCardItems {
-  @apply flex justify-between grid-cols-1 mt-5 md:grid-cols-5 grid-flow-row gap-1 md:gap-5
+  @apply grid-cols-1 mt-5 md:grid-cols-5 grid-flow-row gap-1 md:gap-5;
 }

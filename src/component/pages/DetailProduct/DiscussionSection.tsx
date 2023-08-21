@@ -38,9 +38,10 @@ const DiscussionSection = () => {
         </div>
       </TabsContent>
       <TabsContent value="influencer">
-        <div className="px-10">
+        <div className="bg-yellow-200">
           <MainContentYoutube />
-          <MainContentTiktok />
+          <MainContentYoutube />
+          {/* <MainContentTiktok /> */}
         </div>
       </TabsContent>
     </Tabs>

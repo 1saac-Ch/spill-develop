@@ -73,7 +73,15 @@ const MainBannerAds = () => {
               className={styles.prev}
               onClick={() => handlePrevOrNext(false)}
             >
-              <ArrowBackIcon sx={{ color: 'white' }} />
+              <ArrowBackIcon
+                sx={{
+                  color: 'white',
+                  padding: {
+                    xs: '4px',
+                    md: '0px',
+                  },
+                }}
+              />
             </button>
           )}
           <SwitchTransition mode="out-in">
@@ -104,7 +112,15 @@ const MainBannerAds = () => {
               className={styles.next}
               onClick={() => handlePrevOrNext(true)}
             >
-              <ArrowForwardIcon sx={{ color: 'white' }} />
+              <ArrowForwardIcon
+                sx={{
+                  color: 'white',
+                  padding: {
+                    xs: '4px',
+                    md: '0px',
+                  },
+                }}
+              />
             </button>
           )}
         </div>

@@ -172,7 +172,7 @@ const DetailProduct = () => {
                         alt="Picture of the author depdep"
                         placeholder="blur"
                         className="object-cover full h-11 md:w-[120px] md:h-[120px] opacity-90"
-                      />
+                      />  
                     </div>
                   )
                 }
