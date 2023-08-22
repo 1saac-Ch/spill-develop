@@ -1,15 +1,14 @@
 import ReviewCard from '@/component/detail/ReviewCard'
 import WriteDiscussion from '@/component/detail/WriteDiscussion'
 import WriteReview from '@/component/detail/WriteReview'
+
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@/component/elements/Tabs'
-import MainContentTiktok from '@/component/main/MainContentTiktok'
-import MainContentYoutube from '@/component/main/MainContentYoutube'
-import React from 'react'
+import TabsInfluencerContent from './TabsInfluencerContent'
 
 const DiscussionSection = () => {
   return (
@@ -38,11 +37,7 @@ const DiscussionSection = () => {
         </div>
       </TabsContent>
       <TabsContent value="influencer">
-        <div className="bg-yellow-200">
-          <MainContentYoutube />
-          <MainContentYoutube />
-          {/* <MainContentTiktok /> */}
-        </div>
+        <TabsInfluencerContent />
       </TabsContent>
     </Tabs>
   )
