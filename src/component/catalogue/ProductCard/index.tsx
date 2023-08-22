@@ -46,7 +46,7 @@ const ProductCard = ({
 
           <span>|</span>
 
-          <p className="text-body-sm font-satoshi">{review}</p>
+          <p className="text-body-sm font-satoshi">{review} reviews</p>
         </div>
 
         <h4 className="text-label-md text-pink font-bold">

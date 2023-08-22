@@ -1,6 +1,6 @@
-import React from 'react'
-import NextLink from 'next/link'
-import { ReactElement, JSXElementConstructor } from 'react'
+import NextImage from '@/component/elements/NextImage'
+import { ReactElement, JSXElementConstructor, Fragment, useState } from 'react'
+import BottomSheet from '@/component/ui/BottomSheet'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 
@@ -13,7 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/component/elements/Select'
-import Link from 'next/link'
 import FilterProduct from '@/component/catalogue/FilterProduct'
 import ProductCard from '@/component/catalogue/ProductCard'
 import NotFoundProduct from './not-found'
@@ -29,25 +28,26 @@ const SortOptions = [
 ]
 
 const CatalogueProduct = () => {
-  const [activeOption, setActiveOption] = React.useState(SortOptions[0])
+  const [activeOption, setActiveOption] = useState(SortOptions[0])
 
   const notFound = false
 
   return (
-    <main className="bg-background">
-      <div className="min-h-screen grid grid-cols-[253px_1fr] gap-10 px-5 md:pl-12 md:pr-[72px] py-16 font-satoshi">
+    <main className="bg-background main-container">
+      <div className="min-h-screen lg:grid grid-cols-[253px_1fr] gap-10 py-10 md:py-16 font-satoshi">
         <FilterProduct />
 
         {!notFound ? (
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between ">
-              <h4 className="text-title-md font-bold">
-                Menampilkan <span>count</span> untuk kata kunci{' '}
-                <span>keyword</span>
+          <div className="flex flex-col gap-10 md:gap-6">
+            <div className="flex gap-6 md:gap-0 flex-col md:flex-row md:items-center justify-between ">
+              <h4 className="text-title-sm md:text-title-md">
+                Menampilkan <strong>count</strong> untuk kata kunci{' '}
+                <strong>keyword</strong>
               </h4>
 
-              <div className="flex items-center gap-6">
-                <label className="text-title-md font-[900]">Urutkan</label>
+              <div className="flex justify-end items-center gap-4 md:gap-6">
+                <label className=" text-title-md font-[900]">Urutkan</label>
+
                 <Select
                   onValueChange={(val) => setActiveOption(val)}
                   value={activeOption}
@@ -68,27 +68,27 @@ const CatalogueProduct = () => {
                     ))}
                   </SelectContent>
                 </Select>
+                <BottomSheet>
+                  <FilterProduct inMobileDevice />
+                </BottomSheet>
               </div>
             </div>
 
             {/* CARDS */}
-            <div className="grid grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-6 md:gap-4 mb-4">
               {Array(5)
                 .fill(0)
                 .map((_, i) => (
-                  <React.Fragment key={i}>
-                    <NextLink href="/detail-product" passHref>
-                      <ProductCard
-                        image={ComputerImage}
-                        title="Sony VM-1000x Wireless Headphone Bluetooth"
-                        review="32"
-                        rate={4.8}
-                        production="Sony"
-                        minPrize="Rp.1.000.000"
-                        maxPrize="Rp.1.430.000"
-                      />
-                    </NextLink>
-                  </React.Fragment>
+                  <ProductCard
+                    image={ComputerImage}
+                    title="Sony VM-1000x Wireless Headphone Bluetooth"
+                    review="32"
+                    rate={4.8}
+                    production="Sony"
+                    minPrize="Rp.1.000.000"
+                    maxPrize="Rp.1.430.000"
+                    key={i}
+                  />
                 ))}
             </div>
 

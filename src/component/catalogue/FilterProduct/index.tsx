@@ -2,6 +2,7 @@ import Button from '@/component/elements/Button/component'
 import { Checkbox } from '@/component/ui/Checkbox'
 import React from 'react'
 import StarIcon from '@/component/elements/StarIcon'
+import { cn } from '@/utils/classname'
 
 const RatingOption = ({
   rate,
@@ -43,14 +44,19 @@ const RatingOption = ({
   )
 }
 
-const FilterProduct = () => {
+const FilterProduct = ({ inMobileDevice = false }) => {
   const [activeRate, setActiveRate] = React.useState(0)
 
   return (
-    <aside className="space-y-3 mt-3">
-      <h5 className="font-semibold ml-6">Filter</h5>
+    <aside
+      className={cn(
+        'space-y-3',
+        inMobileDevice ? 'block lg:hidden h-full' : 'hidden lg:block mt-3'
+      )}
+    >
+      <h5 className="hidden md:block font-semibold ml-6">Filter</h5>
 
-      <div className="rounded-lg shadow-md p-6 bg-white flex flex-col gap-3">
+      <div className="rounded-lg shadow-md px-6 lg:p-6 bg-white flex flex-col gap-3 h-full lg:h-auto">
         <h6 className="font-semibold text-sm">Harga</h6>
 
         <div className="flex border border-[#b1b1b1] rounded text-sm">
