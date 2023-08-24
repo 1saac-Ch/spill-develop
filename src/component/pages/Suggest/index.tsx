@@ -8,49 +8,13 @@ import { useState } from 'react'
 import { cn } from '@/utils/classname'
 import { FieldErrors, UseFormRegister, useForm } from 'react-hook-form'
 import Link from 'next/link'
-
-const InputClassname =
-  'py-3 px-4 rounded-xl border border-[#A6A6A6] placeholder:text-label-lg placeholder:text-muted-foreground'
+import Input from '@/component/ui/Input'
 
 type FormData = {
   namaBrand: string
   namaProduk: string
   tipeProduk: string
   seriProduk: string
-}
-
-function Input({
-  register,
-  label,
-  name,
-  placeholder,
-  errors,
-}: {
-  register: UseFormRegister<FormData>
-  label: string
-  name: keyof FormData
-  placeholder: string
-  errors: FieldErrors<FormData>
-}) {
-  return (
-    <>
-      <label htmlFor={name}>{label}</label>
-      <input
-        placeholder={placeholder}
-        className={cn(InputClassname, errors[name] && 'border-pink')}
-        type="text"
-        {...register(name, {
-          required: 'Tolong isi field ini',
-          minLength: { value: 8, message: 'Gunakan 8 karakter' },
-        })}
-      />
-      {errors[name] ? (
-        <p className={'text-pink text-label-md font-satoshi'}>
-          *{errors[name]?.message}
-        </p>
-      ) : null}
-    </>
-  )
 }
 
 export default function Suggest() {
@@ -62,7 +26,7 @@ export default function Suggest() {
 
   const [showDialog, setShowDialog] = useState(false)
 
-  function onSubmit(val: FormData) {
+  function onSubmit() {
     setShowDialog(true)
   }
 

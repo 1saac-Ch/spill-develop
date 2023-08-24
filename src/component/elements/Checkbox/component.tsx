@@ -1,5 +1,6 @@
-import React from 'react'
 import styles from './styles.module.scss'
+import CheckIcon from '@mui/icons-material/Check'
+
 type CheckboxProps = {
   checked: boolean
   label: string
@@ -12,7 +13,9 @@ function Component({ checked, label, onChange, id }: CheckboxProps) {
     <div className={styles.wrapper}>
       <label htmlFor={id} className={styles.checkbox}>
         <input type="checkbox" checked={checked} id={id} onChange={onChange} />
-        <span>{checked && 'ok'}</span>
+        <span className="flex items-center justify-center">
+          {checked && <CheckIcon className="text-white w-4 h-4" />}
+        </span>
       </label>
       <span>{label}</span>
     </div>
