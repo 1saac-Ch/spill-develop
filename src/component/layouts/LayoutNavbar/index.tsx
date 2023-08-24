@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useEffect, useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import Backdrop from '@/component/layouts/LayoutCatalogue/Backdrop'
@@ -157,7 +157,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
           </div>
 
           <div className="flex md:hidden gap-[30px] items-center">
-            <button>
+            <button onClick={() => setIsOpenSearch(true)}>
               <Image
                 width={22}
                 height={22}
@@ -266,6 +266,10 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
             </div>
           </DialogContent>
         </Dialog>
+
+        {isOpenSearch && isMobile ? (
+          <SearchMobile onClose={() => setIsOpenSearch(false)} />
+        ) : null}
       </>
     )
 
@@ -378,7 +382,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
           </div>
           <div className="flex gap-6 md:hidden">
             {isSticky ? (
-              <button onClick={() => setIsOpenSearch((prev) => !prev)}>
+              <button onClick={() => setIsOpenSearch(true)}>
                 <Image
                   width={22}
                   height={22}

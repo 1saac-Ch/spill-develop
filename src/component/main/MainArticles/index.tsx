@@ -16,7 +16,7 @@ const MainArticles = () => {
           {artikel.map((item: any, index: number) => {
             if (index === 0) {
               return (
-                <div
+                <article
                   key={index}
                   className="flex flex-col rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)] max-w-[684px] mb-5 md:mb-0 min-h-full"
                 >
@@ -34,12 +34,15 @@ const MainArticles = () => {
                       {item.description}
                     </p>
                     <div className="flex-grow flex items-end">
-                      <p className="text-[#F22178] font-satoshi w-max mt-4 text-label-md md:text-label-lg font-bold">
+                      <Link
+                        href={`/article/1`}
+                        className="text-[#F22178] font-satoshi w-max mt-4 text-label-md md:text-label-lg font-bold"
+                      >
                         Lihat Selengkapnya...
-                      </p>
+                      </Link>
                     </div>
                   </div>
-                </div>
+                </article>
               )
             } else {
               return (
@@ -65,7 +68,7 @@ const MainArticles = () => {
                         <p className="leading-[20px] font-[400] tracking-[0.25px] font-satoshi text-dark line-clamp-3 md:line-clamp-2 text-sm mb-2 md:text-body-lg md:mb-4">
                           {item.description}
                         </p>
-                        <Link href={`/article/${item.id}`} className="flex">
+                        <Link href={`/article/1`} className="flex">
                           <p className="text-[#F22178] font-semibold w-max text-label-md md:text-label-lg font-satoshi">
                             Lihat Selengkapnya...
                           </p>
