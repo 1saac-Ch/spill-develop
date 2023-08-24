@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import NextLink from 'next/link'
 import styles from './index.module.scss'
 import { hotriview } from '@/component/pages/Home/dummy.api'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -85,7 +84,7 @@ const MainContentTiktok = () => {
             <div className={styles.gridCardItems}>
               {dataContentTiktok.map((item, i) => (
                 <React.Fragment key={i}>
-                  <TiktokCard tiktokUrl={item.embed_url_tiktok} />
+                  <TiktokCard tiktokUrl={item.url} />
                 </React.Fragment>
               ))}
             </div>

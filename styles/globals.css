@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Currently just need necessary color, you can change it later !
-Configure the color in tailwnd.config.js
-Too see more : https://ui.shadcn.com/docs/installation#configure-tailwindconfigjs */
-
 @layer base {
   :root {
     --background: #f8f8f8;

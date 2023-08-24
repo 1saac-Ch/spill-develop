@@ -40,7 +40,6 @@ export const TokopediaLogo = () => {
       src={Tokopedia}
       width={0}
       height={0}
-      className=""
       alt="tokopedia_logo"
     />
   )

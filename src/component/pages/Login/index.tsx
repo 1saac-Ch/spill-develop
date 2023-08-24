@@ -32,13 +32,10 @@ function Component() {
   })
 
   const _handleChange = (e: any) => {
-    console.log('PPPP')
     setRemember(!remember)
   }
 
-  const onSubmit = (e: FormField) => {
-    console.log(e)
-  }
+  const onSubmit = (e: FormField) => {}
 
   return (
     <main className={styles.root}>

@@ -20,7 +20,7 @@ const MainArticles = () => {
                   key={index}
                   className="flex flex-col rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)] max-w-[684px] mb-5 md:mb-0 min-h-full"
                 >
-                  <div className="">
+                  <div>
                     {/* eslint-disable @next/next/no-img-element */}
                     <img
                       src={item.imgUrl}
