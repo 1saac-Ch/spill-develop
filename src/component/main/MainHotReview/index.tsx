@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import NextLink from 'next/link'
 import styles from './index.module.scss'
-import { hotriview } from '@/component/pages/Home/dummy.api'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
@@ -12,7 +11,7 @@ import RatingStar from '@/component/elements/RatingStar'
 import Image from 'next/image'
 import useSlider from '@/hooks/useSlider'
 
-const MainHotReview = () => {
+const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
   const {
     content,
     handleChangeSlide,
@@ -20,12 +19,12 @@ const MainHotReview = () => {
     isActiveDot,
     slides,
     activeSlide,
-  } = useSlider(hotriview)
+  } = useSlider(hotReview)
 
   return (
     <div className="relative flex justify-center w-screen pb-10 ">
       <div className={styles.roundedTopHotReview} />
-      <div className={'main-container'}>
+      <div className={'w-full main-container'}>
         <div className="flex gap-[44px] justify-between">
           <h1 className={styles.title}>Hot Review.</h1>
           <div className={styles.line}>
@@ -74,11 +73,14 @@ const MainHotReview = () => {
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
                 <Fragment key={i}>
-                  <NextLink href="/detail-product" passHref>
-                    <Card imgUrl={item.imgUrl}>
+                  <NextLink
+                    href={`/detail-product/${item.product_id}`}
+                    passHref
+                  >
+                    <Card imgUrl={item.image}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
-                          <RatingStar rating={item.rating} />
+                          <RatingStar rating={Number(item.rating)} />
                         </div>
                         <div className="flex-grow text-title-md md:text-title-lg font-bold ">
                           {item.title}

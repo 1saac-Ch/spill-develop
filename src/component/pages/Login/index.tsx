@@ -10,6 +10,9 @@ import { regex } from '@/utils/regex'
 import SpillLogo from '@/component/elements/SpillLogo'
 import { useForm } from 'react-hook-form'
 
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
+
 type FormField = {
   noHP: string
   password: string
@@ -18,10 +21,10 @@ type FormField = {
 function Component() {
   const [remember, setRemember] = useState(false)
   const [loginError, setLoginError] = useState('')
+  const router = useRouter()
 
   const {
     register,
-    setError,
     handleSubmit,
     formState: { errors },
   } = useForm<FormField>({
@@ -35,7 +38,20 @@ function Component() {
     setRemember(!remember)
   }
 
-  const onSubmit = (e: FormField) => {}
+  const onSubmit = async (e: FormField) => {
+    const res = await signIn('credentials', {
+      ...e,
+      redirect: false,
+    })
+
+    if (!res?.ok) {
+      setLoginError('Username atau password salah')
+    } else {
+      const currPath = router.asPath
+      const url = new URL(currPath, 'http://localhost:3000')
+      router.push(url.searchParams.get('callbackUrl') || '/')
+    }
+  }
 
   return (
     <main className={styles.root}>
@@ -44,6 +60,7 @@ function Component() {
           <SpillLogo multiplySize={0.5} isDark={true} />
         </NextLink>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
         <header className="space-y-1 md:space-y-2 pb-3">
           <h1 className="text-headline-sm font-[900] text-center tracking-[0.01px] md:text-headline-md md:font-bold">
@@ -53,6 +70,9 @@ function Component() {
             Nikmati kemudahan dalam mencari produk!
           </p>
         </header>
+        {loginError ? (
+          <p className="text-pink text-label-md font-satoshi">{loginError}</p>
+        ) : null}
         <TextInput
           label="Nomor Handphone"
           placeholder="Nomor handphone kamu"

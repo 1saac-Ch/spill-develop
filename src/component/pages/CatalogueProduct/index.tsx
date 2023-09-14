@@ -1,6 +1,5 @@
-import NextImage from '@/component/elements/NextImage'
-import { ReactElement, JSXElementConstructor, Fragment, useState } from 'react'
-import BottomSheet from '@/component/ui/BottomSheet'
+import { ReactElement, JSXElementConstructor, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 
@@ -13,11 +12,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/component/elements/Select'
+
 import FilterProduct from '@/component/catalogue/FilterProduct'
 import ProductCard from '@/component/catalogue/ProductCard'
 import NotFoundProduct from './not-found'
 import LayoutRekomendationFooter from '@/component/layouts/LayoutRekomendationFooter'
 import Pagination from '@/component/ui/Pagination'
+import { useRouter } from 'next/router'
+import { useMediaQuery } from '@mui/material'
+// import useFetcher from '@/hooks/useFetcher'
+
+const BottomSheet = dynamic(() => import('@/component/ui/BottomSheet'), {
+  loading: () => <p>Loading...</p>,
+})
 
 const SortOptions = [
   'Paling Sesuai',
@@ -29,8 +36,15 @@ const SortOptions = [
 
 const CatalogueProduct = () => {
   const [activeOption, setActiveOption] = useState(SortOptions[0])
+  const isLarge = useMediaQuery('(min-width: 1024px)')
 
-  const notFound = false
+  const router = useRouter()
+
+  // const { data, isLoading } = useFetcher<Product[]>(
+  //   `/home/user/${router.query.q}`
+  // )
+
+  const notFound = !router.query.q
 
   return (
     <main className="bg-background main-container">
@@ -68,9 +82,11 @@ const CatalogueProduct = () => {
                     ))}
                   </SelectContent>
                 </Select>
-                <BottomSheet>
-                  <FilterProduct inMobileDevice />
-                </BottomSheet>
+                {!isLarge ? (
+                  <BottomSheet>
+                    <FilterProduct inMobileDevice />
+                  </BottomSheet>
+                ) : null}
               </div>
             </div>
 

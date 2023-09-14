@@ -10,6 +10,29 @@ import {
 } from '@/component/elements/Tabs'
 import TabsInfluencerContent from './TabsInfluencerContent'
 
+const replies = [
+  {
+    id: '1',
+    name: 'Nama',
+    rating: 1,
+    title: 'Title',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
+    createdAt: '3 Minggu Lalu',
+    helps: 5,
+  },
+  {
+    id: '2',
+    name: 'Nama2',
+    rating: 3,
+    title: 'Title',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
+    createdAt: '3 Minggu Lalu',
+    helps: 2,
+  },
+]
+
 const DiscussionSection = () => {
   return (
     <Tabs defaultValue="review" className="main-container pt-0 bg-white pb-10">
@@ -27,8 +50,9 @@ const DiscussionSection = () => {
       <TabsContent value="review" className="space-y-10">
         <WriteReview />
         <div className="space-y-10 px-10">
-          <ReviewCard showLike />
-          <ReviewCard showLike />
+          {replies.map((replie) => (
+            <ReviewCard showLike key={replie.id} {...replie} />
+          ))}
         </div>
       </TabsContent>
       <TabsContent value="diskusi">

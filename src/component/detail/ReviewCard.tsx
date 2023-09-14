@@ -1,12 +1,11 @@
 import React from 'react'
 import StarIcon from '../elements/StarIcon'
 import LikeIcon from '../elements/LikeIcon'
-import Button from '../elements/Button/component'
 
 type Props = {
   isReply?: boolean
   showLike?: boolean
-}
+} & Reply
 
 const ButtonArrow = () => (
   <svg
@@ -27,63 +26,61 @@ const ButtonArrow = () => (
   </svg>
 )
 
-const ReviewCard = ({ isReply, showLike }: Props) => {
+const ReviewCard = ({
+  isReply,
+  showLike,
+  title,
+  createdAt,
+  description,
+  helps,
+  name,
+  rating,
+}: Props) => {
   return (
-    <div className={`${isReply ? 'ml-11' : ''} space-y-2 pr-3 pb-3`}>
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-[#705CF6]" />
-        <p className="font-satoshi text-label-lg font-bold">Nama Reviewer</p>
-      </div>
-
-      <div className="ml-10 space-y-2">
-        <div className="flex gap-[10px]">
-          <StarIcon size={20} color="#f26e21" />
-          <StarIcon size={20} color="#f26e21" />
-          <StarIcon size={20} color="#f26e21" />
-          <StarIcon size={20} color="#a6a6a6" />
-          <StarIcon size={20} color="#a6a6a6" />
+    <>
+      <div className={`${isReply ? 'ml-11' : ''} space-y-2 pr-3 pb-3`}>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-[#705CF6]" />
+          <p className="font-satoshi text-label-lg font-bold">{name}</p>
         </div>
-        <h5 className="text-label-lg font-[900] font-satoshi">Title Review</h5>
-        <p className="text-label-lg font-satoshi">
-          Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id
-          fringilla arcu hendrerit ridiculus. Sed libero dignissim ultrices
-          velit eu. Massa varius varius porttitor dui turpis sodalesddddd. ?
-        </p>
-        <p className="font-satoshi text-label-lg text-[#8C8C8C]">
-          3 Minggu lalu
-        </p>
 
-        {showLike ? (
-          <div className="flex gap-3 items-center">
-            <div className="flex items-center gap-2">
-              <LikeIcon />
-              <Button
-                variant="outline"
-                className="border-none text-[#A6A6A6] w-fit p-0"
-              >
-                Membantu
-              </Button>
-            </div>
-
-            <span className="text-[#A6A6A6]">|</span>
-
-            <p className="font-satoshi text-[#8C8C8C] text-label-lg">
-              5 Orang Terbantu
-            </p>
+        <div className="ml-10 space-y-2">
+          <div className="flex gap-[10px]">
+            {Array(5)
+              .fill(0)
+              .map((_, idx) => (
+                <StarIcon
+                  key={idx}
+                  size={20}
+                  color={idx + 1 <= rating ? '#f26e21' : '#A6A6A6'}
+                />
+              ))}
           </div>
-        ) : null}
+          <h5 className="text-label-lg font-[900] font-satoshi">{title}</h5>
+          <p className="text-label-lg font-satoshi">{description}</p>
+          <p className="font-satoshi text-label-lg text-[#8C8C8C]">
+            {createdAt}
+          </p>
+
+          {showLike ? (
+            <div className="flex gap-3 items-center">
+              <button className="flex items-center gap-2 group">
+                <LikeIcon className="group-hover:fill-[#1598CC]" />
+                <p className="group-hover:text-[#1598CC] border-none font-bold text-[#A6A6A6] w-fit p-0">
+                  Membantu
+                </p>
+              </button>
+
+              <span className="text-[#A6A6A6]">|</span>
+
+              <p className="font-bold text-[#8C8C8C] text-label-lg">
+                {helps} Orang Terbantu
+              </p>
+            </div>
+          ) : null}
+        </div>
       </div>
-
-      {isReply ? (
-        <button className="flex items-center gap-2">
-          <ButtonArrow />
-
-          <span className="font-satoshi text-label-lg font-bold text-blue-50">
-            Lihat Semua Balasan
-          </span>
-        </button>
-      ) : null}
-    </div>
+    </>
   )
 }
 

@@ -4,12 +4,15 @@ import RobotNotFound from '@/assets/images/robot.png'
 import ComputerImage from '@/assets/images/computer.jpg'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
+import { searchContext } from '@/component/layouts/LayoutCatalogue'
 
 const NotFoundProduct = () => {
+  const { setOpenSearch } = useContext(searchContext)
+
   return (
     <div className="flex flex-col gap-14">
-      <div className="flex items-center gap-10 py-6 px-10 bg-white rounded-[20px]">
+      <div className="flex flex-col md:flex-row items-center gap-10 py-6 px-10 bg-white rounded-[20px]">
         <Image
           src={RobotNotFound}
           alt="robot-not-found"
@@ -25,7 +28,10 @@ const NotFoundProduct = () => {
           </h6>
 
           <div className="flex gap-4">
-            <Button className="bg-pink rounded-xl text-label-lg text-white font-satoshi py-3 px-4 max-w-fit">
+            <Button
+              onClick={() => setOpenSearch?.(true)}
+              className="bg-pink rounded-xl text-label-lg text-white font-satoshi py-3 px-4 max-w-fit"
+            >
               Coba lagi
             </Button>
             <Button className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit">
@@ -38,7 +44,7 @@ const NotFoundProduct = () => {
       <div className="space-y-6">
         <h1 className="text-title-lg font-bold">Rekomendasi</h1>
 
-        <div className="grid grid-cols-4 gap-4 mb-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           {Array(4)
             .fill(0)
             .map((_, i) => (

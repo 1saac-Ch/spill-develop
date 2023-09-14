@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 export default function SearchMobile({ onClose }: { onClose: () => void }) {
   useLockBodyScroll()
   return (
-    <div className="fixed z-[99] w-screen h-screen inset-0 bg-white md:hidden p-5">
+    <div className="fixed z-[99999] w-screen h-screen inset-0 bg-white md:hidden p-5">
       <nav className="flex items-center justify-between">
         <button onClick={onClose}>
           <ArrowBackIcon className="w-6 h-6 text-muted-foreground" />
@@ -28,7 +28,7 @@ export default function SearchMobile({ onClose }: { onClose: () => void }) {
         </div>
       </nav>
 
-      <div className="flex flex-col">
+      <div className="hidden flex-col">
         <h1 className="flex p-4 items-center gap-2 self-stretch text-label-lg font-bold ">
           🔥 Produk Paling Banyak Dicari:
         </h1>

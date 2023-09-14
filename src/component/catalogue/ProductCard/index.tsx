@@ -54,7 +54,7 @@ const ProductCard = ({
         </h4>
       </div>
 
-      <Link href={`/product/1`} className="absolute inset-0" />
+      <Link href={`/detail-product/1`} className="absolute inset-0" />
     </article>
   )
 }

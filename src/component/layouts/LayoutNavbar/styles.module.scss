@@ -1,13 +1,13 @@
 .navbar {
-  @apply flex flex-col justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300 p-5 lg:px-[72px] lg:py-6;
+  @apply flex flex-col justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300 z-40 p-5 lg:px-[72px] lg:py-6 md:min-h-[96px] lg:min-h-[104px];
 }
 
 .navbarSticky {
-  @apply flex flex-col justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-300 p-5 lg:px-[72px] lg:py-6;
+  @apply flex flex-col justify-center fixed w-full bg-white transition-all shadow-sm ease-out duration-300 p-5 lg:px-[72px] z-40 lg:py-6;
 }
 
 .navbarNormal {
-  @apply flex sticky top-0 bg-white justify-center w-full z-[50] transition-all shadow-sm ease-out duration-300;
+  @apply flex sticky top-0 bg-white justify-center w-full z-40 transition-all shadow-sm ease-out duration-300;
 }
 
 .maxContainer {

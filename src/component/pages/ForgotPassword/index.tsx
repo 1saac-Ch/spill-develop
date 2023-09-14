@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import NextLink from 'next/link'
 
 import styles from './index.module.scss'
@@ -9,13 +9,24 @@ import TextInput from '@/component/elements/TextInput'
 import Modal from '@/component/elements/Modal'
 import UseDisclosure from '@/component/elements/UseDisclosure'
 import VerificationCode from '@/component/elements/VerificationInput'
+import { useForm } from 'react-hook-form'
+import { regex } from '@/utils/regex'
 
 function InputPhoneNumber({ onSuccess }: { onSuccess: () => void }) {
   const [noHP, setNoHP] = useState('')
+  const [error, setError] = useState('')
   const { onOpen, onClose, isOpen } = UseDisclosure()
 
+  useEffect(() => {
+    if (!regex.noHp.test(noHP) && !!noHP) {
+      setError('mohon masukkan nomor hanphone dengan benar')
+    } else {
+      setError('')
+    }
+  }, [noHP])
+
   function handleBtnClick() {
-    if (noHP) {
+    if (noHP && !error) {
       onOpen?.()
     }
   }
@@ -24,18 +35,37 @@ function InputPhoneNumber({ onSuccess }: { onSuccess: () => void }) {
       <h1>Buat Password baru</h1>
       <p>Masukkan nomor handphone yang terdaftar untuk buat kata sandi baru</p>
 
-      <TextInput
-        label="Nomor Handphone (WhatsApp)"
-        placeholder="Tuliskan nomor handphone kamu"
-        variant="normal"
-        value={noHP}
-        id="username"
-        onChange={(e: any) => setNoHP(e.target.value)}
-        className="px-4 h-11 placeholder:text-label-lg"
-      />
+      <label className="text-label-lg" htmlFor="new-pass">
+        Nomor Handphone (WhatsApp)
+      </label>
 
+      <div
+        className={`flex w-full border-[1px] border-solid mt-2 border-abu rounded-[12px] px-4 py-3 placeholder:text-label-lg ${
+          error ? 'border border-pink' : ''
+        }`}
+      >
+        <input
+          required={true}
+          placeholder="Tuliskan nomor handphone kamu"
+          id="new-pass"
+          className={`w-full bg-transparent `}
+          value={noHP}
+          onChange={(e) => setNoHP(e.target.value)}
+        />
+      </div>
+      {error ? (
+        <p className={'text-pink text-left text-label-md font-satoshi'}>
+          *{error}
+        </p>
+      ) : null}
       <div className={styles.bottom}>
-        <Button onClick={handleBtnClick}>Lanjutkan</Button>
+        <Button
+          className="disabled:cursor-not-allowed disabled:opacity-80"
+          disabled={error}
+          onClick={handleBtnClick}
+        >
+          Lanjutkan
+        </Button>
         <p>
           Belum punya akun Spill?<NextLink href="/daftar">Daftar</NextLink>
         </p>
@@ -82,8 +112,7 @@ function InputVerificationCode({ onSuccess }: { onSuccess: () => void }) {
 }
 
 function InputNewPassword() {
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const { register } = useForm<{ password: string; confirmPassword: string }>()
   return (
     <>
       <h1>Buat Password Baru</h1>
@@ -94,22 +123,15 @@ function InputNewPassword() {
           label="Password baru"
           placeholder="Tulis password baru kamu"
           variant="password"
-          value={password}
           id="username"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
-          }
+          register={register}
         />
 
         <TextInput
           label="Konfirmasi password baru"
           placeholder="Tulis konfirmasi password baru kamu"
           variant="password"
-          value={confirmPassword}
-          id="username"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setConfirmPassword(e.target.value)
-          }
+          register={register}
         />
       </div>
 

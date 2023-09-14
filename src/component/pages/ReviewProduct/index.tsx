@@ -8,13 +8,26 @@ import StarIcon from '@/component/elements/StarIcon'
 import Button from '@/component/elements/Button'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import UploadIcon from '@/assets/icons/upload.svg'
+import { useForm } from 'react-hook-form'
+
+type FormFields = {
+  judulReview: string
+  deskripsi: string
+}
 
 const ReviewProduct = () => {
-  const [ratingValue, setRatingValue] = useState(0)
+  const [ratingValue, setRatingValue] = useState(3)
   const [hoverValue, setHoverValue] = useState(0)
-  const [file, setFile] = useState<File | null>(null)
+  const [files, setFiles] = useState<File[]>([])
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [errorMsg, setErrorMsg] = useState('')
+
+  const { register, getValues } = useForm<FormFields>({
+    defaultValues: {
+      deskripsi: '',
+      judulReview: '',
+    },
+  })
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault()
@@ -24,7 +37,7 @@ const ReviewProduct = () => {
       droppedFile.type.startsWith('image/') ||
       droppedFile.type.startsWith('video/')
     ) {
-      setFile(droppedFile)
+      setFiles((prev) => [...prev, droppedFile])
       setErrorMsg('')
     } else {
       setErrorMsg('Only image and video files are allowed.')
@@ -49,7 +62,7 @@ const ReviewProduct = () => {
         selectedFile.type.startsWith('image/') ||
         selectedFile.type.startsWith('video/')
       ) {
-        setFile(selectedFile)
+        setFiles((prev) => [...prev, selectedFile])
         setErrorMsg('')
       } else {
         setErrorMsg('Only image and video files are allowed.')
@@ -68,6 +81,22 @@ const ReviewProduct = () => {
   const handleMouseLeave = () => {
     setHoverValue(0)
   }
+
+  const handleRemoveFile = (name: string) => {
+    setFiles((prev) => prev.filter((file) => file.name !== name))
+  }
+
+  const handleSubmitReview = () => {
+    const judul = getValues('judulReview')
+    const deskripsi = getValues('deskripsi')
+
+    if (!judul || !deskripsi) {
+      setErrorMsg('Tolong isi semua Field')
+    }
+
+    //POST INTO API
+  }
+
   return (
     <div className="bg-[#F8F8F8]">
       <div className="container mx-auto p-5 flex flex-col gap-10">
@@ -120,12 +149,18 @@ const ReviewProduct = () => {
               variant="normal"
               placeholder="Tulis Judul Review"
               id="title-review"
+              name="judulReview"
+              required
+              register={register}
             />
             <TextInput
               label="Deskripsi"
               variant="textarea"
               placeholder="Tulis Deskripsi"
               id="description-review"
+              name="description"
+              required
+              register={register}
             />
             <div className=" flex flex-col items-center justify-center w-full">
               <div
@@ -137,45 +172,64 @@ const ReviewProduct = () => {
 
                 <p className="text-label-md font-satoshi">
                   Tarik dan Lepaskan kesini atau{' '}
-                  <span
+                  <button
+                    disabled={files.length === 3}
                     className="underline font-[900] cursor-pointer"
                     onClick={handleFileClick}
                   >
                     Pilih File
-                  </span>
+                  </button>
                 </p>
                 <input
                   type="file"
                   accept="image/*,video/*"
                   ref={fileInputRef}
+                  id="input-file"
+                  name="input-file"
                   className="hidden"
                   onChange={handleFileInput}
                 />
               </div>
               {errorMsg && <p className="mt-4 text-red-500">{errorMsg}</p>}
-              {file && (
-                <div className="mt-3 overflow-hidden w-full ">
-                  {file.type.startsWith('image/') ? (
-                    <div className="w-max rounded-md overflow-hidden">
-                      <Image
-                        src={URL.createObjectURL(file)}
-                        alt="Dropped Image"
-                        width={80}
-                        height={80}
-                        className="hover:scale-105 ease-in duration-300 object-cover w-[80px] h-[80px] opacity-90"
-                      />
-                    </div>
-                  ) : (
+              <div className="mt-3 overflow-hidden w-full flex justify-center md:justify-start gap-6">
+                {files.map((file, i) => {
+                  if (file.type.startsWith('image/')) {
+                    return (
+                      <div
+                        className="w-max rounded-md overflow-hidden relative"
+                        key={i}
+                      >
+                        <Image
+                          src={URL.createObjectURL(file)}
+                          alt="Dropped Image"
+                          width={80}
+                          height={80}
+                          className="hover:scale-105 ease-in duration-300 object-cover w-[80px] h-[80px] opacity-90"
+                        />
+                        <button onClick={() => handleRemoveFile(file.name)}>
+                          <Image
+                            src="/icons/close.svg"
+                            alt="close"
+                            width={2}
+                            height={2}
+                            className="w-6 h-6 absolute right-0 top-0"
+                          />
+                        </button>
+                      </div>
+                    )
+                  }
+                  return (
                     <video
+                      key={i}
                       src={URL.createObjectURL(file)}
                       className="max-w-xs"
                       controls
                     />
-                  )}
-                </div>
-              )}
+                  )
+                })}
+              </div>
             </div>
-            <Button>Kirim Review</Button>
+            <Button onClick={handleSubmitReview}>Kirim Review</Button>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
-import { KeyboardEvent, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import Backdrop from '@/component/layouts/LayoutCatalogue/Backdrop'
+import { signOut } from 'next-auth/react'
 
 import Button from '@/component/elements/Button'
 import SpillLogo from '@/component/elements/SpillLogo'
@@ -17,24 +18,57 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/component/ui/Dropdown'
+
 import { Dialog, DialogContent } from '@/component/ui/Dialog'
 import Image from 'next/image'
 import DropDownNav from './DropDownNav'
 import SearchMobile from './SearchMobile'
 import { useMediaQuery } from '@mui/material'
+import { useSession } from 'next-auth/react'
+import { cn } from '@/utils/classname'
+import { searchContext } from '../LayoutCatalogue'
+import SearchInput from './SearchInput'
 
 type LayoutNavbarProps = {
   normal: boolean
 }
 
+function RecomendationItem({ id = 1 }) {
+  const router = useRouter()
+  return (
+    <div className="flex justify-between items-center mb-1">
+      <div className="flex items-center gap-2 py-4 font-satoshi cursor-pointer">
+        <SearchIcon className="w-4 h-4 mr-2" />
+        <h4 className="text-label-lg tracking-[0.01px]">Item</h4>
+      </div>
+      <Button
+        variant="outline"
+        onClick={() => router.push(`/review-product/${id}`)}
+        className="hover:border"
+      >
+        Tulis Review
+      </Button>
+    </div>
+  )
+}
+
 const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
   const router = useRouter()
+  const { openSearch, setOpenSearch } = useContext(searchContext)
   const [isSticky, setIsSticky] = useState<Boolean>(false)
   const [isOpenRecommend, setIsOpenRecommend] = useState(false)
   const [isOpenMobileNav, setIsOpenMobileNav] = useState(false)
-  const [isOpenSearch, setIsOpenSearch] = useState(false)
+  const [isOpenSearchNav, setIsOpenSearchNav] = useState(false)
+  const [search, setSearch] = useState('')
+
+  const [searchInput, setSearchInput] = useState('')
+
+  const [openDropDownRecomendation, setOpenDropDownRecomendation] =
+    useState(false)
 
   const isMobile = useMediaQuery('(max-width: 768px)')
+  const { status } = useSession()
+
   const {
     onOpen: onOpenWriteReview,
     isOpen: isOpenWriteReview,
@@ -47,6 +81,12 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  const isOpenSearch =
+    typeof openSearch === 'boolean' ? openSearch : isOpenSearchNav
+
+  const setIsOpenSearch =
+    typeof setOpenSearch === 'function' ? setOpenSearch : setIsOpenSearchNav
 
   const handleScroll = () => {
     if (window.pageYOffset > 10) {
@@ -89,6 +129,70 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     },
   ]
 
+  const RightAfterLogin = [
+    {
+      title: () => (
+        <button
+          onClick={onOpenWriteReview}
+          className={
+            isSticky || normal
+              ? cn(styles.login, 'border border-black py-3 px-4 rounded-xl')
+              : cn(
+                  styles.loginSticky,
+                  'border border-white py-3 px-4 rounded-xl'
+                )
+          }
+        >
+          Write a review
+        </button>
+      ),
+      link: '/login',
+    },
+
+    {
+      title: () => (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button className="flex h-11 gap-2 justify-center items-center bg-transparent">
+              <Image
+                src={'/profile.jpg'}
+                alt="avatar"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full object-cover"
+              />
+
+              <p
+                className={`text-label-lg ${
+                  isSticky || normal ? 'text-black' : ''
+                } font-bold`}
+              >
+                User
+              </p>
+
+              <Image
+                src={isSticky || normal ? '/icons/v-black.svg' : '/icons/v.svg'}
+                alt="bottom-arrow"
+                width={20}
+                height={20}
+                className="w-5 h-5 object-contain"
+              />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="hidden w-[140px] p-4 md:flex justify-center items-center bg-white hover:bg-gray-200 transition-none relative z-[99999]">
+            <button
+              onClick={() => signOut()}
+              className="text-label-lg text-pink font-satoshi"
+            >
+              Logout
+            </button>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ),
+      link: '/',
+    },
+  ]
+
   const RightBeforeLoginNormal = [
     {
       title: () => (
@@ -116,44 +220,45 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     },
   ]
 
-  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      router.push('/catalogue-product')
+  const handleSearch = () => {
+    if (search) {
+      router.push(`/catalogue-product?q=${search}`)
     }
   }
 
-  if (normal)
+  const isReady = status !== 'loading'
+  const isAuthenticated = status === 'authenticated'
+
+  const handleSearchSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    const element = e.currentTarget.querySelector('#search') as HTMLInputElement
+    const searchParam = new URLSearchParams({
+      q: element.value,
+    })
+
+    router.push(`/catalogue-product?${searchParam.toString()}`)
+  }
+
+  if (normal) {
+    const NavContent =
+      status === 'authenticated' ? RightAfterLogin : RightBeforeLoginNormal
+
     return (
       <>
-        <nav className="p-5 lg:px-[72px] flex items-center justify-between gap-[60px]">
+        <nav className="p-5 bg-white relative z-50 lg:px-[72px] flex items-center justify-between gap-[60px]">
           <NextLink href="/" passHref>
             <SpillLogo multiplySize={0.4} isDark={false} />
           </NextLink>
-          <div className="hidden md:block relative flex-1">
-            <Search
-              placeholder="Find Your Product Here"
-              position="right"
-              onKeyPress={handleSearch}
-              onBlur={() => setIsOpenRecommend(false)}
-              onFocus={() => setIsOpenRecommend(true)}
-            />
-            {isOpenRecommend ? (
-              <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
-                <h3 className="p-4 font-bold text-label-lg">
-                  <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
-                </h3>
-                <SearchRecomendationItem />
-                <SearchRecomendationItem />
-              </div>
-            ) : null}
-          </div>
+
+          <SearchInput />
 
           <div className="hidden md:flex justify-center gap-[50px] items-center">
-            {RightBeforeLoginNormal.map((item, index) => (
-              <div key={index} className={styles.item}>
-                {typeof item.title === 'function' ? item.title() : item.title}
-              </div>
-            ))}
+            {isReady &&
+              NavContent.map((item, index) => (
+                <div key={index} className={styles.item}>
+                  {typeof item.title === 'function' ? item.title() : item.title}
+                </div>
+              ))}
           </div>
 
           <div className="flex md:hidden gap-[30px] items-center">
@@ -184,21 +289,49 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   />
                 </svg>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="md:hidden w-screen bg-white mt-6 rounded-none border-none shadow-lg space-y-8 pb-2">
-                <DropdownMenuItem className="text-label-lg font-bold py-4 px-5 font-satoshi">
-                  <Link className="w-full flex justify-center" href={'/login'}>
-                    Log in
-                  </Link>
+              <DropdownMenuContent className="md:hidden w-screen bg-blue-200 mt-6 rounded-none border-none shadow-lg space-y-8 pb-2">
+                <DropdownMenuItem className="text-label-lg font-bold font-satoshi p-0 hover:bg-white">
+                  {isAuthenticated ? (
+                    <div className="w-full flex items-center justify-center gap-2 hover:bg-white h-full py-4">
+                      <Image
+                        src="/profile.jpg"
+                        alt="profile"
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 rounded-full object-cover"
+                      />
+
+                      <p className="text-label-lg font-bold">User</p>
+                    </div>
+                  ) : (
+                    <Link
+                      className="w-full flex justify-center py-4"
+                      href={'/login'}
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </DropdownMenuItem>
-                <DropdownMenuItem className="text-label-lg font-bold font-satoshi text-pink py-4 px-5">
-                  <Link className="w-full flex justify-center" href={'/daftar'}>
-                    Daftar
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
+
+                <DropdownMenuItem className="hover:bg-white">
                   <Button className={styles.review} onClick={onOpenWriteReview}>
                     Tulis Review
                   </Button>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem className="text-label-lg font-bold font-satoshi text-pink ">
+                  {isAuthenticated ? (
+                    <button onClick={() => signOut()} className="mx-auto py-4">
+                      Logout
+                    </button>
+                  ) : (
+                    <Link
+                      className="w-full py-4 hover:bg-gray-200 flex justify-center"
+                      href={'/daftar'}
+                    >
+                      Daftar
+                    </Link>
+                  )}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -216,7 +349,23 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   Cari produk yang akan kamu review
                 </p>
               </header>
-              <Search placeholder="Cari produk apapun" />
+              <form
+                onSubmit={handleSearchSubmit}
+                className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
+              >
+                <input
+                  placeholder="Cari produk apapun"
+                  id="search"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
+                  onFocus={() => setOpenDropDownRecomendation(true)}
+                  onBlur={() => setOpenDropDownRecomendation(false)}
+                />
+                <button type="submit">
+                  <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
+                </button>
+              </form>
 
               <p className="font-satoshi text-title-md">atau</p>
 
@@ -229,39 +378,24 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                     ayo bantu sarankan kami untuk <br className="md:hidden" />{' '}
                     menuliskan produk yang kamu cari
                   </p>
-                  <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
+                  <Link
+                    href="/suggest"
+                    className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg"
+                  >
                     Sarankan Produk
-                  </button>
+                  </Link>
                 </section>
 
-                <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
-                  <h3 className="w-max font-semibold">
-                    🔥 Produk Paling Banyak Dicari:
-                  </h3>
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-2">
-                      <div>
-                        <SearchIcon />
-                      </div>
-                      <h4>Item</h4>
-                    </div>
-                    <Button
-                      variant="outline"
-                      onClick={() => router.push('/review-product')}
-                    >
-                      Tulis Review
-                    </Button>
+                {openDropDownRecomendation && !!searchInput ? (
+                  <div className="absolute top-0 bg-white w-full min-h-[160px]">
+                    <h3 className="w-max font-semibold text-title-sm">
+                      🔥 Produk Paling Banyak Dicari:
+                    </h3>
+
+                    <RecomendationItem />
+                    <RecomendationItem />
                   </div>
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-2">
-                      <div>
-                        <SearchIcon />
-                      </div>
-                      <h4>Item</h4>
-                    </div>
-                    <Button variant="outline">Tulis Review</Button>
-                  </div>
-                </div>
+                ) : null}
               </div>
             </div>
           </DialogContent>
@@ -272,6 +406,10 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
         ) : null}
       </>
     )
+  }
+
+  const NavContent =
+    status === 'authenticated' ? RightAfterLogin : RightBeforeLogin
 
   return (
     <>
@@ -290,32 +428,16 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                 />
               </NextLink>
             </div>
-            <div className="hidden md:block relative flex-1">
-              {isSticky && (
-                <Search
-                  placeholder="Find Your Product Here"
-                  position="right"
-                  onKeyPress={handleSearch}
-                  onBlur={() => setIsOpenRecommend(false)}
-                  onFocus={() => setIsOpenRecommend(true)}
-                />
-              )}
-              {isSticky && isOpenRecommend ? (
-                <div className="w-full absolute  top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
-                  <h3 className="p-4 font-bold text-label-lg">
-                    <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
-                  </h3>
-                  <SearchRecomendationItem />
-                  <SearchRecomendationItem />
-                </div>
-              ) : null}
-            </div>
+            {isSticky ? <SearchInput /> : null}
             <div className="hidden md:flex items-center gap-12">
-              {RightBeforeLogin.map((item, index) => (
-                <div key={index} className={styles.item}>
-                  {typeof item.title === 'function' ? item.title() : item.title}
-                </div>
-              ))}
+              {isReady &&
+                NavContent.map((item, index) => (
+                  <div key={index} className={styles.item}>
+                    {typeof item.title === 'function'
+                      ? item.title()
+                      : item.title}
+                  </div>
+                ))}
               <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
                 <DialogContent>
                   <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
@@ -327,7 +449,23 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                         Cari produk yang akan kamu review
                       </p>
                     </header>
-                    <Search placeholder="Cari produk apapun" />
+                    <form
+                      onSubmit={handleSearchSubmit}
+                      className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
+                    >
+                      <input
+                        placeholder="Cari produk apapun"
+                        id="search"
+                        value={searchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
+                        className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
+                        onFocus={() => setOpenDropDownRecomendation(true)}
+                        onBlur={() => setOpenDropDownRecomendation(false)}
+                      />
+                      <button type="submit">
+                        <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
+                      </button>
+                    </form>
 
                     <p className="font-satoshi text-title-md">atau</p>
 
@@ -346,34 +484,16 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                         </button>
                       </section>
 
-                      <div className=" mt-5 shadow-md flex flex-col justify-start p-4 gap-4 absolute -top-5 bg-white w-full rounded-[10px]">
-                        <h3 className="w-max font-semibold">
-                          🔥 Produk Paling Banyak Dicari:
-                        </h3>
-                        <div className="flex justify-between items-center">
-                          <div className="flex gap-2">
-                            <div>
-                              <SearchIcon />
-                            </div>
-                            <h4>Item</h4>
-                          </div>
-                          <Button
-                            variant="outline"
-                            onClick={() => router.push('/review-product')}
-                          >
-                            Tulis Review
-                          </Button>
+                      {openDropDownRecomendation && !!searchInput ? (
+                        <div className="absolute top-0 bg-white w-full min-h-[160px]">
+                          <h3 className="w-max font-semibold text-title-sm">
+                            🔥 Produk Paling Banyak Dicari:
+                          </h3>
+
+                          <RecomendationItem />
+                          <RecomendationItem />
                         </div>
-                        <div className="flex justify-between items-center">
-                          <div className="flex gap-2">
-                            <div>
-                              <SearchIcon />
-                            </div>
-                            <h4>Item</h4>
-                          </div>
-                          <Button variant="outline">Tulis Review</Button>
-                        </div>
-                      </div>
+                      ) : null}
                     </div>
                   </div>
                 </DialogContent>
@@ -411,25 +531,55 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               isOpen={isOpenMobileNav}
               setIsOpen={setIsOpenMobileNav}
             >
-              <DropDownNav.Item className="text-label-lg font-bold py-4 px-5 font-satoshi">
-                <Link className="w-full flex justify-center" href={'/login'}>
-                  Log in
-                </Link>
+              <DropDownNav.Item className="text-label-lg font-bold font-satoshi p-0 hover:bg-white">
+                {isAuthenticated ? (
+                  <div className="w-full flex items-center justify-center gap-2 hover:bg-white h-full py-4">
+                    <Image
+                      src="/profile.jpg"
+                      alt="profile"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+
+                    <p className="text-label-lg font-bold">User</p>
+                  </div>
+                ) : (
+                  <Link
+                    className="w-full flex justify-center py-4"
+                    href={'/login'}
+                  >
+                    Log in
+                  </Link>
+                )}
               </DropDownNav.Item>
-              <DropDownNav.Item className="text-label-lg font-bold font-satoshi text-pink py-4 px-5">
-                <Link className="w-full flex justify-center" href={'/daftar'}>
-                  Daftar
-                </Link>
-              </DropDownNav.Item>
+
               <DropDownNav.Item>
                 <Button className={styles.review} onClick={onOpenWriteReview}>
                   Tulis Review
                 </Button>
               </DropDownNav.Item>
+
+              <DropDownNav.Item className="text-label-lg font-bold font-satoshi text-pink ">
+                {isAuthenticated ? (
+                  <button onClick={() => signOut()} className="mx-auto py-4">
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    className="w-full py-4 hover:bg-gray-200 flex justify-center"
+                    href={'/daftar'}
+                  >
+                    Daftar
+                  </Link>
+                )}
+              </DropDownNav.Item>
             </DropDownNav>
           </div>
         </div>
       </nav>
+
+      {isOpenRecommend ? <Backdrop /> : null}
 
       {isOpenSearch && isMobile ? (
         <SearchMobile onClose={() => setIsOpenSearch(false)} />

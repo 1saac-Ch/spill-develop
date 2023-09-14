@@ -1,6 +1,35 @@
 import React from 'react'
 import SendIcon from '../elements/SendIcon'
 import ReviewCard from './ReviewCard'
+import DiscussionCard from './DiscussonCard'
+
+const discussions: Discussion[] = [
+  {
+    id: '1',
+    name: 'Nama',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
+    createdAt: '3 Minggu Lalu',
+    replies: [
+      {
+        id: '2',
+        name: 'Nama2',
+        description:
+          'Lorem dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
+        createdAt: '3 Minggu Lalu',
+        replies: [],
+      },
+    ],
+  },
+  {
+    id: '2',
+    name: 'Nama2',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
+    createdAt: '3 Minggu Lalu',
+    replies: [],
+  },
+]
 
 const WriteDiscussion = () => {
   return (
@@ -26,8 +55,9 @@ const WriteDiscussion = () => {
         </div>
       </form>
 
-      <ReviewCard />
-      <ReviewCard isReply={true} />
+      {discussions.length
+        ? discussions.map((disc) => <DiscussionCard key={disc.id} {...disc} />)
+        : null}
     </div>
   )
 }

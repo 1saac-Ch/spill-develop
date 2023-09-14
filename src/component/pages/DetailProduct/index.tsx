@@ -5,7 +5,6 @@ import MainLayout from '@/component/layouts/MainLayout'
 import Image from '@/component/elements/NextImage'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import RatingStar from '@/component/elements/RatingStar'
-import { product } from './dummy.api'
 import formatCurrency from '@/utils/formatCurrency'
 
 import Tokopedia from '@/assets/images/tokopedia.png'
@@ -14,9 +13,18 @@ import Lazada from '@/assets/images/lazada.png'
 import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
 import DiscussionSection from './DiscussionSection'
 import MainRecomendationProduct from '@/component/main/MainRecomendation'
+import { useRouter } from 'next/router'
+import { Dialog } from '@/component/ui/Dialog'
+import { DialogTrigger } from '@/component/ui/Dialog'
+import { DialogContent } from '@/component/ui/Dialog'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
-const DetailProduct = () => {
+const DetailProduct = ({ product }: { product: Product }) => {
   const [isSticky, setIsSticky] = useState(false)
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+
+  const router = useRouter()
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -32,76 +40,161 @@ const DetailProduct = () => {
       setIsSticky(false)
     }
   }
+
+  const ProductImages = product.images
+
+  const handlePrevClick = () => {
+    if (activeImageIndex === 0) {
+      setActiveImageIndex(ProductImages.length - 1)
+    } else {
+      setActiveImageIndex((prev) => prev - 1)
+    }
+  }
+
+  const handleNextClick = () => {
+    if (activeImageIndex === ProductImages.length - 1) {
+      setActiveImageIndex(0)
+    } else {
+      setActiveImageIndex((prev) => prev + 1)
+    }
+  }
+
   return (
     <>
       <div className="bg-[#F8F8F8]">
         <div className="w-full main-container flex flex-col gap-6 mb-4">
-          <NextLink href="/" passHref>
-            <div className="mt-8 cursor-pointer flex gap-2 items-center w-max pr-2">
+          <div className="mt-8 cursor-pointer w-max pr-2">
+            <NextLink href="/" passHref className="flex gap-2 items-center ">
               <KeyboardBackspaceIcon fontSize="large" />
               <h1 className="text-headline-sm font-bold tracking-[0.01px]">
                 Detail Produk
               </h1>
-            </div>
-          </NextLink>
+            </NextLink>
+          </div>
           <div className="flex flex-col md:flex-row gap-8 md:gap-10 p-6 md:p-9 bg-white rounded-[20px] rounded-b-xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-            <div className="flex flex-col gap-[10px]">
-              {product.images.map((image, index) => {
-                if (index === 0) {
-                  return (
-                    <div
-                      key={index}
-                      className="cursor-pointer h-max rounded-[8.16px] overflow-hidden "
-                    >
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="flex flex-col gap-[10px]">
+                  {product.images.slice(0, 1).map((image, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="cursor-pointer h-max rounded-[8.16px] overflow-hidden "
+                      >
+                        <Image
+                          src={image.image_product}
+                          width={272}
+                          height={272}
+                          alt="Picture of the author depdep"
+                          placeholder="blur"
+                          className="hover:scale-105 ease-in duration-300 object-cover w-full h-full aspect-square md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] opacity-90"
+                        />
+                      </div>
+                    )
+                  })}
+                  <div className="flex gap-[10px] justify-between">
+                    {product.images.slice(1, 4).map((image, index) => {
+                      return (
+                        <div
+                          key={index + 1}
+                          className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
+                        >
+                          <Image
+                            src={image.image_product}
+                            width={88}
+                            height={3.1}
+                            alt="Picture of the author depdep"
+                            placeholder="blur"
+                            className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
+                          />
+                        </div>
+                      )
+                    })}
+                    {product.images.slice(4, 5).map((image, index) => {
+                      return (
+                        <div
+                          key={index + 1}
+                          className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
+                        >
+                          <Image
+                            src={image.image_product}
+                            width={88}
+                            height={3.1}
+                            alt="Picture of the author depdep"
+                            placeholder="blur"
+                            className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
+                          />
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="w-[80vw] h-[600px] overflow-y-scroll max-w-[1220px] mx-auto bg-white flex flex-col md:flex-row gap-10 p-10 rounded-[20px]">
+                <div className="flex items-center justify-center gap-5 flex-1">
+                  <button
+                    onClick={handlePrevClick}
+                    className="w-[30px] h-[30px] md:w-[52px] md:h-[52px] rounded-full bg-black cursor-pointer flex justify-center items-center"
+                  >
+                    <ArrowBackIcon
+                      sx={{
+                        color: 'white',
+                        padding: {
+                          xs: '4px',
+                          md: '0px',
+                        },
+                      }}
+                    />
+                  </button>
+                  <Image
+                    src={ProductImages[activeImageIndex].image_product}
+                    alt="product-image"
+                    width={600}
+                    height={600}
+                    className="w-full h-full md:w-[600px] md:h-[600px] rounded-xl"
+                  />
+                  <button
+                    onClick={handleNextClick}
+                    className="w-[30px] h-[30px] md:w-[52px] md:h-[52px] rounded-full bg-black cursor-pointer flex justify-center items-center"
+                  >
+                    <ArrowForwardIcon
+                      sx={{
+                        color: 'white',
+                        padding: {
+                          xs: '4px',
+                          md: '0px',
+                        },
+                      }}
+                    />
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-6 w-[296px]">
+                  <h3 className="text-headline-sm font-satoshi font-bold">
+                    Sony WM-1000x
+                  </h3>
+
+                  <div className="grid grid-cols-3 gap-x-4 gap-y-7">
+                    {ProductImages.map((img, i) => (
                       <Image
-                        src={image.image_product}
-                        width={272}
-                        height={272}
-                        alt="Picture of the author depdep"
-                        placeholder="blur"
-                        className="hover:scale-105 ease-in duration-300 object-cover w-full h-full aspect-square md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] opacity-90"
+                        key={i}
+                        src={img.image_product}
+                        alt="product-img"
+                        width={50}
+                        height={50}
+                        onClick={() => setActiveImageIndex(i)}
+                        className={`w-full h-full rounded-xl cursor-pointer ${
+                          i === activeImageIndex
+                            ? 'border-2 border-[#1598CC] '
+                            : ''
+                        }`}
                       />
-                    </div>
-                  )
-                }
-              })}
-              <div className="flex gap-[10px] justify-between">
-                {product.images.slice(1, 4).map((image, index) => {
-                  return (
-                    <div
-                      key={index + 1}
-                      className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
-                    >
-                      <Image
-                        src={image.image_product}
-                        width={88}
-                        height={3.1}
-                        alt="Picture of the author depdep"
-                        placeholder="blur"
-                        className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
-                      />
-                    </div>
-                  )
-                })}
-                {product.images.slice(4, 5).map((image, index) => {
-                  return (
-                    <div
-                      key={index + 1}
-                      className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
-                    >
-                      <Image
-                        src={image.image_product}
-                        width={88}
-                        height={3.1}
-                        alt="Picture of the author depdep"
-                        placeholder="blur"
-                        className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
-                      />
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
+                    ))}
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+
             <div className="flex flex-col flex-[1.2] gap-10 md:gap-6">
               <div className="flex flex-col md:flex-row gap-3 md:items-center text-abu2 text-small font-satoshi">
                 <div className="border-r-[1px] border-abu2 flex gap-3 pr-3">
@@ -143,7 +236,9 @@ const DetailProduct = () => {
               <p className="text-body-lg md:text-title-md">
                 {product.description}
               </p>
-              <div className="font-tebal text-blue-50">Lihat detail</div>
+              <button className="font-tebal text-blue-50 w-fit">
+                Lihat detail
+              </button>
             </div>
           </div>
         </div>

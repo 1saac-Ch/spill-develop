@@ -2,12 +2,11 @@ import styles from './index.module.scss'
 import Card from '@/component/elements/Card'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { youtube } from '@/component/pages/Home/dummy.api'
 import useSlider from '@/hooks/useSlider'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
-const MainContentReview = () => {
-  const { content, handlePrevOrNext, activeSlide } = useSlider(youtube)
+const MainContentReview = ({ contentReview }: { contentReview: Product[] }) => {
+  const { content, handlePrevOrNext, activeSlide } = useSlider(contentReview)
   return (
     <section className="main-container">
       <div className="flex gap-[44px] justify-between">
@@ -57,10 +56,14 @@ const MainContentReview = () => {
           >
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
-                <Card imgUrl={item.imgUrl} key={i} imgHeight={'h-[228px]'}>
+                <Card
+                  imgUrl={JSON.parse(item.images)[0]}
+                  key={i}
+                  imgHeight={'h-[228px]'}
+                >
                   <div className="h-full flex flex-col p-4 gap-2 ">
                     <h6 className="text-title-md md:text-title-lg md:font-[700px] truncate font-[600]">
-                      {item.title}
+                      {item.product_title}
                     </h6>
                     <div className="flex-grow font-tebal text-lg items-stretch  ">
                       <p className="text-body-md md:text-body-lg">

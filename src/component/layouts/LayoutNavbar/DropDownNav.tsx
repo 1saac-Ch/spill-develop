@@ -4,7 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/component/ui/Dropdown'
-import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 type Props = {
   isOpen: boolean
@@ -24,7 +24,7 @@ export default function DropDownNav({
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger>{trigger}</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-screen bg-white mt-6 rounded-none border-none shadow-none space-y-8">
+      <DropdownMenuContent className="w-screen bg-white mt-4 rounded-none border-none shadow-none space-y-8">
         {children}
       </DropdownMenuContent>
     </DropdownMenu>

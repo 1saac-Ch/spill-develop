@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss'
 import Button from '@/component/elements/Button'
+import Link from 'next/link'
 
 const LayoutRekomendationFooter = () => {
   return (
@@ -18,7 +19,12 @@ const LayoutRekomendationFooter = () => {
             </p>
           </div>
           <div className={styles.buttonResponsive}>
-            <Button className={styles.buttonRecomended}>Sarankan Produk</Button>
+            <Link
+              className="flex items-center justify-center px-4 py-3 w-max rounded-xl text-white bg-blue-50 text-label-lg font-bold"
+              href="/suggest"
+            >
+              Sarankan Produk
+            </Link>
           </div>
         </div>
       </div>

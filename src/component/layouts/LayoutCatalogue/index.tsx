@@ -1,4 +1,11 @@
-import React, { ReactNode } from 'react'
+import {
+  ReactNode,
+  Fragment,
+  createContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react'
 import styles from './styles.module.scss'
 import LayoutNavbar from '../LayoutNavbar'
 import LayoutFooter from '../LayoutFooter'
@@ -8,15 +15,27 @@ type CatalogueProps = {
   isNormal: boolean
 }
 
+export const searchContext = createContext<{
+  openSearch: boolean | null
+  setOpenSearch: Dispatch<SetStateAction<boolean>> | null
+}>({
+  openSearch: null,
+  setOpenSearch: null,
+})
+
 const CatalogueLayout = ({ children, isNormal }: CatalogueProps) => {
+  const [openSearch, setOpenSearch] = useState(false)
+
   return (
-    <React.Fragment>
-      <div className={styles.mainLayout}>
-        <LayoutNavbar normal={isNormal} />
-        {children}
-        <LayoutFooter />
-      </div>
-    </React.Fragment>
+    <Fragment>
+      <searchContext.Provider value={{ openSearch, setOpenSearch }}>
+        <div className={styles.mainLayout}>
+          <LayoutNavbar normal={isNormal} />
+          {children}
+          <LayoutFooter />
+        </div>
+      </searchContext.Provider>
+    </Fragment>
   )
 }
 

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 
 export default function ArticleDetail() {
   const router = useRouter()
+
   return (
     <main className="bg-background">
       <div className="flex gap-4 items-center main-container">
