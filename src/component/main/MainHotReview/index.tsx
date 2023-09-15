@@ -73,10 +73,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
                 <Fragment key={i}>
-                  <NextLink
-                    href={`/detail-product/${item.product_id}`}
-                    passHref
-                  >
+                  <NextLink href={`/detail-product/${item.id}`} passHref>
                     <Card imgUrl={item.image}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
@@ -86,7 +83,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
                           {item.title}
                         </div>
                         <div className="flex-grow font-tebal text-lg items-stretch">
-                          <p className="text-body-md md:text-body-lg font-satoshi">
+                          <p className="text-body-md md:text-body-lg font-satoshi font-normal">
                             {item.description}
                           </p>
                         </div>

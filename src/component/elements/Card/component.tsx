@@ -12,11 +12,9 @@ const Card = ({ imgUrl, children, imgHeight = 'h-[250px]' }: CardProps) => {
       <div className="h-full bg-white overflow-hidden rounded-2xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
         <div className="flex flex-col h-full">
           <div>
-            {/* eslint-disable @next/next/no-img-element */}
             <img
               src={imgUrl}
               alt="Man looking at item at a store"
-              // layout="responsive"
               className={`object-cover w-full ${imgHeight}`}
             />
           </div>

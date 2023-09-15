@@ -6,7 +6,6 @@ import Document, {
   DocumentInitialProps,
   DocumentContext,
 } from 'next/document'
-import { CssBaseline } from '@nextui-org/react'
 import React from 'react'
 class MyDocument extends Document {
   static async getInitialProps(
@@ -28,7 +27,6 @@ class MyDocument extends Document {
             href="https://fonts.cdnfonts.com/css/satoshi"
             rel="stylesheet"
           />
-          {CssBaseline.flush()}
         </Head>
         <body>
           <Main />

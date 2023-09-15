@@ -11,7 +11,8 @@ type User = {
 }
 
 type Article = {
-  id: string
+  id: number
+  article_id: string
   title: string
   image: string
   description: string

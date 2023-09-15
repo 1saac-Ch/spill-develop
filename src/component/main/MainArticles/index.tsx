@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './index.module.scss'
 import Button from '@/component/elements/Button'
 import { useRouter } from 'next/router'
@@ -18,7 +17,6 @@ const MainArticles = ({ artikel }: { artikel: Article[] }) => {
                 className="flex flex-col rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)] max-w-[684px] mb-5 md:mb-0 min-h-full"
               >
                 <div>
-                  {/* eslint-disable @next/next/no-img-element */}
                   <img
                     src={item.image}
                     alt="test"
@@ -44,13 +42,12 @@ const MainArticles = ({ artikel }: { artikel: Article[] }) => {
           })}
 
           <div className="flex flex-col max-w-full justify-between gap-5 md:gap-9">
-            {artikel.slice(1, artikel.length).map((item, index) => {
+            {artikel.slice(1, artikel.length).map((item) => {
               return (
                 <div
                   key={item.id}
                   className="h-[142px] md:h-[193px] max-w-full flex overflow-hidden rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]"
                 >
-                  {/* eslint-disable @next/next/no-img-element */}
                   <img
                     src={item.image}
                     width={194}
@@ -63,7 +60,7 @@ const MainArticles = ({ artikel }: { artikel: Article[] }) => {
                     <p className="leading-[20px] font-[400] tracking-[0.25px] font-satoshi text-dark line-clamp-3 md:line-clamp-2 text-sm mb-2 md:text-body-lg md:mb-4">
                       {item.description}
                     </p>
-                    <Link href={`/article/1`} className="flex">
+                    <Link href={`/article/${item.article_id}`} className="flex">
                       <p className="text-[#F22178] font-semibold w-max text-label-md md:text-label-lg font-satoshi">
                         Lihat Selengkapnya...
                       </p>

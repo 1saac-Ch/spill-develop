@@ -1,10 +1,9 @@
-import { FormEvent, KeyboardEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ReactElement, JSXElementConstructor } from 'react'
 import styles from './index.module.scss'
 
 import MainLayout from '@/component/layouts/MainLayout'
-import Search from '@/component/elements/Search'
 import SearchIcon from '@mui/icons-material/Search'
 
 import MainHotReview from '@/component/main/MainHotReview'
@@ -15,7 +14,6 @@ import MainArticles from '@/component/main/MainArticles'
 import MainContentReview from '@/component/main/MainContentReview'
 import Button from '@/component/elements/Button/component'
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
-import useFetcher from '@/hooks/useFetcher'
 
 const Home = ({
   data,
@@ -26,10 +24,6 @@ const Home = ({
 }) => {
   const router = useRouter()
   const [openRecomendation, setOpenRecomendation] = useState(false)
-
-  console.log({
-    article,
-  })
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()

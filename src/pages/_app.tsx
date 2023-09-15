@@ -1,12 +1,7 @@
 import type { AppProps } from 'next/app'
 import React from 'react'
 import Head from 'next/head'
-import { Provider } from 'react-redux'
-import { store, persistor } from '../redux/store'
-import { PersistGate } from 'redux-persist/integration/react'
 import '../../styles/globals.css'
-import { NextUIProvider } from '@nextui-org/react'
-import Loader from '@/component/elements/Loader'
 import { NextPageWithLayout } from '@/utils/NextPageWithLayout'
 import { SessionProvider } from 'next-auth/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -31,17 +26,11 @@ export default function App({
         />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          <PersistGate loading={<Loader />} persistor={persistor}>
-            <NextUIProvider>
-              <div className="font-satoshi">
-                <SessionProvider session={session}>
-                  {getLayout(<Component {...pageProps} />)}
-                </SessionProvider>
-              </div>
-            </NextUIProvider>
-          </PersistGate>
-        </Provider>
+        <div className="font-satoshi">
+          <SessionProvider session={session}>
+            {getLayout(<Component {...pageProps} />)}
+          </SessionProvider>
+        </div>
       </QueryClientProvider>
     </React.Fragment>
   )
