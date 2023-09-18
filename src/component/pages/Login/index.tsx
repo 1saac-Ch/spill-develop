@@ -21,6 +21,7 @@ type FormField = {
 function Component() {
   const [remember, setRemember] = useState(false)
   const [loginError, setLoginError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const {
@@ -39,6 +40,8 @@ function Component() {
   }
 
   const onSubmit = async (e: FormField) => {
+    setIsLoading(true)
+
     const res = await signIn('credentials', {
       ...e,
       redirect: false,
@@ -46,6 +49,7 @@ function Component() {
 
     if (!res?.ok) {
       setLoginError('Username atau password salah')
+      setIsLoading(false)
     } else {
       const currPath = router.asPath
       const url = new URL(currPath, 'http://localhost:3000')
@@ -73,42 +77,49 @@ function Component() {
         {loginError ? (
           <p className="text-pink text-label-md font-satoshi">{loginError}</p>
         ) : null}
-        <TextInput
-          label="Nomor Handphone"
-          placeholder="Nomor handphone kamu"
-          variant="normal"
-          register={register}
-          pattern={regex.noHp}
-          name="noHP"
-          required
-        />
-        {errors['noHP'] ? (
-          <p className={'text-pink text-label-md font-satoshi'}>
-            *mohon masukkan nomor hanphone dengan benar
-          </p>
-        ) : null}
-        <TextInput
-          label="Password"
-          variant="password"
-          placeholder="Tulis password kamu"
-          register={register}
-          name="password"
-          required
-        />
-        <div className={styles.checkbox}>
-          <Checkbox
-            checked={remember}
-            label="Biarkan saya tetap masuk"
-            onChange={_handleChange}
+        <fieldset className="space-y-5" disabled={isLoading}>
+          <TextInput
+            label="Nomor Handphone"
+            placeholder="Nomor handphone kamu"
+            variant="normal"
+            register={register}
+            pattern={regex.noHp}
+            name="noHP"
+            required
           />
-          <Link href="/forgot-password">Lupa Password</Link>
-        </div>
-        <div className={styles.bottom}>
-          <Button type="submit">Login</Button>
-          <p className="text-label-lg">
-            Belum punya akun Spill?<Link href="/daftar">Daftar</Link>
-          </p>
-        </div>
+          {errors['noHP'] ? (
+            <p className={'text-pink text-label-md font-satoshi'}>
+              *mohon masukkan nomor hanphone dengan benar
+            </p>
+          ) : null}
+          <TextInput
+            label="Password"
+            variant="password"
+            placeholder="Tulis password kamu"
+            register={register}
+            name="password"
+            required
+          />
+          <div className={styles.checkbox}>
+            <Checkbox
+              checked={remember}
+              label="Biarkan saya tetap masuk"
+              onChange={_handleChange}
+            />
+            <Link href="/forgot-password">Lupa Password</Link>
+          </div>
+          <div className={styles.bottom}>
+            <Button
+              className="disabled:cursor-not-allowed disabled:bg-blue-400"
+              type="submit"
+            >
+              Login
+            </Button>
+            <p className="text-label-lg">
+              Belum punya akun Spill?<Link href="/daftar">Daftar</Link>
+            </p>
+          </div>
+        </fieldset>
       </form>
     </main>
   )

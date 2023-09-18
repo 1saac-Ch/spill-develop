@@ -6,7 +6,6 @@ import { signOut } from 'next-auth/react'
 
 import Button from '@/component/elements/Button'
 import SpillLogo from '@/component/elements/SpillLogo'
-import Search from '@/component/elements/Search'
 import Link from 'next/link'
 import styles from './styles.module.scss'
 import SearchIcon from '@mui/icons-material/Search'
@@ -44,7 +43,7 @@ function RecomendationItem({ id = 1 }) {
       <Button
         variant="outline"
         onClick={() => router.push(`/review-product/${id}`)}
-        className="hover:border"
+        className="hover:border py-[10px] px-4 h-min"
       >
         Tulis Review
       </Button>
@@ -67,7 +66,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     useState(false)
 
   const isMobile = useMediaQuery('(max-width: 768px)')
-  const { status } = useSession()
+  const { status, data: session } = useSession()
 
   const {
     onOpen: onOpenWriteReview,
@@ -220,12 +219,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     },
   ]
 
-  const handleSearch = () => {
-    if (search) {
-      router.push(`/catalogue-product?q=${search}`)
-    }
-  }
-
   const isReady = status !== 'loading'
   const isAuthenticated = status === 'authenticated'
 
@@ -289,19 +282,21 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   />
                 </svg>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="md:hidden w-screen bg-blue-200 mt-6 rounded-none border-none shadow-lg space-y-8 pb-2">
+              <DropdownMenuContent className="md:hidden w-screen bg-white mt-6 rounded-none border-none shadow-lg space-y-8 pb-2">
                 <DropdownMenuItem className="text-label-lg font-bold font-satoshi p-0 hover:bg-white">
                   {isAuthenticated ? (
                     <div className="w-full flex items-center justify-center gap-2 hover:bg-white h-full py-4">
                       <Image
-                        src="/profile.jpg"
+                        src="/profile.jpeg"
                         alt="profile"
                         width={32}
                         height={32}
                         className="w-8 h-8 rounded-full object-cover"
                       />
 
-                      <p className="text-label-lg font-bold">User</p>
+                      <p className="text-label-lg font-bold">
+                        {session?.user.username}
+                      </p>
                     </div>
                   ) : (
                     <Link
@@ -339,8 +334,8 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
         </nav>
         {isOpenRecommend ? <Backdrop /> : null}
         <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
-          <DialogContent>
-            <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
+          <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
+            <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6 relative">
               <header className="space-y-2">
                 <h2 className="text-title-lg md:text-headline-md font-bold">
                   Cari Produk Untuk Di Review
@@ -354,9 +349,10 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                 className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
               >
                 <input
-                  placeholder="Cari produk apapun"
+                  placeholder="Cari produk apapunnnnnn"
                   id="search"
                   value={searchInput}
+                  autoFocus={false}
                   onChange={(e) => setSearchInput(e.target.value)}
                   className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
                   onFocus={() => setOpenDropDownRecomendation(true)}
@@ -366,6 +362,17 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
                 </button>
               </form>
+
+              {openDropDownRecomendation ? (
+                <div className="absolute left-0 right-0 z-[5] bg-white mx-7 min-h-[160px] shadow-md rounded-[12px] p-4">
+                  <h3 className="w-max font-semibold text-title-sm mb-4">
+                    🔥 Produk Paling Banyak Dicari:
+                  </h3>
+
+                  <RecomendationItem />
+                  <RecomendationItem />
+                </div>
+              ) : null}
 
               <p className="font-satoshi text-title-md">atau</p>
 
@@ -385,17 +392,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                     Sarankan Produk
                   </Link>
                 </section>
-
-                {openDropDownRecomendation && !!searchInput ? (
-                  <div className="absolute top-0 bg-white w-full min-h-[160px]">
-                    <h3 className="w-max font-semibold text-title-sm">
-                      🔥 Produk Paling Banyak Dicari:
-                    </h3>
-
-                    <RecomendationItem />
-                    <RecomendationItem />
-                  </div>
-                ) : null}
               </div>
             </div>
           </DialogContent>
@@ -439,8 +435,8 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   </div>
                 ))}
               <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
-                <DialogContent>
-                  <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6">
+                <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
+                  <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6 relative">
                     <header className="space-y-2">
                       <h2 className="text-title-lg md:text-headline-md font-bold">
                         Cari Produk Untuk Di Review
@@ -467,6 +463,17 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                       </button>
                     </form>
 
+                    {openDropDownRecomendation ? (
+                      <div className="absolute left-0 right-0 z-[5] bg-white mx-7 min-h-[160px] shadow-md rounded-[12px] p-4">
+                        <h3 className="w-max font-semibold text-title-sm mb-4">
+                          🔥 Produk Paling Banyak Dicari:
+                        </h3>
+
+                        <RecomendationItem />
+                        <RecomendationItem />
+                      </div>
+                    ) : null}
+
                     <p className="font-satoshi text-title-md">atau</p>
 
                     <div className="relative">
@@ -479,21 +486,13 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                           <br className="md:hidden" /> menuliskan produk yang
                           kamu cari
                         </p>
-                        <button className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg">
+                        <Link
+                          href="/suggest"
+                          className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg"
+                        >
                           Sarankan Produk
-                        </button>
+                        </Link>
                       </section>
-
-                      {openDropDownRecomendation && !!searchInput ? (
-                        <div className="absolute top-0 bg-white w-full min-h-[160px]">
-                          <h3 className="w-max font-semibold text-title-sm">
-                            🔥 Produk Paling Banyak Dicari:
-                          </h3>
-
-                          <RecomendationItem />
-                          <RecomendationItem />
-                        </div>
-                      ) : null}
                     </div>
                   </div>
                 </DialogContent>
@@ -535,14 +534,16 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                 {isAuthenticated ? (
                   <div className="w-full flex items-center justify-center gap-2 hover:bg-white h-full py-4">
                     <Image
-                      src="/profile.jpg"
+                      src="/profile.jpeg"
                       alt="profile"
                       width={32}
                       height={32}
                       className="w-8 h-8 rounded-full object-cover"
                     />
 
-                    <p className="text-label-lg font-bold">User</p>
+                    <p className="text-label-lg font-bold">
+                      {session?.user.username}
+                    </p>
                   </div>
                 ) : (
                   <Link

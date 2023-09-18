@@ -41,21 +41,15 @@ type Hotriview = {
 
 type Product = {
   id: number
+  product_id: string
   product_title: string
-  description: string
   brand: string
   type: string
   series: string
   price_min: number
   price_max: number
   images: string
-  review: number
   rating: number
-  min_price: number
-  max_price: number
-  title_name: string
-  disscuss: number
-  view_product: number
 }
 
 type Reply = {
@@ -74,4 +68,25 @@ type Discussion = {
   description: string
   createdAt: string
   replies: Discussion[]
+}
+
+type UserData = {
+  fullname: string
+  username: string
+  email?: string | null
+  no_hp: string
+}
+
+type Review = {
+  id: string
+  userId: string
+  productId: string
+  title: string
+  rating: number
+  description: string
+  media: string
+  likes: number
+  createdAt: string
+  updatedAt: string
+  user: UserData
 }

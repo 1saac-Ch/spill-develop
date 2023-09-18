@@ -7,11 +7,6 @@ export async function getStaticProps() {
     fetch(`${url}/article/related`).then((res) => res.json()),
   ])
 
-  console.log({
-    articles,
-    relatedArticles,
-  })
-
   return {
     props: {
       articles: articles.data,

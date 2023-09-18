@@ -5,9 +5,10 @@ import Image from 'next/image'
 import Button from '@/component/elements/Button/component'
 import { Dialog, DialogContent } from '@/component/ui/Dialog'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import Link from 'next/link'
 import Input from '@/component/ui/Input'
+import Alert from '@/component/alert'
 
 type FormData = {
   namaBrand: string
@@ -25,7 +26,7 @@ export default function Suggest() {
 
   const [showDialog, setShowDialog] = useState(false)
 
-  function onSubmit() {
+  const onSubmit: SubmitHandler<FormData> = (data) => {
     setShowDialog(true)
   }
 
@@ -106,35 +107,25 @@ export default function Suggest() {
         </div>
       </section>
 
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="bg-white flex flex-col max-w-[600px] w-[80vw] p-6 md:p-8 rounded-[20px] items-center md:gap-6">
-          <Image
-            src={'/check.png'}
-            alt="check"
-            width={128}
-            height={128}
-            className="object-contain"
-          />
-          <div className="flex flex-col gap-2 self-stretch text-center font-satoshi">
-            <h3 className="text-title-lg md:text-headline-md font-bold">
-              Terimakasih sudah menyarankan kepada Kami
-            </h3>
-            <p className="text-title-sm md:text-title-md font-satoshi">
-              Silahkan cek email anda yang terdaftar, kami akan memberi tahu
-              anda jika kami sudah menambahkan produk sesuai apa yang Anda
-              sarankan
-            </p>
-          </div>
+      <Alert open={showDialog} setOpen={setShowDialog}>
+        <div className="flex flex-col gap-2 self-stretch text-center font-satoshi">
+          <h3 className="text-title-lg md:text-headline-md font-bold">
+            Terimakasih sudah menyarankan kepada Kami
+          </h3>
+          <p className="text-title-sm md:text-title-md font-satoshi">
+            Silahkan cek email anda yang terdaftar, kami akan memberi tahu anda
+            jika kami sudah menambahkan produk sesuai apa yang Anda sarankan
+          </p>
+        </div>
 
-          <Button>Sarankan Produk Lainnya</Button>
-          <Link
-            href={'/'}
-            className="flex border hover:border-2 disabled:hover:border disabled:cursor-not-allowed  font-semibold items-center justify-center px-5 h-[50px] rounded-[10px] text-small leading-low font-satoshi bg-none w-full border-black text-black"
-          >
-            Kembali ke Home
-          </Link>
-        </DialogContent>
-      </Dialog>
+        <Button>Sarankan Produk Lainnya</Button>
+        <Link
+          href={'/'}
+          className="flex border hover:border-2 disabled:hover:border disabled:cursor-not-allowed  font-semibold items-center justify-center px-5 h-[50px] rounded-[10px] text-small leading-low font-satoshi bg-none w-full border-black text-black"
+        >
+          Kembali ke Home
+        </Link>
+      </Alert>
     </main>
   )
 }

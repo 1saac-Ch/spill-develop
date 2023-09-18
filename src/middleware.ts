@@ -1,3 +1,3 @@
 export { default } from 'next-auth/middleware'
 
-export const config = { matcher: ['/suggest', '/review-product'] }
+export const config = { matcher: ['/review-product/:id*'] }

@@ -48,6 +48,7 @@ function Component({
         return (
           <div className={cn(styles.wrapper, className)}>
             <input
+              className="outline-none disabled:cursor-not-allowed disabled:text-muted-foreground"
               required={required}
               placeholder={placeholder}
               {...register(name, {
@@ -63,6 +64,10 @@ function Component({
         return (
           <div className={cn(styles.wrapper, className)}>
             <textarea
+              required={required}
+              {...register(name, {
+                pattern,
+              })}
               rows={3}
               placeholder={placeholder}
               onChange={onChange}
@@ -75,6 +80,7 @@ function Component({
           <div className={cn(styles.wrapper, className)}>
             <input
               required={required}
+              className="outline-none disabled:cursor-not-allowed disabled:text-muted-foreground"
               type={showPassword ? 'text' : 'password'}
               id={id}
               placeholder={placeholder}

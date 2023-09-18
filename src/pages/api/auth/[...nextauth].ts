@@ -10,31 +10,49 @@ export const authOptions: NextAuthOptions = {
         noHP: { type: 'text' },
         password: { type: 'password' },
       },
-      async authorize(credentials, request) {
-        if (!credentials) return null
+      async authorize(credentials) {
+        try {
+          if (!credentials) return null
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-          {
-            body: JSON.stringify({
-              phone: credentials.noHP,
-              password: credentials.password,
-            }),
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+            {
+              body: JSON.stringify({
+                phone: credentials.noHP,
+                password: credentials.password,
+              }),
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          )
 
-        const { token } = await response.json()
-        if (token) {
+          const { token } = await response.json()
+
+          if (!token) return null
+
+          const resp = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/decoded-token`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+
+          const { userData } = await resp.json()
           return {
-            id: `${Date.now()}`,
+            id: userData.id,
+            fullname: userData.fullname,
+            username: userData.username,
+            email: userData.email,
+            role: userData.role,
             token,
           }
+        } catch (error) {
+          return null
         }
-        return null
       },
     }),
   ],
@@ -47,12 +65,20 @@ export const authOptions: NextAuthOptions = {
     async jwt({ user, token }) {
       if (user) {
         token.id = user.id
+        token.fullname = user.fullname
+        token.username = user.username
+        token.email = user.email
+        token.role = user.role
         token.value = user.token
       }
       return token
     },
     async session({ session, token }) {
       session.accessToken = token.value
+      session.user.fullname = token.fullname
+      session.user.username = token.username
+      session.user.email = token.email
+      session.user.role = token.role
       return session
     },
   },

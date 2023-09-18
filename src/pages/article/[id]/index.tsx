@@ -4,6 +4,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import RelatedArticle from '@/component/article/RelatedArticle'
 import { useRouter } from 'next/router'
 import useFetcher from '@/hooks/useFetcher'
+import Error from 'next/error'
 
 export default function ArticleDetail() {
   const router = useRouter()
@@ -18,7 +19,7 @@ export default function ArticleDetail() {
 
   const article = data?.data
 
-  if (!article || isError) return <p>Err</p>
+  if (!article || isError) return <Error statusCode={404} />
 
   return (
     <main className="bg-background">

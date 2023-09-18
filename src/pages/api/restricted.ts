@@ -5,8 +5,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 const func = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions)
 
-  console.log('S', session)
-
   if (session) {
     res.send({
       content:

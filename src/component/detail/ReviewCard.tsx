@@ -1,11 +1,12 @@
 import React from 'react'
 import StarIcon from '../elements/StarIcon'
 import LikeIcon from '../elements/LikeIcon'
+import formatDateAndTimeAgo from '@/utils/formatDate'
 
 type Props = {
   isReply?: boolean
   showLike?: boolean
-} & Reply
+} & Review
 
 const ButtonArrow = () => (
   <svg
@@ -32,16 +33,25 @@ const ReviewCard = ({
   title,
   createdAt,
   description,
-  helps,
-  name,
+  likes,
+  user,
   rating,
+  media,
 }: Props) => {
+  const mediaReview = JSON.parse(media) as string[]
+
   return (
     <>
       <div className={`${isReply ? 'ml-11' : ''} space-y-2 pr-3 pb-3`}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#705CF6]" />
-          <p className="font-satoshi text-label-lg font-bold">{name}</p>
+          <img
+            src="/profile.jpeg"
+            alt="profile"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+          <p className="font-satoshi text-label-lg font-bold">
+            {user.username}
+          </p>
         </div>
 
         <div className="ml-10 space-y-2">
@@ -58,8 +68,26 @@ const ReviewCard = ({
           </div>
           <h5 className="text-label-lg font-[900] font-satoshi">{title}</h5>
           <p className="text-label-lg font-satoshi">{description}</p>
+
+          <div className="flex gap-4">
+            {mediaReview?.length
+              ? mediaReview.map((item, i) => (
+                  <button
+                    key={item}
+                    className="w-[60px] h-[60px] md:w-20 md:h-20 rounded-lg border-2 border-[#1598CC]"
+                  >
+                    <img
+                      alt={`img-${i}`}
+                      src={item}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))
+              : null}
+          </div>
+
           <p className="font-satoshi text-label-lg text-[#8C8C8C]">
-            {createdAt}
+            {formatDateAndTimeAgo(createdAt)}
           </p>
 
           {showLike ? (
@@ -74,7 +102,7 @@ const ReviewCard = ({
               <span className="text-[#A6A6A6]">|</span>
 
               <p className="font-bold text-[#8C8C8C] text-label-lg">
-                {helps} Orang Terbantu
+                {likes} Orang Terbantu
               </p>
             </div>
           ) : null}

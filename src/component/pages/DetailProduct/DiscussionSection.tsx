@@ -9,31 +9,26 @@ import {
   TabsTrigger,
 } from '@/component/elements/Tabs'
 import TabsInfluencerContent from './TabsInfluencerContent'
+import useFetcher from '@/hooks/useFetcher'
 
-const replies = [
-  {
-    id: '1',
-    name: 'Nama',
-    rating: 1,
-    title: 'Title',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
-    createdAt: '3 Minggu Lalu',
-    helps: 5,
-  },
-  {
-    id: '2',
-    name: 'Nama2',
-    rating: 3,
-    title: 'Title',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Erat tortor sagittis risus id fringilla arcu hendrerit',
-    createdAt: '3 Minggu Lalu',
-    helps: 2,
-  },
-]
+const DiscussionSection = ({ productId }: { productId: string }) => {
+  const {
+    data: replies,
+    isLoading: isRepliesLoading,
+    isError,
+  } = useFetcher<{ data: Review[] }>(`/review/${productId}`)
 
-const DiscussionSection = () => {
+  const ReplieContent =
+    !replies?.data.length || isRepliesLoading ? (
+      <p>Loading</p>
+    ) : (
+      replies.data.map((replie) => (
+        <ReviewCard showLike key={replie.id} {...replie} />
+      ))
+    )
+
+  if (isError) return <p>Error</p>
+
   return (
     <Tabs defaultValue="review" className="main-container pt-0 bg-white pb-10">
       <TabsList className="flex flex-row justify-start mb-10 bg-transparent">
@@ -49,11 +44,7 @@ const DiscussionSection = () => {
       </TabsList>
       <TabsContent value="review" className="space-y-10">
         <WriteReview />
-        <div className="space-y-10 px-10">
-          {replies.map((replie) => (
-            <ReviewCard showLike key={replie.id} {...replie} />
-          ))}
-        </div>
+        <div className="space-y-10 px-10">{ReplieContent}</div>
       </TabsContent>
       <TabsContent value="diskusi">
         <div className="px-5 md:px-10">
