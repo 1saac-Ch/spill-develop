@@ -2,6 +2,9 @@ import React from 'react'
 import StarIcon from '../elements/StarIcon'
 import LikeIcon from '../elements/LikeIcon'
 import formatDateAndTimeAgo from '@/utils/formatDate'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Props = {
   isReply?: boolean
@@ -19,10 +22,10 @@ const ButtonArrow = () => (
     <path
       d="M16.9215 0.949951L10.4015 7.46995C9.63154 8.23995 8.37154 8.23995 7.60154 7.46995L1.08154 0.949951"
       stroke="#1598CC"
-      stroke-width="1.5"
-      stroke-miterlimit="10"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
@@ -37,8 +40,42 @@ const ReviewCard = ({
   user,
   rating,
   media,
+  id,
 }: Props) => {
   const mediaReview = JSON.parse(media) as string[]
+  const { data: session } = useSession()
+  const router = useRouter()
+
+  const queryClient = useQueryClient()
+
+  async function handleLike(id: string) {
+    if (!session?.accessToken) {
+      const searchParam = new URLSearchParams({ callbackUrl: router.asPath })
+      router.replace('/login?' + searchParam.toString())
+    } else {
+      // FETCH
+      try {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL!}/review/${id}/like`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+        })
+        queryClient.invalidateQueries({
+          queryKey: ['review', id],
+        })
+        // TODO : IMPLEMENT OPTIMISTIC UPDATE !!!!
+      } catch (error) {
+        console.log('e', error)
+        return
+      }
+    }
+  }
+
+  let likedByUser = false
+  if (session?.user.fullname === user.fullname) {
+    likedByUser = true
+  }
 
   return (
     <>
@@ -92,9 +129,24 @@ const ReviewCard = ({
 
           {showLike ? (
             <div className="flex gap-3 items-center">
-              <button className="flex items-center gap-2 group">
-                <LikeIcon className="group-hover:fill-[#1598CC]" />
-                <p className="group-hover:text-[#1598CC] border-none font-bold text-[#A6A6A6] w-fit p-0">
+              <button
+                onClick={() => handleLike(id)}
+                className="flex items-center gap-2 group"
+              >
+                <LikeIcon
+                  className={`${
+                    likedByUser
+                      ? 'fill-[#1598CC]'
+                      : 'group-hover:fill-[#1598CC]'
+                  }`}
+                />
+                <p
+                  className={`${
+                    likedByUser
+                      ? 'text-[#1598CC]'
+                      : 'group-hover:text-[#1598CC] text-[#A6A6A6]'
+                  } border-none font-bold  w-fit p-0`}
+                >
                   Membantu
                 </p>
               </button>

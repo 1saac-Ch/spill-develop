@@ -12,8 +12,11 @@ export default function useFetcher<T>(url: string, isPrivate = false) {
   }
   h.append('Content-Type', 'application/json')
 
+  const urlToQueryKey = url.split('/')
+  urlToQueryKey.shift()
+
   const query = useQuery({
-    queryKey: [url],
+    queryKey: urlToQueryKey,
     queryFn: async () => {
       const response = await fetch(`${baseURL}${url}`, {
         headers: h,

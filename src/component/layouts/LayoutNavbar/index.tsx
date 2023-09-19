@@ -48,7 +48,7 @@ function RecomendationItem({
 }) {
   return (
     <div className="flex justify-between items-center mb-1">
-      <div className="flex items-center gap-2 py-4 font-satoshi cursor-pointer">
+      <div className="flex items-center gap-2 py-4 font-satoshi">
         <SearchIcon className="w-4 h-4 mr-2" />
         <h4 className="text-label-lg tracking-[0.01px]">
           {product.product_title}
@@ -494,19 +494,30 @@ const LayoutNavbar = ({
                         </button>
                       </form>
                       {openDropDownRecomendation ? (
-                        <div className="absolute left-0 right-0 z-[5] bg-white mx-7 shadow-md rounded-[12px] p-4">
-                          <h3 className="w-max font-semibold text-title-sm mb-4">
-                            🔥 Produk Paling Banyak Dicari:
-                          </h3>
-                          {selectionProduct.map((item) => (
-                            <RecomendationItem
-                              onClickReview={() =>
-                                onClickReview(item.product_id)
-                              }
-                              key={item.id}
-                              product={item}
-                            />
-                          ))}
+                        <div className="absolute translate-y-1 left-0 right-0 z-[5] bg-white mx-7 shadow-md rounded-[12px] p-4">
+                          {!searchInput.length ? (
+                            <>
+                              <h3 className="w-max font-semibold text-title-sm mb-4">
+                                🔥 Produk Paling Banyak Dicari:
+                              </h3>
+                              {selectionProduct.map((item) => (
+                                <RecomendationItem
+                                  onClickReview={() =>
+                                    onClickReview(item.product_id)
+                                  }
+                                  key={item.id}
+                                  product={item}
+                                />
+                              ))}
+                            </>
+                          ) : (
+                            <>
+                              <RecomendationItem
+                                onClickReview={() => {}}
+                                product={selectionProduct[0]}
+                              />
+                            </>
+                          )}
                         </div>
                       ) : null}
                     </div>

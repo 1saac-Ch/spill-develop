@@ -134,6 +134,8 @@ const ReviewProduct = ({ product, notFound }: Props) => {
       let url = '/'
       if (fromHome) {
         url += '?withSuccess=true'
+      } else {
+        url += 'detail-product/' + id
       }
 
       router.push(url)

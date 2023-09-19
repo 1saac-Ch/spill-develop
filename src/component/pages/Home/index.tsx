@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ReactElement, JSXElementConstructor } from 'react'
 import styles from './index.module.scss'
@@ -16,6 +16,8 @@ import Button from '@/component/elements/Button/component'
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import Alert from '@/component/alert'
 import Link from 'next/link'
+import { useDebounce } from '@/hooks/useDebounce'
+import useClickOutside from '@/hooks/useClickOutside'
 
 const Home = ({
   data,
@@ -26,17 +28,36 @@ const Home = ({
 }) => {
   const router = useRouter()
   const [openRecomendation, setOpenRecomendation] = useState(false)
+  const [searchVal, setSearchVal] = useState('')
+
+  const searchContainerRef = useRef<HTMLDivElement>(null)
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const element = e.currentTarget.querySelector('#search') as HTMLInputElement
     const searchParam = new URLSearchParams({
-      q: element.value,
+      q: searchVal,
     })
     router.push(`/catalogue-product?${searchParam.toString()}`)
   }
 
   const { withSuccess } = router.query
+
+  const keys = ['Risol goreng', 'Icikiwir asik', 'Laptop baru']
+
+  const debouncedKeyword = useDebounce(searchVal, 800)
+
+  useEffect(() => {
+    // TODO : Search recomendation product from API !
+    console.log({
+      debouncedKeyword,
+    })
+  }, [debouncedKeyword])
+
+  useClickOutside(searchContainerRef, () => {
+    if (openRecomendation) {
+      setOpenRecomendation(false)
+    }
+  })
 
   return (
     <main>
@@ -53,7 +74,7 @@ const Home = ({
               Spill adalah tempat buat bantu kamu yang bingung mau checkout
               produk apa
             </p>
-            <div className="relative">
+            <div className="relative" ref={searchContainerRef}>
               <form
                 onSubmit={handleSearchSubmit}
                 className="flex justify-between bg-white p-2 items-center rounded-xl gap-[8px]"
@@ -62,9 +83,9 @@ const Home = ({
                 <input
                   placeholder="Cari produk apapun"
                   id="search"
+                  onChange={(e) => setSearchVal(e.target.value)}
                   className="md:w-[420px] border-none outline-none bg-white text-[14px] leading-low"
                   onFocus={() => setOpenRecomendation(true)}
-                  onBlur={() => setOpenRecomendation(false)}
                 />
                 <Button
                   className="py-[10px] px-[24px] w-[76px] h-[40px]"
@@ -73,15 +94,27 @@ const Home = ({
                   Cari
                 </Button>
               </form>
-              {openRecomendation ? (
-                <div className="absolute -bottom-full left-0 w-full translate-y-[67%] rounded-xl shadow-md bg-white overflow-hidden z-[5]">
-                  <h3 className="p-4 font-bold text-label-lg">
-                    <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
-                  </h3>
-                  <SearchRecomendationItem className="text-left text-sm font-normal text-neutral-900" />
-                  <SearchRecomendationItem className="text-left text-sm font-normal text-neutral-900" />
+              {openRecomendation && (
+                <div className="absolute top-[66px] w-full rounded-xl shadow-md bg-white z-[5] overflow-hidden">
+                  {!searchVal ? (
+                    <>
+                      <h3 className="p-4 font-bold text-label-lg">
+                        <span className="mr-2">🔥</span>Produk Paling Banyak
+                        Dicari:
+                      </h3>
+                      <SearchRecomendationItem className="text-left text-sm font-normal text-neutral-900" />
+                      <SearchRecomendationItem className="text-left text-sm font-normal text-neutral-900" />
+                    </>
+                  ) : (
+                    <>
+                      <SearchRecomendationItem
+                        value={searchVal}
+                        className="text-left text-sm font-normal text-neutral-900"
+                      />
+                    </>
+                  )}
                 </div>
-              ) : null}
+              )}
             </div>
 
             <div className={styles.horizontalStack}>
