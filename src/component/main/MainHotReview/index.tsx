@@ -93,13 +93,13 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
                               width={12}
                               height={12}
                               className="h-12 w-12 rounded-full object-cover"
-                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                              src="/profile.jpeg"
                               alt="Avatar"
                             />
                           </div>
                           <div className=" flex flex-col">
                             <p className="text-body-md md:text-body-lg font-bold">
-                              Reviewer
+                              User {item.userId}
                             </p>
                             <p className="text-body-sm">3 Minggu Lalu</p>
                           </div>

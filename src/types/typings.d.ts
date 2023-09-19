@@ -28,7 +28,7 @@ type TiktokContent = {
 
 type Hotriview = {
   id: string
-  user_id: string
+  userId: string
   product_id: string
   title: string
   image: string

@@ -42,7 +42,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
   const { data: session } = useSession()
   const router = useRouter()
 
-  const { id } = router.query
+  const { id, fromHome } = router.query
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault()
@@ -123,17 +123,21 @@ const ReviewProduct = ({ product, notFound }: Props) => {
     }
 
     try {
-      console.log(formData)
-      return
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/review/${id}`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${session.accessToken}`,
-        },
-        body: formData,
-      })
+      console.log({ formData })
+      // await fetch(`${process.env.NEXT_PUBLIC_API_URL}/review/${id}`, {
+      //   method: 'POST',
+      //   headers: { //     Authorization: `Bearer ${session.accessToken}`,
+      //   },
+      //   body: formData,
+      // })
+
+      let url = '/'
+      if (fromHome) {
+        url += '?withSuccess=true'
+      }
+
+      router.push(url)
     } catch (error) {
-      console.log('ERR', error)
     } finally {
       setIsSubmitting(false)
     }

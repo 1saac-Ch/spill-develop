@@ -1,7 +1,13 @@
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import {
+  FormEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
-import Backdrop from '@/component/layouts/LayoutCatalogue/Backdrop'
 import { signOut } from 'next-auth/react'
 
 import Button from '@/component/elements/Button'
@@ -10,7 +16,6 @@ import Link from 'next/link'
 import styles from './styles.module.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import UseDisclosure from '@/component/elements/UseDisclosure'
-import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,23 +32,32 @@ import { useSession } from 'next-auth/react'
 import { cn } from '@/utils/classname'
 import { searchContext } from '../LayoutCatalogue'
 import SearchInput from './SearchInput'
+import useClickOutside from '@/hooks/useClickOutside'
 
 type LayoutNavbarProps = {
   normal: boolean
+  selectionProduct: Product[]
 }
 
-function RecomendationItem({ id = 1 }) {
-  const router = useRouter()
+function RecomendationItem({
+  product,
+  onClickReview,
+}: {
+  product: Product
+  onClickReview: () => void
+}) {
   return (
     <div className="flex justify-between items-center mb-1">
       <div className="flex items-center gap-2 py-4 font-satoshi cursor-pointer">
         <SearchIcon className="w-4 h-4 mr-2" />
-        <h4 className="text-label-lg tracking-[0.01px]">Item</h4>
+        <h4 className="text-label-lg tracking-[0.01px]">
+          {product.product_title}
+        </h4>
       </div>
       <Button
         variant="outline"
-        onClick={() => router.push(`/review-product/${id}`)}
-        className="hover:border py-[10px] px-4 h-min"
+        onClick={onClickReview}
+        className=" hover:border py-[10px] px-4 h-min"
       >
         Tulis Review
       </Button>
@@ -51,19 +65,25 @@ function RecomendationItem({ id = 1 }) {
   )
 }
 
-const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
+const LayoutNavbar = ({
+  normal = false,
+  selectionProduct,
+}: LayoutNavbarProps) => {
   const router = useRouter()
   const { openSearch, setOpenSearch } = useContext(searchContext)
   const [isSticky, setIsSticky] = useState<Boolean>(false)
-  const [isOpenRecommend, setIsOpenRecommend] = useState(false)
   const [isOpenMobileNav, setIsOpenMobileNav] = useState(false)
   const [isOpenSearchNav, setIsOpenSearchNav] = useState(false)
-  const [search, setSearch] = useState('')
+  const searchContainerRef = useRef<HTMLDivElement>(null)
 
   const [searchInput, setSearchInput] = useState('')
 
   const [openDropDownRecomendation, setOpenDropDownRecomendation] =
     useState(false)
+
+  useClickOutside(searchContainerRef, () => {
+    setOpenDropDownRecomendation(false)
+  })
 
   const isMobile = useMediaQuery('(max-width: 768px)')
   const { status, data: session } = useSession()
@@ -73,6 +93,13 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
     isOpen: isOpenWriteReview,
     setInOpenState,
   } = UseDisclosure()
+
+  const onClickReview = useCallback((id: string) => {
+    setInOpenState(false)
+    router.push(`/review-product/${id}?fromHome=true`)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -154,7 +181,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
           <DropdownMenuTrigger>
             <Button className="flex h-11 gap-2 justify-center items-center bg-transparent">
               <Image
-                src={'/profile.jpg'}
+                src={'/profile.jpeg'}
                 alt="avatar"
                 width={32}
                 height={32}
@@ -332,7 +359,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
             </DropdownMenu>
           </div>
         </nav>
-        {isOpenRecommend ? <Backdrop /> : null}
         <Dialog open={isOpenWriteReview} onOpenChange={setInOpenState}>
           <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
             <div className="text-center w-[90vw] md:w-max border-2 boder-black bg-white p-7 rounded-[20px] font-satoshi space-y-6 relative">
@@ -344,35 +370,39 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                   Cari produk yang akan kamu review
                 </p>
               </header>
-              <form
-                onSubmit={handleSearchSubmit}
-                className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
-              >
-                <input
-                  placeholder="Cari produk apapunnnnnn"
-                  id="search"
-                  value={searchInput}
-                  autoFocus={false}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
-                  onFocus={() => setOpenDropDownRecomendation(true)}
-                  onBlur={() => setOpenDropDownRecomendation(false)}
-                />
-                <button type="submit">
-                  <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
-                </button>
-              </form>
-
-              {openDropDownRecomendation ? (
-                <div className="absolute left-0 right-0 z-[5] bg-white mx-7 min-h-[160px] shadow-md rounded-[12px] p-4">
-                  <h3 className="w-max font-semibold text-title-sm mb-4">
-                    🔥 Produk Paling Banyak Dicari:
-                  </h3>
-
-                  <RecomendationItem />
-                  <RecomendationItem />
-                </div>
-              ) : null}
+              <div ref={searchContainerRef}>
+                <form
+                  onSubmit={handleSearchSubmit}
+                  className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
+                >
+                  <input
+                    placeholder="Cari produk apapun"
+                    id="search"
+                    value={searchInput}
+                    autoFocus={false}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
+                    onFocus={() => setOpenDropDownRecomendation(true)}
+                  />
+                  <button type="submit">
+                    <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
+                  </button>
+                </form>
+                {openDropDownRecomendation ? (
+                  <div className="absolute left-0 right-0 z-[5] bg-white mx-7 min-h-[160px] shadow-md rounded-[12px] p-4">
+                    <h3 className="w-max font-semibold text-title-sm mb-4">
+                      🔥 Produk Paling Banyak Dicariiii:
+                    </h3>
+                    {selectionProduct.map((item) => (
+                      <RecomendationItem
+                        onClickReview={() => onClickReview(item.product_id)}
+                        key={item.id}
+                        product={item}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </div>
 
               <p className="font-satoshi text-title-md">atau</p>
 
@@ -425,6 +455,7 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
               </NextLink>
             </div>
             {isSticky ? <SearchInput /> : null}
+
             <div className="hidden md:flex items-center gap-12">
               {isReady &&
                 NavContent.map((item, index) => (
@@ -445,34 +476,40 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
                         Cari produk yang akan kamu review
                       </p>
                     </header>
-                    <form
-                      onSubmit={handleSearchSubmit}
-                      className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
-                    >
-                      <input
-                        placeholder="Cari produk apapun"
-                        id="search"
-                        value={searchInput}
-                        onChange={(e) => setSearchInput(e.target.value)}
-                        className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
-                        onFocus={() => setOpenDropDownRecomendation(true)}
-                        onBlur={() => setOpenDropDownRecomendation(false)}
-                      />
-                      <button type="submit">
-                        <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
-                      </button>
-                    </form>
-
-                    {openDropDownRecomendation ? (
-                      <div className="absolute left-0 right-0 z-[5] bg-white mx-7 min-h-[160px] shadow-md rounded-[12px] p-4">
-                        <h3 className="w-max font-semibold text-title-sm mb-4">
-                          🔥 Produk Paling Banyak Dicari:
-                        </h3>
-
-                        <RecomendationItem />
-                        <RecomendationItem />
-                      </div>
-                    ) : null}
+                    <div ref={searchContainerRef}>
+                      <form
+                        onSubmit={handleSearchSubmit}
+                        className="flex items-center justify-between py-[18px] px-[16px] bg-[#E8FBF5] w-full rounded-[12px]"
+                      >
+                        <input
+                          placeholder="Cari produk apapun"
+                          id="search"
+                          value={searchInput}
+                          onChange={(e) => setSearchInput(e.target.value)}
+                          className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
+                          onFocus={() => setOpenDropDownRecomendation(true)}
+                        />
+                        <button type="submit">
+                          <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
+                        </button>
+                      </form>
+                      {openDropDownRecomendation ? (
+                        <div className="absolute left-0 right-0 z-[5] bg-white mx-7 shadow-md rounded-[12px] p-4">
+                          <h3 className="w-max font-semibold text-title-sm mb-4">
+                            🔥 Produk Paling Banyak Dicari:
+                          </h3>
+                          {selectionProduct.map((item) => (
+                            <RecomendationItem
+                              onClickReview={() =>
+                                onClickReview(item.product_id)
+                              }
+                              key={item.id}
+                              product={item}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
 
                     <p className="font-satoshi text-title-md">atau</p>
 
@@ -579,8 +616,6 @@ const LayoutNavbar = ({ normal = false }: LayoutNavbarProps) => {
           </div>
         </div>
       </nav>
-
-      {isOpenRecommend ? <Backdrop /> : null}
 
       {isOpenSearch && isMobile ? (
         <SearchMobile onClose={() => setIsOpenSearch(false)} />

@@ -44,80 +44,83 @@ const CatalogueProduct = () => {
   //   `/home/user/${router.query.q}`
   // )
 
-  const notFound = !router.query.q
+  const keyword = router.query.q
+
+  const notFound = !keyword
 
   return (
-    <main className="bg-background main-container">
-      <div className="min-h-screen lg:grid grid-cols-[253px_1fr] gap-10 py-10 md:py-16 font-satoshi">
-        <FilterProduct />
+    <>
+      <main className="bg-background main-container">
+        <div className="min-h-screen lg:grid grid-cols-[253px_1fr] gap-10 py-10 md:py-16 font-satoshi">
+          <FilterProduct />
 
-        {!notFound ? (
-          <div className="flex flex-col gap-10 md:gap-6">
-            <div className="flex gap-6 md:gap-0 flex-col md:flex-row md:items-center justify-between ">
-              <h4 className="text-title-sm md:text-title-md">
-                Menampilkan <strong>count</strong> untuk kata kunci{' '}
-                <strong>keyword</strong>
-              </h4>
+          {!notFound ? (
+            <div className="flex flex-col gap-10 md:gap-6">
+              <div className="flex gap-6 md:gap-0 flex-col md:flex-row md:items-center justify-between ">
+                <h4 className="text-title-sm md:text-title-md">
+                  Menampilkan <strong>count</strong> untuk kata kunci{' '}
+                  <strong>{keyword}</strong>
+                </h4>
 
-              <div className="flex justify-end items-center gap-4 md:gap-6">
-                <label className=" text-title-md font-[900]">Urutkan</label>
+                <div className="flex justify-end items-center gap-4 md:gap-6">
+                  <label className=" text-title-md font-[900]">Urutkan</label>
 
-                <Select
-                  onValueChange={(val) => setActiveOption(val)}
-                  value={activeOption}
-                >
-                  <SelectTrigger className="w-[200px]">
-                    <SelectValue placeholder="Paling sesuai" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {SortOptions.map((opt, i) => (
-                      <SelectItem
-                        key={i}
-                        value={opt}
-                        className={opt === activeOption ? 'font-bold' : ''}
-                        defaultChecked={i === 0}
-                      >
-                        {opt}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {!isLarge ? (
-                  <BottomSheet>
-                    <FilterProduct inMobileDevice />
-                  </BottomSheet>
-                ) : null}
+                  <Select
+                    onValueChange={(val) => setActiveOption(val)}
+                    value={activeOption}
+                  >
+                    <SelectTrigger className="w-[200px]">
+                      <SelectValue placeholder="Paling sesuai" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {SortOptions.map((opt, i) => (
+                        <SelectItem
+                          key={i}
+                          value={opt}
+                          className={opt === activeOption ? 'font-bold' : ''}
+                          defaultChecked={i === 0}
+                        >
+                          {opt}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {!isLarge ? (
+                    <BottomSheet>
+                      <FilterProduct inMobileDevice />
+                    </BottomSheet>
+                  ) : null}
+                </div>
               </div>
+
+              {/* CARDS */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-6 md:gap-4 mb-4">
+                {Array(5)
+                  .fill(0)
+                  .map((_, i) => (
+                    <ProductCard
+                      image={ComputerImage}
+                      title="Sony VM-1000x Wireless Headphone Bluetooth"
+                      review="32"
+                      rate={4.8}
+                      production="Sony"
+                      minPrize="Rp.1.000.000"
+                      maxPrize="Rp.1.430.000"
+                      key={i}
+                    />
+                  ))}
+              </div>
+
+              {/* PAGINATION */}
+              <Pagination />
             </div>
-
-            {/* CARDS */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2 gap-y-6 md:gap-4 mb-4">
-              {Array(5)
-                .fill(0)
-                .map((_, i) => (
-                  <ProductCard
-                    image={ComputerImage}
-                    title="Sony VM-1000x Wireless Headphone Bluetooth"
-                    review="32"
-                    rate={4.8}
-                    production="Sony"
-                    minPrize="Rp.1.000.000"
-                    maxPrize="Rp.1.430.000"
-                    key={i}
-                  />
-                ))}
-            </div>
-
-            {/* PAGINATION */}
-            <Pagination />
-          </div>
-        ) : (
-          <NotFoundProduct />
-        )}
-      </div>
-
+          ) : (
+            <NotFoundProduct />
+          )}
+        </div>
+      </main>
       <LayoutRekomendationFooter />
-    </main>
+    </>
   )
 }
 
