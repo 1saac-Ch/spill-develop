@@ -12,7 +12,7 @@ export default function SearchMobile({ onClose }: { onClose: () => void }) {
         </button>
         <div className="flex-1 gap-2 flex items-center py-2 px-4 justify-between">
           <input
-            className="placeholder:text-label-lg flex-1"
+            className="placeholder:text-label-lg flex-1 outline-none"
             placeholder="Find Your Product Here"
           />
 

@@ -157,12 +157,12 @@ const ReviewProduct = ({ product, notFound }: Props) => {
   return (
     <div>
       <div className="container mx-auto p-5 flex flex-col gap-10">
-        <NextLink href="/" passHref>
+        <button onClick={() => router.back()}>
           <div className=" cursor-pointer flex gap-2 items-center w-max pr-2">
             <KeyboardBackspaceIcon fontSize="large" />
             <h1 className="font-bold text-2xl">Review Produk</h1>
           </div>
-        </NextLink>
+        </button>
         <form
           onSubmit={handleSubmit(handleSubmitReview)}
           className="flex flex-col md:flex-row gap-8 bg-white"

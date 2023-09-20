@@ -6,9 +6,6 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import RatingStar from '@/component/elements/RatingStar'
 import formatCurrency from '@/utils/formatCurrency'
 
-import Tokopedia from '@/assets/images/tokopedia.png'
-import Bukalapak from '@/assets/images/bukalapak.png'
-import Lazada from '@/assets/images/lazada.png'
 import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
 import DiscussionSection from './DiscussionSection'
 import MainRecomendationProduct from '@/component/main/MainRecomendation'
@@ -212,13 +209,13 @@ const DetailProduct = ({
                 </div>
                 <div className="flex gap-[8.8px]">
                   <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
-                    {product.review || 0} Review
+                    0 Review
                   </p>
                   <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
-                    {product.disscuss || 0} Diskusi
+                    0
                   </p>
                   <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
-                    {product.view_product || 0} Dilihat
+                    0 Dilihat
                   </p>
                 </div>
               </div>
@@ -243,7 +240,7 @@ const DetailProduct = ({
                 </p>
               </div>
               <p className="text-body-lg md:text-title-md">
-                {product.description || 'LOREMMMMMMMMMMM'}
+                {'LOREMMMMMMMMMMM'}
               </p>
               <button className="font-tebal text-blue-50 w-fit">
                 Lihat detail

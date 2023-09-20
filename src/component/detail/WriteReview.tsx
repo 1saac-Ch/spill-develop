@@ -25,6 +25,7 @@ const WriteReview = () => {
 
         <Link
           href={`/review-product/${router.query.id}`}
+          scroll={true}
           className="flex border disabled:hover:border disabled:cursor-not-allowed font-semibold items-center justify-center px-5 h-[50px] rounded-[10px] text-small  leading-low font-satoshi bg-none border-dark text-dark hover:border w-full md:w-[200px]"
         >
           Tulis Review

@@ -66,9 +66,7 @@ const MainContentReview = ({ contentReview }: { contentReview: Product[] }) => {
                       {item.product_title}
                     </h6>
                     <div className="flex-grow font-tebal text-lg items-stretch  ">
-                      <p className="text-body-md md:text-body-lg">
-                        {item.description}
-                      </p>
+                      <p className="text-body-md md:text-body-lg"> </p>
                     </div>
                   </div>
                 </Card>

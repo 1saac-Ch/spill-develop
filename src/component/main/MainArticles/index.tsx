@@ -30,7 +30,7 @@ const MainArticles = ({ artikel }: { artikel: Article[] }) => {
                   </p>
                   <div className="flex-grow flex items-end">
                     <Link
-                      href={`/article/1`}
+                      href={`/article/${item.article_id}`}
                       className="text-[#F22178] font-satoshi w-max mt-4 text-label-md md:text-label-lg font-bold"
                     >
                       Lihat Selengkapnya...

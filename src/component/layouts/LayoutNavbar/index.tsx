@@ -31,8 +31,14 @@ import { useMediaQuery } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import { cn } from '@/utils/classname'
 import { searchContext } from '../LayoutCatalogue'
-import SearchInput from './SearchInput'
+
+import dynamic from 'next/dynamic'
+
 import useClickOutside from '@/hooks/useClickOutside'
+
+const SearchInput = dynamic(() => import('./SearchInput'), {
+  ssr: false,
+})
 
 type LayoutNavbarProps = {
   normal: boolean

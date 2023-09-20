@@ -5,6 +5,7 @@ import formatDateAndTimeAgo from '@/utils/formatDate'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import useFetcher from '@/hooks/useFetcher'
 
 type Props = {
   isReply?: boolean
@@ -30,6 +31,10 @@ const ButtonArrow = () => (
   </svg>
 )
 
+type LikeResponse = {
+  getData: { userId: string; reviewId: string }[]
+}
+
 const ReviewCard = ({
   isReply,
   showLike,
@@ -48,6 +53,15 @@ const ReviewCard = ({
 
   const queryClient = useQueryClient()
 
+  const { data: dataLike } = useFetcher<LikeResponse>(`/review/${id}/like`)
+
+  const like = dataLike?.getData || []
+
+  let likedByUser = false
+  if (session?.user) {
+    likedByUser = like.some((item) => item.userId === session.user.id)
+  }
+
   async function handleLike(id: string) {
     if (!session?.accessToken) {
       const searchParam = new URLSearchParams({ callbackUrl: router.asPath })
@@ -55,26 +69,37 @@ const ReviewCard = ({
     } else {
       // FETCH
       try {
+        queryClient.setQueryData(
+          ['review', id, 'like'],
+          (oldVal: LikeResponse | undefined) => {
+            if (!oldVal) return undefined
+            let newVal: any
+            if (likedByUser) {
+              newVal = oldVal.getData.filter((val: any) => {
+                return val.userId !== session.user.id
+              })
+            } else {
+              newVal = [
+                ...oldVal.getData,
+                { userId: session.user.id, reviewId: id },
+              ]
+            }
+            return { ...oldVal, getData: newVal }
+          }
+        )
         await fetch(`${process.env.NEXT_PUBLIC_API_URL!}/review/${id}/like`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${session.accessToken}`,
           },
         })
-        queryClient.invalidateQueries({
-          queryKey: ['review', id],
-        })
+
         // TODO : IMPLEMENT OPTIMISTIC UPDATE !!!!
       } catch (error) {
         console.log('e', error)
         return
       }
     }
-  }
-
-  let likedByUser = false
-  if (session?.user.fullname === user.fullname) {
-    likedByUser = true
   }
 
   return (
@@ -154,7 +179,7 @@ const ReviewCard = ({
               <span className="text-[#A6A6A6]">|</span>
 
               <p className="font-bold text-[#8C8C8C] text-label-lg">
-                {likes} Orang Terbantu
+                {like.length} Orang Terbantu
               </p>
             </div>
           ) : null}

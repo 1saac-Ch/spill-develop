@@ -3,7 +3,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import React from 'react'
 import { cn } from '@/utils/classname'
-import { UseFormRegister, UseFormWatch, ValidationRule } from 'react-hook-form'
+import { UseFormRegister, UseFormWatch } from 'react-hook-form'
 
 type TextInputProps = {
   label: string
@@ -99,6 +99,7 @@ function Component({
             <input
               required={required}
               type={showPassword ? 'text' : 'password'}
+              className="outline-none disabled:cursor-not-allowed disabled:text-muted-foreground"
               id={id}
               placeholder={placeholder}
               {...register(name, {
