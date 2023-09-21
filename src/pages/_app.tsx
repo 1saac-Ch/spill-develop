@@ -6,6 +6,8 @@ import { NextPageWithLayout } from '@/utils/NextPageWithLayout'
 import { SessionProvider } from 'next-auth/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+import { Toaster } from '@/component/ui/Toaster'
+
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
@@ -32,6 +34,8 @@ export default function App({
           </SessionProvider>
         </div>
       </QueryClientProvider>
+
+      <Toaster />
     </React.Fragment>
   )
 }
