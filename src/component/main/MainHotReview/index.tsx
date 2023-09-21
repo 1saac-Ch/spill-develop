@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import NextLink from 'next/link'
 import styles from './index.module.scss'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -10,6 +9,7 @@ import Card from '@/component/elements/Card'
 import RatingStar from '@/component/elements/RatingStar'
 import Image from 'next/image'
 import useSlider from '@/hooks/useSlider'
+import Link from 'next/link'
 
 const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
   const {
@@ -73,7 +73,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
                 <Fragment key={i}>
-                  <NextLink href={`/detail-product/${item.id}`} passHref>
+                  <Link href={`/detail-product/${item.id}`} scroll={false}>
                     <Card imgUrl={item.image}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
@@ -106,7 +106,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
                         </div>
                       </div>
                     </Card>
-                  </NextLink>
+                  </Link>
                 </Fragment>
               ))}
             </div>

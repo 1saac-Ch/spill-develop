@@ -6,6 +6,14 @@ import { useRouter } from 'next/router'
 import useFetcher from '@/hooks/useFetcher'
 import Error from 'next/error'
 
+function LoadingArticle() {
+  return (
+    <div className="flex items-center justify-center w-full min-h-[70vh]">
+      <p>Loading article...</p>
+    </div>
+  )
+}
+
 export default function ArticleDetail() {
   const router = useRouter()
 
@@ -15,7 +23,7 @@ export default function ArticleDetail() {
     `/article/${id}`
   )
 
-  if (isLoading) return <p>Loading....</p>
+  if (isLoading) return <LoadingArticle />
 
   const article = data?.data
 
