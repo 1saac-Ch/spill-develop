@@ -96,7 +96,6 @@ const ReviewCard = ({
 
         // TODO : IMPLEMENT OPTIMISTIC UPDATE !!!!
       } catch (error) {
-        console.log('e', error)
         return
       }
     }
