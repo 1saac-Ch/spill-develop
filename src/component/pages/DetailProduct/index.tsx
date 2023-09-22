@@ -74,13 +74,16 @@ const DetailProduct = ({
     <>
       <div className="bg-[#F8F8F8]">
         <div className="w-full main-container flex flex-col gap-6 mb-4">
-          <div className="mt-8 cursor-pointer w-max pr-2">
-            <NextLink href="/" passHref className="flex gap-2 items-center ">
-              <KeyboardBackspaceIcon fontSize="large" />
+          <div className="mt-8 cursor-pointer w-max pr-2 text-headline-sm">
+            <button
+              onClick={() => router.back()}
+              className="flex gap-2 items-center "
+            >
+              <KeyboardBackspaceIcon fontSize="inherit" />
               <h1 className="text-headline-sm font-bold tracking-[0.01px]">
                 Detail Produk
               </h1>
-            </NextLink>
+            </button>
           </div>
           <div className="flex flex-col md:flex-row gap-8 md:gap-10 p-6 md:p-9 bg-white rounded-[20px] rounded-b-xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
             <Dialog>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StarIcon from '../elements/StarIcon'
 import LikeIcon from '../elements/LikeIcon'
 import formatDateAndTimeAgo from '@/utils/formatDate'
@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useFetcher from '@/hooks/useFetcher'
+import { Dialog, DialogContent } from '../ui/Dialog'
 
 type Props = {
   isReply?: boolean
@@ -53,7 +54,9 @@ const ReviewCard = ({
 
   const queryClient = useQueryClient()
 
-  const { data: dataLike } = useFetcher<LikeResponse>(`/review/${id}/like`)
+  const { data: dataLike, refetch } = useFetcher<LikeResponse>(
+    `/review/${id}/like`
+  )
 
   const like = dataLike?.getData || []
 
@@ -65,7 +68,7 @@ const ReviewCard = ({
   async function handleLike(id: string) {
     if (!session?.accessToken) {
       const searchParam = new URLSearchParams({ callbackUrl: router.asPath })
-      router.replace('/login?' + searchParam.toString())
+      router.push('/login?' + searchParam.toString())
     } else {
       // FETCH
       try {
@@ -93,9 +96,8 @@ const ReviewCard = ({
             Authorization: `Bearer ${session.accessToken}`,
           },
         })
-
-        // TODO : IMPLEMENT OPTIMISTIC UPDATE !!!!
       } catch (error) {
+        refetch()
         return
       }
     }
@@ -131,20 +133,7 @@ const ReviewCard = ({
           <p className="text-label-lg font-satoshi">{description}</p>
 
           <div className="flex gap-4">
-            {mediaReview?.length
-              ? mediaReview.map((item, i) => (
-                  <button
-                    key={item}
-                    className="w-[60px] h-[60px] md:w-20 md:h-20 rounded-lg border-2 border-[#1598CC]"
-                  >
-                    <img
-                      alt={`img-${i}`}
-                      src={item}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))
-              : null}
+            <MediaReview mediaReview={mediaReview} />
           </div>
 
           <p className="font-satoshi text-label-lg text-[#8C8C8C]">
@@ -189,3 +178,97 @@ const ReviewCard = ({
 }
 
 export default ReviewCard
+
+function MediaReview({ mediaReview }: { mediaReview: string[] }) {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const modalOpen = activeIndex !== null
+  console.log('m', activeIndex)
+
+  function openChange(newVal: boolean) {
+    if (!newVal) {
+      setActiveIndex(null)
+    }
+  }
+
+  if (!mediaReview) return null
+
+  return (
+    <>
+      <Dialog open={modalOpen} onOpenChange={openChange}>
+        <DialogContent className="flex flex-col w-[80vw] lg:min-w-[800px] p-0">
+          <button
+            disabled={activeIndex === 0}
+            onClick={() => setActiveIndex((prev) => prev && prev - 1)}
+            className="absolute -left-[40px] sm:-left-[60px] lg:-left-[90px] top-[40%] text-white disabled:text-neutral-400 disabled:cursor-not-allowed"
+          >
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="md:w-7 md:h-7 lg:w-10 lg:h-10"
+            >
+              <path
+                d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z"
+                fill="currentColor"
+                fillRule="evenodd"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <img
+            src={mediaReview[activeIndex ?? 0]}
+            alt={`img-${activeIndex}`}
+            className="w-full object-cover"
+          />
+
+          <button
+            disabled={activeIndex === mediaReview.length - 1}
+            onClick={() => setActiveIndex((prev) => prev! + 1)}
+            className="absolute -right-[40px] sm:-right-[60px] lg:-right-[90px] top-[40%] text-white  disabled:text-neutral-400 disabled:cursor-not-allowed"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="md:w-7 md:h-7 lg:w-10 lg:h-10"
+            >
+              <path
+                d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z"
+                fill="currentColor"
+                fillRule="evenodd"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+
+          <button
+            onClick={() => setActiveIndex(null)}
+            className="text-neutral-300 text-md font-semibold font-satoshi w-min"
+          >
+            Close
+          </button>
+        </DialogContent>
+      </Dialog>
+      {mediaReview?.length
+        ? mediaReview.map((item, i) => (
+            <button
+              onClick={() => setActiveIndex(i)}
+              key={item}
+              className="w-[60px] h-[60px] md:w-20 md:h-20 rounded-lg border-2 border-[#1598CC]"
+            >
+              <img
+                alt={`img-${i}`}
+                src={item}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))
+        : null}
+    </>
+  )
+}

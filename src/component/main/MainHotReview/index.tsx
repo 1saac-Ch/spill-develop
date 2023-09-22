@@ -73,7 +73,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
                 <Fragment key={i}>
-                  <Link href={`/detail-product/${item.id}`} scroll={false}>
+                  <Link href={`/detail-product/${item.id}`}>
                     <Card imgUrl={item.image}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>

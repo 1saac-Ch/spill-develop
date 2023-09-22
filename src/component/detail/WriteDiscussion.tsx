@@ -7,25 +7,6 @@ import { useRouter } from 'next/router'
 import { useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 
-// const discussions: Discussion[] = [
-//   {
-//     id: 1,
-//     userId: '0e8ebece-314d-429a-a5cf-f4c20b1037e1',
-//     productId: 'PD0001',
-//     body: 'Tes discussion',
-//     parentId: null,
-//     createdAt: '2023-09-22T02:29:13.000Z',
-//     updatedAt: '2023-09-22T02:29:13.000Z',
-//     user: {
-//       fullname: 'testingspill1',
-//       username: 'spilluser423',
-//       email: null,
-//       no_hp: '622812345631',
-//     },
-//     waktu: '15 menit yang lalu',
-//   },
-// ]
-
 type DiscussionQuery = {
   data: { discussionsWithTime: Discussion[] }
 }
