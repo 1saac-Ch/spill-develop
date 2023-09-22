@@ -63,11 +63,15 @@ type Reply = {
 }
 
 type Discussion = {
-  id: string
-  name: string
-  description: string
+  id: number
+  userId: string
+  user: UserData
+  productId: string
+  body: string
+  parentId: string | null
   createdAt: string
-  replies: Discussion[]
+  updatedAt: string
+  waktu: string
 }
 
 type UserData = {

@@ -3,6 +3,7 @@ import LikeIcon from '../elements/LikeIcon'
 
 type Props = {
   isReply?: boolean
+  isSending?: boolean
 } & Discussion
 
 const ButtonArrow = () => (
@@ -26,25 +27,29 @@ const ButtonArrow = () => (
 
 const DiscussionCard = ({
   isReply,
-  createdAt,
-  description,
-  name,
-  replies,
+  waktu,
+  user,
+  body,
+  isSending = false,
 }: Props) => {
   return (
     <>
-      <div className={`${isReply ? 'ml-11' : ''} space-y-2 pr-3 pb-3`}>
+      <div
+        className={`${isReply ? 'ml-11' : ''} ${
+          isSending ? 'opacity-60' : ''
+        } space-y-2 pr-3 pb-3`}
+      >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-[#705CF6]" />
-          <p className="font-satoshi text-label-lg font-bold">{name}</p>
+          <p className="font-satoshi text-label-lg font-bold">
+            {user.username}
+          </p>
         </div>
 
         <div className="ml-10 space-y-2">
-          <p className="text-label-lg font-satoshi">{description}</p>
+          <p className="text-label-lg font-satoshi">{body}</p>
           <div className="flex gap-3">
-            <p className="font-satoshi text-label-lg text-[#8C8C8C]">
-              {createdAt}
-            </p>
+            <p className="font-satoshi text-label-lg text-[#8C8C8C]">{waktu}</p>
 
             <button className="text-label-lg text-[#8C8C8C] font-bold">
               Reply
@@ -53,11 +58,11 @@ const DiscussionCard = ({
         </div>
       </div>
 
-      {replies.length
+      {/* {replies?.length
         ? replies.map((replie) => (
             <DiscussionCard key={replie.id} {...replie} isReply />
           ))
-        : null}
+        : null} */}
     </>
   )
 }

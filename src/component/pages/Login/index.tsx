@@ -54,6 +54,8 @@ function Component() {
       const currPath = router.asPath
       const url = new URL(currPath, 'http://localhost:3000')
       router.push(url.searchParams.get('callbackUrl') || '/')
+      setIsLoading(false)
+      return
     }
   }
 

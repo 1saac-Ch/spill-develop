@@ -18,14 +18,27 @@ const DiscussionSection = ({ productId }: { productId: string }) => {
     isError,
   } = useFetcher<{ data: Review[] }>(`/review/${productId}`)
 
-  const ReplieContent =
-    !replies?.data.length || isRepliesLoading ? (
-      <p>Loading</p>
-    ) : (
-      replies.data.map((replie) => (
-        <ReviewCard showLike key={replie.id} {...replie} />
-      ))
+  let ReplieContent
+  if (isRepliesLoading) {
+    ReplieContent = <p className="text-center font-semibold">Loading ...</p>
+  } else if (isError) {
+    ReplieContent = (
+      <p className="text-center font-semibold">
+        Ada error nih silahkan coba lagi nanti
+      </p>
     )
+  } else if (!replies.data.length) {
+    ReplieContent = (
+      <p className="text-center font-semibold">
+        Belum ada review untuk produk ini, jadilah yang pertama menuliskan
+        review
+      </p>
+    )
+  } else {
+    ReplieContent = replies.data.map((replie) => (
+      <ReviewCard showLike key={replie.id} {...replie} />
+    ))
+  }
 
   if (isError) return <p>Error</p>
 
