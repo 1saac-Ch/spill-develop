@@ -4,7 +4,6 @@ import { ReactElement, JSXElementConstructor } from 'react'
 import styles from './index.module.scss'
 
 import MainLayout from '@/component/layouts/MainLayout'
-import SearchIcon from '@mui/icons-material/Search'
 
 import MainHotReview from '@/component/main/MainHotReview'
 
@@ -79,7 +78,11 @@ const Home = ({
                 onSubmit={handleSearchSubmit}
                 className="flex justify-between bg-white p-2 items-center rounded-xl gap-[8px]"
               >
-                <SearchIcon />
+                <img
+                  src="/icons/search.svg"
+                  alt="search"
+                  className="w-4 h-4 mr-1 "
+                />
                 <input
                   placeholder="Cari produk apapun"
                   id="search"

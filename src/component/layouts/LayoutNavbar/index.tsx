@@ -14,7 +14,6 @@ import Button from '@/component/elements/Button'
 import SpillLogo from '@/component/elements/SpillLogo'
 import Link from 'next/link'
 import styles from './styles.module.scss'
-import SearchIcon from '@mui/icons-material/Search'
 import UseDisclosure from '@/component/elements/UseDisclosure'
 import {
   DropdownMenu,
@@ -55,7 +54,7 @@ function RecomendationItem({
   return (
     <div className="flex justify-between items-center mb-1">
       <div className="flex items-center gap-2 py-4 font-satoshi">
-        <SearchIcon className="w-4 h-4 mr-2" />
+        <img src="/icons/search.svg" alt="search" className="w-4 h-4 mr-2" />
         <h4 className="text-label-lg tracking-[0.01px]">
           {product.product_title}
         </h4>
@@ -391,7 +390,11 @@ const LayoutNavbar = ({
                     onFocus={() => setOpenDropDownRecomendation(true)}
                   />
                   <button type="submit">
-                    <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
+                    <img
+                      src="/icons/search.svg"
+                      alt="search"
+                      className="text-abu2 w-[18px] h-[18px]"
+                    />
                   </button>
                 </form>
                 {openDropDownRecomendation ? (
@@ -496,7 +499,11 @@ const LayoutNavbar = ({
                           onFocus={() => setOpenDropDownRecomendation(true)}
                         />
                         <button type="submit">
-                          <SearchIcon className="text-abu2 w-[18px] h-[18px]" />
+                          <img
+                            src="/icons/search.svg"
+                            alt="search"
+                            className="text-abu2 w-[18px] h-[18px]"
+                          />
                         </button>
                       </form>
                       {openDropDownRecomendation ? (

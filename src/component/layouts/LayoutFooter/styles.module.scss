@@ -1,19 +1,19 @@
 .footer {
-  @apply bg-[#111827] text-white font-satoshi py-8;
+  @apply bg-[#111827] text-white font-satoshi;
 }
 
 .maxContainer {
-  @apply container mx-auto;
+  @apply p-5;
 }
 
 .stack {
-  @apply flex px-5 flex-col gap-20 md:gap-5 md:px-0 md:flex-row;
+  @apply flex flex-col gap-20 md:gap-5 md:flex-row;
 }
 
 .leftStack {
   @apply flex-[0.5];
   & h1 {
-    @apply font-bold;
+    @apply font-bold text-label-lg;
   }
   & div {
     @apply flex flex-col gap-2 mt-5;
@@ -39,7 +39,7 @@
 }
 
 .inputSendEmail {
-  @apply border-none flex-[1.5] rounded-md p-2 w-full text-black;
+  @apply outline-none border border-[#A6A6A6] flex-[1.5] rounded-xl p-2 w-full text-label-lg text-[#1A1A1A];
 }
 
 .sizeButton {

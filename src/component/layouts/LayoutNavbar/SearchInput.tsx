@@ -44,7 +44,7 @@ export default function SearchInput({}: Props) {
             className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
           />
           <button>
-            <SearchIcon className={'cursor-pointer'} />
+            <img src="/icons/search.svg" className="w-5 h-5" alt="search" />
           </button>
         </form>
         {isOpenRecomend ? (

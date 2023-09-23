@@ -54,9 +54,7 @@ const ReviewCard = ({
 
   const queryClient = useQueryClient()
 
-  const { data: dataLike, refetch } = useFetcher<LikeResponse>(
-    `/review/${id}/like`
-  )
+  const { data: dataLike } = useFetcher<LikeResponse>(`/review/${id}/like`)
 
   const like = dataLike?.getData || []
 
@@ -97,7 +95,7 @@ const ReviewCard = ({
           },
         })
       } catch (error) {
-        refetch()
+        queryClient.invalidateQueries(['review', id, 'like'])
         return
       }
     }

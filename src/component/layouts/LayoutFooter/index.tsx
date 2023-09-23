@@ -9,6 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import Button from '@/component/elements/Button/component'
+import Link from 'next/link'
 const LayoutFooter = () => {
   const list = [
     {
@@ -16,7 +17,7 @@ const LayoutFooter = () => {
       label: [
         { sub: 'Feature', path: '/' },
         { sub: 'Tentang Kami', path: '/' },
-        { sub: 'Artikel', path: '/' },
+        { sub: 'Artikel', path: '/article' },
         { sub: 'Syarat dan Ketentuan', path: '/' },
       ],
     },
@@ -31,14 +32,20 @@ const LayoutFooter = () => {
   ]
   return (
     <footer className={styles.footer}>
-      <div className={styles.maxContainer}>
+      <div className="main-container">
         <div className={styles.stack}>
           {list.map((item, index) => (
             <div key={index} className={styles.leftStack}>
               <h1>{item.title}</h1>
               <div>
                 {item.label.map((label, index) => (
-                  <span key={index}>{label.sub}</span>
+                  <Link
+                    href={label.path}
+                    className="text-[#A6A6A6] font-bold text-label-lg"
+                    key={index}
+                  >
+                    {label.sub}
+                  </Link>
                 ))}
               </div>
             </div>
@@ -55,7 +62,9 @@ const LayoutFooter = () => {
                   type="text"
                   placeholder="Your Email here"
                 />
-                <Button className={styles.sizeButton}>Submit</Button>
+                <Button className="w-auto px-4 py-3 md:px-3 md:py-4 rounded-xl">
+                  Submit
+                </Button>
               </div>
             </div>
           </div>
@@ -66,7 +75,9 @@ const LayoutFooter = () => {
           </div>
           <div className={styles.itemsReserved}>
             <div className={styles.copyrights}>
-              <p>© 2023 Spill. All Rights Reserved.</p>
+              <p className="text-body-lg text-[#A6A6A6] text-center">
+                © 2023 Spill. All Rights Reserved.
+              </p>
             </div>
             <div className={styles.stackSosmed}>
               <div>

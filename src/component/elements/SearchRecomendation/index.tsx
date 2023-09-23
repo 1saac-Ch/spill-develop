@@ -1,5 +1,4 @@
 import { cn } from '@/utils/classname'
-import SearchIcon from '@mui/icons-material/Search'
 import Link from 'next/link'
 
 const SearchRecomendationItem = ({
@@ -14,11 +13,11 @@ const SearchRecomendationItem = ({
       scroll={false}
       href={`/catalogue-product?q=${value}`}
       className={cn(
-        'p-4 font-satoshi cursor-pointer hover:bg-accent text-label-lg block',
+        'p-4 font-satoshi cursor-pointer hover:bg-accent text-label-lg flex items-center',
         className
       )}
     >
-      <SearchIcon className="w-4 h-4 mr-2" />
+      <img src="/icons/search.svg" alt="search" className="w-4 h-4 mr-2" />
       {value}
     </Link>
   )

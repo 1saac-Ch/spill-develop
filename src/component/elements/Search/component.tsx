@@ -1,6 +1,7 @@
 import styles from './styles.module.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import Button from '@/component/elements/Button'
+
 type SearchProps = {
   placeholder?: string
   onChange?: (e: any) => void
@@ -17,7 +18,7 @@ function Component({ ...props }: SearchProps) {
       case 'wording':
         return (
           <div className={styles.wrapperWording}>
-            <SearchIcon className={styles.icon} />
+            <img src="/icons/search.svg" alt="search" className={styles.icon} />
             <input {...props} />
             <Button className={styles.button} onClick={props.onClick}>
               Cari
@@ -28,7 +29,12 @@ function Component({ ...props }: SearchProps) {
         return (
           <div className={styles.wrapper}>
             <input {...props} />
-            <SearchIcon onClick={props.onClick} className={'cursor-pointer'} />
+            <img
+              src="/icons/search.svg"
+              alt="search"
+              onClick={props.onClick}
+              className={'cursor-pointer'}
+            />
           </div>
         )
     }
