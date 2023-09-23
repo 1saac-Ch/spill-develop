@@ -197,7 +197,7 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
           <button
             disabled={activeIndex === 0}
             onClick={() => setActiveIndex((prev) => prev && prev - 1)}
-            className="fixed left-0 md:left-4 text-white disabled:text-neutral-400 disabled:cursor-not-allowed"
+            className="fixed left-5 md:left-4 text-white disabled:text-neutral-400 disabled:cursor-not-allowed"
           >
             <svg
               width="20"
@@ -224,7 +224,7 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
           <button
             disabled={activeIndex === mediaReview.length - 1}
             onClick={() => setActiveIndex((prev) => prev! + 1)}
-            className="fixed right-0 md:right-4 text-white disabled:text-neutral-400 disabled:cursor-not-allowed "
+            className="fixed right-5 md:right-4 text-white disabled:text-neutral-400 disabled:cursor-not-allowed "
           >
             <svg
               width="20"

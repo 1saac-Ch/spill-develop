@@ -1,6 +1,4 @@
-import React from 'react'
 import styles from './styles.module.scss'
-import Button from '@/component/elements/Button'
 import Link from 'next/link'
 
 const LayoutRekomendationFooter = () => {
@@ -11,7 +9,7 @@ const LayoutRekomendationFooter = () => {
           <div className={styles.stackResponsive}>
             <h1 className={styles.textFindProduct}>
               {' '}
-              🔍 Produk yang kamu cari tidak ada di spill?
+              🔍 Produk yang kamu cari tidak ada di spill ?
             </h1>
             <p className={styles.paragraphText}>
               {' '}

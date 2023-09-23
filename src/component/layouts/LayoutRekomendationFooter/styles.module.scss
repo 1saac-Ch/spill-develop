@@ -3,11 +3,11 @@
 }
 
 .mainRecomend {
-  @apply flex gap-5 flex-col md:flex-row justify-between items-center;
+  @apply flex gap-5 flex-col md:flex-row justify-between items-start;
 }
 
 .stackResponsive {
-  @apply md:flex-[1.8] gap-5;
+  @apply gap-5;
 }
 
 .paragraphText {
