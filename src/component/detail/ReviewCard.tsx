@@ -181,7 +181,6 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const modalOpen = activeIndex !== null
-  console.log('m', activeIndex)
 
   function openChange(newVal: boolean) {
     if (!newVal) {
@@ -194,15 +193,15 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
   return (
     <>
       <Dialog open={modalOpen} onOpenChange={openChange}>
-        <DialogContent className="flex flex-col w-[80vw] lg:min-w-[800px] p-0">
+        <DialogContent className="flex flex-col w-[80vw] lg:min-w-[800px] p-0 translate-x-[k] translate-y-[k]">
           <button
             disabled={activeIndex === 0}
             onClick={() => setActiveIndex((prev) => prev && prev - 1)}
-            className="absolute -left-[40px] sm:-left-[60px] lg:-left-[90px] top-[40%] text-white disabled:text-neutral-400 disabled:cursor-not-allowed"
+            className="fixed left-0 md:left-4 text-white disabled:text-neutral-400 disabled:cursor-not-allowed"
           >
             <svg
-              width="15"
-              height="15"
+              width="20"
+              height="20"
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -219,13 +218,13 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
           <img
             src={mediaReview[activeIndex ?? 0]}
             alt={`img-${activeIndex}`}
-            className="w-full object-cover"
+            className="w-full object-cover translate-x-[-50%] translate-y-[-50%]"
           />
 
           <button
             disabled={activeIndex === mediaReview.length - 1}
             onClick={() => setActiveIndex((prev) => prev! + 1)}
-            className="absolute -right-[40px] sm:-right-[60px] lg:-right-[90px] top-[40%] text-white  disabled:text-neutral-400 disabled:cursor-not-allowed"
+            className="fixed right-0 md:right-4 text-white disabled:text-neutral-400 disabled:cursor-not-allowed "
           >
             <svg
               width="20"
