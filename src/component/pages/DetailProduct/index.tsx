@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import NextLink from 'next/link'
 import MainLayout from '@/component/layouts/MainLayout'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import RatingStar from '@/component/elements/RatingStar'
@@ -10,11 +9,52 @@ import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
 import DiscussionSection from './DiscussionSection'
 import MainRecomendationProduct from '@/component/main/MainRecomendation'
 import { useRouter } from 'next/router'
+import RobotNotFound from '@/assets/images/robot.png'
+
 import { Dialog } from '@/component/ui/Dialog'
 import { DialogTrigger } from '@/component/ui/Dialog'
 import { DialogContent } from '@/component/ui/Dialog'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import Image from 'next/image'
+import Button from '@/component/elements/Button/component'
+import Link from 'next/link'
+
+function NotFound() {
+  const router = useRouter()
+  return (
+    <div className="flex flex-col gap-14">
+      <div className="flex flex-col md:flex-row items-center gap-10 py-6 px-10 bg-white rounded-[20px]">
+        <Image
+          src={RobotNotFound}
+          alt="robot-not-found"
+          className="w-[200px] h-[200px] object-cover flex-none"
+        />
+
+        <div className="flex flex-col gap-4 font-satoshi">
+          <h2 className="text-title-lg font-bold">
+            Yah... Produk Kamu Ngga Ketemu nih
+          </h2>
+
+          <div className="flex gap-4">
+            <Button
+              onClick={() => router.back()}
+              className="bg-pink rounded-xl text-label-lg text-white font-satoshi py-3 px-4 max-w-fit"
+            >
+              Kembali
+            </Button>
+            <Link
+              href="/suggest"
+              className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit"
+            >
+              Sarankan Produk
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const DetailProduct = ({
   product,
@@ -63,8 +103,8 @@ const DetailProduct = ({
 
   if (notFound)
     return (
-      <div className="min-h-[70vh] w-full flex items-center justify-center ">
-        <p className="text-3xl font-bold">Not found sorry</p>
+      <div className="main-container">
+        <NotFound />
       </div>
     )
 

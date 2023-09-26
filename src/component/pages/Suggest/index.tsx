@@ -1,5 +1,4 @@
 import SuggestLayout from './SuggestLayout'
-import NextLink from 'next/link'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import Image from 'next/image'
 import Button from '@/component/elements/Button/component'
@@ -8,6 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import Link from 'next/link'
 import Input from '@/component/ui/Input'
 import Alert from '@/component/alert'
+import { useRouter } from 'next/router'
 
 type FormData = {
   namaBrand: string
@@ -25,20 +25,22 @@ export default function Suggest() {
 
   const [showDialog, setShowDialog] = useState(false)
 
+  const router = useRouter()
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
     setShowDialog(true)
   }
 
   return (
     <main className="px-5 w-full lg:px-[72px]">
-      <NextLink href="/" passHref>
+      <Link href="/">
         <div className=" cursor-pointer flex gap-4 items-center w-max pr-2 mt-10 mb-6">
           <KeyboardBackspaceIcon fontSize="large" />
           <h1 className="text-headline-sm font-[900] tracking-[0.1px]">
             Sarankan Produk
           </h1>
         </div>
-      </NextLink>
+      </Link>
 
       <section className="flex flex-col p-6 gap-10 self-stretch rounded-[20px] shadow-lg mb-20">
         <div className="space-y-2">
@@ -117,7 +119,7 @@ export default function Suggest() {
           </p>
         </div>
 
-        <Button>Sarankan Produk Lainnya</Button>
+        <Button onClick={() => router.reload()}>Sarankan Produk Lainnya</Button>
         <Link
           href={'/'}
           className="flex border hover:border-2 disabled:hover:border disabled:cursor-not-allowed  font-semibold items-center justify-center px-5 h-[50px] rounded-[10px] text-small leading-low font-satoshi bg-none w-full border-black text-black"

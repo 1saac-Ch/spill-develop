@@ -1,9 +1,15 @@
-import { useQuery } from '@tanstack/react-query'
+import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 
-export default function useFetcher<T>(url: string, isPrivate = false) {
+export default function useFetcher<T>(
+  url: string,
+  isPrivate = false,
+  options?: Omit<UseQueryOptions<T, unknown, T, string[]>, 'initialData'> & {
+    initialData?: (() => undefined) | undefined
+  }
+) {
   const h = new Headers()
   const { data: session } = useSession()
 
@@ -23,6 +29,8 @@ export default function useFetcher<T>(url: string, isPrivate = false) {
       })
       return (await response.json()) as T
     },
+
+    ...options,
   })
 
   return query

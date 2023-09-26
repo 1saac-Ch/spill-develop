@@ -21,7 +21,9 @@ type MainLayoutProps = {
 const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
   const { data } = useFetcher<{
     data: { selection_product: Product[] }
-  }>('/home/user')
+  }>('/home/user', false, {
+    refetchOnWindowFocus: false,
+  })
 
   return (
     <React.Fragment>

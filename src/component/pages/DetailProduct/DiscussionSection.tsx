@@ -48,25 +48,25 @@ const DiscussionSection = ({ productId }: { productId: string }) => {
         <TabsTrigger className="flex-1" value="review">
           Review
         </TabsTrigger>
-        <TabsTrigger className="flex-1" value="diskusi">
+        {/* <TabsTrigger className="flex-1" value="diskusi">
           Diskusi
         </TabsTrigger>
         <TabsTrigger className="flex-1" value="influencer">
           Konten Influencer
-        </TabsTrigger>
+        </TabsTrigger> */}
       </TabsList>
       <TabsContent value="review" className="space-y-10">
         <WriteReview />
         <div className="space-y-10 px-10">{ReplieContent}</div>
       </TabsContent>
-      <TabsContent value="diskusi">
+      {/* <TabsContent value="diskusi">
         <div className="px-5 md:px-10">
           <WriteDiscussion />
         </div>
       </TabsContent>
       <TabsContent value="influencer">
         <TabsInfluencerContent />
-      </TabsContent>
+      </TabsContent> */}
     </Tabs>
   )
 }

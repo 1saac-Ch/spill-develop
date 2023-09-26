@@ -29,7 +29,9 @@ const CatalogueLayout = ({ children, isNormal }: CatalogueProps) => {
 
   const { data } = useFetcher<{
     data: { selection_product: Product[] }
-  }>('/home/user')
+  }>('/home/user', false, {
+    refetchOnWindowFocus: false,
+  })
 
   return (
     <Fragment>

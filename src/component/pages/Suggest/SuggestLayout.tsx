@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode, Fragment } from 'react'
 import styles from './styles.module.scss'
 import LayoutNavbar from '@/component/layouts/LayoutNavbar'
 import LayoutFooter from '@/component/layouts/LayoutFooter'
@@ -12,9 +12,11 @@ type MainLayoutProps = {
 const SuggestLayout = ({ children, isNormal }: MainLayoutProps) => {
   const { data } = useFetcher<{
     data: { selection_product: Product[] }
-  }>('/home/user')
+  }>('/home/user', false, {
+    refetchOnWindowFocus: false,
+  })
   return (
-    <React.Fragment>
+    <Fragment>
       <div className={styles.mainLayout}>
         <LayoutNavbar
           selectionProduct={data?.data.selection_product ?? []}
@@ -23,7 +25,7 @@ const SuggestLayout = ({ children, isNormal }: MainLayoutProps) => {
         {children}
         <LayoutFooter />
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 
