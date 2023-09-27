@@ -242,13 +242,6 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
               ></path>
             </svg>
           </button>
-
-          <button
-            onClick={() => setActiveIndex(null)}
-            className="text-neutral-300 text-md font-semibold font-satoshi w-min"
-          >
-            Close
-          </button>
         </DialogContent>
       </Dialog>
       {mediaReview?.length

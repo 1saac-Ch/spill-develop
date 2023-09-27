@@ -123,13 +123,13 @@ const ReviewProduct = ({ product, notFound }: Props) => {
     }
 
     try {
-      console.log({ formData })
-      // await fetch(`${process.env.NEXT_PUBLIC_API_URL}/review/${id}`, {
-      //   method: 'POST',
-      //   headers: { //     Authorization: `Bearer ${session.accessToken}`,
-      //   },
-      //   body: formData,
-      // })
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/review/${id}`, {
+        method: 'POST',
+        headers: {
+          //     Authorization: `Bearer ${session.accessToken}`,
+        },
+        body: formData,
+      })
 
       let url = '/'
       if (fromHome) {
