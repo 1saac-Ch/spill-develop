@@ -14,7 +14,7 @@ const BottomSheet = ({ children }: Props) => {
 
   return (
     <>
-      <BottomSheet.Trigger open={open} />
+      <BottomSheet.Trigger open={() => {}} />
 
       <Sheet
         ref={ref}
@@ -38,7 +38,8 @@ BottomSheet.Trigger = function ButtonTrig({ open }: { open: () => void }) {
   return (
     <button
       onClick={open}
-      className="lg:hidden rounded-xl border border-border py-3 px-4"
+      disabled
+      className="cursor-not-allowed lg:hidden rounded-xl border border-border py-3 px-4"
     >
       <NextImage
         src="/icons/filter.svg"

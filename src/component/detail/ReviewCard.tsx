@@ -4,7 +4,7 @@ import LikeIcon from '../elements/LikeIcon'
 import formatDateAndTimeAgo from '@/utils/formatDate'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import useFetcher from '@/hooks/useFetcher'
 import { Dialog, DialogContent } from '../ui/Dialog'
 
@@ -70,6 +70,7 @@ const ReviewCard = ({
     } else {
       // FETCH
       try {
+        // Optimistic Update the like
         queryClient.setQueryData(
           ['review', id, 'like'],
           (oldVal: LikeResponse | undefined) => {

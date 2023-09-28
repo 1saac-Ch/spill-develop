@@ -33,14 +33,14 @@ export default function Suggest() {
 
   return (
     <main className="px-5 w-full lg:px-[72px]">
-      <Link href="/">
-        <div className=" cursor-pointer flex gap-4 items-center w-max pr-2 mt-10 mb-6">
-          <KeyboardBackspaceIcon fontSize="large" />
+      <button className="mt-10 mb-6" onClick={() => router.back()}>
+        <div className=" cursor-pointer text-2xl flex gap-4 items-center w-max pr-2 ">
+          <KeyboardBackspaceIcon fontSize="inherit" />
           <h1 className="text-headline-sm font-[900] tracking-[0.1px]">
             Sarankan Produk
           </h1>
         </div>
-      </Link>
+      </button>
 
       <section className="flex flex-col p-6 gap-10 self-stretch rounded-[20px] shadow-lg mb-20">
         <div className="space-y-2">

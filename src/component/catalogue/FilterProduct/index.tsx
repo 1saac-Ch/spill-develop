@@ -48,7 +48,8 @@ const FilterProduct = ({ inMobileDevice = false }) => {
   const [activeRate, setActiveRate] = React.useState(0)
 
   return (
-    <aside
+    <fieldset
+      disabled
       className={cn(
         'space-y-3',
         inMobileDevice ? 'block lg:hidden h-full' : 'hidden lg:block mt-3'
@@ -92,7 +93,7 @@ const FilterProduct = ({ inMobileDevice = false }) => {
           Reset Filter
         </Button>
       </div>
-    </aside>
+    </fieldset>
   )
 }
 

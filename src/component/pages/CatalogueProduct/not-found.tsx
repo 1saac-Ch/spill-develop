@@ -1,11 +1,11 @@
 import ProductCard from '@/component/catalogue/ProductCard'
 import Button from '@/component/elements/Button/component'
 import RobotNotFound from '@/assets/images/robot.png'
-import ComputerImage from '@/assets/images/computer.jpg'
 
 import Image from 'next/image'
 import React, { useContext } from 'react'
 import { searchContext } from '@/component/layouts/LayoutCatalogue'
+import Link from 'next/link'
 
 const NotFoundProduct = () => {
   const { setOpenSearch } = useContext(searchContext)
@@ -34,9 +34,12 @@ const NotFoundProduct = () => {
             >
               Coba lagi
             </Button>
-            <Button className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit">
+            <Link
+              href={'/suggest'}
+              className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit font-semibold"
+            >
               Sarankan Produk
-            </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -50,13 +53,14 @@ const NotFoundProduct = () => {
             .map((_, i) => (
               <ProductCard
                 key={i}
-                image={ComputerImage}
+                id="1"
+                image={'/computer.jpg'}
                 title="Sony VM-1000x Wireless Headphone Bluetooth"
-                review="32"
+                review={32}
                 rate={4.8}
                 production="Sony"
-                minPrize="Rp.1.000.000"
-                maxPrize="Rp.1.430.000"
+                minPrize={1000000}
+                maxPrize={1200000}
               />
             ))}
         </div>

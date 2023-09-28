@@ -10,7 +10,6 @@ const SearchRecomendationItem = ({
 }) => {
   return (
     <Link
-      scroll={false}
       href={`/catalogue-product?q=${value}`}
       className={cn(
         'p-4 font-satoshi cursor-pointer hover:bg-accent text-label-lg flex items-center',

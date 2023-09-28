@@ -50,6 +50,7 @@ type Product = {
   price_max: number
   images: string
   rating: number
+  review_count: number
 }
 
 type Reply = {

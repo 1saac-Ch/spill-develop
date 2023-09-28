@@ -65,14 +65,15 @@ const MainRecomendationProduct = () => {
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
                 <ProductCard
+                  id="1"
                   key={i}
                   image={ComputerImage}
                   title="Sony VM-1000x Wireless Headphone Bluetooth"
-                  review="32"
+                  review={32}
                   rate={4.8}
                   production="Sony"
-                  minPrize="Rp.1.000.000"
-                  maxPrize="Rp.1.430.000"
+                  minPrize={1000000}
+                  maxPrize={1430000}
                 />
               ))}
             </div>

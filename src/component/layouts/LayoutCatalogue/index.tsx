@@ -5,11 +5,13 @@ import {
   useState,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from 'react'
 import styles from './styles.module.scss'
 import LayoutNavbar from '../LayoutNavbar'
 import LayoutFooter from '../LayoutFooter'
 import useFetcher from '@/hooks/useFetcher'
+import { useRouter } from 'next/router'
 
 type CatalogueProps = {
   children: ReactNode
@@ -26,12 +28,19 @@ export const searchContext = createContext<{
 
 const CatalogueLayout = ({ children, isNormal }: CatalogueProps) => {
   const [openSearch, setOpenSearch] = useState(false)
+  const router = useRouter()
+
+  const searchQuery = router.query.q
 
   const { data } = useFetcher<{
     data: { selection_product: Product[] }
   }>('/home/user', false, {
     refetchOnWindowFocus: false,
   })
+
+  useEffect(() => {
+    setOpenSearch(false)
+  }, [searchQuery])
 
   return (
     <Fragment>

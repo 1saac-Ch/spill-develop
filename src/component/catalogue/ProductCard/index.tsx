@@ -7,9 +7,16 @@ type Props = {
   title: string
   production: string
   rate: number
-  review: string
-  minPrize: string
-  maxPrize: string
+  review: number
+  minPrize: number
+  maxPrize: number
+  id: string
+}
+
+function formatToIDRCurrency(number: number) {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' })
+    .format(number)
+    .replace(/,00$/, '')
 }
 
 const ProductCard = ({
@@ -20,11 +27,12 @@ const ProductCard = ({
   review,
   maxPrize,
   minPrize,
+  id,
 }: Props) => {
   return (
     <article className=" bg-white rounded-xl shadow-medium max-w-[240px] mx-auto mb-10 relative">
-      <Image
-        src={image}
+      <img
+        src={image as any}
         alt="product-computer"
         className="w-full aspect-square object-cover rounded-t-xl"
       />
@@ -41,20 +49,20 @@ const ProductCard = ({
               className="w-3 h-3 object-contain"
               alt="star"
             />
-            <p className="text-body-sm font-satoshi">{rate}</p>
+            <p className="text-body-sm font-satoshi">{rate.toFixed()}</p>
           </div>
 
           <span>|</span>
 
-          <p className="text-body-sm font-satoshi">{review} reviews</p>
+          <p className="text-body-sm font-satoshi">{review} review</p>
         </div>
 
         <h4 className="text-label-md text-pink font-bold">
-          {minPrize} - {maxPrize}
+          {formatToIDRCurrency(minPrize)} - {formatToIDRCurrency(maxPrize)}
         </h4>
       </div>
 
-      <Link href={`/detail-product/1`} className="absolute inset-0" />
+      <Link href={`/detail-product/${id}`} className="absolute inset-0" />
     </article>
   )
 }
