@@ -1,18 +1,19 @@
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import { useRouter } from 'next/router'
-import { FormEvent, useCallback, useRef, useState } from 'react'
-import SearchIcon from '@mui/icons-material/Search'
-import useClickOutside from '@/hooks/useClickOutside'
+import { FormEvent, useContext, useRef } from 'react'
 import Backdrop from '../LayoutCatalogue/Backdrop'
 import { createPortal } from 'react-dom'
+import { searchContext } from '../LayoutCatalogue'
 
 type Props = {}
 
 export default function SearchInput({}: Props) {
-  const [isOpenRecomend, setIsOpenRecomend] = useState(false)
+  const { openSearch, setOpenSearch } = useContext(searchContext)
+
   const router = useRouter()
 
   const parentRef = useRef<HTMLDivElement>(null)
+  const listContainerRef = useRef<HTMLDivElement>(null)
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -24,12 +25,6 @@ export default function SearchInput({}: Props) {
     router.push(`/catalogue-product?${searchParam.toString()}`)
   }
 
-  const onClickOutside = useCallback(() => {
-    setIsOpenRecomend(false)
-  }, [])
-
-  useClickOutside(parentRef, onClickOutside)
-
   return (
     <>
       <div className="hidden md:block relative flex-1" ref={parentRef}>
@@ -40,15 +35,18 @@ export default function SearchInput({}: Props) {
           <input
             placeholder="Cari produk disini"
             id="search"
-            onFocus={() => setIsOpenRecomend(true)}
+            onFocus={() => setOpenSearch?.(true)}
             className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
           />
           <button>
             <img src="/icons/search.svg" className="w-5 h-5" alt="search" />
           </button>
         </form>
-        {isOpenRecomend ? (
-          <div className="w-full absolute z-[10] top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
+        {openSearch ? (
+          <div
+            ref={listContainerRef}
+            className="w-full absolute z-[10] top-[64px] rounded-xl shadow-md bg-white overflow-hidden "
+          >
             <h3 className="p-4 font-bold text-label-lg">
               <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
             </h3>
@@ -58,7 +56,9 @@ export default function SearchInput({}: Props) {
         ) : null}
 
         {createPortal(
-          isOpenRecomend ? <Backdrop /> : null,
+          openSearch ? (
+            <Backdrop onClick={() => setOpenSearch?.(false)} />
+          ) : null,
           document.querySelector('body') as any
         )}
       </div>

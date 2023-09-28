@@ -8,7 +8,6 @@ import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 export default function SearchMobile({ onClose }: { onClose: () => void }) {
   const [search, setSearch] = useState('')
 
-  useLockBodyScroll()
   return (
     <div className="fixed z-[99999] w-screen h-screen inset-0 bg-white md:hidden p-5">
       <nav className="flex items-center justify-between">

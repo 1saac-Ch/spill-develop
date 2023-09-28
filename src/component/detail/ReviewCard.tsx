@@ -146,17 +146,11 @@ const ReviewCard = ({
                 className="flex items-center gap-2 group"
               >
                 <LikeIcon
-                  className={`${
-                    likedByUser
-                      ? 'fill-[#1598CC]'
-                      : 'group-hover:fill-[#1598CC]'
-                  }`}
+                  className={`${likedByUser ? 'fill-[#1598CC]' : ''}`}
                 />
                 <p
                   className={`${
-                    likedByUser
-                      ? 'text-[#1598CC]'
-                      : 'group-hover:text-[#1598CC] text-[#A6A6A6]'
+                    likedByUser ? 'text-[#1598CC]' : 'text-[#A6A6A6]'
                   } border-none font-bold  w-fit p-0`}
                 >
                   Membantu

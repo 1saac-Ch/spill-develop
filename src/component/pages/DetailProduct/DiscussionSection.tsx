@@ -1,5 +1,5 @@
 import ReviewCard from '@/component/detail/ReviewCard'
-import WriteDiscussion from '@/component/detail/WriteDiscussion'
+// import WriteDiscussion from '@/component/detail/WriteDiscussion'
 import WriteReview from '@/component/detail/WriteReview'
 
 import {
@@ -8,7 +8,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/component/elements/Tabs'
-import TabsInfluencerContent from './TabsInfluencerContent'
+// import TabsInfluencerContent from './TabsInfluencerContent'
 import useFetcher from '@/hooks/useFetcher'
 
 const DiscussionSection = ({ productId }: { productId: string }) => {
