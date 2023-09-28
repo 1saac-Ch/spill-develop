@@ -10,7 +10,7 @@ import MainHotReview from '@/component/main/MainHotReview'
 import MainFeature from '@/component/main/MainFeature'
 import MainBannerAds from '@/component/main/MainBannerAds'
 import MainArticles from '@/component/main/MainArticles'
-import MainContentReview from '@/component/main/MainContentReview'
+// import MainContentReview from '@/component/main/MainContentReview'
 import Button from '@/component/elements/Button/component'
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import Alert from '@/component/alert'
@@ -133,7 +133,7 @@ const Home = ({
       <MainFeature />
       <MainBannerAds />
       <MainArticles artikel={article} />
-      <MainContentReview contentReview={data.selection_product} />
+      {/* <MainContentReview contentReview={data.selection_product} /> */}
 
       {withSuccess ? (
         <Alert
