@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import styles from './styles.module.scss'
 import LayoutFooter from '../LayoutFooter'
 import LayoutRekomendationFooter from '../LayoutRekomendationFooter'
 import useFetcher from '@/hooks/useFetcher'
+import { searchContext } from '../LayoutCatalogue'
 
 import dynamic from 'next/dynamic'
 
@@ -19,6 +20,8 @@ type MainLayoutProps = {
 }
 
 const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
+  const [openSearch, setOpenSearch] = useState(false)
+
   const { data } = useFetcher<{
     data: { selection_product: Product[] }
   }>('/home/user', false, {
@@ -27,15 +30,17 @@ const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
 
   return (
     <React.Fragment>
-      <div className={cn(styles.mainLayout, 'backdrop-container')}>
-        <LayoutNavbar
-          normal={isNormal}
-          selectionProduct={data?.data.selection_product ?? []}
-        />
-        {children}
-        <LayoutRekomendationFooter />
-        <LayoutFooter />
-      </div>
+      <searchContext.Provider value={{ openSearch, setOpenSearch }}>
+        <div className={cn(styles.mainLayout, 'backdrop-container')}>
+          <LayoutNavbar
+            normal={isNormal}
+            selectionProduct={data?.data.selection_product ?? []}
+          />
+          {children}
+          <LayoutRekomendationFooter />
+          <LayoutFooter />
+        </div>
+      </searchContext.Provider>
     </React.Fragment>
   )
 }

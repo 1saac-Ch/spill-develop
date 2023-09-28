@@ -1,4 +1,4 @@
-import ProductCard from '@/component/catalogue/ProductCard'
+// import ProductCard from '@/component/catalogue/ProductCard'
 import Button from '@/component/elements/Button/component'
 import RobotNotFound from '@/assets/images/robot.png'
 
@@ -47,7 +47,7 @@ const NotFoundProduct = () => {
       <div className="space-y-6">
         <h1 className="text-title-lg font-bold">Rekomendasi</h1>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           {Array(4)
             .fill(0)
             .map((_, i) => (
@@ -63,7 +63,7 @@ const NotFoundProduct = () => {
                 maxPrize={1200000}
               />
             ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )

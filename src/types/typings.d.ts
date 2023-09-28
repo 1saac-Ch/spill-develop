@@ -51,6 +51,15 @@ type Product = {
   images: string
   rating: number
   review_count: number
+  description: string
+}
+
+type Affiliate = {
+  id: string
+  affiliate_id: string
+  productId: string
+  affiliate_link: string
+  ecommerce_name: 'Tokopedia' | 'Shopee' | 'Lazada' | 'Bukalapak'
 }
 
 type Reply = {

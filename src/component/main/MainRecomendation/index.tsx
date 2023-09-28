@@ -67,7 +67,7 @@ const MainRecomendationProduct = () => {
                 <ProductCard
                   id="1"
                   key={i}
-                  image={ComputerImage}
+                  image={'/computer.jpg'}
                   title="Sony VM-1000x Wireless Headphone Bluetooth"
                   review={32}
                   rate={4.8}

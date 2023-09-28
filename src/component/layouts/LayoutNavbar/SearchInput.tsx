@@ -10,6 +10,8 @@ type Props = {}
 export default function SearchInput({}: Props) {
   const { openSearch, setOpenSearch } = useContext(searchContext)
 
+  console.log({ setOpenSearch })
+
   const router = useRouter()
 
   const parentRef = useRef<HTMLDivElement>(null)

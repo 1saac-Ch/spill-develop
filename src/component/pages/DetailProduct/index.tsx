@@ -7,7 +7,7 @@ import formatCurrency from '@/utils/formatCurrency'
 
 import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
 import DiscussionSection from './DiscussionSection'
-import MainRecomendationProduct from '@/component/main/MainRecomendation'
+// import MainRecomendationProduct from '@/component/main/MainRecomendation'
 import { useRouter } from 'next/router'
 import RobotNotFound from '@/assets/images/robot.png'
 
@@ -19,6 +19,13 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import Image from 'next/image'
 import Button from '@/component/elements/Button/component'
 import Link from 'next/link'
+
+const borderAffiliateComponent = {
+  Tokopedia: '#5FB74E ',
+  Shopee: '#EE4D2D',
+  Lazada: '#E31E52',
+  Bukalapak: '#F99B00',
+}
 
 function NotFound() {
   const router = useRouter()
@@ -56,12 +63,46 @@ function NotFound() {
   )
 }
 
+function AffiliateComponent({ ecommerce_name, affiliate_link }: Affiliate) {
+  const color = borderAffiliateComponent[ecommerce_name]
+  return (
+    <div
+      style={{
+        border: `1px solid ${color}`,
+      }}
+      className="cursor-pointer flex border-2 bg-[#FEEEEA] w-6 h-6 p-1 md:w-auto md:h-auto md:py-2 md:px-3 md:rounded-xl rounded-[6px] relative"
+    >
+      <div className="flex items-center gap-3 w-full h-full">
+        <img
+          src={`/icons/${ecommerce_name.toLowerCase()}.svg`}
+          alt="shopee"
+          width={24}
+          height={24}
+          className="md:w-7 md:h-7"
+        />
+        <div className="hidden xl:flex gap-2">
+          <span className="font-tebal">{ecommerce_name}</span>
+          <ArrowRightIcon color={color} />
+        </div>
+      </div>
+
+      <Link
+        className="absolute inset-0"
+        target="_blank"
+        href={affiliate_link}
+      />
+    </div>
+  )
+}
+
 const DetailProduct = ({
   product,
   notFound,
+  affiliate,
 }: {
   product: Product
   notFound: boolean
+  affiliate: Affiliate[]
 }) => {
   const [isSticky, setIsSticky] = useState(false)
   const [activeImageIndex, setActiveImageIndex] = useState(0)
@@ -246,11 +287,11 @@ const DetailProduct = ({
 
             <div className="flex flex-col flex-[1.2] gap-10 md:gap-6">
               <div className="flex flex-col md:flex-row gap-3 md:items-center text-abu2 text-small font-satoshi">
-                <div className="border-r-[1px] border-abu2 flex gap-3 pr-3">
+                <div className="border-abu2 flex gap-3 pr-3">
                   <RatingStar sizeIcon={19} rating={4} />
                   <p className="font-bold text-sm">{product.rating}</p>
                 </div>
-                <div className="flex gap-[8.8px]">
+                {/* <div className="flex gap-[8.8px]">
                   <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
                     0 Review
                   </p>
@@ -260,7 +301,7 @@ const DetailProduct = ({
                   <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">
                     0 Dilihat
                   </p>
-                </div>
+                </div> */}
               </div>
               <div className="flex flex-col gap-2">
                 <div className="text-title-lg md:text-headline-sm font-bold font-satoshi">
@@ -283,16 +324,13 @@ const DetailProduct = ({
                 </p>
               </div>
               <p className="text-body-lg md:text-title-md">
-                {'LOREMMMMMMMMMMM'}
+                {product.description}
               </p>
-              <button className="font-tebal text-blue-50 w-fit">
-                Lihat detail
-              </button>
             </div>
           </div>
         </div>
         <DiscussionSection productId={product.product_id} />
-        <MainRecomendationProduct />
+        {/* <MainRecomendationProduct /> */}
 
         {/* FOOTER */}
         <div
@@ -352,65 +390,9 @@ const DetailProduct = ({
                 :
               </p>
               <div className="flex gap-3 md:gap-5">
-                <div className="cursor-pointer flex border-2 border-[#EE4D2D] bg-[#FEEEEA] w-6 h-6 p-1 md:w-auto md:h-auto md:py-2 md:px-3 md:rounded-xl rounded-[6px]">
-                  <div className="flex items-center gap-3 w-full h-full">
-                    <img
-                      src="/icons/shopee.svg"
-                      alt="shopee"
-                      width={24}
-                      height={24}
-                      className="md:w-7 md:h-7"
-                    />
-                    <div className="hidden xl:flex gap-2">
-                      <span className="font-tebal">Shopee</span>
-                      <ArrowRightIcon color="#EE4D2D" />
-                    </div>
-                  </div>
-                </div>
-                <div className="cursor-pointer flex border-2 border-[#5FB74E] bg-[#FEEEEA] w-6 h-6 md:w-auto p-1 rounded-[6px] md:h-auto md:py-2 md:px-3 md:rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={'/icons/tokopedia.svg'}
-                      alt="tokopedia"
-                      width={24}
-                      height={24}
-                    />
-
-                    <div className="hidden xl:flex gap-2">
-                      <span className="font-tebal">Tokopedia</span>
-                      <ArrowRightIcon color="#5FB74E" />
-                    </div>
-                  </div>
-                </div>
-                <div className="cursor-pointer flex border-2 border-[#E31E52] bg-[#FEEEEA] w-6 h-6 md:w-auto p-1 rounded-[6px] md:h-auto md:py-2 md:px-3 md:rounded-xl">
-                  <div className="flex items-center gap-3 ">
-                    <img
-                      src={'/icons/bukalapak.svg'}
-                      alt="BukalapakLogo"
-                      width={24}
-                      height={24}
-                    />
-                    <div className="hidden xl:flex gap-2">
-                      <span className="font-tebal">Bukalapak</span>
-                      <ArrowRightIcon color="#E31E52" />
-                    </div>
-                  </div>
-                </div>
-                <div className="cursor-pointer flex border-2 border-[#F99B00] bg-[#FEEEEA] w-6 h-6 md:w-auto p-1 rounded-[6px] md:h-auto md:py-2 md:px-3 md:rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={'/icons/lazada.svg'}
-                      alt="lazada"
-                      width={24}
-                      height={24}
-                    />
-
-                    <div className="hidden xl:flex gap-2">
-                      <span className="font-tebal">Lazada</span>
-                      <ArrowRightIcon color="#F99B00" />
-                    </div>
-                  </div>
-                </div>
+                {affiliate.map((aff) => (
+                  <AffiliateComponent key={aff.affiliate_id} {...aff} />
+                ))}
               </div>
             </div>
           </div>

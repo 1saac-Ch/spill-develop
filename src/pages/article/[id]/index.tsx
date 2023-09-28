@@ -3,11 +3,16 @@ import MainLayout from '@/component/layouts/MainLayout'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import RelatedArticle from '@/component/article/RelatedArticle'
 import { useRouter } from 'next/router'
+
+import RobotNotFound from '@/assets/images/robot.png'
+
 import {
   GetStaticPaths,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next'
+import Image from 'next/image'
+import Button from '@/component/elements/Button/component'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const url = process.env.NEXT_PUBLIC_API_URL
@@ -18,7 +23,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     fallback: 'blocking',
     paths: allArticle.data.map((item) => {
-      console.log('i', item.article_id)
       return {
         params: {
           id: item.article_id,
@@ -31,14 +35,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const url = process.env.NEXT_PUBLIC_API_URL
 
-  const [article, relatedArticles] = await Promise.all([
+  const [_article, relatedArticles] = await Promise.all([
     fetch(`${url}/article/${context.params?.id}`).then((res) => res.json()),
     fetch(`${url}/article/related`).then((res) => res.json()),
   ])
 
+  const article: Article | null =
+    _article.message === 'Article tidak ditemukan' ? null : _article.data
+
   return {
     props: {
-      article: article.data as Article,
+      article,
       relatedArticles: relatedArticles.data as Article[],
     },
     revalidate: 604800,
@@ -47,8 +54,47 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
+const NotFoundArticle = () => {
+  const router = useRouter()
+
+  return (
+    <div className="flex flex-col gap-14">
+      <div className="flex flex-col md:flex-row items-center gap-10 py-6 px-10 bg-white rounded-[20px]">
+        <Image
+          src={RobotNotFound}
+          alt="robot-not-found"
+          className="w-[200px] h-[200px] object-cover flex-none"
+        />
+
+        <div className="flex flex-col gap-4 font-satoshi">
+          <h2 className="text-title-lg font-bold">
+            Halaman yang kamu tuju tidak ditemukan
+          </h2>
+
+          <div className="flex gap-4">
+            <Button
+              onClick={() => router.back()}
+              className="bg-pink rounded-xl text-label-lg text-white font-satoshi py-3 px-4 max-w-fit"
+            >
+              Kembali
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ArticleDetail({ article, relatedArticles }: Props) {
   const router = useRouter()
+
+  if (!article) {
+    return (
+      <div className="bg-background main-container">
+        <NotFoundArticle />
+      </div>
+    )
+  }
 
   return (
     <main className="bg-background">
@@ -72,33 +118,7 @@ export default function ArticleDetail({ article, relatedArticles }: Props) {
             <h1 className="text-title-lg font-bold font-satoshi">
               {article.title}
             </h1>
-            <p className="text-body-lg font-satoshi">
-              {article.description}
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro
-              libero tenetur fugiat suscipit ea eaque nemo nobis laudantium,
-              voluptas debitis corporis voluptatem optio amet reprehenderit
-              velit incidunt laboriosam reiciendis modi hic eum doloribus nisi
-              culpa ex! Inventore, expedita libero? Vel voluptatum minima
-              recusandae cupiditate. Quisquam laboriosam eum expedita excepturi
-              illo architecto ex quibusdam, atque, voluptates aperiam nemo odit.
-              Nisi impedit minus labore maiores laboriosam ut. Tenetur <br />
-              necessitatibus ipsum quia atque blanditiis magnam rerum porro
-              maiores id ratione sequi, odit, ea quibusdam eveniet asperiores,
-              molestias laborum? Ex aspernatur autem, at error nobis optio
-              consectetur porro labore recusandae quisquam unde quasi cum beatae
-              provident excepturi, in sit ipsam officiis consequatur aliquid
-              earum quas? Delectus blanditiis facilis ipsum, temporibus fuga, ab
-              sed quasi a esse neque minima quae! Eum sapiente minima odit
-              laborum dolorem alias amet itaque aperiam fugit cum totam quos
-              maiores quia, accusamus ab quod voluptatum? Tenetur similique
-              optio error expedita sapiente in nobis dolor aut. Nobis eaque, sit
-              voluptatem laborum corrupti officiis! Nesciunt excepturi suscipit
-              sed maxime at pariatur deserunt iusto quibusdam vero quaerat
-              placeat eos, sunt ea mollitia animi exercitationem fuga aperiam.
-              Ratione unde perferendis consectetur officia officiis. Quis
-              quaerat totam ab maxime iste nostrum, eveniet deserunt modi
-              quisquam!
-            </p>
+            <p className="text-body-lg font-satoshi">{article.description}</p>
           </div>
         </article>
 
