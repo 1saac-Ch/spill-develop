@@ -31,13 +31,15 @@ const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
     refetchOnWindowFocus: false,
   })
 
+  console.log('R', router.asPath)
+
   useEffect(() => {
     if (openSearch) {
       setOpenSearch(false)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.pathname])
+  }, [router.asPath])
 
   return (
     <React.Fragment>

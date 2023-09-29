@@ -188,7 +188,7 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
   return (
     <>
       <Dialog open={modalOpen} onOpenChange={openChange}>
-        <DialogContent className="flex flex-col w-[80vw] lg:min-w-[800px] p-0 translate-x-[k] translate-y-[k]">
+        <DialogContent className="flex flex-col w-[0px] md:w-[0px] lg:w-[0px] p-0 translate-x-[k] translate-y-[k] bg-blue-200">
           <button
             disabled={activeIndex === 0}
             onClick={() => setActiveIndex((prev) => prev && prev - 1)}
@@ -213,7 +213,7 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
           <img
             src={mediaReview[activeIndex ?? 0]}
             alt={`img-${activeIndex}`}
-            className="w-full object-cover translate-x-[-50%] translate-y-[-50%]"
+            className="min-w-[80vw] md:min-w-[400px] lg:min-w-[800px] flex-none object-cover translate-x-[-50%] translate-y-[-50%] z-[10]"
           />
 
           <button

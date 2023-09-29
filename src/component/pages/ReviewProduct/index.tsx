@@ -69,6 +69,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
   }
 
   const handleFileInput = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
     const selectedFile = event.target.files && event.target.files[0]
     if (selectedFile) {
       const fileSize = selectedFile?.size / 1000000 // MB
@@ -122,13 +123,16 @@ const ReviewProduct = ({ product, notFound }: Props) => {
     }
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/review/${id}`, {
-        method: 'POST',
-        headers: {
-          //     Authorization: `Bearer ${session.accessToken}`,
-        },
-        body: formData,
-      })
+      const resp = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/review/${id}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+          body: formData,
+        }
+      )
 
       let url = '/'
       if (fromHome) {
@@ -137,8 +141,13 @@ const ReviewProduct = ({ product, notFound }: Props) => {
         url += 'detail-product/' + id
       }
 
-      router.push(url)
+      if (resp.ok) {
+        router.push(url)
+      } else {
+        throw new Error()
+      }
     } catch (error) {
+      setErrorMsg('Gagal mengirm review. Coba lagi nanti')
     } finally {
       setIsSubmitting(false)
     }
@@ -229,7 +238,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
             />
             {errors['deskripsi'] ? (
               <p className={'text-pink text-label-md font-satoshi'}>
-                Tolong isi field ini
+                {errors['deskripsi'].message || 'Tolong isi field ini'}
               </p>
             ) : null}
             <div className=" flex flex-col justify-center w-full">
@@ -244,6 +253,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
                 <p className="text-label-md font-satoshi">
                   Tarik dan Lepaskan kesini atau{' '}
                   <button
+                    type="button"
                     disabled={files.length === 3}
                     className="underline font-[900] cursor-pointer disabled:cursor-not-allowed"
                     onClick={handleFileClick}
@@ -304,7 +314,9 @@ const ReviewProduct = ({ product, notFound }: Props) => {
                 })}
               </div>
             </div>
-            <Button type="submit">Kirim Review</Button>
+            <Button className="disabled:opacity-80" type="submit">
+              {isSubmitting ? 'Mengirim review...' : 'Kirim Review'}
+            </Button>
           </fieldset>
         </form>
       </div>

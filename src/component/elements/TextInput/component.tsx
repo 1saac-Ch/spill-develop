@@ -64,9 +64,14 @@ function Component({
         return (
           <div className={cn(styles.wrapper, className)}>
             <textarea
+              className="disabled:cursor-not-allowed disabled:text-muted-foreground"
               required={required}
               {...register(name, {
                 pattern,
+                maxLength: {
+                  message: 'Tidak lebih dari 255 karakter !',
+                  value: 255,
+                },
               })}
               rows={3}
               placeholder={placeholder}

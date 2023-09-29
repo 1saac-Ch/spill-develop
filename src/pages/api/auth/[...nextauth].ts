@@ -56,10 +56,15 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/login',
     newUser: '/daftar',
+  },
+
+  session: {
+    maxAge: 1 * 24 * 60 * 60,
   },
   callbacks: {
     async jwt({ user, token }) {

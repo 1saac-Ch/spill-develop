@@ -1,0 +1,38 @@
+export const HotReviews = [
+  {
+    id: 'cf733fa8-06fa-43d7-9b69-a7bc127e4dfc',
+    userId: '0e8ebece-314d-429a-a5cf-f4c20b1037e1',
+    productId: 'PD0001',
+    title: 'ini produk title lagi',
+    rating: 2.34,
+    description: 'lagi lagi lagi',
+    media: '[]',
+    likes: 1,
+    createdAt: '2023-09-13T12:43:30.000Z',
+    updatedAt: '2023-09-19T17:12:54.000Z',
+    user: {
+      fullname: 'testingspill1',
+      username: 'spilluser423',
+      email: null,
+      no_hp: '622812345631',
+    },
+  },
+  {
+    id: '0eeefe45-5e5c-49b6-9512-21094e443fcc',
+    userId: '1ecc614f-1570-40ac-9d04-964de363846e',
+    productId: 'PD00000002',
+    title: 'fold series was insane',
+    rating: 2.3,
+    description: 'this phone have a lot multiple zoom',
+    media: '[]',
+    likes: 0,
+    createdAt: '2023-09-26T07:26:16.000Z',
+    updatedAt: '2023-09-26T07:26:16.000Z',
+    user: {
+      fullname: 'bukanspill',
+      username: 'spilluser423',
+      email: null,
+      no_hp: '6228987654321',
+    },
+  },
+]
