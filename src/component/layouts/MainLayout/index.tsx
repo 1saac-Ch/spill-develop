@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import LayoutFooter from '../LayoutFooter'
 import LayoutRekomendationFooter from '../LayoutRekomendationFooter'
@@ -13,6 +13,7 @@ const LayoutNavbar = dynamic(() => import('../LayoutNavbar'), {
 })
 
 import { cn } from '@/utils/classname'
+import { useRouter } from 'next/router'
 
 type MainLayoutProps = {
   children: ReactNode
@@ -22,11 +23,21 @@ type MainLayoutProps = {
 const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
   const [openSearch, setOpenSearch] = useState(false)
 
+  const router = useRouter()
+
   const { data } = useFetcher<{
     data: { selection_product: Product[] }
   }>('/home/user', false, {
     refetchOnWindowFocus: false,
   })
+
+  useEffect(() => {
+    if (openSearch) {
+      setOpenSearch(false)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.pathname])
 
   return (
     <React.Fragment>

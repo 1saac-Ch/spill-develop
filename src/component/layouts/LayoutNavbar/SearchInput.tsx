@@ -1,27 +1,26 @@
 import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import { useRouter } from 'next/router'
-import { FormEvent, useContext, useRef } from 'react'
+import { FormEvent, useContext, useRef, useState } from 'react'
 import Backdrop from '../LayoutCatalogue/Backdrop'
 import { createPortal } from 'react-dom'
 import { searchContext } from '../LayoutCatalogue'
+import RecomendationList from '@/component/RecomendationList'
 
 type Props = {}
 
 export default function SearchInput({}: Props) {
   const { openSearch, setOpenSearch } = useContext(searchContext)
 
-  console.log({ setOpenSearch })
-
   const router = useRouter()
 
   const parentRef = useRef<HTMLDivElement>(null)
-  const listContainerRef = useRef<HTMLDivElement>(null)
+
+  const [searchVal, setSearchVal] = useState('')
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const element = e.currentTarget.querySelector('#search') as HTMLInputElement
     const searchParam = new URLSearchParams({
-      q: element.value,
+      q: searchVal,
     })
 
     router.push(`/catalogue-product?${searchParam.toString()}`)
@@ -38,6 +37,8 @@ export default function SearchInput({}: Props) {
             placeholder="Cari produk disini"
             id="search"
             onFocus={() => setOpenSearch?.(true)}
+            value={searchVal}
+            onChange={(e) => setSearchVal(e.target.value)}
             className="w-full border-none  outline-none bg-[#E8FBF5] text-[14px] leading-low"
           />
           <button>
@@ -45,15 +46,13 @@ export default function SearchInput({}: Props) {
           </button>
         </form>
         {openSearch ? (
-          <div
-            ref={listContainerRef}
-            className="w-full absolute z-[10] top-[64px] rounded-xl shadow-md bg-white overflow-hidden "
-          >
-            <h3 className="p-4 font-bold text-label-lg">
+          <div className="w-full absolute z-[10] top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
+            <RecomendationList searchVal={searchVal} />
+            {/* <h3 className="p-4 font-bold text-label-lg">
               <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
             </h3>
             <SearchRecomendationItem value={'Scarlet beauty'} />
-            <SearchRecomendationItem value={'Scarlet beauty'} />
+            <SearchRecomendationItem value={'Scarlet beauty'} /> */}
           </div>
         ) : null}
 

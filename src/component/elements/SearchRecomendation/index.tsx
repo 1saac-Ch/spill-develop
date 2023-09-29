@@ -1,16 +1,26 @@
 import { cn } from '@/utils/classname'
 import Link from 'next/link'
 
+type Props = {
+  className?: string
+  value?: string
+  directToDetail?: boolean
+  id?: number | string
+}
+
 const SearchRecomendationItem = ({
   className,
   value = 'Scarlet beauty pelembap',
-}: {
-  className?: string
-  value?: string
-}) => {
+  directToDetail = false,
+  id,
+}: Props) => {
+  let href = `/catalogue-product?q=${value}`
+  if (directToDetail) {
+    href = `/detail-product/${id!}`
+  }
   return (
     <Link
-      href={`/catalogue-product?q=${value}`}
+      href={href}
       className={cn(
         'p-4 font-satoshi cursor-pointer hover:bg-accent text-label-lg flex items-center',
         className

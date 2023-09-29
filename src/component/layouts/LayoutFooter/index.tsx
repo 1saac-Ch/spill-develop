@@ -50,7 +50,7 @@ const LayoutFooter = () => {
               </div>
             </div>
           ))}
-          <div className={styles.sendEmailStack}>
+          {/* <div className={styles.sendEmailStack}>
             <div>
               <div className={styles.textWriteEmail}>
                 Tulis Emailmu untuk dapatkan Informasi Terbaru
@@ -67,7 +67,7 @@ const LayoutFooter = () => {
                 </Button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={styles.spillRight}>
           <div className={styles.logo}>

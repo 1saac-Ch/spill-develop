@@ -12,11 +12,10 @@ import MainBannerAds from '@/component/main/MainBannerAds'
 import MainArticles from '@/component/main/MainArticles'
 // import MainContentReview from '@/component/main/MainContentReview'
 import Button from '@/component/elements/Button/component'
-import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import Alert from '@/component/alert'
 import Link from 'next/link'
-import { useDebounce } from '@/hooks/useDebounce'
 import useClickOutside from '@/hooks/useClickOutside'
+import RecomendationList from '@/component/RecomendationList'
 
 const Home = ({
   data,
@@ -40,17 +39,6 @@ const Home = ({
   }
 
   const { withSuccess } = router.query
-
-  const keys = ['Risol goreng', 'Icikiwir asik', 'Laptop baru']
-
-  const debouncedKeyword = useDebounce(searchVal, 800)
-
-  useEffect(() => {
-    // TODO : Search recomendation product from API !
-    console.log({
-      debouncedKeyword,
-    })
-  }, [debouncedKeyword])
 
   useClickOutside(searchContainerRef, () => {
     if (openRecomendation) {
@@ -99,23 +87,7 @@ const Home = ({
               </form>
               {openRecomendation && (
                 <div className="absolute top-[66px] w-full rounded-xl shadow-md bg-white z-[5] overflow-hidden">
-                  {!searchVal ? (
-                    <>
-                      <h3 className="p-4 font-bold text-label-lg">
-                        <span className="mr-2">🔥</span>Produk Paling Banyak
-                        Dicari:
-                      </h3>
-                      <SearchRecomendationItem className="text-left text-sm font-normal text-neutral-900" />
-                      <SearchRecomendationItem className="text-left text-sm font-normal text-neutral-900" />
-                    </>
-                  ) : (
-                    <>
-                      <SearchRecomendationItem
-                        value={searchVal}
-                        className="text-left text-sm font-normal text-neutral-900"
-                      />
-                    </>
-                  )}
+                  <RecomendationList searchVal={searchVal} />
                 </div>
               )}
             </div>

@@ -110,12 +110,6 @@ const DetailProduct = ({
   const router = useRouter()
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
   const handleScroll = () => {
     if (window.pageYOffset > 0) {
       setIsSticky(true)
@@ -123,6 +117,12 @@ const DetailProduct = ({
       setIsSticky(false)
     }
   }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
 
   const ProductImages = product.images
 

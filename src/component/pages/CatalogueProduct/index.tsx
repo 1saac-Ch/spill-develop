@@ -1,5 +1,5 @@
 import { ReactElement, JSXElementConstructor, useState } from 'react'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 
@@ -19,9 +19,9 @@ import { useRouter } from 'next/router'
 import { useMediaQuery } from '@mui/material'
 import useFetcher from '@/hooks/useFetcher'
 
-const BottomSheet = dynamic(() => import('@/component/ui/BottomSheet'), {
-  loading: () => <p>Loading...</p>,
-})
+// const BottomSheet = dynamic(() => import('@/component/ui/BottomSheet'), {
+//   loading: () => <p>Loading...</p>,
+// })
 
 const SortOptions = [
   'Paling Sesuai',
@@ -96,11 +96,11 @@ const CatalogueProduct = () => {
                     ))}
                   </SelectContent>
                 </Select>
-                {!isLarge ? (
+                {/* {!isLarge ? (
                   <BottomSheet>
                     <FilterProduct inMobileDevice />
                   </BottomSheet>
-                ) : null}
+                ) : null} */}
               </div>
             </div>
 

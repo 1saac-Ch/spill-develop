@@ -1,48 +1,8 @@
-import Image from 'next/image'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { useState } from 'react'
-import Link from 'next/link'
-import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import { useDebounce } from '@/hooks/useDebounce'
-
 import useFetcher from '@/hooks/useFetcher'
+import SearchRecomendationItem from '../elements/SearchRecomendation'
+
 import { RecomendationProduct } from '@/constant/recomendation-product'
-
-export default function SearchMobile({ onClose }: { onClose: () => void }) {
-  const [search, setSearch] = useState('')
-
-  return (
-    <div className="fixed z-[99999] w-screen h-screen inset-0 bg-white md:hidden p-5">
-      <nav className="flex items-center justify-between">
-        <button onClick={onClose}>
-          <ArrowBackIcon className="w-6 h-6 text-muted-foreground" />
-        </button>
-        <div className="flex-1 gap-2 flex items-center py-2 px-4 justify-between">
-          <input
-            className="placeholder:text-label-lg flex-1 outline-none"
-            placeholder="Find Your Product Here"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-
-          <Link href={`/catalogue-product?q=${search}`} className="w-5 h-5">
-            <Image
-              src={'/icons/search.svg'}
-              width={0}
-              height={0}
-              alt="search"
-              className="w-full h-full object-contain"
-            />
-          </Link>
-        </div>
-      </nav>
-
-      <div className="flex-col">
-        <RecomendationList searchVal={search} />
-      </div>
-    </div>
-  )
-}
 
 function RecomendationList({ searchVal }: { searchVal: string }) {
   const debouncedKeyword = useDebounce(searchVal, 800)
@@ -60,17 +20,16 @@ function RecomendationList({ searchVal }: { searchVal: string }) {
   if (!searchVal) {
     content = (
       <>
-        <h1 className="flex p-4 items-center gap-2 self-stretch text-label-lg font-bold ">
-          🔥 Produk Paling Banyak Dicari:
-        </h1>
-
+        <h3 className="p-4 font-bold text-label-lg">
+          <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
+        </h3>
         {RecomendationProduct.map((product) => (
           <SearchRecomendationItem
-            directToDetail
-            value={product.product_title}
-            id={product.product_id}
             key={product.id}
-            className="p-4 flex items-center self-stretch gap-2 hover:bg-white"
+            value={product.product_title}
+            directToDetail
+            id={product.product_id}
+            className="text-left text-sm font-normal text-neutral-900"
           />
         ))}
       </>
@@ -106,11 +65,11 @@ function RecomendationList({ searchVal }: { searchVal: string }) {
       <>
         {data?.data.map((searchItem) => (
           <SearchRecomendationItem
-            value={searchItem.product_title}
             key={searchItem.id}
+            value={searchItem.product_title}
             directToDetail
-            id={searchItem.product_id}
-            className="hover:bg-white p-4 flex items-center self-stretch gap-2"
+            id={searchItem.id}
+            className="text-left text-sm font-normal text-neutral-900"
           />
         ))}
       </>
@@ -119,3 +78,5 @@ function RecomendationList({ searchVal }: { searchVal: string }) {
 
   return content
 }
+
+export default RecomendationList
