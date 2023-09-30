@@ -89,4 +89,50 @@ export const HotReviews = [
       no_hp: '628123456789',
     },
   },
+  {
+    id: '6b392ec1-d184-4c98-b6b9-86461464f793',
+    userId: 'e1d8056d-fc89-480b-b8ea-d282007273ba',
+    product: {
+      id: 'PD00000003',
+      images:
+        '["https://images.firstpost.com/fpimages/1200x800/fixed/jpg/2020/09/Sony-WH-1000XM4-type-c-min.jpg"]',
+    },
+    title: 'Mudah dibawa kemana sja',
+    rating: 5,
+    description:
+      'Headset ini Mudah dibawa kemana sja. Pokoknya langsung gas checkout !!!',
+    media: '[]',
+    likes: 0,
+    createdAt: '2023-09-29T05:19:20.000Z',
+    updatedAt: '2023-09-29T05:19:20.000Z',
+    user: {
+      fullname: 'John Aldo',
+      username: 'johnaldo',
+      email: null,
+      no_hp: '628987654321',
+    },
+  },
+  {
+    id: 'd1c4c7e9-11fe-4c81-925a-b1b3d6e1c72b',
+    userId: 'e1d8056d-fc89-480b-b8ea-d282007273ba',
+    product: {
+      id: 'PD00000003',
+      images:
+        '["https://images.firstpost.com/fpimages/1200x800/fixed/jpg/2020/09/Sony-WH-1000XM4-type-c-min.jpg"]',
+    },
+    title: 'Tampilan yang efisien',
+    rating: 5,
+    description:
+      'Mudah dibawa kemana saja menjadikannya efektif dan mudah digunakan. Harus coba',
+    media: '[]',
+    likes: 0,
+    createdAt: '2023-09-29T05:17:48.000Z',
+    updatedAt: '2023-09-29T05:17:48.000Z',
+    user: {
+      fullname: 'John Aldo',
+      username: 'johnaldo',
+      email: null,
+      no_hp: '628987654321',
+    },
+  },
 ] as unknown

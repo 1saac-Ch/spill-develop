@@ -110,19 +110,18 @@ const DetailProduct = ({
   const router = useRouter()
 
   useEffect(() => {
-  const handleScroll = () => {
-    if (window.pageYOffset > 0) {
-      setIsSticky(true)
-    } else {
-      setIsSticky(false)
+    const handleScroll = () => {
+      if (window.pageYOffset > 0) {
+        setIsSticky(true)
+      } else {
+        setIsSticky(false)
+      }
     }
-  }
     window.addEventListener('scroll', handleScroll)
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
 
   const ProductImages = product.images
 
@@ -167,58 +166,59 @@ const DetailProduct = ({
             </button>
           </div>
           <div className="flex flex-col md:flex-row gap-8 md:gap-10 p-6 md:p-9 bg-white rounded-[20px] rounded-b-xl shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-            <Dialog>
-              <DialogTrigger asChild>
-                <div className="flex flex-col gap-[10px]">
-                  {Images.slice(0, 1).map((image, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="cursor-pointer h-max rounded-[8.16px] overflow-hidden "
-                      >
-                        <img
-                          src={image}
-                          alt="Picture of the author depdep"
-                          className="hover:scale-105 ease-in duration-300 object-cover w-full h-full aspect-square md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] opacity-90"
-                        />
-                      </div>
-                    )
-                  })}
-                  <div className="flex gap-[10px] justify-between">
-                    {Images.slice(1, 4).map((image, index) => {
-                      return (
-                        <div
-                          key={index + 1}
-                          className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
-                        >
-                          <img
-                            src={image}
-                            width={88}
-                            height={3.1}
-                            alt="Picture of the author depdep"
-                            className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
-                          />
-                        </div>
-                      )
-                    })}
-                    {Images.slice(4, 5).map((image, index) => {
-                      return (
-                        <div
-                          key={index + 1}
-                          className=" cursor-pointer md:m-0 h-max overflow-hidden rounded-xl"
-                        >
-                          <img
-                            src={image}
-                            width={88}
-                            height={3.1}
-                            alt="Picture of the author depdep"
-                            className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
-                          />
-                        </div>
-                      )
-                    })}
+            <div className="flex flex-col gap-[10px]">
+              {Images.slice(0, 1).map((image, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="h-max rounded-[8.16px] overflow-hidden "
+                  >
+                    <img
+                      src={image}
+                      alt="Picture of the author depdep"
+                      className="object-cover w-full h-full aspect-square md:w-96 md:h-96 lg:w-[400px] lg:h-[400px]"
+                    />
                   </div>
-                </div>
+                )
+              })}
+              <div className="flex gap-[10px] justify-between">
+                {Images.slice(1, 4).map((image, index) => {
+                  return (
+                    <div
+                      key={index + 1}
+                      className="md:m-0 h-max overflow-hidden rounded-xl"
+                    >
+                      <img
+                        src={image}
+                        width={88}
+                        height={3.1}
+                        alt="Picture of the author depdep"
+                        className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
+                      />
+                    </div>
+                  )
+                })}
+                {Images.slice(4, 5).map((image, index) => {
+                  return (
+                    <div
+                      key={index + 1}
+                      className="md:m-0 h-max overflow-hidden rounded-xl"
+                    >
+                      <img
+                        src={image}
+                        width={88}
+                        height={3.1}
+                        alt="Picture of the author depdep"
+                        className="hover:scale-105 ease-in duration-300 object-cover w-[88px] h-[88px] opacity-90"
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+            {/* <Dialog>
+              <DialogTrigger asChild>
+               
               </DialogTrigger>
               <DialogContent className="w-[80vw] h-[600px] overflow-y-scroll max-w-[1220px] mx-auto bg-white flex flex-col md:flex-row gap-10 p-10 rounded-[20px]">
                 <div className="flex items-center justify-center gap-5 flex-1">
@@ -283,7 +283,7 @@ const DetailProduct = ({
                   </div>
                 </div>
               </DialogContent>
-            </Dialog>
+            </Dialog> */}
 
             <div className="flex flex-col flex-[1.2] gap-10 md:gap-6">
               <div className="flex flex-col md:flex-row gap-3 md:items-center text-abu2 text-small font-satoshi">

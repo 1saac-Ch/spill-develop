@@ -16,7 +16,7 @@ import ProductCard from '@/component/catalogue/ProductCard'
 import NotFoundProduct from './not-found'
 // import LayoutRekomendationFooter from '@/component/layouts/LayoutRekomendationFooter'
 import { useRouter } from 'next/router'
-import { useMediaQuery } from '@mui/material'
+// import { useMediaQuery } from '@mui/material'
 import useFetcher from '@/hooks/useFetcher'
 
 // const BottomSheet = dynamic(() => import('@/component/ui/BottomSheet'), {
@@ -33,7 +33,7 @@ const SortOptions = [
 
 const CatalogueProduct = () => {
   const [activeOption, setActiveOption] = useState(SortOptions[0])
-  const isLarge = useMediaQuery('(min-width: 1024px)')
+  // const isLarge = useMediaQuery('(min-width: 1024px)')
 
   const router = useRouter()
 
@@ -68,12 +68,12 @@ const CatalogueProduct = () => {
           <div className="flex flex-col gap-10 md:gap-6">
             <div className="flex gap-6 md:gap-0 flex-col md:flex-row md:items-center justify-between ">
               <h4 className="text-title-sm md:text-title-md">
-                Menampilkan <strong>count</strong> untuk kata kunci{' '}
+                Menampilkan <strong>{products.length}</strong> untuk kata kunci{' '}
                 <strong>{keyword}</strong>
               </h4>
 
               <div className="flex justify-end items-center gap-4 md:gap-6">
-                <label className=" text-title-md font-[900]">Urutkan</label>
+                {/* <label className=" text-title-md font-[900]">Urutkan</label>
 
                 <Select
                   disabled={true}
@@ -95,7 +95,7 @@ const CatalogueProduct = () => {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
                 {/* {!isLarge ? (
                   <BottomSheet>
                     <FilterProduct inMobileDevice />

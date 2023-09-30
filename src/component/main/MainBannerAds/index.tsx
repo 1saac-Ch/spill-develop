@@ -61,12 +61,12 @@ const MainBannerAds = () => {
     }
   }
   return (
-    <div className={styles.bannerAds}>
-      <div className={styles.maxContainer}>
+    <div className={'main-container'}>
+      <div>
         <div
           className={styles.sliderAds}
-          onMouseEnter={() => setIsHoverBannerAds(true)}
-          onMouseLeave={() => setIsHoverBannerAds(false)}
+          // onMouseEnter={() => setIsHoverBannerAds(true)}
+          // onMouseLeave={() => setIsHoverBannerAds(false)}
         >
           {isHoverBannerAds && (
             <button
@@ -84,7 +84,9 @@ const MainBannerAds = () => {
               />
             </button>
           )}
-          <SwitchTransition mode="out-in">
+          <Image src={Promo} alt="banner" className="block" />
+          {/* <Banner /> */}
+          {/* <SwitchTransition mode="out-in">
             <CSSTransition
               key={activeSlide}
               classNames={{
@@ -96,17 +98,9 @@ const MainBannerAds = () => {
               }}
               timeout={500}
             >
-              <>
-                <Image
-                  src={Promo}
-                  layout="responsive"
-                  alt="test"
-                  className="block xl:hidden"
-                />
-                <Banner />
-              </>
+              <></>
             </CSSTransition>
-          </SwitchTransition>
+          </SwitchTransition> */}
           {isHoverBannerAds && (
             <button
               className={styles.next}
@@ -124,7 +118,7 @@ const MainBannerAds = () => {
             </button>
           )}
         </div>
-        <div className={styles.indicator}>
+        {/* <div className={styles.indicator}>
           {hotriview.map((item, index: number) => (
             <button
               key={index}
@@ -134,7 +128,7 @@ const MainBannerAds = () => {
               onClick={() => handleChangeSlide(index)}
             />
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )
