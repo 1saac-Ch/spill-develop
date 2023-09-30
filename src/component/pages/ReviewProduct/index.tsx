@@ -93,14 +93,6 @@ const ReviewProduct = ({ product, notFound }: Props) => {
     setRatingValue(val)
   }
 
-  const handleMouseEnter = (val: number) => {
-    setHoverValue(val)
-  }
-
-  const handleMouseLeave = () => {
-    setHoverValue(0)
-  }
-
   const handleRemoveFile = (name: string) => {
     setFiles((prev) => prev.filter((file) => file.name !== name))
   }
@@ -163,11 +155,11 @@ const ReviewProduct = ({ product, notFound }: Props) => {
   const image = JSON.parse(product.images)[0]
 
   return (
-    <div>
-      <div className="container mx-auto p-5 flex flex-col gap-10">
+    <div className="main-container">
+      <div className="w-full flex flex-col gap-10">
         <button onClick={() => router.back()}>
-          <div className=" cursor-pointer flex gap-2 items-center w-max pr-2">
-            <KeyboardBackspaceIcon fontSize="large" />
+          <div className=" cursor-pointer flex gap-2 items-center w-max pr-2 text-headline-sm">
+            <KeyboardBackspaceIcon fontSize="inherit" />
             <h1 className="font-bold text-2xl">Review Produk</h1>
           </div>
         </button>
@@ -175,11 +167,11 @@ const ReviewProduct = ({ product, notFound }: Props) => {
           onSubmit={handleSubmit(handleSubmitReview)}
           className="flex flex-col md:flex-row gap-8 bg-white"
         >
-          <div className="m-5 md:m-0 h-max rounded-xl overflow-hidden">
+          <div className="rounded-xl overflow-hidden md:w-[400px]">
             <img
               src={image}
               alt="Picture of the author depdep"
-              className="hover:scale-105 ease-in duration-300 object-cover w-96 h-96 opacity-90"
+              className="hover:scale-105 ease-in duration-300 object-cover w-[350px] h-[350px] mx-auto rounded-xl md:w-full md:h-auto md:aspect-square"
             />
           </div>
           <fieldset
@@ -191,15 +183,13 @@ const ReviewProduct = ({ product, notFound }: Props) => {
             </h1>
 
             <div className="flex flex-col gap-2">
-              <h3>Rating</h3>
+              <h3 className="text-label-lg">Rating</h3>
               <div className="flex gap-3 justify-between md:justify-start">
                 {new Array(5).fill('').map((_, index) => (
                   <div
                     key={index}
                     className="cursor-pointer"
                     onClick={() => handleClick(index + 1)}
-                    onMouseEnter={() => handleMouseEnter(index + 1)}
-                    onMouseLeave={handleMouseLeave}
                   >
                     <StarIcon
                       color={
@@ -219,6 +209,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
               placeholder="Tuliskan Judul Review"
               id="title-review"
               name="judulReview"
+              className="py-3 px-4 text-label-lg"
               required
               register={register}
             />
@@ -233,6 +224,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
               placeholder="Tuliskan deskripsi"
               id="description-review"
               name="deskripsi"
+              className="py-3 px-4 text-label-lg"
               required
               register={register}
             />

@@ -31,7 +31,6 @@ const MainLayout = ({ children, isNormal }: MainLayoutProps) => {
     refetchOnWindowFocus: false,
   })
 
-  console.log('R', router.asPath)
 
   useEffect(() => {
     if (openSearch) {

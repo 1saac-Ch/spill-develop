@@ -39,6 +39,21 @@ type Hotriview = {
   products: Product[]
 }
 
+type TempHotReview = {
+  id: string
+  product: Pick<Product, 'id' | 'images'>
+  title: string
+  media: string
+  likes: number
+  rating: string
+  description: string
+  user: {
+    fullname: string
+    username: string
+    no_hp: string
+  }
+}
+
 type Product = {
   id: number
   product_id: string

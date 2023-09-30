@@ -1,26 +1,34 @@
 export const HotReviews = [
   {
-    id: 'cf733fa8-06fa-43d7-9b69-a7bc127e4dfc',
-    userId: '0e8ebece-314d-429a-a5cf-f4c20b1037e1',
-    productId: 'PD0001',
-    title: 'ini produk title lagi',
-    rating: 2.34,
-    description: 'lagi lagi lagi',
+    id: '9ab80e4f-f78b-4b0c-97bc-3cb80bfd9748',
+    userId: 'e1d8056d-fc89-480b-b8ea-d282007273ba',
+    product: {
+      id: 'PD0001',
+      images:
+        '["https://cdn.eraspace.com/media/catalog/product/i/p/iphone_13_mini_pink_1.jpg"]',
+    },
+    title: 'Layar yang cerah',
+    rating: 3,
+    description: 'Layarnya cerah dan bagus. Cocok untuk dibawa kemana saja !',
     media: '[]',
-    likes: 1,
-    createdAt: '2023-09-13T12:43:30.000Z',
-    updatedAt: '2023-09-19T17:12:54.000Z',
+    likes: 0,
+    createdAt: '2023-09-29T05:02:38.000Z',
+    updatedAt: '2023-09-29T05:02:38.000Z',
     user: {
-      fullname: 'testingspill1',
-      username: 'spilluser423',
+      fullname: 'John Aldo',
+      username: 'johnaldo',
       email: null,
-      no_hp: '622812345631',
+      no_hp: '628987654321',
     },
   },
   {
     id: '0eeefe45-5e5c-49b6-9512-21094e443fcc',
     userId: '1ecc614f-1570-40ac-9d04-964de363846e',
-    productId: 'PD00000002',
+    product: {
+      id: 'PD00000002',
+      images:
+        '["https://images.samsung.com/pk/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_mainsinglekv_mo.jpg"]',
+    },
     title: 'fold series was insane',
     rating: 2.3,
     description: 'this phone have a lot multiple zoom',
@@ -35,4 +43,50 @@ export const HotReviews = [
       no_hp: '6228987654321',
     },
   },
-]
+  {
+    id: 'RV00000001',
+    userId: '1000000001',
+    product: {
+      id: 'PD0001',
+      images:
+        '["https://cdn.eraspace.com/media/catalog/product/i/p/iphone_13_mini_pink_1.jpg"]',
+    },
+    title: 'Layar yang Cerah',
+    rating: 4.5,
+    description:
+      'Saya sangat menyukai iPhone 13 Mini. Layar Super Retina XDR-nya sangat cerah dan tajam.',
+    media: null,
+    likes: 1167,
+    createdAt: '2023-08-31T09:32:56.000Z',
+    updatedAt: '2023-09-29T05:03:14.000Z',
+    user: {
+      fullname: 'Joseph Timoty',
+      username: 'jostimoty',
+      email: 'jostimoty22@gmail.com',
+      no_hp: '628123456789',
+    },
+  },
+  {
+    id: 'RV00000002',
+    userId: '1000000001',
+    product: {
+      id: 'PD00000002',
+      images:
+        '["https://images.samsung.com/pk/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_mainsinglekv_mo.jpg"]',
+    },
+    title: 'Performa Cepat',
+    rating: 5,
+    description:
+      'Saya sangat puas dengan iPhone 13 Mini. Performanya sangat cepat berkat chip A15 Bionic.',
+    media: null,
+    likes: 482,
+    createdAt: '2022-02-10T14:21:32.000Z',
+    updatedAt: null,
+    user: {
+      fullname: 'Joseph Timoty',
+      username: 'jostimoty',
+      email: 'jostimoty22@gmail.com',
+      no_hp: '628123456789',
+    },
+  },
+] as unknown

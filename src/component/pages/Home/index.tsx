@@ -17,11 +17,12 @@ import Link from 'next/link'
 import useClickOutside from '@/hooks/useClickOutside'
 import RecomendationList from '@/component/RecomendationList'
 
+import { HotReviews } from '@/constant/hot-review'
+
 const Home = ({
-  data,
   article,
 }: {
-  data: { hot_review: Hotriview[]; selection_product: Product[] }
+  // data: { hot_review: Hotriview[]; selection_product: Product[] }
   article: Article[]
 }) => {
   const router = useRouter()
@@ -101,7 +102,7 @@ const Home = ({
           </div>
         </div>
       </div>
-      <MainHotReview hotReview={data.hot_review} />
+      <MainHotReview hotReview={HotReviews as TempHotReview[]} />
       <MainFeature />
       <MainBannerAds />
       <MainArticles artikel={article} />

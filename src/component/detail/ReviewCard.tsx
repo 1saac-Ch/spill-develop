@@ -13,25 +13,6 @@ type Props = {
   showLike?: boolean
 } & Review
 
-const ButtonArrow = () => (
-  <svg
-    width="18"
-    height="9"
-    viewBox="0 0 18 9"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M16.9215 0.949951L10.4015 7.46995C9.63154 8.23995 8.37154 8.23995 7.60154 7.46995L1.08154 0.949951"
-      stroke="#1598CC"
-      strokeWidth="1.5"
-      strokeMiterlimit="10"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
 type LikeResponse = {
   getData: { userId: string; reviewId: string }[]
 }
@@ -42,7 +23,6 @@ const ReviewCard = ({
   title,
   createdAt,
   description,
-  likes,
   user,
   rating,
   media,
