@@ -94,10 +94,30 @@ const Home = ({
             </div>
 
             <div className={styles.horizontalStack}>
-              <div className={styles.keywordHeader}>Handphone Murah</div>
-              <div className={styles.keywordHeader}>Skincare</div>
-              <div className={styles.keywordHeader}>Iphone 13 Pro</div>
-              <div className={styles.keywordHeader}>Kamera Terbaik</div>
+              <Link
+                href={'/detail-product/PD00000006'}
+                className={styles.keywordHeader}
+              >
+                Samsung Galaxy Watch 4
+              </Link>
+              <Link
+                href={'/detail-product/PD00000004'}
+                className={styles.keywordHeader}
+              >
+                Nintendo Switch OLED
+              </Link>
+              <Link
+                href={'/detail-product/PD00000007'}
+                className={styles.keywordHeader}
+              >
+                Sony PlayStation 5
+              </Link>
+              <Link
+                href={'/detail-product/PD0001'}
+                className={styles.keywordHeader}
+              >
+                Apple Iphone 13 Mini
+              </Link>
             </div>
           </div>
         </div>
