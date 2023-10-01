@@ -1,5 +1,5 @@
 .navbar {
-  @apply flex flex-col justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300 z-40 p-5 lg:px-[72px] lg:py-6 md:min-h-[96px] lg:min-h-[104px];
+  @apply flex flex-col justify-center fixed w-full transition-all text-white ease-in duration-300 z-40 p-5 lg:px-[72px] lg:py-6 md:min-h-[96px] lg:min-h-[104px];
 }
 
 .navbarSticky {

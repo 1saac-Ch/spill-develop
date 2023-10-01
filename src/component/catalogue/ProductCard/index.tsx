@@ -30,11 +30,11 @@ const ProductCard = ({
   id,
 }: Props) => {
   return (
-    <article className=" bg-white rounded-xl shadow-medium max-w-[240px] mx-auto mb-10 relative">
+    <article className=" bg-white r ounded-xl shadow-medium max-w-[240px] mx-auto mb-10 relative">
       <img
         src={image as any}
         alt="product-computer"
-        className="w-full aspect-square object-cover rounded-t-xl"
+        className="w-full aspect-square object-cover rounded-t-xl min-h-[240px]"
       />
 
       <div className="p-4 flex flex-col gap-2 w-full font-satoshi">

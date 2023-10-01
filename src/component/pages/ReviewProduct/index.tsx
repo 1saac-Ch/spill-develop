@@ -21,8 +21,8 @@ type Props = ReviewProductProps
 
 const ReviewProduct = ({ product, notFound }: Props) => {
   const [ratingValue, setRatingValue] = useState(1)
-  const [hoverValue, setHoverValue] = useState(0)
   const [files, setFiles] = useState<File[]>([])
+
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [errorMsg, setErrorMsg] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -38,7 +38,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
     },
   })
 
-  const { data: session } = useSession()
+  const { data: session } = useSession({ required: true })
   const router = useRouter()
 
   const { id, fromHome } = router.query
@@ -192,11 +192,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
                     onClick={() => handleClick(index + 1)}
                   >
                     <StarIcon
-                      color={
-                        (hoverValue || ratingValue) > index
-                          ? '#F26E21'
-                          : '#A6A6A6'
-                      }
+                      color={ratingValue > index ? '#F26E21' : '#A6A6A6'}
                       size={41}
                     />
                   </div>

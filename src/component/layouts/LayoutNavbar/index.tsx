@@ -186,7 +186,7 @@ const LayoutNavbar = ({
       title: () => (
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button className="flex h-11 gap-2 justify-center items-center bg-transparent">
+            <div className="flex cursor-pointer h-11 gap-2 justify-center items-center bg-transparent">
               <Image
                 src={'/profile.jpeg'}
                 alt="avatar"
@@ -210,7 +210,7 @@ const LayoutNavbar = ({
                 height={20}
                 className="w-5 h-5 object-contain"
               />
-            </Button>
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="hidden w-[140px] p-4 md:flex justify-center items-center bg-white hover:bg-gray-200 transition-none relative z-[99999]">
             <button
@@ -698,7 +698,7 @@ function ReviewRecomendation({
   } else {
     content = (
       <>
-        {data?.data.slice(0,5).map((searchItem) => (
+        {data?.data.slice(0, 5).map((searchItem) => (
           <RecomendationItem
             key={searchItem.id}
             onClickReview={() => onClickReview(searchItem.product_id)}

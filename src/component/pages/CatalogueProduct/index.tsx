@@ -59,11 +59,13 @@ const CatalogueProduct = () => {
       </div>
     )
 
+  // lg:grid grid-cols-[253px_1fr] gap-10
+
   return (
     <>
       <main className="bg-background main-container">
-        <div className="min-h-screen lg:grid grid-cols-[253px_1fr] gap-10 py-10 md:py-16 font-satoshi">
-          <FilterProduct />
+        <div className="min-h-screen  py-10 md:py-16 font-satoshi">
+          {/* <FilterProduct /> */}
 
           <div className="flex flex-col gap-10 md:gap-6">
             <div className="flex gap-6 md:gap-0 flex-col md:flex-row md:items-center justify-between ">

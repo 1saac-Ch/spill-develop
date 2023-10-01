@@ -49,7 +49,7 @@ const Home = ({
 
   return (
     <main>
-      <div className="bg-radial bg-[#111827] w-full h-[100vh]">
+      <div className="bg-radial bg-[#111827] w-full min-h-[100vh] py-[166px]">
         <div className="mx-auto h-full flex items-center">
           <div className={styles.wording}>
             <div className={styles.maxWording}>

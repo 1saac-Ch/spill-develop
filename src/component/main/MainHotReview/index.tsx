@@ -22,9 +22,13 @@ const MainHotReview = ({ hotReview }: { hotReview: TempHotReview[] }) => {
   } = useSlider(hotReview)
 
   return (
-    <div className="relative flex justify-center w-screen pb-10 ">
-      <div className={styles.roundedTopHotReview} />
-      <div className={'w-full main-container'}>
+    <div className="relative flex justify-center w-screen">
+      {/* <div className={styles.roundedTopHotReview} /> */}
+      <div
+        className={
+          'w-full main-container bg-white -mt-8 md:-mt-16 rounded-tl-[24px] rounded-tr-[24px] md:rounded-tl-[64px] md:rounded-tr-[64px] pt-[41px] md:pt-[75px]'
+        }
+      >
         <div className="flex gap-[44px] justify-between">
           <h1 className={styles.title}>Hot Review.</h1>
           <div className={styles.line}>

@@ -8,25 +8,25 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import YouTubeIcon from '@mui/icons-material/YouTube'
-import Button from '@/component/elements/Button/component'
+// import Button from '@/component/elements/Button/component'
 import Link from 'next/link'
 const LayoutFooter = () => {
   const list = [
     {
       title: 'Spill',
       label: [
-        { sub: 'Feature', path: '/' },
-        { sub: 'Tentang Kami', path: '/' },
+        // { sub: 'Feature', path: '/' },
+        // { sub: 'Tentang Kami', path: '/' },
         { sub: 'Artikel', path: '/article' },
-        { sub: 'Syarat dan Ketentuan', path: '/' },
+        // { sub: 'Syarat dan Ketentuan', path: '/' },
       ],
     },
     {
       title: 'Product',
       label: [
-        { sub: 'Tulis Review', path: '/' },
-        { sub: 'Sarankan Product', path: '/' },
-        { sub: 'Product Trending', path: '/' },
+        // { sub: 'Tulis Review', path: '/' },
+        { sub: 'Sarankan Product', path: '/suggest' },
+        // { sub: 'Product Trending', path: '/' },
       ],
     },
   ]

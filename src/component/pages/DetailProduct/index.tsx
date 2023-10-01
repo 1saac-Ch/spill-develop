@@ -381,20 +381,22 @@ const DetailProduct = ({
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 w-max">
-              <p className="text-body-xs md:text-body-lg">
-                Checkout sekarang{' '}
-                <span className="hidden md:inline">
-                  di E-Commerce kesayanganmu
-                </span>{' '}
-                :
-              </p>
-              <div className="flex gap-3 md:gap-5">
-                {affiliate.map((aff) => (
-                  <AffiliateComponent key={aff.affiliate_id} {...aff} />
-                ))}
+            {affiliate.length ? (
+              <div className="flex flex-col gap-2 w-max">
+                <p className="text-body-xs md:text-body-lg">
+                  Checkout sekarang{' '}
+                  <span className="hidden md:inline">
+                    di E-Commerce kesayanganmu
+                  </span>{' '}
+                  :
+                </p>
+                <div className="flex gap-3 md:gap-5">
+                  {affiliate.map((aff) => (
+                    <AffiliateComponent key={aff.affiliate_id} {...aff} />
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>
