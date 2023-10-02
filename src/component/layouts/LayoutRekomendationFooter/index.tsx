@@ -19,7 +19,8 @@ const LayoutRekomendationFooter = () => {
           <div className={styles.buttonResponsive}>
             <Link
               className="flex items-center justify-center px-4 py-3 w-max rounded-xl text-white bg-blue-50 text-label-lg font-bold"
-              href="/suggest"
+              target="_blank"
+              href="https://forms.gle/ZTrPGMwSpAZtrE9V6"
             >
               Sarankan Produk
             </Link>

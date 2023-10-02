@@ -25,7 +25,10 @@ const LayoutFooter = () => {
       title: 'Product',
       label: [
         // { sub: 'Tulis Review', path: '/' },
-        { sub: 'Sarankan Product', path: '/suggest' },
+        {
+          sub: 'Sarankan Product',
+          path: 'https://forms.gle/ZTrPGMwSpAZtrE9V6',
+        },
         // { sub: 'Product Trending', path: '/' },
       ],
     },

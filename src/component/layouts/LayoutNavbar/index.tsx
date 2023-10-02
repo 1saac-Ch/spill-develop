@@ -532,7 +532,8 @@ const LayoutNavbar = ({
                           kamu cari
                         </p>
                         <Link
-                          href="/suggest"
+                          target="_blank"
+                          href="https://forms.gle/ZTrPGMwSpAZtrE9V6"
                           className="py-3 px-4 rounded-xl border border-[#1A1A1A] text-label-lg"
                         >
                           Sarankan Produk

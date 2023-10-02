@@ -11,11 +11,11 @@ import DiscussionSection from './DiscussionSection'
 import { useRouter } from 'next/router'
 import RobotNotFound from '@/assets/images/robot.png'
 
-import { Dialog } from '@/component/ui/Dialog'
-import { DialogTrigger } from '@/component/ui/Dialog'
-import { DialogContent } from '@/component/ui/Dialog'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+// import { Dialog } from '@/component/ui/Dialog'
+// import { DialogTrigger } from '@/component/ui/Dialog'
+// import { DialogContent } from '@/component/ui/Dialog'
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import Image from 'next/image'
 import Button from '@/component/elements/Button/component'
 import Link from 'next/link'
@@ -51,7 +51,8 @@ function NotFound() {
               Kembali
             </Button>
             <Link
-              href="/suggest"
+              href="https://forms.gle/ZTrPGMwSpAZtrE9V6"
+              target="_blank"
               className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit"
             >
               Sarankan Produk
@@ -125,21 +126,21 @@ const DetailProduct = ({
 
   const ProductImages = product.images
 
-  const handlePrevClick = () => {
-    if (activeImageIndex === 0) {
-      setActiveImageIndex(ProductImages.length - 1)
-    } else {
-      setActiveImageIndex((prev) => prev - 1)
-    }
-  }
+  // const handlePrevClick = () => {
+  //   if (activeImageIndex === 0) {
+  //     setActiveImageIndex(ProductImages.length - 1)
+  //   } else {
+  //     setActiveImageIndex((prev) => prev - 1)
+  //   }
+  // }
 
-  const handleNextClick = () => {
-    if (activeImageIndex === ProductImages.length - 1) {
-      setActiveImageIndex(0)
-    } else {
-      setActiveImageIndex((prev) => prev + 1)
-    }
-  }
+  // const handleNextClick = () => {
+  //   if (activeImageIndex === ProductImages.length - 1) {
+  //     setActiveImageIndex(0)
+  //   } else {
+  //     setActiveImageIndex((prev) => prev + 1)
+  //   }
+  // }
 
   if (notFound)
     return (
