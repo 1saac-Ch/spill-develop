@@ -1,0 +1,191 @@
+const data = {
+  message: 'Success',
+  data: {
+    hot_review: [
+      {
+        id: 'RV00000027',
+        userId: '1000000009',
+        productId: 'PD0014',
+        title: 'Baterai Tahan Lama',
+        rating: 5,
+        description:
+          'Vivo X70 Pro memiliki baterai yang tahan lama, bisa digunakan seharian.',
+        media: null,
+        likes: 1495,
+        product: null,
+      },
+      {
+        id: 'RV00000043',
+        userId: '1000000015',
+        productId: 'PD0022',
+        title: 'Kamera Belakang Kurang Baik',
+        rating: 3,
+        description:
+          'Kamera belakang Nokia X30 kurang baik, hasil fotonya terlihat buram.',
+        media: null,
+        likes: 1460,
+        product: null,
+      },
+      {
+        id: 'RV00000037',
+        userId: '1000000013',
+        productId: 'PD0019',
+        title: 'Baterai Tahan Lama',
+        rating: 4,
+        description:
+          'Google Pixel 6 memiliki baterai yang tahan lama, bisa digunakan seharian.',
+        media: null,
+        likes: 1399,
+        product: null,
+      },
+      {
+        id: 'RV00000019',
+        userId: '1000000007',
+        productId: 'PD0010',
+        title: 'Kualitas Audio Bagus',
+        rating: 3,
+        description:
+          'Headphone JBL Tune 750BTNC memiliki kualitas audio yang bagus, namun fitur noise-canceling kurang efektif.',
+        media: null,
+        likes: 1395,
+        product: null,
+      },
+      {
+        id: 'RV00000008',
+        userId: '1000000003',
+        productId: 'PD0004',
+        title: 'Terpesona Saya',
+        rating: 5,
+        description: 'Saya benar-benar terpesona dengan Nintendo Switch OLED.',
+        media: null,
+        likes: 1390,
+        product: null,
+      },
+      {
+        id: 'RV00000049',
+        userId: '1000000017',
+        productId: 'PD0025',
+        title: 'Desain Modern',
+        rating: 3,
+        description: 'Desain Huawei P50 terlihat kuno dan kurang modern.',
+        media: null,
+        likes: 1317,
+        product: null,
+      },
+      {
+        id: 'RV00000013',
+        userId: '1000000005',
+        productId: 'PD0007',
+        title: 'Baterai Kurang Tahan',
+        rating: 4,
+        description:
+          'Samsung Galaxy S21 memiliki baterai yang kurang tahan lama untuk penggunaan intensif.',
+        media: null,
+        likes: 1306,
+        product: null,
+      },
+      {
+        id: 'RV00000018',
+        userId: '1000000006',
+        productId: 'PD0009',
+        title: 'Kinerja yang Luar Biasa',
+        rating: 4,
+        description:
+          'Kinerja iPhone 14 sangat luar biasa, sangat responsif dan cepat.',
+        media: null,
+        likes: 1271,
+        product: null,
+      },
+      {
+        id: 'RV00000031',
+        userId: '1000000011',
+        productId: 'PD0016',
+        title: 'Baterai Kurang Tahan Lama',
+        rating: 4,
+        description:
+          'Xiaomi Mi 12 memiliki baterai yang kurang tahan lama, sering harus diisi ulang.',
+        media: null,
+        likes: 1265,
+        product: null,
+      },
+    ],
+    selection_product: [
+      {
+        id: 7,
+        product_id: 'PD0001',
+        product_title: 'Apple Iphone 13 Mini',
+        images:
+          '["https://cdn.eraspace.com/media/catalog/product/i/p/iphone_13_mini_pink_1.jpg"]',
+        description:
+          'iPhone 13. Sistem kamera ganda paling canggih yang pernah ada di iPhone. Chip A15 Bionic yang secepat kilat. Lompatan besar dalam kekuatan baterai. Desain kokoh. Dan layar Super Retina XDR yang lebih cerah.',
+        brand: 'Apple',
+        type: 'Iphone',
+        series: '13 Mini',
+        price_min: 14000000,
+        price_max: 20000000,
+        release_date: '2021-09-24T00:00:00.000Z',
+      },
+      {
+        id: 8,
+        product_id: 'PD00000002',
+        product_title: 'Samsung Galaxy Z Fold 3',
+        images:
+          '["https://images.samsung.com/pk/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_mainsinglekv_mo.jpg"]',
+        description:
+          'Smartphone lipat dengan layar Dynamic AMOLED 2X yang luas dan fleksibel. Dilengkapi dengan S Pen. Kinerja yang sangat cepat dengan chip Snapdragon 888. Pengalaman multitasking yang lebih baik.',
+        brand: 'Samsung',
+        type: 'Smartphone',
+        series: 'Galaxy Z Fold 3',
+        price_min: 29999000,
+        price_max: 34999000,
+        release_date: '2021-08-27T00:00:00.000Z',
+      },
+      {
+        id: 9,
+        product_id: 'PD00000003',
+        product_title: 'Sony WH-1000XM4',
+        images:
+          '["https://images.firstpost.com/fpimages/1200x800/fixed/jpg/2020/09/Sony-WH-1000XM4-type-c-min.jpg"]',
+        description:
+          'Wireless noise-canceling headphones dengan teknologi canggih untuk kualitas suara yang superior. Fitur ANC adaptif dan pemrosesan audio berbasis AI untuk pengalaman mendengarkan yang luar biasa.',
+        brand: 'Sony',
+        type: 'Headphones',
+        series: 'WH-1000XM4',
+        price_min: 3999000,
+        price_max: 4499000,
+        release_date: '2020-08-06T00:00:00.000Z',
+      },
+      {
+        id: 11,
+        product_id: 'PD00000005',
+        product_title: 'DJI Mini 2',
+        images:
+          '["https://cdn.mos.cms.futurecdn.net/qPDUPGiA6qqdzFEMWryRUb.jpg"]',
+        description:
+          'Drone kompak dengan kemampuan perekaman video 4K. Dilengkapi dengan sistem pemindai penghambat dan teknologi kecerdasan buatan untuk penerbangan yang aman dan stabil.',
+        brand: 'DJI',
+        type: 'Drone',
+        series: 'Mini 2',
+        price_min: 7999000,
+        price_max: 8999000,
+        release_date: '2020-11-01T00:00:00.000Z',
+      },
+      {
+        id: 12,
+        product_id: 'PD00000006',
+        product_title: 'Samsung Galaxy Watch 4',
+        images:
+          '["https://images.samsung.com/id/galaxy-watch4/feature/galaxy-watch4-green-design-your-own-mo.jpg"]',
+        description:
+          'Smartwatch dengan desain yang elegan dan fitur pemantauan kesehatan yang canggih. Dilengkapi dengan sensor detak jantung, pemantauan tidur, GPS, dan tahan air.',
+        brand: 'Samsung',
+        type: 'Smartwatch',
+        series: 'Galaxy Watch 4',
+        price_min: 4999000,
+        price_max: 5999000,
+        release_date: '2021-08-11T00:00:00.000Z',
+      },
+    ],
+  },
+}
+export default data

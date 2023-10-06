@@ -13,46 +13,47 @@ import {
 } from 'next'
 import Image from 'next/image'
 import Button from '@/component/elements/Button/component'
+import useFetcher from '@/hooks/useFetcher'
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const url = process.env.NEXT_PUBLIC_API_URL
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const url = process.env.NEXT_PUBLIC_API_URL
 
-  const allArticle: { data: Article[] } = await fetch(`${url}/article`).then(
-    (res) => res.json()
-  )
-  return {
-    fallback: 'blocking',
-    paths: allArticle.data.map((item) => {
-      return {
-        params: {
-          id: item.article_id,
-        },
-      }
-    }),
-  }
-}
+//   const allArticle: { data: Article[] } = await fetch(`${url}/article`).then(
+//     (res) => res.json()
+//   )
+//   return {
+//     fallback: 'blocking',
+//     paths: allArticle.data.map((item) => {
+//       return {
+//         params: {
+//           id: item.article_id,
+//         },
+//       }
+//     }),
+//   }
+// }
 
-export const getStaticProps = async (context: GetStaticPropsContext) => {
-  const url = process.env.NEXT_PUBLIC_API_URL
+// export const getStaticProps = async (context: GetStaticPropsContext) => {
+//   const url = process.env.NEXT_PUBLIC_API_URL
 
-  const [_article, relatedArticles] = await Promise.all([
-    fetch(`${url}/article/${context.params?.id}`).then((res) => res.json()),
-    fetch(`${url}/article/related`).then((res) => res.json()),
-  ])
+//   const [_article, relatedArticles] = await Promise.all([
+//     fetch(`${url}/article/${context.params?.id}`).then((res) => res.json()),
+//     fetch(`${url}/article/related`).then((res) => res.json()),
+//   ])
 
-  const article: Article | null =
-    _article.message === 'Article tidak ditemukan' ? null : _article.data
+//   const article: Article | null =
+//     _article.message === 'Article tidak ditemukan' ? null : _article.data
 
-  return {
-    props: {
-      article,
-      relatedArticles: relatedArticles.data as Article[],
-    },
-    revalidate: 604800,
-  }
-}
+//   return {
+//     props: {
+//       article,
+//       relatedArticles: relatedArticles.data as Article[],
+//     },
+//     revalidate: 604800,
+//   }
+// }
 
-type Props = InferGetStaticPropsType<typeof getStaticProps>
+// type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const NotFoundArticle = () => {
   const router = useRouter()
@@ -85,8 +86,12 @@ const NotFoundArticle = () => {
   )
 }
 
-export default function ArticleDetail({ article, relatedArticles }: Props) {
+export default function ArticleDetail() {
   const router = useRouter()
+
+  const { data } = useFetcher<{ data: Article }>(`/article/${router.query.id}`)
+
+  const article = data?.data
 
   if (!article) {
     return (
@@ -125,9 +130,9 @@ export default function ArticleDetail({ article, relatedArticles }: Props) {
         <div className="flex flex-col gap-5 mt-10 md:mt-0">
           <h3 className="text-left text-headline-sm font-bold">Terkait</h3>
 
-          {relatedArticles.map((article) => (
+          {/* {relatedArticles.map((article) => (
             <RelatedArticle key={article.id} article={article} />
-          ))}
+          ))} */}
         </div>
       </div>
     </main>
