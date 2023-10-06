@@ -1,43 +1,47 @@
 .navbar {
-  @apply flex justify-center bg-transparent absolute w-full text-white ease-in-out delay-75
+  @apply flex flex-col justify-center fixed w-full transition-all text-white ease-in duration-300 z-40 p-5 lg:px-[72px] lg:py-6 md:min-h-[96px] lg:min-h-[104px];
 }
 
 .navbarSticky {
-  @apply flex justify-center fixed w-full bg-white z-50 transition  shadow-md
+  @apply flex flex-col justify-center fixed w-full bg-white transition-all shadow-sm ease-out duration-300 p-5 lg:px-[72px] z-40 lg:py-6 lg:min-h-[104px];
+}
+
+.navbarNormal {
+  @apply flex sticky top-0 bg-white justify-center w-full z-40 transition-all shadow-sm ease-out duration-300;
 }
 
 .maxContainer {
-  @apply w-full py-3 max-w-screen-xl flex justify-between items-center
+  @apply w-full py-3  container mx-auto flex justify-between items-center;
 }
 
 .left {
   @apply flex items-center;
 
   & img {
-    @apply mr-[30px]
+    @apply mr-[30px];
   }
 }
 
 .right {
-  @apply flex items-center gap-[50px];
+  @apply hidden md:flex items-center gap-[50px];
 }
 
 .login {
-  @apply font-tebal text-small text-dark leading-low
+  @apply font-tebal text-small text-dark leading-low;
 }
 
 .loginSticky {
-  @apply font-tebal text-small text-white leading-low
+  @apply font-tebal text-small text-white leading-low;
 }
 
 .register {
-  @apply font-tebal text-small text-pink leading-low
+  @apply font-tebal text-small text-pink leading-low;
 }
 
 .review {
-  @apply font-tebal text-small text-dark leading-low py-[11px] px-[15px] bg-white border-[1px] border-dark rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important}
+  @apply font-tebal text-small text-dark leading-low py-[11px] px-[15px] bg-white border-[1px] border-dark rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important};
 }
 
 .reviewSticky {
-  @apply font-tebal text-small text-white leading-low py-[11px] px-[15px] bg-transparent border-[1px] border-white rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important}
+  @apply font-tebal text-small text-white leading-low py-[11px] px-[15px] bg-transparent border-[1px] border-white rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important};
 }

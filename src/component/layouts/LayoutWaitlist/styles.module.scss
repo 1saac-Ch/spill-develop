@@ -1,0 +1,15 @@
+.navbar {
+  @apply flex flex-col justify-center fixed bg-transparent w-full transition-all text-white ease-in duration-300;
+}
+
+.navbarSticky {
+  @apply flex flex-col justify-center fixed w-full bg-white z-50 transition-all shadow-sm ease-out duration-1000;
+}
+
+.contact {
+  @apply font-tebal text-small text-dark leading-low py-[11px] px-[15px] bg-white border-[1px] border-dark rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important};
+}
+
+.contactSticky {
+  @apply font-tebal text-small text-white leading-low py-[11px] px-[15px] bg-transparent border-[1px] border-white rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important};
+}

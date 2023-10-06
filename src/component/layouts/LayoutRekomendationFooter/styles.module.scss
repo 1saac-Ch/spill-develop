@@ -1,0 +1,27 @@
+.layoutRecomend {
+  @apply flex justify-center bg-[#E8FBF5];
+}
+
+.mainRecomend {
+  @apply flex gap-5 flex-col md:flex-row justify-between items-start;
+}
+
+.stackResponsive {
+  @apply gap-5;
+}
+
+.paragraphText {
+  @apply text-body-lg font-satoshi;
+}
+
+.textFindProduct {
+  @apply text-title-md md:text-title-lg font-[900] font-satoshi tracking-[0.1px];
+}
+
+.buttonResponsive {
+  @apply md:flex-[0.2] w-full;
+}
+
+.buttonRecomended {
+  @apply w-max px-5;
+}

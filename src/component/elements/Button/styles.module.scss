@@ -1,3 +1,7 @@
-.button {
-  @apply flex items-center justify-center w-full h-[50px] rounded-[10px] text-white text-small font-normal leading-low font-satoshi bg-blue-50 ;
+.primary {
+  @apply flex items-center justify-center w-full h-[50px] rounded-[10px] text-white text-small font-semibold leading-low font-satoshi bg-blue-50;
+}
+
+.outline {
+  @apply flex border hover:border-2 disabled:hover:border disabled:cursor-not-allowed  border-[#1598CC] font-semibold items-center justify-center w-max px-5 h-[50px] rounded-[10px] text-[#1598CC]  text-small  leading-low font-satoshi bg-none;
 }

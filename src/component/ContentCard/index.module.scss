@@ -1,0 +1,23 @@
+.maxContainer {
+  @apply container mx-auto;
+}
+
+.title {
+  @apply text-headline-sm font-satoshi font-[900] tracking-[0.01px];
+}
+
+.line {
+  @apply flex-1 hidden md:flex items-center justify-center;
+
+  & div {
+    @apply border-b-[1px] w-full border-dark;
+  }
+}
+
+.dots {
+  @apply w-[30px] h-[30px] md:w-[52px] md:h-[52px] rounded-full bg-black cursor-pointer flex justify-center items-center;
+}
+
+.gridCardItems {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-5;
+}

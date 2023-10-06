@@ -4,3 +4,11 @@
   }
 }
 
+@keyframes modal-content-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}

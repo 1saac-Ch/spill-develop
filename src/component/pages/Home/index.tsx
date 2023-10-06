@@ -1,217 +1,163 @@
-import { ReactElement, JSXElementConstructor } from 'react';
-import MainLayout from '@/component/layouts/MainLayout';
-import styles from "./index.module.scss";
-import Search from "@/component/elements/Search";
-import Card from "@/component/elements/Card";
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
-import React, { useState, useRef, useEffect } from 'react';
-import Image from "@/component/elements/NextImage";
-import Promo from "@/assets/images/promo.png";
-import clsx from 'clsx';
+import { FormEvent, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
+import { ReactElement, JSXElementConstructor } from 'react'
+import styles from './index.module.scss'
 
-import Footer from '@/component/layouts/Footer';
-import { hotriview, feature1, feature2, artikel, youtube } from './dummy.api'
+import MainLayout from '@/component/layouts/MainLayout'
 
-const Home = () => {
-  const [state, setState] = useState({
-    activeSlide: 0,
-  });
-  const { activeSlide } = state;
-  const nodeRef = useRef(activeSlide);
-  const [slide, setSlide] = useState<string>(true)
+import MainHotReview from '@/component/main/MainHotReview'
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setState((prev) => ({
-        ...prev,
-        activeSlide: (prev.activeSlide + 1) % hotriview.length,
-        nodeRef: activeSlide,
-      }));
-    }, 3000);
-    return () => clearInterval(interval);
+import MainFeature from '@/component/main/MainFeature'
+import MainBannerAds from '@/component/main/MainBannerAds'
+import MainArticles from '@/component/main/MainArticles'
+// import MainContentReview from '@/component/main/MainContentReview'
+import Button from '@/component/elements/Button/component'
+import Alert from '@/component/alert'
+import Link from 'next/link'
+import useClickOutside from '@/hooks/useClickOutside'
+import RecomendationList from '@/component/RecomendationList'
+
+import { HotReviews } from '@/constant/hot-review'
+
+const Home = ({
+  article,
+}: {
+  // data: { hot_review: Hotriview[]; selection_product: Product[] }
+  article: Article[]
+}) => {
+  const router = useRouter()
+  const [openRecomendation, setOpenRecomendation] = useState(false)
+  const [searchVal, setSearchVal] = useState('')
+
+  const searchContainerRef = useRef<HTMLDivElement>(null)
+
+  const handleSearchSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    const searchParam = new URLSearchParams({
+      q: searchVal,
+    })
+    router.push(`/catalogue-product?${searchParam.toString()}`)
+  }
+
+  const { withSuccess } = router.query
+
+  useClickOutside(searchContainerRef, () => {
+    if (openRecomendation) {
+      setOpenRecomendation(false)
+    }
   })
 
-  const handleChangeSlide = (index: number) => {
-    if (index > activeSlide) {
-      setSlide(true)
-    } else {
-      setSlide(false)
-    }
-    setState((prev) => ({
-      ...prev,
-      activeSlide: index,
-      nodeRef: activeSlide,
-    }));
-  };
-
-
-
   return (
-    <>
-      <div className="bg-radial w-full h-screen bg-[#111827]">
-        <div className="mx-auto max-w-screen-xl h-full flex items-center">
+    <main>
+      <div className="bg-radial bg-[#111827] w-full min-h-[100vh] py-[166px]">
+        <div className="mx-auto h-full flex items-center">
           <div className={styles.wording}>
-            <h1>Cari produk, Baca review, Checkout, lalu <label>Spill</label> disini.</h1>
-            <p>Spill adalah tempat buat bantu kamu yang bingung mau checkout produk apa</p>
-            <Search variant="wording" placeholder="Cari produk apapun" />
-            <div className={styles.horizontalStack}>
-              <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
-              </div>
-              <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
-              </div>
-              <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
-              </div>
-              <div className={styles.keywordHeader}>
-                Keyword Rekomendasi
-              </div>
+            <div className={styles.maxWording}>
+              <h1>
+                Cari produk, <br /> Baca review, <br /> Checkout, <br /> lalu{' '}
+                <label>Spill</label> disini.
+              </h1>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full flex flex-col items-center rounded-t-[64px] absolute top-[90%] pt-10 bg-white  
-    px-[72px]">
-        <div className="flex gap-[44px] justify-between">
-          <h1 className={styles.title}>Hot Review.</h1>
-          <div className={styles.line}>
-            <div />
-          </div>
-          <div className="flex gap-[23px]">
-            <div className={styles.dots} />
-            <div className={styles.dots} />
-          </div>
-        </div>
-        <div className="overflow-hidden">
-          <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={activeSlide}
-              classNames={{
-                enter: `opacity-0 translate-x-[${slide?"50%":"-50%"}] transition-all duration-500 ease-in-out`,
-                enterActive: `opacity-100 translate-x-[-0px] transition-all duration-500 ease-in-out`,
-                exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
-                exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
-              }}
-              timeout={500}
-            >
-
-              <div className="flex gap-[44px] justify-between mt-[65px] mb-[60px]">
-                {hotriview[activeSlide].card.map((item, index) => (
-                  <Card key={index} >
-                    {item.title}
-                    {item.description}
-                  </Card>
-                ))
-                }
-              </div>
-            </CSSTransition>
-          </SwitchTransition>
-        </div>
-        <div className={styles.indicator}>
-          {hotriview.map((item, index) => (
-            <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
-          ))
-          }
-        </div>
-        <div className="flex justify-center mt-[95px] w-screen py-10 bg-[#EEF8FC]">
-          <div className="w-full py-3 max-w-screen-xl ">
-            <h1 className={styles.title}>Feature.</h1>
-            <div className="flex flex-wrap  justify-between p-5 mt-[40px]">
-              {feature1.map((item, index) => (
-                <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-between p-5">
-              {feature2.map((item, index) => (
-                <Image placeholder='blur' key={index} src={item.image} width={378} height={344} alt="test" />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="mt-[90px]">
-          <h1 className={styles.title}>Promo.</h1>
-          <div className="overflow-hidden mt-[40px] mb-[60px] flex items-center">
-            <button className={styles.prev}>prev</button>
-            <SwitchTransition mode="out-in">
-              <CSSTransition
-                key={activeSlide}
-                classNames={{
-                  enter: `opacity-0 translate-x-[${slide?"50%":"-50%"}] transition-all duration-500 ease-in-out`,
-                  enterActive: `opacity-100 translate-x-[-0px] transition-all duration-500 ease-in-out`,
-                  exit: 'opacity-100 transform scale-100 transition-all duration-500 ease-in-out',
-                  exitActive: 'opacity-0 transform scale-90 transition-all duration-500 ease-in-out',
-                }}
-                timeout={500}>
-                <Image src={Promo} width={1296} height={320} alt="test" />
-              </CSSTransition>
-            </SwitchTransition>
-            <button className={styles.next}>next</button>
-          </div>
-          <div className={styles.indicator}>
-            {hotriview.map((item, index) => (
-              <button key={index} className={clsx(styles.dot, { [styles.active]: index === activeSlide })} onClick={() => handleChangeSlide(index)} />
-            ))
-            }
-          </div>
-        </div>
-        <div className="mt-[108px]">
-          <h1 className={styles.title}>Artikel.</h1>
-          <div className="flex justify-between gap-[20px] mt-[40px]">
-            {artikel.map((item: any, index: number) => {
-              if (index === 0) {
-                return (
-                  <div key={index} className="flex flex-col gap-[40px] py-[40px] px-[40px] rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-                    <Image src={item.image} width={620} height={496} alt="test" />
-                    <div className="flex flex-col gap-[20px]">
-                      <h1 className={styles.artikelTitle}>{item.title}</h1>
-                      <p className={styles.artikelDescription}>{item.description}</p>
-                    </div>
-                  </div>
-                )
-              } else {
-                return (
-                  <div key={index} className="flex flex-col gap-[20px]">
-                    {item.card.map((item: any, index: number) => (
-                      <div key={index} className="flex gap-[40px] py-[40px] px-[40px] rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)]">
-                        <Image src={item.image} width={200} height={200} alt="test" />
-                        <div className="flex flex-col ">
-                          <h1 className={styles.artikelTitle}>{item.title}</h1>
-                          <p className={styles.artikelDescription}>{item.description}</p>
-                        </div>
-                      </div>
-                    ))
-                    }
-                  </div>
-                )
-              }
-            })}
-
-          </div>
-        </div>
-        <div className="mt-[110px]">
-          <h1 className={styles.title}>Konten Youtube.</h1>
-          <div className="flex gap-[20px] mt-[40px] mb-20">
-            {youtube.map((item, index) => (
-              <div key={index} className="flex flex-col gap-[20px]">
-                <div className="flex flex-col gap-[40px]">
-                  <Image src={item.image} width={404} height={228} alt="test" />
-                  <div className="flex flex-col ">
-                    <h1 className={styles.artikelTitle}>{item.title}</h1>
-                    <p className={styles.artikelDescription}>{item.description}</p>
-                  </div>
+            <p>
+              Spill adalah tempat buat bantu kamu yang bingung mau checkout
+              produk apa
+            </p>
+            <div className="relative" ref={searchContainerRef}>
+              <form
+                onSubmit={handleSearchSubmit}
+                className="flex justify-between bg-white p-2 items-center rounded-xl gap-[8px]"
+              >
+                <img
+                  src="/icons/search.svg"
+                  alt="search"
+                  className="w-4 h-4 mr-1 "
+                />
+                <input
+                  placeholder="Cari produk apapun"
+                  id="search"
+                  onChange={(e) => setSearchVal(e.target.value)}
+                  className="md:w-[420px] border-none outline-none bg-white text-[14px] leading-low"
+                  onFocus={() => setOpenRecomendation(true)}
+                />
+                <Button
+                  className="py-[10px] px-[24px] w-[76px] h-[40px]"
+                  type="submit"
+                >
+                  Cari
+                </Button>
+              </form>
+              {openRecomendation && (
+                <div className="absolute top-[66px] w-full rounded-xl shadow-md bg-white z-[5] overflow-hidden">
+                  <RecomendationList searchVal={searchVal} />
                 </div>
-              </div>
-            ))}
+              )}
+            </div>
+
+            <div className={styles.horizontalStack}>
+              <Link
+                href={'/detail-product/PD00000006'}
+                className={styles.keywordHeader}
+              >
+                Samsung Galaxy Watch 4
+              </Link>
+              <Link
+                href={'/detail-product/PD00000004'}
+                className={styles.keywordHeader}
+              >
+                Nintendo Switch OLED
+              </Link>
+              <Link
+                href={'/detail-product/PD00000007'}
+                className={styles.keywordHeader}
+              >
+                Sony PlayStation 5
+              </Link>
+              <Link
+                href={'/detail-product/PD0001'}
+                className={styles.keywordHeader}
+              >
+                Apple Iphone 13 Mini
+              </Link>
+            </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </>
+      <MainHotReview hotReview={HotReviews as TempHotReview[]} />
+      <MainFeature />
+      <MainBannerAds />
+      <MainArticles artikel={article} />
+      {/* <MainContentReview contentReview={data.selection_product} /> */}
+
+      {withSuccess ? (
+        <Alert
+          defaultOpen
+          closeElement={
+            <Link
+              href={'/'}
+              replace
+              className="w-full flex justify-center items-center py-3 px-4 gap-2 rounded-[12px] border border-[1A1A1A] text-label-lg outline-none"
+            >
+              Close
+            </Link>
+          }
+        >
+          <section className="text-center">
+            <h1 className="text-headline-sm md:text-headline-md font-bold">
+              Review kamu berhasil Dikirim !!
+            </h1>
+            <p className="text-label-md md:text-title-md">
+              Terimakasih telah membantu orang lain yang akan membeli barang
+              tersebut dengan review Kamu
+            </p>
+          </section>
+        </Alert>
+      ) : null}
+    </main>
   )
 }
 
-Home.getLayout = (page: ReactElement<any, string | JSXElementConstructor<any>>) =>
-  <MainLayout>{page}</MainLayout>;
+Home.getLayout = (
+  page: ReactElement<any, string | JSXElementConstructor<any>>
+) => <MainLayout isNormal={false}>{page}</MainLayout>
 
-export default Home;
+export default Home

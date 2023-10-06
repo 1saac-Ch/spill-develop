@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #f8f8f8;
+
+    --muted: #ffffff;
+    --muted-foreground: #a6a6a6;
+
+    --border: #a6a6a6;
+
+    --accent: #e6e6e6;
+    --accent-foreground: #1a1a1a;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+
+p {
+  font-family: 'Satoshi';
+}
+
+.main-container {
+  @apply p-5 lg:px-[72px] lg:py-6;
+}

@@ -27,6 +27,21 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.figma.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
+    ],
+  },
+  experimental: {
+    scrollRestoration: true,
+  },
 }
 
 module.exports = withMDX(nextConfig)

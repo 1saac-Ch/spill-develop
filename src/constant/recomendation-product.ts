@@ -1,0 +1,62 @@
+export const RecomendationProduct = [
+  {
+    id: 7,
+    product_id: 'PD0001',
+    product_title: 'Apple Iphone 13 Mini',
+    images:
+      '["https://cdn.eraspace.com/media/catalog/product/i/p/iphone_13_mini_pink_1.jpg"]',
+    description:
+      'iPhone 13. Sistem kamera ganda paling canggih yang pernah ada di iPhone. Chip A15 Bionic yang secepat kilat. Lompatan besar dalam kekuatan baterai. Desain kokoh. Dan layar Super Retina XDR yang lebih cerah.',
+    brand: 'Apple',
+    type: 'Iphone',
+    series: '13 Mini',
+    price_min: 14000000,
+    price_max: 20000000,
+    release_date: '2021-09-24T00:00:00.000Z',
+    createdAt: null,
+    updatedAt: null,
+    review_count: 3,
+    rating: 3.946666638056437,
+    review: [],
+  },
+  {
+    id: 8,
+    product_id: 'PD00000002',
+    product_title: 'Samsung Galaxy Z Fold 3',
+    images:
+      '["https://images.samsung.com/pk/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_mainsinglekv_mo.jpg"]',
+    description:
+      'Smartphone lipat dengan layar Dynamic AMOLED 2X yang luas dan fleksibel. Dilengkapi dengan S Pen. Kinerja yang sangat cepat dengan chip Snapdragon 888. Pengalaman multitasking yang lebih baik.',
+    brand: 'Samsung',
+    type: 'Smartphone',
+    series: 'Galaxy Z Fold 3',
+    price_min: 29999000,
+    price_max: 34999000,
+    release_date: '2021-08-27T00:00:00.000Z',
+    createdAt: null,
+    updatedAt: null,
+    review_count: 1,
+    rating: 2.299999952316284,
+    review: [],
+  },
+  {
+    id: 9,
+    product_id: 'PD00000003',
+    product_title: 'Sony WH-1000XM4',
+    images:
+      '["https://images.firstpost.com/fpimages/1200x800/fixed/jpg/2020/09/Sony-WH-1000XM4-type-c-min.jpg"]',
+    description:
+      'Wireless noise-canceling headphones dengan teknologi canggih untuk kualitas suara yang superior. Fitur ANC adaptif dan pemrosesan audio berbasis AI untuk pengalaman mendengarkan yang luar biasa.',
+    brand: 'Sony',
+    type: 'Headphones',
+    series: 'WH-1000XM4',
+    price_min: 3999000,
+    price_max: 4499000,
+    release_date: '2020-08-06T00:00:00.000Z',
+    createdAt: null,
+    updatedAt: null,
+    review_count: 0,
+    rating: null,
+    review: [],
+  },
+]

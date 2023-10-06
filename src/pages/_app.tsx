@@ -1,20 +1,24 @@
-import type { AppProps } from 'next/app';
-import React from 'react';
-import Head from 'next/head';
-import { Provider } from 'react-redux';
-import { store, persistor } from '../redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
+import type { AppProps } from 'next/app'
+import React from 'react'
+import Head from 'next/head'
 import '../../styles/globals.css'
-import { NextUIProvider } from '@nextui-org/react';
-import Loader from '@/component/elements/Loader';
-import { NextPageWithLayout } from '@/utils/NextPageWithLayout';
+import { NextPageWithLayout } from '@/utils/NextPageWithLayout'
+import { SessionProvider } from 'next-auth/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+import { Toaster } from '@/component/ui/Toaster'
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
+  Component: NextPageWithLayout
+}
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout || ((page) => page);
+const queryClient = new QueryClient()
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page)
   return (
     <React.Fragment>
       <Head>
@@ -23,17 +27,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
         />
       </Head>
-      <Provider store={store}>
-        <PersistGate loading={<Loader />} persistor={persistor} >
-          <NextUIProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className="font-satoshi">
+          <SessionProvider session={session}>
             {getLayout(<Component {...pageProps} />)}
-          </NextUIProvider>
-        </PersistGate>
-      </Provider>
+          </SessionProvider>
+        </div>
+      </QueryClientProvider>
+
+      <Toaster />
     </React.Fragment>
-  );
+  )
 }
-
-
-
-
