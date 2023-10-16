@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ReactElement, JSXElementConstructor } from 'react'
 import styles from './index.module.scss'
@@ -17,12 +17,13 @@ import Link from 'next/link'
 import useClickOutside from '@/hooks/useClickOutside'
 import RecomendationList from '@/component/RecomendationList'
 
-import { HotReviews } from '@/constant/hot-review'
+// import { HotReviews } from '@/constant/hot-review'
 
 const Home = ({
   article,
+  data
 }: {
-  // data: { hot_review: Hotriview[]; selection_product: Product[] }
+  data: { hot_review: Hotriview[]; selection_product: Product[] }
   article: Article[]
 }) => {
   const router = useRouter()
@@ -122,7 +123,7 @@ const Home = ({
           </div>
         </div>
       </div>
-      <MainHotReview hotReview={HotReviews as TempHotReview[]} />
+      <MainHotReview hotReview={data.hot_review} />
       <MainFeature />
       <MainBannerAds />
       <MainArticles artikel={article} />

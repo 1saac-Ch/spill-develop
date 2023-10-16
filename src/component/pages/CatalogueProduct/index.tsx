@@ -3,13 +3,13 @@ import { ReactElement, JSXElementConstructor, useState } from 'react'
 
 import CatalogueLayout from '@/component/layouts/LayoutCatalogue'
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/component/elements/Select'
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from '@/component/elements/Select'
 
 import FilterProduct from '@/component/catalogue/FilterProduct'
 import ProductCard from '@/component/catalogue/ProductCard'

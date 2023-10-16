@@ -4,7 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
 import ProductCard from '@/component/catalogue/ProductCard'
-import ComputerImage from '@/assets/images/computer.jpg'
+// import ComputerImage from '@/assets/images/computer.jpg'
 import { dataRecomendationProduct } from './recomendation.api'
 import useSlider from '@/hooks/useSlider'
 

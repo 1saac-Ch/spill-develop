@@ -14,7 +14,7 @@ const MainArticles = ({ artikel }: { artikel: Article[] }) => {
             return (
               <article
                 key={index}
-                className="flex flex-col rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)] max-w-[684px] mb-5 md:mb-0 min-h-full"
+                className="flex flex-col rounded-[20px] shadow-[0px_4px_16px_rgba(77,77,77,0.12)] md:min-w-[684px] mb-5 md:mb-0 min-h-full"
               >
                 <div>
                   <img
@@ -26,9 +26,9 @@ const MainArticles = ({ artikel }: { artikel: Article[] }) => {
                 <div className="flex flex-1 flex-col gap-1 md:gap-5 p-4 md:p-8">
                   <h1 className={styles.artikelTitle}>{item.title}</h1>
                   <p className={styles.artikelDescriptionFirst}>
-                    {item.description}
+                    {item.description.slice(0, 500)}...
                   </p>
-                  <div className="flex-grow flex items-end">
+                  <div className="flex-grow flex">
                     <Link
                       href={`/article/${item.article_id}`}
                       className="text-[#F22178] font-satoshi w-max mt-4 text-label-md md:text-label-lg font-bold"

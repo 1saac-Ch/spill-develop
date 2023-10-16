@@ -11,7 +11,7 @@ import Image from 'next/image'
 import useSlider from '@/hooks/useSlider'
 import Link from 'next/link'
 
-const MainHotReview = ({ hotReview }: { hotReview: TempHotReview[] }) => {
+const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
   const {
     content,
     handleChangeSlide,
@@ -77,8 +77,8 @@ const MainHotReview = ({ hotReview }: { hotReview: TempHotReview[] }) => {
             <div className={styles.gridCardItems}>
               {content.map((item, i) => (
                 <Fragment key={i}>
-                  <Link href={`/detail-product/${item.product.id}`}>
-                    <Card imgUrl={JSON.parse(item.product.images)[0]}>
+                  <Link href={`/detail-product/${item.productId ?? ''}`}>
+                    <Card imgUrl={item.media[0]}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
                           <RatingStar rating={Number(item.rating)} />
@@ -103,7 +103,7 @@ const MainHotReview = ({ hotReview }: { hotReview: TempHotReview[] }) => {
                           </div>
                           <div className=" flex flex-col">
                             <p className="text-body-md md:text-body-lg font-bold">
-                              User {item.user.username}
+                              User {item.userId}
                             </p>
                             <p className="text-body-sm">3 Minggu Lalu</p>
                           </div>

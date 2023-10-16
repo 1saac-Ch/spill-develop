@@ -29,14 +29,15 @@ type TiktokContent = {
 type Hotriview = {
   id: string
   userId: string
-  product_id: string
+  productId: string
   title: string
   image: string
   video: null
   like: number
+  media: string[]
   rating: string
   description: string
-  products: Product[]
+  product: Product[] | null
 }
 
 type TempHotReview = {
