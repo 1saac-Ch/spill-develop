@@ -123,7 +123,11 @@ export default function ArticleDetail() {
             <h1 className="text-title-lg font-bold font-satoshi">
               {article.title}
             </h1>
-            <p className="text-body-lg font-satoshi">{article.description}</p>
+            <p className="text-body-lg font-satoshi flex flex-col gap-2">
+              {article.description.split('\n').map((paragraph, i) => (
+                <span key={i}>{paragraph}</span>
+              ))}
+            </p>
           </div>
         </article>
 
