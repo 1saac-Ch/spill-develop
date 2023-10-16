@@ -200,7 +200,7 @@ const LayoutNavbar = ({
                   isSticky || normal ? 'text-black' : ''
                 } font-bold`}
               >
-                User
+                {session?.user.username}
               </p>
 
               <Image
