@@ -84,7 +84,7 @@ const MainBannerAds = () => {
               />
             </button>
           )}
-          <Image src={Promo} alt="banner" className="block" />
+          <Image src={Promo} alt="banner" className="block w-full" />
           {/* <Banner /> */}
           {/* <SwitchTransition mode="out-in">
             <CSSTransition

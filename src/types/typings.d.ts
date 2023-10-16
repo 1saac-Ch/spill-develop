@@ -114,7 +114,7 @@ type Review = {
   title: string
   rating: number
   description: string
-  media: string
+  media: string[]
   likes: number
   createdAt: string
   updatedAt: string

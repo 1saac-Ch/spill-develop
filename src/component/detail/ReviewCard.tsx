@@ -28,7 +28,6 @@ const ReviewCard = ({
   media,
   id,
 }: Props) => {
-  const mediaReview = JSON.parse(media) as string[]
   const { data: session } = useSession()
   const router = useRouter()
 
@@ -112,7 +111,7 @@ const ReviewCard = ({
           <p className="text-label-lg font-satoshi">{description}</p>
 
           <div className="flex gap-4">
-            <MediaReview mediaReview={mediaReview} />
+            <MediaReview mediaReview={media} />
           </div>
 
           <p className="font-satoshi text-label-lg text-[#8C8C8C]">
