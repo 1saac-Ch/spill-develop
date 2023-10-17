@@ -21,7 +21,7 @@ import RecomendationList from '@/component/RecomendationList'
 
 const Home = ({
   article,
-  data
+  data,
 }: {
   data: { hot_review: Hotriview[]; selection_product: Product[] }
   article: Article[]
@@ -89,36 +89,24 @@ const Home = ({
               </form>
               {openRecomendation && (
                 <div className="absolute top-[66px] w-full rounded-xl shadow-md bg-white z-[5] overflow-hidden">
-                  <RecomendationList searchVal={searchVal} />
+                  <RecomendationList
+                    searchVal={searchVal}
+                    recomendationProduct={data.selection_product}
+                  />
                 </div>
               )}
             </div>
 
             <div className={styles.horizontalStack}>
-              <Link
-                href={'/detail-product/PD00000006'}
-                className={styles.keywordHeader}
-              >
-                Samsung Galaxy Watch 4
-              </Link>
-              <Link
-                href={'/detail-product/PD00000004'}
-                className={styles.keywordHeader}
-              >
-                Nintendo Switch OLED
-              </Link>
-              <Link
-                href={'/detail-product/PD00000007'}
-                className={styles.keywordHeader}
-              >
-                Sony PlayStation 5
-              </Link>
-              <Link
-                href={'/detail-product/PD0001'}
-                className={styles.keywordHeader}
-              >
-                Apple Iphone 13 Mini
-              </Link>
+              {data.selection_product.map((item) => (
+                <Link
+                  key={item.product_id}
+                  href={`/detail-product/${item.product_id}`}
+                  className={styles.keywordHeader}
+                >
+                  {item.product_title}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

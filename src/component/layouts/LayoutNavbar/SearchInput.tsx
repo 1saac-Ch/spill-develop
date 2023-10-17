@@ -1,15 +1,19 @@
-import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import { useRouter } from 'next/router'
 import { FormEvent, useContext, useRef, useState } from 'react'
 import Backdrop from '../LayoutCatalogue/Backdrop'
 import { createPortal } from 'react-dom'
 import { searchContext } from '../LayoutCatalogue'
 import RecomendationList from '@/component/RecomendationList'
+import useFetcher from '@/hooks/useFetcher'
 
 type Props = {}
 
 export default function SearchInput({}: Props) {
   const { openSearch, setOpenSearch } = useContext(searchContext)
+
+  const { data } = useFetcher<{ data: { selection_product: Product[] } }>(
+    '/home/user'
+  )
 
   const router = useRouter()
 
@@ -47,7 +51,10 @@ export default function SearchInput({}: Props) {
         </form>
         {openSearch ? (
           <div className="w-full absolute z-[10] top-[64px] rounded-xl shadow-md bg-white overflow-hidden ">
-            <RecomendationList searchVal={searchVal} />
+            <RecomendationList
+              searchVal={searchVal}
+              recomendationProduct={data?.data.selection_product || []}
+            />
             {/* <h3 className="p-4 font-bold text-label-lg">
               <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
             </h3>

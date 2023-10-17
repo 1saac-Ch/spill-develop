@@ -6,7 +6,6 @@ import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import { useDebounce } from '@/hooks/useDebounce'
 
 import useFetcher from '@/hooks/useFetcher'
-import { RecomendationProduct } from '@/constant/recomendation-product'
 
 export default function SearchMobile({ onClose }: { onClose: () => void }) {
   const [search, setSearch] = useState('')
@@ -54,8 +53,14 @@ function RecomendationList({ searchVal }: { searchVal: string }) {
     enabled: !!debouncedKeyword,
   })
 
+  const { data: homeData } = useFetcher<{
+    data: { selection_product: Product[] }
+  }>('/home/user')
+
   let isEmpty = !data?.data.length
   let content
+
+  const selectionProduct = homeData?.data.selection_product || []
 
   if (!searchVal) {
     content = (
@@ -64,7 +69,7 @@ function RecomendationList({ searchVal }: { searchVal: string }) {
           🔥 Produk Paling Banyak Dicari:
         </h1>
 
-        {RecomendationProduct.map((product) => (
+        {selectionProduct.map((product) => (
           <SearchRecomendationItem
             directToDetail
             value={product.product_title}

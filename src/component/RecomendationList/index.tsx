@@ -2,9 +2,13 @@ import { useDebounce } from '@/hooks/useDebounce'
 import useFetcher from '@/hooks/useFetcher'
 import SearchRecomendationItem from '../elements/SearchRecomendation'
 
-import { RecomendationProduct } from '@/constant/recomendation-product'
-
-function RecomendationList({ searchVal }: { searchVal: string }) {
+function RecomendationList({
+  searchVal,
+  recomendationProduct,
+}: {
+  searchVal: string
+  recomendationProduct: Product[]
+}) {
   const debouncedKeyword = useDebounce(searchVal, 800)
 
   const { data, isLoading } = useFetcher<{
@@ -23,7 +27,7 @@ function RecomendationList({ searchVal }: { searchVal: string }) {
         <h3 className="p-4 font-bold text-label-lg">
           <span className="mr-2">🔥</span>Produk Paling Banyak Dicari:
         </h3>
-        {RecomendationProduct.map((product) => (
+        {recomendationProduct.map((product) => (
           <SearchRecomendationItem
             key={product.id}
             value={product.product_title}

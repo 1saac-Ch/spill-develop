@@ -56,18 +56,17 @@ type TempHotReview = {
 }
 
 type Product = {
-  id: number
+  id: string
   product_id: string
   product_title: string
+  images: string
+  description: string
   brand: string
   type: string
   series: string
   price_min: number
   price_max: number
-  images: string
-  rating: number
-  review_count: number
-  description: string
+  release_date: string
 }
 
 type Affiliate = {
