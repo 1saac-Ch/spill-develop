@@ -14,7 +14,7 @@ const SearchRecomendationItem = ({
   directToDetail = false,
   id,
 }: Props) => {
-  let href = `/catalogue-product?q=${value}`
+  let href = `/catalogue-product?producct=${value}`
   if (directToDetail) {
     href = `/detail-product/${id!}`
   }

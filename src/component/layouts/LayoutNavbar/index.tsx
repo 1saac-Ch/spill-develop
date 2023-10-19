@@ -260,7 +260,7 @@ const LayoutNavbar = ({
     e.preventDefault()
     const element = e.currentTarget.querySelector('#search') as HTMLInputElement
     const searchParam = new URLSearchParams({
-      q: element.value,
+      product: element.value,
     })
 
     router.push(`/catalogue-product?${searchParam.toString()}`)

@@ -35,7 +35,7 @@ const Home = ({
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
     const searchParam = new URLSearchParams({
-      q: searchVal,
+      product: searchVal,
     })
     router.push(`/catalogue-product?${searchParam.toString()}`)
   }

@@ -78,7 +78,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
               {content.map((item, i) => (
                 <Fragment key={i}>
                   <Link href={`/detail-product/${item.productId ?? ''}`}>
-                    <Card imgUrl={item.media[0]}>
+                    <Card imgUrl={item.media?.[0] || ''}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
                           <RatingStar rating={Number(item.rating)} />

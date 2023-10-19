@@ -24,7 +24,10 @@ export default function SearchMobile({ onClose }: { onClose: () => void }) {
             onChange={(e) => setSearch(e.target.value)}
           />
 
-          <Link href={`/catalogue-product?q=${search}`} className="w-5 h-5">
+          <Link
+            href={`/catalogue-product?product=${search}`}
+            className="w-5 h-5"
+          >
             <Image
               src={'/icons/search.svg'}
               width={0}

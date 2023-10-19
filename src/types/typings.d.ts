@@ -34,7 +34,7 @@ type Hotriview = {
   image: string
   video: null
   like: number
-  media: string[]
+  media: string[] | null
   rating: string
   description: string
   product: Product[] | null

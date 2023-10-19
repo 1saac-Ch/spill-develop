@@ -24,7 +24,7 @@ export default function SearchInput({}: Props) {
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()
     const searchParam = new URLSearchParams({
-      q: searchVal,
+      product: searchVal,
     })
 
     router.push(`/catalogue-product?${searchParam.toString()}`)
