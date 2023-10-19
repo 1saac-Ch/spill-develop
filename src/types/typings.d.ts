@@ -69,6 +69,12 @@ type Product = {
   release_date: string
 }
 
+type ProductSearch = Product & {
+  review_count: number
+  rating: number
+  review: Review[]
+}
+
 type Affiliate = {
   id: string
   affiliate_id: string
