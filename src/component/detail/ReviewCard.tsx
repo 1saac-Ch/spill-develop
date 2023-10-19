@@ -91,7 +91,7 @@ const ReviewCard = ({
             className="w-8 h-8 rounded-full object-cover"
           />
           <p className="font-satoshi text-label-lg font-bold">
-            {user.username}
+            {user?.username || 'Anonymous user'}
           </p>
         </div>
 
@@ -111,7 +111,7 @@ const ReviewCard = ({
           <p className="text-label-lg font-satoshi">{description}</p>
 
           <div className="flex gap-4">
-            <MediaReview mediaReview={media} />
+            <MediaReview mediaReview={JSON.parse(media)} />
           </div>
 
           <p className="font-satoshi text-label-lg text-[#8C8C8C]">
