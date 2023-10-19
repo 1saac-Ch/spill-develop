@@ -19,6 +19,8 @@ import { useRouter } from 'next/router'
 // import { useMediaQuery } from '@mui/material'
 import useFetcher from '@/hooks/useFetcher'
 import FilterProduct from '@/component/catalogue/FilterProduct'
+import { useMediaQuery } from '@mui/material'
+import BottomSheet from '@/component/ui/BottomSheet'
 
 // const BottomSheet = dynamic(() => import('@/component/ui/BottomSheet'), {
 //   loading: () => <p>Loading...</p>,
@@ -34,7 +36,7 @@ const SortOptions = [
 
 const CatalogueProduct = () => {
   const [activeOption, setActiveOption] = useState(SortOptions[0])
-  // const isLarge = useMediaQuery('(min-width: 1024px)')
+  const isLarge = useMediaQuery('(min-width: 1024px)')
 
   const router = useRouter()
 
@@ -61,22 +63,21 @@ const CatalogueProduct = () => {
         <div className="min-h-screen lg:grid grid-cols-[253px_1fr] gap-10 py-10 md:py-16 font-satoshi">
           <FilterProduct />
 
-          {notFound ? (
+          {notFound && isLarge ? (
             <div className="main-container min-h-screen">
               <NotFoundProduct />
             </div>
           ) : null}
 
-          {!notFound ? (
-            <div className="flex flex-col gap-10 md:gap-6">
-              <div className="flex gap-6 md:gap-0 flex-col md:flex-row md:items-center justify-between ">
-                <h4 className="text-title-sm md:text-title-md">
-                  Menampilkan <strong>{products.length}</strong> untuk kata
-                  kunci <strong>{keyword}</strong>
-                </h4>
+          <div className="flex flex-col gap-10 md:gap-6">
+            <div className="flex gap-6 md:gap-0 flex-row items-center justify-between ">
+              <h4 className="text-title-sm md:text-title-md">
+                Menampilkan <strong>{products.length}</strong> untuk kata kunci{' '}
+                <strong>{keyword}</strong>
+              </h4>
 
-                <div className="flex justify-end items-center gap-4 md:gap-6">
-                  {/* <label className=" text-title-md font-[900]">Urutkan</label>
+              <div className="flex justify-end items-center gap-4 md:gap-6">
+                {/* <label className=" text-title-md font-[900]">Urutkan</label>
     
                     <Select
                       disabled={true}
@@ -99,15 +100,17 @@ const CatalogueProduct = () => {
                         ))}
                       </SelectContent>
                     </Select> */}
-                  {/* {!isLarge ? (
-                      <BottomSheet>
-                        <FilterProduct inMobileDevice />
-                      </BottomSheet>
-                    ) : null} */}
-                </div>
+                {!isLarge ? (
+                  <BottomSheet>
+                    <FilterProduct inMobileDevice />
+                  </BottomSheet>
+                ) : null}
               </div>
+            </div>
 
-              {/* CARDS */}
+            {notFound ? (
+              <NotFoundProduct />
+            ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-4 mb-4">
                 {products.map((prod, i) => {
                   const image = JSON.parse(prod.images) as string[]
@@ -126,11 +129,11 @@ const CatalogueProduct = () => {
                   )
                 })}
               </div>
+            )}
 
-              {/* PAGINATION */}
-              {/* <Pagination /> */}
-            </div>
-          ) : null}
+            {/* PAGINATION */}
+            {/* <Pagination /> */}
+          </div>
         </div>
       </main>
       {/* <LayoutRekomendationFooter /> */}

@@ -14,17 +14,17 @@ const BottomSheet = ({ children }: Props) => {
 
   return (
     <>
-      <BottomSheet.Trigger open={() => {}} />
+      <BottomSheet.Trigger open={open} />
 
       <Sheet
         ref={ref}
         isOpen={isOpen}
         onClose={close}
-        snapPoints={[400, 300, 200, 100, 1]}
+        snapPoints={[550]}
         initialSnap={0}
         className="lg:hidden"
       >
-        <Sheet.Container className="rounded-t-[24px] min-h-[484px]">
+        <Sheet.Container className="rounded-t-[24px] min-h-[484px] font-satoshi">
           <Sheet.Header />
           <Sheet.Content>{children}</Sheet.Content>
         </Sheet.Container>
@@ -38,15 +38,14 @@ BottomSheet.Trigger = function ButtonTrig({ open }: { open: () => void }) {
   return (
     <button
       onClick={open}
-      disabled
-      className="cursor-not-allowed lg:hidden rounded-xl border border-border py-3 px-4"
+      className="flex items-center justify-center lg:hidden rounded-xl border border-border py-3 px-4 flex-none"
     >
       <NextImage
         src="/icons/filter.svg"
         alt="filter"
         width={20}
         height={20}
-        className="w-full h-full"
+        className="object-contain"
       />
     </button>
   )

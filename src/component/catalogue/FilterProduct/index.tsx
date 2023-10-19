@@ -119,7 +119,6 @@ const FilterProduct = ({ inMobileDevice = false }) => {
               }
             }}
             className="p-2 w-full"
-            // defaultValue={query['price_min']}
             placeholder="Harga Minimum"
           />
         </div>
@@ -138,7 +137,6 @@ const FilterProduct = ({ inMobileDevice = false }) => {
               }
             }}
             className="p-2 w-full"
-            // defaultValue={'1000000000'}
             placeholder="Harga Maksimum"
           />
         </div>
