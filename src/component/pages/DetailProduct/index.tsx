@@ -289,8 +289,8 @@ const DetailProduct = ({
             <div className="flex flex-col flex-[1.2] gap-10 md:gap-6">
               <div className="flex flex-col md:flex-row gap-3 md:items-center text-abu2 text-small font-satoshi">
                 <div className="border-abu2 flex gap-3 pr-3">
-                  <RatingStar sizeIcon={19} rating={4} />
-                  <p className="font-bold text-sm">{product?.rating ?? 0}</p>
+                  {/* <RatingStar sizeIcon={19} rating={4} /> */}
+                  {/* <p className="font-bold text-sm">{product?.rating ?? 0}</p> */}
                 </div>
                 {/* <div className="flex gap-[8.8px]">
                   <p className="text-sm font-bold md:font-normal tracking-[0.1px] leading-5">

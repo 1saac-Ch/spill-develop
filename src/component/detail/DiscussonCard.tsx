@@ -40,7 +40,17 @@ const DiscussionCard = ({
         } space-y-2 pr-3 pb-3`}
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#705CF6]" />
+          <div className="relative w-8 h-8 rounded-full overflow-hidden">
+            {user.profileImage ? (
+              <img
+                src={user.profileImage || ''}
+                alt=""
+                className="absolute bg-cover inset-0"
+              />
+            ) : (
+              <div className="bg-purple-600 absolute inset-0" />
+            )}
+          </div>
           <p className="font-satoshi text-label-lg font-bold">
             {user.username}
           </p>

@@ -103,6 +103,7 @@ type Discussion = {
   createdAt: string
   updatedAt: string
   waktu: string
+  user: UserData
 }
 
 type UserData = {
@@ -110,6 +111,7 @@ type UserData = {
   username: string
   email?: string | null
   no_hp: string
+  profileImage?: string | null
 }
 
 type Review = {

@@ -18,6 +18,8 @@ const WriteDiscussion = () => {
   const queryClient = useQueryClient()
   const { data: session } = useSession()
 
+  // TODO !!!!
+
   const { data, isLoading, isError } = useFetcher<DiscussionQuery>(
     `/discussion/${productId}`
   )
