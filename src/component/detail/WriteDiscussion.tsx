@@ -1,14 +1,38 @@
 import React, { FormEvent } from 'react'
 import SendIcon from '../elements/SendIcon'
-import ReviewCard from './ReviewCard'
+// import ReviewCard from './ReviewCard'
 import DiscussionCard from './DiscussonCard'
-import useFetcher from '@/hooks/useFetcher'
 import { useRouter } from 'next/router'
-import { useQueryClient } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 
 type DiscussionQuery = {
   data: { discussionsWithTime: Discussion[] }
+}
+
+async function getDiscussionById(productId: string | string[]) {
+  const resp = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/discussion/${productId}`
+  )
+  const jsonResp: { data: { discussionsWithTime: Discussion[] } } =
+    await resp.json()
+
+  const idMap: Record<string, any> = {}
+
+  jsonResp.data.discussionsWithTime.forEach((item) => {
+    idMap[item.id] = { ...item, replies: [] }
+  })
+
+  const hierarchy: Discussion[] = []
+  jsonResp.data.discussionsWithTime.forEach((item) => {
+    if (item.parentId === null) {
+      hierarchy.push(idMap[item.id])
+    } else if (idMap[item.parentId]) {
+      idMap[item.parentId].replies.push(idMap[item.id])
+    }
+  })
+
+  return hierarchy
 }
 
 const WriteDiscussion = () => {
@@ -18,13 +42,13 @@ const WriteDiscussion = () => {
   const queryClient = useQueryClient()
   const { data: session } = useSession()
 
-  // TODO !!!!
+  const { data, isError, isLoading } = useQuery<Discussion[]>({
+    queryFn: async () => getDiscussionById(productId!),
+    queryKey: ['discussion', productId],
+    enabled: !!productId,
+  })
 
-  const { data, isLoading, isError } = useFetcher<DiscussionQuery>(
-    `/discussion/${productId}`
-  )
-
-  const discussions = data?.data.discussionsWithTime
+  const discussions = data || []
 
   let content
   if (isLoading) {

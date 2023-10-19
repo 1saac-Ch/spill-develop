@@ -4,6 +4,7 @@ import LikeIcon from '../elements/LikeIcon'
 type Props = {
   isReply?: boolean
   isSending?: boolean
+  replies?: Discussion[]
 } & Discussion
 
 const ButtonArrow = () => (
@@ -31,6 +32,7 @@ const DiscussionCard = ({
   user,
   body,
   isSending = false,
+  replies = [],
 }: Props) => {
   return (
     <>
@@ -68,11 +70,11 @@ const DiscussionCard = ({
         </div>
       </div>
 
-      {/* {replies?.length
+      {replies?.length
         ? replies.map((replie) => (
             <DiscussionCard key={replie.id} {...replie} isReply />
           ))
-        : null} */}
+        : null}
     </>
   )
 }
