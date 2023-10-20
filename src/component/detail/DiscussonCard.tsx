@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import LikeIcon from '../elements/LikeIcon'
+import { DiscussionForm, DiscussionQuery } from './WriteDiscussion'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useQueryClient } from '@tanstack/react-query'
 
 type Props = {
   isReply?: boolean
@@ -34,6 +38,72 @@ const DiscussionCard = ({
   isSending = false,
   replies = [],
 }: Props) => {
+  const { data: session } = useSession()
+  const router = useRouter()
+  const queryClient = useQueryClient()
+
+  const [openReplyDiscussion, setOpenReplyDiscussion] = useState(false)
+
+  const productId = router.query.id
+
+  async function handleSendReply(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    if (!session) {
+      router.push(
+        `/login?${new URLSearchParams({
+          callbackUrl: `/detail-product/${productId}`,
+        }).toString()}`
+      )
+      return
+    }
+
+    const { reviewContent } = e.target as EventTarget & {
+      reviewContent: { value: string }
+    }
+
+    const body = reviewContent.value
+
+    queryClient.setQueryData(
+      ['discussion', productId],
+      (oldValue: DiscussionQuery | undefined) => {
+        if (!oldValue) return undefined
+        const oldDiscussion = oldValue.data.discussionsWithTime
+
+        const newDiscussion = [
+          ...oldDiscussion,
+          {
+            userId: session.user.id,
+            body,
+            user: {
+              waktu: 'Baru saja',
+              username: session.user.username,
+            },
+            isSending: true,
+          },
+        ] as any
+
+        return { data: { discussionsWithTime: newDiscussion } }
+      }
+    )
+
+    reviewContent.value = ''
+
+    const resp = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/discussion/${productId}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+        body: JSON.stringify({
+          body,
+          parentId: null,
+        }),
+      }
+    )
+  }
   return (
     <>
       <div
@@ -58,16 +128,25 @@ const DiscussionCard = ({
           </p>
         </div>
 
-        <div className="ml-10 space-y-2">
+        <div className="ml-10 space-y-2 bg-blue">
           <p className="text-label-lg font-satoshi">{body}</p>
           <div className="flex gap-3">
             <p className="font-satoshi text-label-lg text-[#8C8C8C]">{waktu}</p>
 
-            <button className="text-label-lg text-[#8C8C8C] font-bold">
+            <button
+              onClick={() => setOpenReplyDiscussion(true)}
+              className="text-label-lg text-[#8C8C8C] font-bold"
+            >
               Reply
             </button>
           </div>
         </div>
+
+        {openReplyDiscussion ? (
+          <form onSubmit={handleSendReply} className="ml-10">
+            <DiscussionForm />
+          </form>
+        ) : null}
       </div>
 
       {replies?.length

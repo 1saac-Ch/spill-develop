@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 
-type DiscussionQuery = {
+export type DiscussionQuery = {
   data: { discussionsWithTime: Discussion[] }
 }
 
@@ -140,19 +140,8 @@ const WriteDiscussion = () => {
         >
           Apa yang menjadi keresahanmu dalam memilih produk?
         </label>
-        <fieldset className="relative rounded-xl h-[104px] border md:px-4 md:py-3">
-          <textarea
-            id="new-review"
-            name="reviewContent"
-            className="w-full outline-none p-4 md:p-0 resize-none h-full placeholder:text-abu text-label-lg placeholder:text-label-lg font-satoshi placeholder:font-satoshi"
-            placeholder="Review kamu disini"
-          />
-          <button className="absolute bottom-3 right-3" type="submit">
-            <span>
-              <SendIcon color="#1598CC" size={20} />
-            </span>
-          </button>
-        </fieldset>
+
+        <DiscussionForm />
       </form>
 
       {content}
@@ -161,3 +150,21 @@ const WriteDiscussion = () => {
 }
 
 export default WriteDiscussion
+
+export function DiscussionForm({}: {}) {
+  return (
+    <fieldset className="relative rounded-xl h-[104px] border md:px-4 md:py-3">
+      <textarea
+        id="new-review"
+        name="reviewContent"
+        className="w-full outline-none p-4 md:p-0 resize-none h-full placeholder:text-abu text-label-lg placeholder:text-label-lg font-satoshi placeholder:font-satoshi"
+        placeholder="Review kamu disini"
+      />
+      <button className="absolute bottom-3 right-3" type="submit">
+        <span>
+          <SendIcon color="#1598CC" size={20} />
+        </span>
+      </button>
+    </fieldset>
+  )
+}
