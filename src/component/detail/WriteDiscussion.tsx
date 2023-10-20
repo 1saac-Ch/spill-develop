@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent, createContext, useState } from 'react'
 import SendIcon from '../elements/SendIcon'
 // import ReviewCard from './ReviewCard'
 import DiscussionCard from './DiscussonCard'
@@ -35,12 +35,24 @@ async function getDiscussionById(productId: string | string[]) {
   return hierarchy
 }
 
+export const discussionListContext = createContext<{
+  isOpenDiscusionIdReply: number | null
+  setIsOpenDiscusionIdReply: (params: number | null) => void
+}>({
+  isOpenDiscusionIdReply: null,
+  setIsOpenDiscusionIdReply: () => {},
+})
+
 const WriteDiscussion = () => {
   const router = useRouter()
   const productId = router.query.id
 
   const queryClient = useQueryClient()
   const { data: session } = useSession()
+
+  const [isOpenDiscusionIdReply, setIsOpenDiscusionIdReply] = useState<
+    null | number
+  >(null)
 
   const { data, isError, isLoading } = useQuery<Discussion[]>({
     queryFn: async () => getDiscussionById(productId!),
@@ -67,9 +79,15 @@ const WriteDiscussion = () => {
       </p>
     )
   } else {
-    content = discussions.map((disc) => (
-      <DiscussionCard key={disc.id} {...disc} />
-    ))
+    content = (
+      <discussionListContext.Provider
+        value={{ isOpenDiscusionIdReply, setIsOpenDiscusionIdReply }}
+      >
+        {discussions.map((disc) => (
+          <DiscussionCard key={disc.id} {...disc} />
+        ))}
+      </discussionListContext.Provider>
+    )
   }
 
   async function handleSendDiscussion(e: FormEvent<HTMLFormElement>) {

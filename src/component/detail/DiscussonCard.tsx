@@ -1,6 +1,6 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useContext } from 'react'
 import LikeIcon from '../elements/LikeIcon'
-import { DiscussionForm, DiscussionQuery } from './WriteDiscussion'
+import { DiscussionForm, discussionListContext } from './WriteDiscussion'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useQueryClient } from '@tanstack/react-query'
@@ -37,12 +37,16 @@ const DiscussionCard = ({
   body,
   isSending = false,
   replies = [],
+  id,
 }: Props) => {
   const { data: session } = useSession()
   const router = useRouter()
   const queryClient = useQueryClient()
+  const { isOpenDiscusionIdReply, setIsOpenDiscusionIdReply } = useContext(
+    discussionListContext
+  )
 
-  const [openReplyDiscussion, setOpenReplyDiscussion] = useState(false)
+  const currentDiscussionOpen = isOpenDiscusionIdReply === id
 
   const productId = router.query.id
 
@@ -64,45 +68,54 @@ const DiscussionCard = ({
 
     const body = reviewContent.value
 
-    queryClient.setQueryData(
-      ['discussion', productId],
-      (oldValue: DiscussionQuery | undefined) => {
-        if (!oldValue) return undefined
-        const oldDiscussion = oldValue.data.discussionsWithTime
+    // queryClient.setQueryData(
+    //   ['discussion', productId],
+    //   (oldValue: DiscussionQuery | undefined) => {
+    //     if (!oldValue) return undefined
+    //     const oldDiscussion = oldValue.data.discussionsWithTime
 
-        const newDiscussion = [
-          ...oldDiscussion,
-          {
-            userId: session.user.id,
-            body,
-            user: {
-              waktu: 'Baru saja',
-              username: session.user.username,
-            },
-            isSending: true,
-          },
-        ] as any
+    //     const newDiscussion = [
+    //       ...oldDiscussion,
+    //       {
+    //         userId: session.user.id,
+    //         body,
+    //         user: {
+    //           waktu: 'Baru saja',
+    //           username: session.user.username,
+    //         },
+    //         isSending: true,
+    //       },
+    //     ] as any
 
-        return { data: { discussionsWithTime: newDiscussion } }
-      }
-    )
+    //     return { data: { discussionsWithTime: newDiscussion } }
+    //   }
+    // )
 
     reviewContent.value = ''
 
-    const resp = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/discussion/${productId}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.accessToken}`,
-        },
-        body: JSON.stringify({
-          body,
-          parentId: null,
-        }),
-      }
-    )
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/discussion/${productId}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+          body: JSON.stringify({
+            body,
+            parentId: id,
+          }),
+        }
+      )
+      setIsOpenDiscusionIdReply(null)
+    } catch (error) {
+      console.log('e', error)
+    } finally {
+      queryClient.refetchQueries({
+        queryKey: ['discussion', productId],
+      })
+    }
   }
   return (
     <>
@@ -134,7 +147,9 @@ const DiscussionCard = ({
             <p className="font-satoshi text-label-lg text-[#8C8C8C]">{waktu}</p>
 
             <button
-              onClick={() => setOpenReplyDiscussion(true)}
+              onClick={() => {
+                setIsOpenDiscusionIdReply(id)
+              }}
               className="text-label-lg text-[#8C8C8C] font-bold"
             >
               Reply
@@ -142,7 +157,7 @@ const DiscussionCard = ({
           </div>
         </div>
 
-        {openReplyDiscussion ? (
+        {currentDiscussionOpen ? (
           <form onSubmit={handleSendReply} className="ml-10">
             <DiscussionForm />
           </form>
