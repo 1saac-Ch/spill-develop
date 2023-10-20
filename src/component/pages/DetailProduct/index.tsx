@@ -315,11 +315,11 @@ const DetailProduct = ({
                   </p>
                 </div>
               </div>
-              <div className="flex gap-3 items-center text-medium font-satoshi font-tebal text-pink">
+              <div className="flex flex-col lg:flex-row gap-3 lg:items-center text-medium font-satoshi font-tebal text-pink">
                 <p className="text-headline-sm font-bold">
                   Rp. {formatCurrency(product.price_min)}
+                  <span> -</span>
                 </p>
-                <span>-</span>
                 <p className="text-headline-sm font-bold">
                   Rp. {formatCurrency(product.price_max)}
                 </p>
