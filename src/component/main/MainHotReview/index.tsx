@@ -78,7 +78,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
               {content.map((item, i) => (
                 <Fragment key={i}>
                   <Link href={`/detail-product/${item.productId ?? ''}`}>
-                    <Card imgUrl={item.media?.[0] || ''}>
+                    <Card imgUrl={item.media?.[0] || '/placeholder.jpeg'}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
                           <RatingStar rating={Number(item.rating)} />
@@ -93,11 +93,11 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
                         </div>
                         <div className="flex gap-3">
                           <div>
-                            <Image
+                            <img
                               width={12}
                               height={12}
                               className="h-12 w-12 rounded-full object-cover"
-                              src="/profile.jpeg"
+                              src={item.user?.profileImage ?? '/profile.png'}
                               alt="Avatar"
                             />
                           </div>

@@ -30,14 +30,14 @@ type Hotriview = {
   id: string
   userId: string
   productId: string
+  product_title: string
   title: string
-  image: string
-  video: null
-  like: number
+  images: string[] | null
+  likes: number
   media: string[] | null
   rating: string
   description: string
-  product: Product[] | null
+  user: UserData
 }
 
 type TempHotReview = {
@@ -121,7 +121,7 @@ type Review = {
   title: string
   rating: number
   description: string
-  media: string
+  media: string[]
   likes: number
   createdAt: string
   updatedAt: string

@@ -69,71 +69,74 @@ const CatalogueProduct = () => {
             </div>
           ) : null}
 
-          <div className="flex flex-col gap-10 md:gap-6">
-            <div className="flex gap-6 md:gap-0 flex-row items-center justify-between ">
-              <h4 className="text-title-sm md:text-title-md">
-                Menampilkan <strong>{products.length}</strong> untuk kata kunci{' '}
-                <strong>{keyword}</strong>
-              </h4>
+          {true ? (
+            <div className="flex flex-col gap-10 md:gap-6">
+              {!isLarge ? (
+                <div className="flex gap-6 md:gap-0 flex-row items-center justify-between ">
+                  <h4 className="text-title-sm md:text-title-md">
+                    Menampilkan <strong>{products.length}</strong> untuk kata
+                    kunci <strong>{keyword}</strong>
+                  </h4>
 
-              <div className="flex justify-end items-center gap-4 md:gap-6">
-                {/* <label className=" text-title-md font-[900]">Urutkan</label>
-    
-                    <Select
-                      disabled={true}
-                      onValueChange={(val) => setActiveOption(val)}
-                      value={activeOption}
-                    >
-                      <SelectTrigger className="w-[200px]">
-                        <SelectValue placeholder="Paling sesuai" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {SortOptions.map((opt, i) => (
-                          <SelectItem
-                            key={i}
-                            value={opt}
-                            className={opt === activeOption ? 'font-bold' : ''}
-                            defaultChecked={i === 0}
+                  <div className="flex justify-end items-center gap-4 md:gap-6">
+                    {/* <label className=" text-title-md font-[900]">Urutkan</label>
+          
+                          <Select
+                            disabled={true}
+                            onValueChange={(val) => setActiveOption(val)}
+                            value={activeOption}
                           >
-                            {opt}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select> */}
-                {!isLarge ? (
-                  <BottomSheet>
-                    <FilterProduct inMobileDevice />
-                  </BottomSheet>
-                ) : null}
-              </div>
+                            <SelectTrigger className="w-[200px]">
+                              <SelectValue placeholder="Paling sesuai" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {SortOptions.map((opt, i) => (
+                                <SelectItem
+                                  key={i}
+                                  value={opt}
+                                  className={opt === activeOption ? 'font-bold' : ''}
+                                  defaultChecked={i === 0}
+                                >
+                                  {opt}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select> */}
+
+                    <BottomSheet>
+                      <FilterProduct inMobileDevice />
+                    </BottomSheet>
+                  </div>
+                </div>
+              ) : null}
+
+              {notFound && !isLarge ? (
+                <NotFoundProduct />
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-4 mb-4">
+                  {products.map((prod, i) => {
+                    const image = JSON.parse(prod.images) as string[]
+                    return (
+                      <ProductCard
+                        id={prod.product_id}
+                        image={image[0]}
+                        title={prod.product_title}
+                        review={prod.review_count}
+                        rate={prod.rating || 0}
+                        production={prod.brand}
+                        minPrize={prod.price_min}
+                        maxPrize={prod.price_max}
+                        key={i}
+                      />
+                    )
+                  })}
+                </div>
+              )}
+
+              {/* PAGINATION */}
+              {/* <Pagination /> */}
             </div>
-
-            {notFound ? (
-              <NotFoundProduct />
-            ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-6 md:gap-4 mb-4">
-                {products.map((prod, i) => {
-                  const image = JSON.parse(prod.images) as string[]
-                  return (
-                    <ProductCard
-                      id={prod.product_id}
-                      image={image[0]}
-                      title={prod.product_title}
-                      review={prod.review_count}
-                      rate={prod.rating || 0}
-                      production={prod.brand}
-                      minPrize={prod.price_min}
-                      maxPrize={prod.price_max}
-                      key={i}
-                    />
-                  )
-                })}
-              </div>
-            )}
-
-            {/* PAGINATION */}
-            {/* <Pagination /> */}
-          </div>
+          ) : null}
         </div>
       </main>
       {/* <LayoutRekomendationFooter /> */}

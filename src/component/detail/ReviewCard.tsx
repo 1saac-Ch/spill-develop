@@ -31,6 +31,8 @@ const ReviewCard = ({
   const { data: session } = useSession()
   const router = useRouter()
 
+  console.log({ media })
+
   const queryClient = useQueryClient()
 
   const { data: dataLike } = useFetcher<LikeResponse>(`/review/${id}/like`)
@@ -111,7 +113,7 @@ const ReviewCard = ({
           <p className="text-label-lg font-satoshi">{description}</p>
 
           <div className="flex gap-4">
-            <MediaReview mediaReview={JSON.parse(media)} />
+            <MediaReview mediaReview={media} />
           </div>
 
           <p className="font-satoshi text-label-lg text-[#8C8C8C]">
