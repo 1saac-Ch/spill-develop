@@ -31,8 +31,6 @@ const ReviewCard = ({
   const { data: session } = useSession()
   const router = useRouter()
 
-  console.log({ media })
-
   const queryClient = useQueryClient()
 
   const { data: dataLike } = useFetcher<LikeResponse>(`/review/${id}/like`)
