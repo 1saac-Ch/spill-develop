@@ -103,7 +103,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
                           </div>
                           <div className=" flex flex-col">
                             <p className="text-body-md md:text-body-lg font-bold">
-                              User {item.userId}
+                              User {item?.user?.username ?? item.userId}
                             </p>
                             <p className="text-body-sm">3 Minggu Lalu</p>
                           </div>
