@@ -115,6 +115,13 @@ const LayoutNavbar = ({
     }
   }, [])
 
+  useEffect(() => {
+    if (openSearch) {
+      setOpenSearch?.(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query])
+
   const isOpenSearch =
     typeof openSearch === 'boolean' ? openSearch : isOpenSearchNav
 

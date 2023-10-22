@@ -6,9 +6,17 @@ import SearchRecomendationItem from '@/component/elements/SearchRecomendation'
 import { useDebounce } from '@/hooks/useDebounce'
 
 import useFetcher from '@/hooks/useFetcher'
+import { useRouter } from 'next/router'
 
 export default function SearchMobile({ onClose }: { onClose: () => void }) {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const myParam = urlParams.get('product')
+
+    return myParam ?? ''
+  })
+
+  const router = useRouter()
 
   return (
     <div className="fixed z-[99999] w-screen h-screen inset-0 bg-white md:hidden p-5">
@@ -22,6 +30,7 @@ export default function SearchMobile({ onClose }: { onClose: () => void }) {
             placeholder="Find Your Product Here"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            defaultValue={router.query.product || ''}
           />
 
           <Link
