@@ -52,7 +52,12 @@ function Component() {
       setIsLoading(false)
     } else {
       const currPath = router.asPath
-      const url = new URL(currPath, 'http://localhost:3000')
+      const url = new URL(
+        currPath,
+        process.env.VERCEL_URL ||
+          process.env.NEXT_PUBLIC_BASE_URL ||
+          'http://localhost:3000'
+      )
       router.push(url.searchParams.get('callbackUrl') || '/')
       setIsLoading(false)
       return

@@ -110,7 +110,8 @@ function Daftar() {
               register={register}
               required
               name="username"
-              message="format username tidak sesuai"
+              pattern={regex.username}
+              message="Username tidak boleh berisi karakter spesial"
             />
             {errors['username'] ? (
               <p className={'text-pink text-label-md font-satoshi'}>
@@ -146,8 +147,8 @@ function Daftar() {
             />
             {errors['password'] ? (
               <p className={'text-pink text-label-md font-satoshi'}>
-                *password harus terdiri dari minimal 8 karakter kombinasi huruf
-                dan angka
+                *password harus terdiri dari minimal 8 karakter, maksimal 16,
+                berisi kombinasi huruf dan angka
               </p>
             ) : null}
           </div>
