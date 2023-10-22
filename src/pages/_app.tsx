@@ -7,6 +7,7 @@ import { SessionProvider } from 'next-auth/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { Toaster } from '@/component/ui/Toaster'
+import Script from 'next/script'
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
@@ -21,6 +22,25 @@ export default function App({
   const getLayout = Component.getLayout || ((page) => page)
   return (
     <React.Fragment>
+      <Script
+        strategy="afterInteractive"
+        src={'https://www.googletagmanager.com/gtag/js?id=G-F26XW99WED'}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-F26XW99WED'', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
+
       <Head>
         <link
           rel="stylesheet"
