@@ -1,5 +1,4 @@
 import React, { FormEvent, useContext } from 'react'
-import LikeIcon from '../elements/LikeIcon'
 import { DiscussionForm, discussionListContext } from './WriteDiscussion'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -110,7 +109,6 @@ const DiscussionCard = ({
       )
       setIsOpenDiscusionIdReply(null)
     } catch (error) {
-      console.log('e', error)
     } finally {
       queryClient.refetchQueries({
         queryKey: ['discussion', productId],
