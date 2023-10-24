@@ -140,7 +140,7 @@ const LayoutNavbar = ({
     {
       title: () => (
         <a
-          href="https://link.spiil.com"
+          href="https://link.spiill.com"
           target="_blank"
           className={cn(
             isSticky ? styles.review : styles.reviewSticky,
@@ -191,7 +191,7 @@ const LayoutNavbar = ({
     {
       title: () => (
         <a
-          href="https://link.spiil.com"
+          href="https://link.spiill.com"
           target="_blank"
           className={cn(
             isSticky ? styles.review : styles.reviewSticky,
@@ -267,7 +267,7 @@ const LayoutNavbar = ({
     {
       title: () => (
         <a
-          href="https://link.spiil.com"
+          href="https://link.spiill.com"
           target="_blank"
           className={cn(
             styles.review,
@@ -315,7 +315,7 @@ const LayoutNavbar = ({
     {
       title: () => (
         <a
-          href="https://link.spiil.com"
+          href="https://link.spiill.com"
           target="_blank"
           className={cn(
             styles.review,
@@ -491,7 +491,7 @@ const LayoutNavbar = ({
 
                 <DropDownNav.Item>
                   <a
-                    href="https://link.spiil.com"
+                    href="https://link.spiill.com"
                     target="_blank"
                     className={cn(
                       styles.review,
@@ -770,7 +770,7 @@ const LayoutNavbar = ({
 
               <DropDownNav.Item>
                 <a
-                  href="https://link.spiil.com"
+                  href="https://link.spiill.com"
                   target="_blank"
                   className={cn(
                     styles.review,
