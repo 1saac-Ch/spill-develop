@@ -39,9 +39,24 @@
 }
 
 .review {
-  @apply font-tebal text-small text-dark leading-low py-[11px] px-[15px] bg-white border-[1px] border-dark rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important};
+  @apply font-tebal text-small text-dark leading-low py-[11px] px-[15px] bg-white border-[1px] border-dark rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink;
 }
 
 .reviewSticky {
-  @apply font-tebal text-small text-white leading-low py-[11px] px-[15px] bg-transparent border-[1px] border-white rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink #{!important};
+  @apply font-tebal text-small text-white leading-low py-[11px] px-[15px] bg-transparent border-[1px] border-white rounded-[12px] hover:bg-pink hover:text-white transition-all duration-300 ease-in-out hover:border-pink;
+}
+
+.newContent::after {
+  content: 'New';
+  position: absolute;
+  top: 0;
+  border-radius: 0px 0px 6px 6px;
+  background: #f22178;
+  width: 53px;
+  height: 11px;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }

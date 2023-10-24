@@ -139,6 +139,35 @@ const LayoutNavbar = ({
   const RightBeforeLogin = [
     {
       title: () => (
+        <a
+          href="https://link.spiil.com"
+          target="_blank"
+          className={cn(
+            isSticky ? styles.review : styles.reviewSticky,
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl relative hover:bg-transparent hover:text-inherit hover:border-current',
+            styles.newContent
+          )}
+        >
+          #Link Spiill
+        </a>
+      ),
+    },
+    {
+      title: () => (
+        <Button
+          className={cn(
+            isSticky ? styles.review : styles.reviewSticky,
+            isSticky ? 'text-dark' : 'text-white',
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl bg-transparent hover:bg-pink hover:text-white'
+          )}
+          onClick={onOpenWriteReview}
+        >
+          Tulis Review
+        </Button>
+      ),
+    },
+    {
+      title: () => (
         <Link
           href="/login"
           className={isSticky ? styles.login : styles.loginSticky}
@@ -156,34 +185,35 @@ const LayoutNavbar = ({
       ),
       link: '/daftar',
     },
-    {
-      title: () => (
-        <Button
-          className={isSticky ? styles.review : styles.reviewSticky}
-          onClick={onOpenWriteReview}
-        >
-          Tulis Review
-        </Button>
-      ),
-      link: '/',
-    },
   ]
 
   const RightAfterLogin = [
     {
       title: () => (
+        <a
+          href="https://link.spiil.com"
+          target="_blank"
+          className={cn(
+            isSticky ? styles.review : styles.reviewSticky,
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl relative hover:bg-transparent hover:text-inherit hover:border-current',
+            styles.newContent
+          )}
+        >
+          #Link Spiill
+        </a>
+      ),
+    },
+    {
+      title: () => (
         <button
           onClick={onOpenWriteReview}
-          className={
-            isSticky || normal
-              ? cn(styles.login, 'border border-black py-3 px-4 rounded-xl')
-              : cn(
-                  styles.loginSticky,
-                  'border border-white py-3 px-4 rounded-xl'
-                )
-          }
+          className={cn(
+            isSticky ? styles.review : styles.reviewSticky,
+            isSticky ? 'text-dark' : 'text-white',
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl bg-transparent hover:bg-pink hover:text-white'
+          )}
         >
-          Write a review
+          Tulis Review
         </button>
       ),
       link: '/login',
@@ -236,6 +266,35 @@ const LayoutNavbar = ({
   const RightBeforeLoginNormal = [
     {
       title: () => (
+        <a
+          href="https://link.spiil.com"
+          target="_blank"
+          className={cn(
+            styles.review,
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl relative hover:bg-transparent hover:text-inherit hover:border-current',
+            styles.newContent
+          )}
+        >
+          #Link Spiill
+        </a>
+      ),
+    },
+    {
+      title: () => (
+        <Button
+          className={cn(
+            styles.review,
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl text-black bg-transparent hover:bg-pink hover:text-white'
+          )}
+          onClick={onOpenWriteReview}
+        >
+          Tulis Review
+        </Button>
+      ),
+    },
+
+    {
+      title: () => (
         <Link href="/login" className={styles.login}>
           Log in
         </Link>
@@ -250,11 +309,78 @@ const LayoutNavbar = ({
       ),
       link: '/daftar',
     },
+  ]
+
+  const RightAfterLoginNormal = [
     {
       title: () => (
-        <Button className={styles.review} onClick={onOpenWriteReview}>
+        <a
+          href="https://link.spiil.com"
+          target="_blank"
+          className={cn(
+            styles.review,
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl relative hover:bg-transparent hover:text-inherit hover:border-current',
+            styles.newContent
+          )}
+        >
+          #Link Spiill
+        </a>
+      ),
+    },
+    {
+      title: () => (
+        <button
+          onClick={onOpenWriteReview}
+          className={cn(
+            styles.review,
+            'h-auto py-3 px-4 flex justify-center items-center gap-2 rounded-xl bg-transparent hover:bg-pink hover:text-white'
+          )}
+        >
           Tulis Review
-        </Button>
+        </button>
+      ),
+      link: '/login',
+    },
+
+    {
+      title: () => (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="flex cursor-pointer h-11 gap-2 justify-center items-center bg-transparent">
+              <Image
+                src={'/profile.jpeg'}
+                alt="avatar"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full object-cover"
+              />
+
+              <p
+                className={`text-label-lg ${
+                  isSticky || normal ? 'text-black' : ''
+                } font-bold`}
+              >
+                {session?.user.username}
+              </p>
+
+              <Image
+                src={isSticky || normal ? '/icons/v-black.svg' : '/icons/v.svg'}
+                alt="bottom-arrow"
+                width={20}
+                height={20}
+                className="w-5 h-5 object-contain"
+              />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="hidden w-[140px] p-4 md:flex justify-center items-center bg-white hover:bg-gray-200 transition-none relative z-[99999]">
+            <button
+              onClick={() => signOut()}
+              className="text-label-lg text-pink font-satoshi"
+            >
+              Logout
+            </button>
+          </DropdownMenuContent>
+        </DropdownMenu>
       ),
       link: '/',
     },
@@ -275,7 +401,9 @@ const LayoutNavbar = ({
 
   if (normal) {
     const NavContent =
-      status === 'authenticated' ? RightAfterLogin : RightBeforeLoginNormal
+      status === 'authenticated'
+        ? RightAfterLoginNormal
+        : RightBeforeLoginNormal
 
     return (
       <>
@@ -349,11 +477,31 @@ const LayoutNavbar = ({
                   )}
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="hover:bg-white">
-                  <Button className={styles.review} onClick={onOpenWriteReview}>
+                <DropdownMenuItem className="">
+                  <Button
+                    className={cn(
+                      styles.review,
+                      'bg-transparent text-inherit hover:bg-pink hover:text-white py-3 rounded-xl'
+                    )}
+                    onClick={onOpenWriteReview}
+                  >
                     Tulis Review
                   </Button>
                 </DropdownMenuItem>
+
+                <DropDownNav.Item>
+                  <a
+                    href="https://link.spiil.com"
+                    target="_blank"
+                    className={cn(
+                      styles.review,
+                      'w-full flex items-center justify-center font-satoshi relative',
+                      styles.newContent
+                    )}
+                  >
+                    #Link Spiill
+                  </a>
+                </DropDownNav.Item>
 
                 <DropdownMenuItem className="text-label-lg font-bold font-satoshi text-pink ">
                   {isAuthenticated ? (
@@ -609,9 +757,29 @@ const LayoutNavbar = ({
               </DropDownNav.Item>
 
               <DropDownNav.Item>
-                <Button className={styles.review} onClick={onOpenWriteReview}>
+                <Button
+                  className={
+                    (styles.review,
+                    'bg-transparent text-inherit hover:bg-pink hover:text-white py-3 rounded-xl border border-black hover:border-pink')
+                  }
+                  onClick={onOpenWriteReview}
+                >
                   Tulis Review
                 </Button>
+              </DropDownNav.Item>
+
+              <DropDownNav.Item>
+                <a
+                  href="https://link.spiil.com"
+                  target="_blank"
+                  className={cn(
+                    styles.review,
+                    'w-full flex items-center justify-center relative font-satoshi',
+                    styles.newContent
+                  )}
+                >
+                  #Link Spiill
+                </a>
               </DropDownNav.Item>
 
               <DropDownNav.Item className="text-label-lg font-bold font-satoshi text-pink ">
