@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import MainLayout from '@/component/layouts/MainLayout'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
-import RatingStar from '@/component/elements/RatingStar'
 import formatCurrency from '@/utils/formatCurrency'
 
 import ArrowRightIcon from '@/component/elements/Icons/ArrowRight'
@@ -53,7 +52,7 @@ function NotFound() {
             <Link
               href="https://forms.gle/ZTrPGMwSpAZtrE9V6"
               target="_blank"
-              className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit"
+              className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi md:py-3 md:px-4 text-center flex items-center justify-center w-fit px-2"
             >
               Sarankan Produk
             </Link>
@@ -87,11 +86,7 @@ function AffiliateComponent({ ecommerce_name, affiliate_link }: Affiliate) {
         </div>
       </div>
 
-      <Link
-        className="absolute inset-0"
-        target="_blank"
-        href={affiliate_link}
-      />
+      <a className="absolute inset-0" target="_blank" href={affiliate_link} />
     </div>
   )
 }
@@ -106,7 +101,7 @@ const DetailProduct = ({
   affiliate: Affiliate[]
 }) => {
   const [isSticky, setIsSticky] = useState(false)
-  const [activeImageIndex, setActiveImageIndex] = useState(0)
+  // const [activeImageIndex, setActiveImageIndex] = useState(0)
 
   const router = useRouter()
 
@@ -124,7 +119,7 @@ const DetailProduct = ({
     }
   }, [])
 
-  const ProductImages = product.images
+  // const ProductImages = product.images
 
   // const handlePrevClick = () => {
   //   if (activeImageIndex === 0) {
@@ -142,14 +137,14 @@ const DetailProduct = ({
   //   }
   // }
 
-  if (notFound)
+  if (notFound || !router.query.id)
     return (
       <div className="main-container">
         <NotFound />
       </div>
     )
 
-  const Images = JSON.parse(product.images) as string[]
+  const Images = JSON.parse(product?.images) as string[]
 
   return (
     <>

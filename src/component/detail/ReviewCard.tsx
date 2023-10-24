@@ -151,7 +151,11 @@ const ReviewCard = ({
 
 export default ReviewCard
 
-function MediaReview({ mediaReview }: { mediaReview: string[] }) {
+function MediaReview({
+  mediaReview,
+}: {
+  mediaReview: string[] | string | null
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const modalOpen = activeIndex !== null
@@ -162,7 +166,11 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
     }
   }
 
-  if (!mediaReview) return null
+  if (typeof mediaReview === 'string') {
+    mediaReview = JSON.parse(mediaReview) as string[]
+  } else if (!mediaReview) {
+    mediaReview = []
+  }
 
   return (
     <>
@@ -190,7 +198,7 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
             </svg>
           </button>
           <img
-            src={mediaReview[activeIndex ?? 0]}
+            src={mediaReview[activeIndex ?? 0] ?? ''}
             alt={`img-${activeIndex}`}
             className="min-w-[80vw] md:min-w-[400px] lg:min-w-[800px] flex-none object-cover translate-x-[-50%] translate-y-[-50%] z-[10]"
           />
@@ -218,7 +226,7 @@ function MediaReview({ mediaReview }: { mediaReview: string[] }) {
           </button>
         </DialogContent>
       </Dialog>
-      {mediaReview?.length
+      {mediaReview.length
         ? mediaReview.map((item, i) => (
             <button
               onClick={() => setActiveIndex(i)}

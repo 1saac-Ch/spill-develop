@@ -19,7 +19,12 @@ export default function SearchInput({}: Props) {
 
   const parentRef = useRef<HTMLDivElement>(null)
 
-  const [searchVal, setSearchVal] = useState('')
+  const [searchVal, setSearchVal] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const myParam = urlParams.get('product')
+
+    return myParam ?? ''
+  })
 
   const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault()

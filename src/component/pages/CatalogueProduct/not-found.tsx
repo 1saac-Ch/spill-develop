@@ -36,7 +36,7 @@ const NotFoundProduct = () => {
             </Button>
             <Link
               href={'/suggest'}
-              className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi py-3 px-4 max-w-fit font-semibold"
+              className="bg-transparent border border-pink rounded-xl text-label-lg text-pink font-satoshi text-center px-1 md:py-3 md:px-4 max-w-fit flex items-center justify-center font-semibold"
             >
               Sarankan Produk
             </Link>

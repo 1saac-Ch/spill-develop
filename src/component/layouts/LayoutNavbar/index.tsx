@@ -556,11 +556,11 @@ const LayoutNavbar = ({
             {isSticky ? (
               <button onClick={() => setIsOpenSearch(true)}>
                 <Image
-                  width={22}
-                  height={22}
+                  width={32}
+                  height={32}
                   src="/icons/search.svg"
                   alt="searchh"
-                  className="w-8 h-8 cursor-pointer"
+                  className="w-10 h-8 cursor-pointer"
                 />
               </button>
             ) : null}

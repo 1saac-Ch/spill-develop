@@ -9,7 +9,7 @@ const MainFeature = () => {
 
       <div className={styles.featureContainer}>
         {featureData.map((data, i: number) => (
-          <>
+          <React.Fragment key={data.title}>
             <div className="text-center">
               <div className="min-h-[235px]">{data.image}</div>
               <div className={styles.featureInfo}>
@@ -18,7 +18,7 @@ const MainFeature = () => {
               </div>
               <p className={styles.featureDescription}>{data.description}</p>
             </div>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>

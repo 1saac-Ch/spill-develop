@@ -65,5 +65,5 @@
   @apply px-5 md:px-0 flex flex-col md:flex-row md:items-center md:flex-1 gap-5 pt-7 md:pt-10;
 }
 .stackSosmed {
-  @apply flex gap-6;
+  @apply flex gap-6 flex-wrap;
 }

@@ -40,7 +40,7 @@ function RecomendationList({
     )
   } else if (isLoading) {
     content = (
-      <div className="p-4 font-satoshi cursor-pointer hover:bg-accent text-label-lg flex items-center justify-center">
+      <div className="p-4 font-satoshi cursor-pointer text-label-lg flex items-center justify-center">
         <svg
           width="15"
           height="15"
@@ -72,7 +72,7 @@ function RecomendationList({
             key={searchItem.id}
             value={searchItem.product_title}
             directToDetail
-            id={searchItem.id}
+            id={searchItem.product_id}
             className="text-left text-sm font-normal text-neutral-900"
           />
         ))}

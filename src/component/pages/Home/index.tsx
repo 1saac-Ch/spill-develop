@@ -66,7 +66,7 @@ const Home = ({
             <div className="relative" ref={searchContainerRef}>
               <form
                 onSubmit={handleSearchSubmit}
-                className="flex justify-between bg-white p-2 items-center rounded-xl gap-[8px]"
+                className="flex justify-between bg-white p-2 items-center rounded-xl gap-[8px] overflow-hidden"
               >
                 <img
                   src="/icons/search.svg"
@@ -81,7 +81,7 @@ const Home = ({
                   onFocus={() => setOpenRecomendation(true)}
                 />
                 <Button
-                  className="py-[10px] px-[24px] w-[76px] h-[40px]"
+                  className="py-[10px] px-[24px] w-auto h-[40px] shrink"
                   type="submit"
                 >
                   Cari

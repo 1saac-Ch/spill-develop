@@ -1,7 +1,7 @@
 import DetailProduct from '@/component/pages/DetailProduct'
 import { GetServerSidePropsContext } from 'next'
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps(context: GetServerSidePropsContext) {
   const id = context.params?.id
   if (!id) throw new Error('Not found')
 
@@ -22,6 +22,25 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       affiliate: dataAffiliate.data,
       notFound: !dataProduct.data.length,
     },
+    revalidate: 259200,
+  }
+}
+
+export const getStaticPaths = async () => {
+  const resp = await fetch(process.env.NEXT_PUBLIC_API_URL + '/product')
+  const ids: { data: Product[] } = await resp.json()
+
+  return {
+    paths: ids.data.map((prod) => {
+      if (!prod.product_id) return
+
+      return {
+        params: {
+          id: prod.product_id,
+        },
+      }
+    }),
+    fallback: true, // false or "blocking"
   }
 }
 
