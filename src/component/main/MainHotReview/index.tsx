@@ -97,7 +97,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
                               width={12}
                               height={12}
                               className="h-12 w-12 rounded-full object-cover"
-                              src={item.user?.profileImage ?? '/profile.png'}
+                              src={item.user?.profileImage ?? '/profile.jpeg'}
                               alt="Avatar"
                             />
                           </div>

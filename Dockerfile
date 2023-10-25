@@ -9,8 +9,7 @@ RUN npm install
 
 ENV NEXT_PUBLIC_API_URL https://api.spiill.com
 ENV NEXTAUTH_SECRET f0120772c5883f5f7cd2809250e7b28e
-ENV NEXTAUTH_URL http://link.spiill.com
-ENV NEXT_PUBLIC_APP_URL http://link.spiill.com
+ENV NEXT_PUBLIC_BASE_URL https://spiill.com
 
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm install --save-dev @types/redux-logger
@@ -33,7 +32,6 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/server.js ./server.js
-
 
 USER nextjs
 
