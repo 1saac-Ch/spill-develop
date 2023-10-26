@@ -1,5 +1,3 @@
-import { StringLiteralLike } from 'typescript'
-
 type ContentReview = {
   url: string
   title_content?: string
