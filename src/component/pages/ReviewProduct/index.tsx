@@ -145,7 +145,7 @@ const ReviewProduct = ({ product, notFound }: Props) => {
     }
   }
 
-  if (notFound)
+  if (notFound || !router.query.id)
     return (
       <div className="min-h-[70vh] w-full flex items-center justify-center ">
         <p className="text-3xl font-bold">Not found sorry</p>
