@@ -225,7 +225,11 @@ const LayoutNavbar = ({
           <DropdownMenuTrigger>
             <div className="flex cursor-pointer h-11 gap-2 justify-center items-center bg-transparent">
               <Image
-                src={'/profile.jpeg'}
+                src={
+                  session?.user.profileImage
+                    ? session.user.profileImage
+                    : '/profile.jpeg'
+                }
                 alt="avatar"
                 width={32}
                 height={32}
@@ -348,7 +352,11 @@ const LayoutNavbar = ({
           <DropdownMenuTrigger>
             <div className="flex cursor-pointer h-11 gap-2 justify-center items-center bg-transparent">
               <Image
-                src={'/profile.jpeg'}
+                src={
+                  session?.user.profileImage
+                    ? session.user.profileImage
+                    : '/profile.jpeg'
+                }
                 alt="avatar"
                 width={32}
                 height={32}
@@ -456,7 +464,11 @@ const LayoutNavbar = ({
                   {isAuthenticated ? (
                     <div className="w-full flex items-center justify-center gap-2 hover:bg-white h-full py-4">
                       <Image
-                        src="/profile.jpeg"
+                        src={
+                          session?.user.profileImage
+                            ? session.user.profileImage
+                            : '/profile.jpeg'
+                        }
                         alt="profile"
                         width={32}
                         height={32}
@@ -735,7 +747,11 @@ const LayoutNavbar = ({
                 {isAuthenticated ? (
                   <div className="w-full flex items-center justify-center gap-2 hover:bg-white h-full py-4">
                     <Image
-                      src="/profile.jpeg"
+                      src={
+                        session?.user.profileImage
+                          ? session.user.profileImage
+                          : '/profile.jpeg'
+                      }
                       alt="profile"
                       width={32}
                       height={32}

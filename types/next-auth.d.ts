@@ -7,7 +7,8 @@ declare module 'next-auth/jwt' {
     username: string
     email?: string | null
     role: string
-    id:string
+    id: string
+    profileImage: string | null
   }
   interface JWT extends User {
     value: string
@@ -22,6 +23,7 @@ declare module 'next-auth' {
     email?: string | null
     role: string
     id: string
+    profileImage: string | null
   }
 
   interface Session {

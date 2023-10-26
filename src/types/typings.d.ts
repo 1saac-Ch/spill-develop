@@ -94,7 +94,7 @@ type Reply = {
 }
 
 type Discussion = {
-  id: number
+  id: string
   userId: string
   user: UserData
   productId: string

@@ -40,7 +40,7 @@ function RecomendationList({
     )
   } else if (isLoading) {
     content = (
-      <div className="p-4 font-satoshi cursor-pointer text-label-lg flex items-center justify-center">
+      <div className="p-4 font-satoshi text-label-lg flex items-center justify-center">
         <svg
           width="15"
           height="15"

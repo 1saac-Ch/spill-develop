@@ -36,8 +36,8 @@ async function getDiscussionById(productId: string | string[]) {
 }
 
 export const discussionListContext = createContext<{
-  isOpenDiscusionIdReply: number | null
-  setIsOpenDiscusionIdReply: (params: number | null) => void
+  isOpenDiscusionIdReply: string | null
+  setIsOpenDiscusionIdReply: (params: string | null) => void
 }>({
   isOpenDiscusionIdReply: null,
   setIsOpenDiscusionIdReply: () => {},
@@ -51,7 +51,7 @@ const WriteDiscussion = () => {
   const { data: session } = useSession()
 
   const [isOpenDiscusionIdReply, setIsOpenDiscusionIdReply] = useState<
-    null | number
+    null | string
   >(null)
 
   const { data, isError, isLoading } = useQuery<Discussion[]>({
@@ -108,45 +108,29 @@ const WriteDiscussion = () => {
 
     const body = reviewContent.value
 
-    queryClient.setQueryData(
-      ['discussion', productId],
-      (oldValue: DiscussionQuery | undefined) => {
-        if (!oldValue) return undefined
-        const oldDiscussion = oldValue.data.discussionsWithTime
-
-        const newDiscussion = [
-          ...oldDiscussion,
-          {
-            userId: session.user.id,
-            body,
-            user: {
-              waktu: 'Baru saja',
-              username: session.user.username,
-            },
-            isSending: true,
-          },
-        ] as any
-
-        return { data: { discussionsWithTime: newDiscussion } }
-      }
-    )
-
     reviewContent.value = ''
 
-    const resp = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/discussion/${productId}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.accessToken}`,
-        },
-        body: JSON.stringify({
-          body,
-          parentId: null,
-        }),
-      }
-    )
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/discussion/${productId}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+          body: JSON.stringify({
+            body,
+            parentId: null,
+          }),
+        }
+      )
+    } catch (error) {
+    } finally {
+      queryClient.invalidateQueries({
+        queryKey: ['discussion', productId],
+      })
+    }
   }
 
   return (

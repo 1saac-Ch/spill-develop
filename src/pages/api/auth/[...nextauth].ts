@@ -48,6 +48,7 @@ export const authOptions: NextAuthOptions = {
             username: userData.username,
             email: userData.email,
             role: userData.role,
+            profileImage: userData.profileImage || '',
             token,
           }
         } catch (error) {
@@ -72,6 +73,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id
         token.fullname = user.fullname
         token.username = user.username
+        token.profileImage = user.profileImage
         token.email = user.email
         token.role = user.role
         token.value = user.token
@@ -82,6 +84,7 @@ export const authOptions: NextAuthOptions = {
       session.accessToken = token.value
       session.user.fullname = token.fullname
       session.user.username = token.username
+      session.user.profileImage = token.profileImage
       session.user.email = token.email
       session.user.role = token.role
       session.user.id = token.id
