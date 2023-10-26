@@ -21,6 +21,15 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
     activeSlide,
   } = useSlider(hotReview)
 
+  function getImageUrl(item: Hotriview) {
+    if (!!item.media?.[0]) return item.media[0]
+    if (!!item.images) {
+      const parsed = JSON.parse(item.images) as string[]
+      return parsed[0]
+    }
+    return '/placeholder.jpeg'
+  }
+
   return (
     <div className="relative flex justify-center w-screen">
       {/* <div className={styles.roundedTopHotReview} /> */}
@@ -78,7 +87,7 @@ const MainHotReview = ({ hotReview }: { hotReview: Hotriview[] }) => {
               {content.map((item, i) => (
                 <Fragment key={i}>
                   <Link href={`/detail-product/${item.productId ?? ''}`}>
-                    <Card imgUrl={item.media?.[0] || '/placeholder.jpeg'}>
+                    <Card imgUrl={getImageUrl(item)}>
                       <div className="h-full flex flex-col p-6 gap-4">
                         <div>
                           <RatingStar rating={Number(item.rating)} />

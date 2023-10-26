@@ -1,3 +1,5 @@
+import { StringLiteralLike } from 'typescript'
+
 type ContentReview = {
   url: string
   title_content?: string
@@ -32,7 +34,7 @@ type Hotriview = {
   productId: string
   product_title: string
   title: string
-  images: string[] | null
+  images: StringLiteralLike
   likes: number
   media: string[] | null
   rating: string
